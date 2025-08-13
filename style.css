@@ -1,11 +1,16 @@
 /* --- Global Styles & Variables (Mobile-First) --- */
 :root {
-    --bg-color: #121212;
-    --surface-color: #1e1e1e;
+    --bg-color: #0d1117; /* Slightly softer black */
+    --surface-color: #161b22;
     --primary-color: #007BFF;
-    --text-primary: #EAEAEA;
-    --text-secondary: #A0A0A0;
-    --font-family: 'Poppins', sans-serif;
+    --text-primary: #f0f6fc;
+    --text-secondary: #8b949e;
+    --font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    --border-color: #30363d;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -13,20 +18,22 @@ body {
     color: var(--text-primary);
     font-family: var(--font-family);
     margin: 0;
-    padding-top: 60px; /* Adjusted for mobile header */
+    padding-top: 60px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 15px; /* More padding for mobile */
+    padding: 0 15px;
 }
 
 /* --- Header & Search Bar (Mobile) --- */
 #main-header {
-    background-color: rgba(30, 30, 30, 0.85);
+    background-color: rgba(13, 17, 23, 0.8);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid #2a2a2a;
+    border-bottom: 1px solid var(--border-color);
     padding: 10px 0;
     position: fixed;
     top: 0;
@@ -42,37 +49,37 @@ body {
 }
 
 .logo {
-    font-size: 1.5em; /* Smaller for mobile */
+    font-size: 1.5em;
     font-weight: 700;
     color: var(--primary-color);
     margin: 0;
 }
 
 #search-bar {
-    width: 150px; /* Smaller for mobile */
-    padding: 8px 12px;
+    width: 150px;
+    padding: 8px 15px;
     border-radius: 20px;
-    border: 1px solid #333;
-    background-color: #2a2a2a;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
     color: var(--text-primary);
     font-size: 0.9em;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease-in-out;
 }
 
 #search-bar:focus {
     outline: none;
     border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3);
 }
 
 /* --- Hero Section (Mobile) --- */
 #hero {
     position: relative;
-    height: 70vh; /* Taller for better mobile view */
+    height: 70vh;
     display: flex;
-    align-items: flex-end; /* Align content to bottom */
+    align-items: flex-end;
     padding-bottom: 40px;
     color: #fff;
-    text-align: left;
 }
 
 .hero-background {
@@ -94,7 +101,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(180deg, rgba(18,18,18,0) 50%, rgba(18,18,18,1) 95%); /* Gradient from bottom */
+    background: linear-gradient(180deg, rgba(13,17,23,0) 50%, rgba(13,17,23,1) 95%);
 }
 
 .hero-content {
@@ -103,15 +110,17 @@ body {
 }
 
 #hero-title {
-    font-size: 2.5em; /* Adjusted for mobile */
+    font-size: 2.5em;
     font-weight: 700;
     margin-bottom: 10px;
+    line-height: 1.2;
 }
 
 .hero-content p {
     font-size: 1em;
     margin-bottom: 20px;
     max-width: 90%;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 
 .btn-primary {
@@ -119,16 +128,16 @@ body {
     color: #fff;
     padding: 12px 20px;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 8px;
     font-weight: 600;
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    transition: background-color 0.3s ease;
+    transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-.btn-primary:hover {
-    background-color: #0056b3;
+.btn-primary:active { /* Touch feedback for mobile */
+    transform: scale(0.95);
 }
 
 /* --- Movie Gallery (Mobile) --- */
@@ -148,22 +157,22 @@ body {
 
 .movie-grid {
     display: grid;
-    /* 2 columns for mobile, with a bit of space */
     grid-template-columns: repeat(2, 1fr); 
     gap: 15px;
 }
 
 .movie-card {
     background-color: var(--surface-color);
-    border-radius: 8px;
+    border-radius: 12px; /* Softer corners */
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-    transition: transform 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    transition: transform 0.2s ease-in-out;
     position: relative;
+    border: 1px solid var(--border-color);
 }
 
-.movie-card:hover {
-    transform: translateY(-5px);
+.movie-card:active { /* Touch feedback for mobile */
+    transform: scale(0.96);
 }
 
 .movie-card a {
@@ -174,32 +183,25 @@ body {
     height: 100%;
 }
 
-.movie-card .poster-container {
-    position: relative;
-}
-
 .movie-card img {
     width: 100%;
-    height: 220px; /* Fixed height for consistency on mobile */
+    height: 230px; /* Slightly taller */
     object-fit: cover;
     display: block;
-}
-
-.poster-container .play-icon {
-    /* Hidden on mobile to keep it clean, tap works anyway */
-    display: none; 
+    border-bottom: 1px solid var(--border-color);
 }
 
 .movie-card h3 {
-    padding: 10px;
+    padding: 12px;
     margin: 0;
     font-size: 0.9em;
-    font-weight: 600;
+    font-weight: 500;
     text-align: center;
-    flex-grow: 1; /* Allows title to take up remaining space */
+    flex-grow: 1;
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: 50px; /* Ensure consistent height */
 }
 
 #no-results {
@@ -207,6 +209,7 @@ body {
     font-size: 1.2em;
     text-align: center;
     padding: 50px;
+    grid-column: 1 / -1; /* Make it span full width */
 }
 
 .hidden {
@@ -220,7 +223,7 @@ footer {
     text-align: center;
     padding: 20px;
     margin-top: 30px;
-    border-top: 1px solid #2a2a2a;
+    border-top: 1px solid var(--border-color);
 }
 
 footer p {
@@ -232,80 +235,22 @@ footer .disclaimer {
     font-size: 0.7em;
     max-width: 90%;
     margin: 15px auto;
-    font-style: italic;
+    opacity: 0.7;
 }
 
-/* --- DESKTOP STYLES (This is the magic part!) --- */
-/* This code only applies if the screen is 768px or wider */
+/* --- DESKTOP STYLES --- */
 @media (min-width: 768px) {
-    body {
-        padding-top: 70px; /* Restore PC header height */
-    }
-
-    .container {
-        padding: 0 20px;
-    }
-
-    .logo {
-        font-size: 1.8em; /* Restore PC logo size */
-    }
-
-    #search-bar {
-        width: 250px; /* Restore PC search bar size */
-    }
-
-    #hero {
-        height: 60vh;
-        align-items: center; /* Center content vertically on PC */
-    }
-
-    .hero-background::after {
-        /* Gradient from left for PC */
-        background: linear-gradient(90deg, rgba(18,18,18,1) 20%, rgba(18,18,18,0.4) 60%, rgba(18,18,18,0) 100%);
-    }
-
-    .hero-content {
-        padding: 0 5%;
-        max-width: 50%;
-    }
-
-    #hero-title {
-        font-size: 3em;
-    }
-
-    .hero-content p {
-        font-size: 1.1em;
-    }
-
-    .movie-grid {
-        /* Auto-fill columns for PC, creating a responsive grid */
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 25px;
-    }
-
-    .movie-card img {
-        height: 300px; /* Taller posters for PC */
-    }
-
-    .poster-container .play-icon {
-        /* Show play icon on hover for PC users */
-        display: flex;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) scale(0.8);
-        width: 60px;
-        height: 60px;
-        background-color: rgba(0, 0, 0, 0.6);
-        border-radius: 50%;
-        justify-content: center;
-        align-items: center;
-        opacity: 0;
-        transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .movie-card:hover .play-icon {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-    }
+    body { padding-top: 70px; }
+    .container { padding: 0 20px; }
+    .logo { font-size: 1.8em; }
+    #search-bar { width: 250px; }
+    #hero { height: 60vh; align-items: center; }
+    .hero-background::after { background: linear-gradient(90deg, rgba(13,17,23,1) 20%, rgba(13,17,23,0.4) 60%, rgba(13,17,23,0) 100%); }
+    .hero-content { padding: 0 5%; max-width: 50%; }
+    #hero-title { font-size: 3em; }
+    .hero-content p { font-size: 1.1em; }
+    .btn-primary:hover { background-color: #0062cc; transform: translateY(-2px); }
+    .movie-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 25px; }
+    .movie-card:hover { transform: translateY(-8px); box-shadow: 0 10px 20px rgba(0, 123, 255, 0.2); }
+    .movie-card img { height: 300px; }
 }
