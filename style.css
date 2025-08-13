@@ -1,4 +1,4 @@
-/* --- Global Styles & Variables --- */
+/* --- Global Styles & Variables (Mobile-First) --- */
 :root {
     --bg-color: #121212;
     --surface-color: #1e1e1e;
@@ -13,21 +13,21 @@ body {
     color: var(--text-primary);
     font-family: var(--font-family);
     margin: 0;
-    padding-top: 70px; /* Space for sticky header */
+    padding-top: 60px; /* Adjusted for mobile header */
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 15px; /* More padding for mobile */
 }
 
-/* --- Header & Search Bar --- */
+/* --- Header & Search Bar (Mobile) --- */
 #main-header {
     background-color: rgba(30, 30, 30, 0.85);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid #2a2a2a;
-    padding: 15px 0;
+    padding: 10px 0;
     position: fixed;
     top: 0;
     left: 0;
@@ -42,35 +42,35 @@ body {
 }
 
 .logo {
-    font-size: 1.8em;
+    font-size: 1.5em; /* Smaller for mobile */
     font-weight: 700;
     color: var(--primary-color);
     margin: 0;
 }
 
 #search-bar {
-    width: 250px;
-    padding: 10px 15px;
+    width: 150px; /* Smaller for mobile */
+    padding: 8px 12px;
     border-radius: 20px;
     border: 1px solid #333;
     background-color: #2a2a2a;
     color: var(--text-primary);
-    font-size: 1em;
+    font-size: 0.9em;
     transition: all 0.3s ease;
 }
 
 #search-bar:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
 }
 
-/* --- Hero Section --- */
+/* --- Hero Section (Mobile) --- */
 #hero {
     position: relative;
-    height: 60vh;
+    height: 70vh; /* Taller for better mobile view */
     display: flex;
-    align-items: center;
+    align-items: flex-end; /* Align content to bottom */
+    padding-bottom: 40px;
     color: #fff;
     text-align: left;
 }
@@ -83,7 +83,7 @@ body {
     height: 100%;
     background-image: url('https://i.postimg.cc/Nf3QTNXq/doraemon-movie-nobitas-sky-utopia-in-hindi.jpg');
     background-size: cover;
-    background-position: center;
+    background-position: center 30%;
     z-index: -1;
 }
 
@@ -94,30 +94,30 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, rgba(18,18,18,1) 20%, rgba(18,18,18,0.4) 60%, rgba(18,18,18,0) 100%);
+    background: linear-gradient(180deg, rgba(18,18,18,0) 50%, rgba(18,18,18,1) 95%); /* Gradient from bottom */
 }
 
 .hero-content {
     padding: 0 5%;
-    max-width: 50%;
+    width: 100%;
 }
 
 #hero-title {
-    font-size: 3em;
+    font-size: 2.5em; /* Adjusted for mobile */
     font-weight: 700;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .hero-content p {
-    font-size: 1.1em;
-    max-width: 500px;
-    margin-bottom: 25px;
+    font-size: 1em;
+    margin-bottom: 20px;
+    max-width: 90%;
 }
 
 .btn-primary {
     background-color: var(--primary-color);
     color: #fff;
-    padding: 12px 25px;
+    padding: 12px 20px;
     text-decoration: none;
     border-radius: 5px;
     font-weight: 600;
@@ -131,44 +131,47 @@ body {
     background-color: #0056b3;
 }
 
-/* --- Movie Gallery --- */
+/* --- Movie Gallery (Mobile) --- */
 #movie-gallery {
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
 
 .section-title {
-    font-size: 2em;
+    font-size: 1.8em;
     font-weight: 600;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 10px;
+    padding-bottom: 8px;
     display: inline-block;
 }
 
 .movie-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 25px;
+    /* 2 columns for mobile, with a bit of space */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 15px;
 }
 
 .movie-card {
     background-color: var(--surface-color);
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
     position: relative;
 }
 
 .movie-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 25px rgba(0, 123, 255, 0.3);
+    transform: translateY(-5px);
 }
 
 .movie-card a {
     text-decoration: none;
     color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .movie-card .poster-container {
@@ -177,41 +180,26 @@ body {
 
 .movie-card img {
     width: 100%;
-    height: 300px;
+    height: 220px; /* Fixed height for consistency on mobile */
     object-fit: cover;
     display: block;
 }
 
 .poster-container .play-icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.8);
-    width: 60px;
-    height: 60px;
-    background-color: rgba(0, 0, 0, 0.6);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.movie-card:hover .play-icon {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    /* Hidden on mobile to keep it clean, tap works anyway */
+    display: none; 
 }
 
 .movie-card h3 {
-    padding: 15px;
+    padding: 10px;
     margin: 0;
-    font-size: 1em;
+    font-size: 0.9em;
     font-weight: 600;
     text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    flex-grow: 1; /* Allows title to take up remaining space */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #no-results {
@@ -230,18 +218,94 @@ footer {
     background-color: #0a0a0a;
     color: var(--text-secondary);
     text-align: center;
-    padding: 30px 20px;
-    margin-top: 40px;
+    padding: 20px;
+    margin-top: 30px;
     border-top: 1px solid #2a2a2a;
 }
 
 footer p {
     margin: 8px 0;
+    font-size: 0.9em;
 }
 
 footer .disclaimer {
-    font-size: 0.8em;
-    max-width: 600px;
+    font-size: 0.7em;
+    max-width: 90%;
     margin: 15px auto;
     font-style: italic;
+}
+
+/* --- DESKTOP STYLES (This is the magic part!) --- */
+/* This code only applies if the screen is 768px or wider */
+@media (min-width: 768px) {
+    body {
+        padding-top: 70px; /* Restore PC header height */
+    }
+
+    .container {
+        padding: 0 20px;
+    }
+
+    .logo {
+        font-size: 1.8em; /* Restore PC logo size */
+    }
+
+    #search-bar {
+        width: 250px; /* Restore PC search bar size */
+    }
+
+    #hero {
+        height: 60vh;
+        align-items: center; /* Center content vertically on PC */
+    }
+
+    .hero-background::after {
+        /* Gradient from left for PC */
+        background: linear-gradient(90deg, rgba(18,18,18,1) 20%, rgba(18,18,18,0.4) 60%, rgba(18,18,18,0) 100%);
+    }
+
+    .hero-content {
+        padding: 0 5%;
+        max-width: 50%;
+    }
+
+    #hero-title {
+        font-size: 3em;
+    }
+
+    .hero-content p {
+        font-size: 1.1em;
+    }
+
+    .movie-grid {
+        /* Auto-fill columns for PC, creating a responsive grid */
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 25px;
+    }
+
+    .movie-card img {
+        height: 300px; /* Taller posters for PC */
+    }
+
+    .poster-container .play-icon {
+        /* Show play icon on hover for PC users */
+        display: flex;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.8);
+        width: 60px;
+        height: 60px;
+        background-color: rgba(0, 0, 0, 0.6);
+        border-radius: 50%;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .movie-card:hover .play-icon {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
 }
