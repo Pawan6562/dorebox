@@ -254,3 +254,24 @@ footer .disclaimer {
     .movie-card:hover { transform: translateY(-8px); box-shadow: 0 10px 20px rgba(0, 123, 255, 0.2); }
     .movie-card img { height: 300px; }
 }
+
+/* ===== NATIVE AD CARD STYLES START HERE ===== */
+.ad-movie-card {
+    background-color: var(--surface-color);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px; /* Thodi padding taaki ad chipka hua na lage */
+}
+
+/* PC par bhi ad card ka size movie card jaisa rakho */
+@media (min-width: 768px) {
+    .ad-movie-card {
+        height: 377px; /* PC movie card ki exact height */
+    }
+}
+/* ===== NATIVE AD CARD STYLES END HERE ===== */
