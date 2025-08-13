@@ -255,7 +255,7 @@ footer .disclaimer {
     .movie-card img { height: 300px; }
 }
 
-/* ===== NATIVE AD CARD STYLES START HERE ===== */
+/* ===== NATIVE AD CARD STYLES (FINAL PERFECTED VERSION) ===== */
 .ad-movie-card {
     background-color: var(--surface-color);
     border-radius: 12px;
@@ -263,9 +263,32 @@ footer .disclaimer {
     box-shadow: 0 4px 12px rgba(0,0,0,0.4);
     border: 1px solid var(--border-color);
     display: flex;
+    flex-direction: column; /* Upar ad, neeche title */
+    height: 307px; /* Mobile movie card ki exact height */
+}
+
+.ad-movie-card .ad-banner-area {
+    flex-grow: 1; /* Ad ko upar ki poori jagah de do */
+    display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px; /* Thodi padding taaki ad chipka hua na lage */
+    width: 100%;
+    border-bottom: 1px solid var(--border-color); /* Movie poster jaisa border */
+}
+
+.ad-movie-card h3 {
+    /* Yeh bilkul movie card ke title jaisa hi dikhega */
+    padding: 12px;
+    margin: 0;
+    font-size: 0.9em;
+    font-weight: 500;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    color: var(--text-secondary); /* Thoda alag color taaki ad lage */
 }
 
 /* PC par bhi ad card ka size movie card jaisa rakho */
@@ -274,4 +297,3 @@ footer .disclaimer {
         height: 377px; /* PC movie card ki exact height */
     }
 }
-/* ===== NATIVE AD CARD STYLES END HERE ===== */
