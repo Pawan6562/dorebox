@@ -255,7 +255,7 @@ footer .disclaimer {
     .movie-card img { height: 300px; }
 }
 
-/* ===== NATIVE AD CARD STYLES (FINAL PERFECTED VERSION) ===== */
+/* ===== AD CARD STYLES (NEW - YOUTUBE STYLE) ===== */
 .ad-movie-card {
     background-color: var(--surface-color);
     border-radius: 12px;
@@ -263,21 +263,21 @@ footer .disclaimer {
     box-shadow: 0 4px 12px rgba(0,0,0,0.4);
     border: 1px solid var(--border-color);
     display: flex;
-    flex-direction: column; /* Upar ad, neeche title */
-    height: 307px; /* Mobile movie card ki exact height */
+    flex-direction: column;
+    height: 307px; /* Same as mobile movie card height */
 }
 
 .ad-movie-card .ad-banner-area {
-    flex-grow: 1; /* Ad ko upar ki poori jagah de do */
+    flex-grow: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    border-bottom: 1px solid var(--border-color); /* Movie poster jaisa border */
+    border-bottom: 1px solid var(--border-color);
+    height: 230px; /* Same as movie poster height */
 }
 
 .ad-movie-card h3 {
-    /* Yeh bilkul movie card ke title jaisa hi dikhega */
     padding: 12px;
     margin: 0;
     font-size: 0.9em;
@@ -288,12 +288,16 @@ footer .disclaimer {
     align-items: center;
     justify-content: center;
     min-height: 50px;
-    color: var(--text-secondary); /* Thoda alag color taaki ad lage */
+    color: var(--text-secondary);
 }
 
-/* PC par bhi ad card ka size movie card jaisa rakho */
+/* Desktop styles for ad card */
 @media (min-width: 768px) {
     .ad-movie-card {
-        height: 377px; /* PC movie card ki exact height */
+        height: 377px; /* Same as desktop movie card height */
+    }
+    
+    .ad-movie-card .ad-banner-area {
+        height: 300px; /* Same as desktop movie poster height */
     }
 }
