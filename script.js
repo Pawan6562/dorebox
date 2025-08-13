@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // Your COMPLETE movie database (All 28 movies are here now)
+    // Your movie database (ALL 28 MOVIES PRESERVED)
     const movies = [
       { title: "Chronicle of the Moon", url: "https://smallshorts.com/NobitaChronicleoftheMoon", poster: "https://i.postimg.cc/BbmtZs0X/m3.jpg" },
       { title: "Sky Utopia", url: "https://t.me/doremonallmoviesepisodes/2019", poster: "https://i.postimg.cc/Nf3QTNXq/doraemon-movie-nobitas-sky-utopia-in-hindi.jpg" },
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { title: "Doraemon Nobita And The Kingdom Of Robot Singham", url: "https://t.me/doremonallmoviesepisodes/2174", poster: "https://i.postimg.cc/j5fNHPj6/The-Movie-Nobita-and-the-Kingdom-of-Robot-by-cjh.jpg" }
     ];
 
-    // --- AAPKA AD CODE YAHAN HAI ---
+    // --- YOUR AD CODE ---
     const adCode = `
         <div id="frame" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
           <iframe data-aa='2406568' src='//ad.a-ads.com/2406568/?size=300x250'
@@ -44,51 +44,59 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchBar = document.getElementById('search-bar');
     const noResults = document.getElementById('no-results');
 
-    function displayContent(movieArray) {
+    // Function to display movies WITH ads (YouTube style)
+    function displayMovies(movieArray) {
         movieGrid.innerHTML = '';
         if (movieArray.length === 0) {
             noResults.classList.remove('hidden');
-            return;
+        } else {
+            noResults.classList.add('hidden');
         }
         
-        noResults.classList.add('hidden');
-        
         let contentCounter = 0;
-        movieArray.forEach(movie => {
-            // Create and append the movie card
+        movieArray.forEach((movie, index) => {
+            // Create and append the movie card (ORIGINAL FUNCTIONALITY)
             const movieCard = document.createElement('div');
             movieCard.className = 'movie-card';
+            
             movieCard.innerHTML = `
                 <a href="${movie.url}" target="_blank">
-                    <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
+                    <div class="poster-container">
+                        <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
+                        <div class="play-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="30" height="30"><path d="M8 5v14l11-7z"></path></svg>
+                        </div>
+                    </div>
                     <h3>${movie.title}</h3>
                 </a>
             `;
             movieGrid.appendChild(movieCard);
             contentCounter++;
 
-            // Har 5 content ke baad, ek ad card daalo
+            // Add ad card every 5 movies (YouTube style)
             if (contentCounter % 5 === 0) {
                 const adCard = document.createElement('div');
                 adCard.className = 'ad-movie-card';
-                // Naya HTML structure (Title neeche)
                 adCard.innerHTML = `
                     <div class="ad-banner-area">${adCode}</div>
                     <h3>Advertisement</h3>
                 `;
                 movieGrid.appendChild(adCard);
-                contentCounter++;
             }
         });
     }
 
-    // Search functionality
+    // Search functionality (ORIGINAL - NO ADS IN SEARCH)
     searchBar.addEventListener('keyup', (e) => {
         const searchTerm = e.target.value.toLowerCase();
-        const filteredMovies = movies.filter(movie => movie.title.toLowerCase().includes(searchTerm));
-        displayMoviesOnly(filteredMovies); 
+        const filteredMovies = movies.filter(movie => {
+            return movie.title.toLowerCase().includes(searchTerm);
+        });
+        // For search results, show only movies (cleaner experience)
+        displayMoviesOnly(filteredMovies);
     });
 
+    // Function to display only movies (for search results)
     function displayMoviesOnly(movieArray) {
         movieGrid.innerHTML = '';
         if (movieArray.length === 0) {
@@ -96,12 +104,19 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             noResults.classList.add('hidden');
         }
+        
         movieArray.forEach(movie => {
             const movieCard = document.createElement('div');
             movieCard.className = 'movie-card';
+            
             movieCard.innerHTML = `
                 <a href="${movie.url}" target="_blank">
-                    <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
+                    <div class="poster-container">
+                        <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
+                        <div class="play-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="30" height="30"><path d="M8 5v14l11-7z"></path></svg>
+                        </div>
+                    </div>
                     <h3>${movie.title}</h3>
                 </a>
             `;
@@ -109,6 +124,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Initial display of all content
-    displayContent(movies);
+    // Initial display of all movies WITH ads
+    displayMovies(movies);
 });
