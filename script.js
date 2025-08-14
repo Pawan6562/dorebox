@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
     
     // Your movie database (ALL 28 MOVIES PRESERVED)
     const movies = [
@@ -35,29 +35,29 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- YOUR AD CODE ---
     const adCode = `
         <div id="frame" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
-          <iframe data-aa='2406568' src='//ad.a-ads.com/2406568/?size=300x250'
-                            style='border:0; padding:0; width:300px; height:250px; overflow:hidden;'></iframe>
+          <iframe data-aa=\'2406568\' src=\'//ad.a-ads.com/2406568/?size=300x250\'
+                            style=\'border:0; padding:0; width:300px; height:250px; overflow:hidden;\'></iframe>
         </div>
     `;
 
-    const movieGrid = document.getElementById('movie-grid');
-    const searchBar = document.getElementById('search-bar');
-    const noResults = document.getElementById('no-results');
+    const movieGrid = document.getElementById("movie-grid");
+    const searchBar = document.getElementById("search-bar");
+    const noResults = document.getElementById("no-results");
 
     // Function to display movies WITH ads (YouTube style)
     function displayMovies(movieArray) {
-        movieGrid.innerHTML = '';
+        movieGrid.innerHTML = "";
         if (movieArray.length === 0) {
-            noResults.classList.remove('hidden');
+            noResults.classList.remove("hidden");
         } else {
-            noResults.classList.add('hidden');
+            noResults.classList.add("hidden");
         }
         
         let contentCounter = 0;
         movieArray.forEach((movie, index) => {
             // Create and append the movie card (ORIGINAL FUNCTIONALITY)
-            const movieCard = document.createElement('div');
-            movieCard.className = 'movie-card';
+            const movieCard = document.createElement("div");
+            movieCard.className = "movie-card";
             
             movieCard.innerHTML = `
                 <a href="${movie.url}" target="_blank">
@@ -73,10 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
             movieGrid.appendChild(movieCard);
             contentCounter++;
 
-            // Add ad card every 5 movies (YouTube style)
-            if (contentCounter % 5 === 0) {
-                const adCard = document.createElement('div');
-                adCard.className = 'ad-movie-card';
+            // Add ad card every 4 movies (CHANGED FROM 5 TO 4)
+            if (contentCounter % 2 === 0) {
+                const adCard = document.createElement("div");
+                adCard.className = "ad-movie-card";
                 adCard.innerHTML = `
                     <div class="ad-banner-area">${adCode}</div>
                     <h3>Advertisement</h3>
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Search functionality (ORIGINAL - NO ADS IN SEARCH)
-    searchBar.addEventListener('keyup', (e) => {
+    searchBar.addEventListener("keyup", (e) => {
         const searchTerm = e.target.value.toLowerCase();
         const filteredMovies = movies.filter(movie => {
             return movie.title.toLowerCase().includes(searchTerm);
@@ -98,16 +98,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to display only movies (for search results)
     function displayMoviesOnly(movieArray) {
-        movieGrid.innerHTML = '';
+        movieGrid.innerHTML = "";
         if (movieArray.length === 0) {
-            noResults.classList.remove('hidden');
+            noResults.classList.remove("hidden");
         } else {
-            noResults.classList.add('hidden');
+            noResults.classList.add("hidden");
         }
         
         movieArray.forEach(movie => {
-            const movieCard = document.createElement('div');
-            movieCard.className = 'movie-card';
+            const movieCard = document.createElement("div");
+            movieCard.className = "movie-card";
             
             movieCard.innerHTML = `
                 <a href="${movie.url}" target="_blank">
