@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
             contentCounter++;
 
             // Add ad card every 4 movies (CHANGED FROM 5 TO 4)
-            if (contentCounter % 2 === 0) {
+            if (contentCounter % 4 === 0) {
                 const adCard = document.createElement("div");
                 adCard.className = "ad-movie-card";
                 adCard.innerHTML = `
