@@ -255,8 +255,11 @@ footer .disclaimer {
     .movie-card img { height: 300px; }
 }
 
-/* ===== AD CARD STYLES (NEW - YOUTUBE STYLE) ===== */
+/* ===== AD CARD STYLES (FIXED FOR FULL WIDTH) ===== */
 .ad-movie-card {
+    /* CRITICAL FIX: Make ad card span full width */
+    grid-column: 1 / -1; /* Spans all columns in the grid */
+    
     background-color: var(--surface-color);
     border-radius: 12px;
     overflow: hidden;
@@ -264,7 +267,11 @@ footer .disclaimer {
     border: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
-    height: 307px; /* Same as mobile movie card height */
+    
+    /* Give ad enough space */
+    min-height: 300px;
+    max-width: 100%;
+    margin: 10px 0; /* Add some vertical spacing */
 }
 
 .ad-movie-card .ad-banner-area {
@@ -274,7 +281,8 @@ footer .disclaimer {
     justify-content: center;
     width: 100%;
     border-bottom: 1px solid var(--border-color);
-    height: 230px; /* Same as movie poster height */
+    min-height: 250px; /* Ensure 250px height for the ad */
+    padding: 10px; /* Add padding so ad doesn't touch edges */
 }
 
 .ad-movie-card h3 {
@@ -287,17 +295,19 @@ footer .disclaimer {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 50px;
+    min-height: 40px; /* Smaller title area since we have more space */
     color: var(--text-secondary);
+    background-color: rgba(0,0,0,0.2); /* Subtle background for title */
 }
 
 /* Desktop styles for ad card */
 @media (min-width: 768px) {
     .ad-movie-card {
-        height: 377px; /* Same as desktop movie card height */
+        min-height: 320px; /* Slightly more space on desktop */
     }
     
     .ad-movie-card .ad-banner-area {
-        height: 300px; /* Same as desktop movie poster height */
+        min-height: 270px; /* More space for ad on desktop */
+        padding: 15px;
     }
 }
