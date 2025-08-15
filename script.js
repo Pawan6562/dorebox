@@ -90,8 +90,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 'width' : 300,
                 'params' : {}
             };
-            </script>
-<script type="text/javascript" src="//www.highperformanceformat.com/7f7dcddc8dac34dafd83fc6e2b553a4e/invoke.js"></script>
         `;
         
         const script2 = document.createElement('script');
