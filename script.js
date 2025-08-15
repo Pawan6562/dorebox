@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchBar = document.getElementById("search-bar");
     const noResults = document.getElementById("no-results");
 
-    // Function to display movies (without in-grid ads)
+    // Function to display movies
     function displayMovies(movieArray) {
         movieGrid.innerHTML = "";
         if (movieArray.length === 0) {
@@ -75,23 +75,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initial display of all movies
     displayMovies(movies);
-
-    // ===== Telega.io AD DISPLAY CODE =====
-    // We will try to show the ad after a small delay (e.g., 2 seconds)
-    // to make sure everything is loaded and the user has seen the page.
-    setTimeout(() => {
-        try {
-            // Check if the 'ads' object from telega.io is available
-            if (window.ads && typeof window.ads.ad_show === 'function') {
-                ads.ad_show({
-                  adBlockUuid: "85aa0576-18a5-4d08-ae3d-742ad7ecb144"
-                });
-            } else {
-                console.error("Telega.io 'ads' object not found.");
-            }
-        } catch (error) {
-            console.error("Telega.io ad could not be shown:", error);
-        }
-    }, 2000); // 2000 milliseconds = 2 seconds delay
 
 });
