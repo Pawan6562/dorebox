@@ -32,72 +32,12 @@ document.addEventListener("DOMContentLoaded", () => {
       { title: "Doraemon Nobita And The Kingdom Of Robot Singham", url: "https://t.me/doremonallmoviesepisodes/2174", poster: "https://i.postimg.cc/j5fNHPj6/The-Movie-Nobita-and-the-Kingdom-of-Robot-by-cjh.jpg" }
     ];
 
-    // --- YOUR AD CODE ---
-    const adCode = `
-        <div id="frame" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
-          <iframe data-aa=\'2406568\' src=\'//ad.a-ads.com/2406568/?size=300x250\'
-                            style=\'border:0; padding:0; width:300px; height:250px; overflow:hidden;\'></iframe>
-        </div>
-    `;
-
     const movieGrid = document.getElementById("movie-grid");
     const searchBar = document.getElementById("search-bar");
     const noResults = document.getElementById("no-results");
 
-    // Function to display movies WITH ads (YouTube style)
+    // Function to display movies (without in-grid ads)
     function displayMovies(movieArray) {
-        movieGrid.innerHTML = "";
-        if (movieArray.length === 0) {
-            noResults.classList.remove("hidden");
-        } else {
-            noResults.classList.add("hidden");
-        }
-        
-        let contentCounter = 0;
-        movieArray.forEach((movie, index) => {
-            // Create and append the movie card (ORIGINAL FUNCTIONALITY)
-            const movieCard = document.createElement("div");
-            movieCard.className = "movie-card";
-            
-            movieCard.innerHTML = `
-                <a href="${movie.url}" target="_blank">
-                    <div class="poster-container">
-                        <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
-                        <div class="play-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="30" height="30"><path d="M8 5v14l11-7z"></path></svg>
-                        </div>
-                    </div>
-                    <h3>${movie.title}</h3>
-                </a>
-            `;
-            movieGrid.appendChild(movieCard);
-            contentCounter++;
-
-            // Add ad card every 4 movies (CHANGED FROM 5 TO 4)
-            if (contentCounter % 4 === 0) {
-                const adCard = document.createElement("div");
-                adCard.className = "ad-movie-card";
-                adCard.innerHTML = `
-                    <div class="ad-banner-area">${adCode}</div>
-                    <h3>Advertisement</h3>
-                `;
-                movieGrid.appendChild(adCard);
-            }
-        });
-    }
-
-    // Search functionality (ORIGINAL - NO ADS IN SEARCH)
-    searchBar.addEventListener("keyup", (e) => {
-        const searchTerm = e.target.value.toLowerCase();
-        const filteredMovies = movies.filter(movie => {
-            return movie.title.toLowerCase().includes(searchTerm);
-        });
-        // For search results, show only movies (cleaner experience)
-        displayMoviesOnly(filteredMovies);
-    });
-
-    // Function to display only movies (for search results)
-    function displayMoviesOnly(movieArray) {
         movieGrid.innerHTML = "";
         if (movieArray.length === 0) {
             noResults.classList.remove("hidden");
@@ -124,6 +64,34 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Initial display of all movies WITH ads
+    // Search functionality
+    searchBar.addEventListener("keyup", (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        const filteredMovies = movies.filter(movie => {
+            return movie.title.toLowerCase().includes(searchTerm);
+        });
+        displayMovies(filteredMovies);
+    });
+
+    // Initial display of all movies
     displayMovies(movies);
+
+    // ===== Telega.io AD DISPLAY CODE =====
+    // We will try to show the ad after a small delay (e.g., 2 seconds)
+    // to make sure everything is loaded and the user has seen the page.
+    setTimeout(() => {
+        try {
+            // Check if the 'ads' object from telega.io is available
+            if (window.ads && typeof window.ads.ad_show === 'function') {
+                ads.ad_show({
+                  adBlockUuid: "85aa0576-18a5-4d08-ae3d-742ad7ecb144"
+                });
+            } else {
+                console.error("Telega.io 'ads' object not found.");
+            }
+        } catch (error) {
+            console.error("Telega.io ad could not be shown:", error);
+        }
+    }, 2000); // 2000 milliseconds = 2 seconds delay
+
 });
