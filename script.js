@@ -73,36 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
         displayMovies(filteredMovies);
     });
 
-    // --- AD LOADER ---
-    // This function will load the Standard Banner ad into the container we made in index.html
-    function loadBannerAd() {
-        const adContainer = document.getElementById('ad-container');
-        if (!adContainer) return; // If container doesn't exist, do nothing
-
-        // Create and append the ad scripts dynamically
-        const script1 = document.createElement('script');
-        script1.type = 'text/javascript';
-        script1.innerHTML = `
-            atOptions = {
-                'key' : '7f7dcddc8dac34dafd83fc6e2b553a4e',
-                'format' : 'iframe',
-                'height' : 250,
-                'width' : 300,
-                'params' : {}
-            };
-        `;
-        
-        const script2 = document.createElement('script');
-        script2.type = 'text/javascript';
-        script2.src = '//www.highperformanceformat.com/7f7dcddc8dac34dafd83fc6e2b553a4e/invoke.js';
-        
-        adContainer.appendChild(script1);
-        adContainer.appendChild(script2);
-    }
-
     // Initial display of all movies
     displayMovies(movies);
-    // Load the ad after displaying the movies
-    loadBannerAd();
 
 });
