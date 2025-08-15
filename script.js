@@ -32,12 +32,53 @@ document.addEventListener("DOMContentLoaded", () => {
       { title: "Doraemon Nobita And The Kingdom Of Robot Singham", url: "https://t.me/doremonallmoviesepisodes/2174", poster: "https://i.postimg.cc/j5fNHPj6/The-Movie-Nobita-and-the-Kingdom-of-Robot-by-cjh.jpg" }
     ];
 
+    // --- Adsterra Native Banner Ad Placeholder ---
+    const adCodePlaceholder = `<div id="container-7f699949a0d70e461d362c561d8b3ec5"></div>`;
+
     const movieGrid = document.getElementById("movie-grid");
     const searchBar = document.getElementById("search-bar");
     const noResults = document.getElementById("no-results");
 
-    // Function to display movies
-    function displayMovies(movieArray) {
+    // Function to display movies WITH ads (YouTube style)
+    function displayMoviesWithAds(movieArray) {
+        movieGrid.innerHTML = "";
+        if (movieArray.length === 0) {
+            noResults.classList.remove("hidden");
+        } else {
+            noResults.classList.add("hidden");
+        }
+        
+        let contentCounter = 0;
+        movieArray.forEach((movie) => {
+            // Create and append the movie card
+            const movieCard = document.createElement("div");
+            movieCard.className = "movie-card";
+            movieCard.innerHTML = `
+                <a href="${movie.url}" target="_blank">
+                    <div class="poster-container">
+                        <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
+                        <div class="play-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="30" height="30"><path d="M8 5v14l11-7z"></path></svg>
+                        </div>
+                    </div>
+                    <h3>${movie.title}</h3>
+                </a>
+            `;
+            movieGrid.appendChild(movieCard);
+            contentCounter++;
+
+            // Add ad card every 4 movies
+            if (contentCounter % 4 === 0) {
+                const adCard = document.createElement("div");
+                adCard.className = "movie-card ad-card"; // Use same class for similar styling
+                adCard.innerHTML = adCodePlaceholder; // Insert the Adsterra placeholder here
+                movieGrid.appendChild(adCard);
+            }
+        });
+    }
+
+    // Function to display only movies (for search results, no ads)
+    function displayMoviesOnly(movieArray) {
         movieGrid.innerHTML = "";
         if (movieArray.length === 0) {
             noResults.classList.remove("hidden");
@@ -48,7 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
         movieArray.forEach(movie => {
             const movieCard = document.createElement("div");
             movieCard.className = "movie-card";
-            
             movieCard.innerHTML = `
                 <a href="${movie.url}" target="_blank">
                     <div class="poster-container">
@@ -70,10 +110,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const filteredMovies = movies.filter(movie => {
             return movie.title.toLowerCase().includes(searchTerm);
         });
-        displayMovies(filteredMovies);
+        displayMoviesOnly(filteredMovies);
     });
 
-    // Initial display of all movies
-    displayMovies(movies);
-
+    // Initial display of all movies WITH ads
+    displayMoviesWithAds(movies);
 });
