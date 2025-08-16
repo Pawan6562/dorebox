@@ -5,6 +5,38 @@ document.addEventListener("DOMContentLoaded", () => {
       { title: "Sky Utopia", url: "https://t.me/doremonallmoviesepisodes/2019", poster: "https://i.postimg.cc/Nf3QTNXq/doraemon-movie-nobitas-sky-utopia-in-hindi.jpg" },
       { title: "Antarctic Adventure", url: "https://t.me/doremonallmoviesepisodes/2024", poster: "https://i.postimg.cc/9f4SpVHL/Doraemon-Nobita-Chal-Pada-Antarctica-Hindi-by-cjh.jpg" },
       { title: "Doraemon jadoo Mantar aur jhanoom", url: "https://t.me/doremonallmoviesepisodes/2037", poster: "https://i.postimg.cc/Z5t0TfkP/Doraemon-The-Movie-Jadoo-Mantar-Aur-Jahnoom-by-cjh.jpg" },
+      { <div style="text-align: center; margin: 20px 0;">
+                <script>
+                (function(rbg){
+                var d = document,
+                    s = d.createElement('script'),
+                    l = d.scripts[d.scripts.length - 1];
+                s.settings = rbg || {};
+                s.src = "\/\/fondstudy.com\/bxX\/V\/sZd.Gwle0\/YXW_cn\/CeymX9suvZuUNlhkRPqTlYX1qO-T\/kd4kMFTsMrt\/NRjjUd5ROXTQgCxWNJAL";
+                s.async = true;
+                s.referrerPolicy = 'no-referrer-when-downgrade';
+                l.parentNode.insertBefore(s, l);
+                })({})
+                </script>
+            </div>
+            <!-- ===== AD CONTAINER END ===== -->
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p><strong>This website is by CJH (CARTOON JUNCTION HINDI)</strong></p>
+            <p>At this website you will get all the movies of Doraemon wich is released to India</p>
+            <p class="disclaimer">ᴅɪsᴄʟᴀɪᴍᴇʀ -: ᴡᴇ ᴀʀᴇ ɴᴏᴛ ᴛʜᴇ ᴏᴡɴᴇʀ ᴏғ ᴡʜᴀᴛᴇᴠᴇʀ ᴡᴇ ᴜᴘʟᴏᴀᴅ, ɪᴛ ɪs ᴀʟʀᴇᴀᴅʏ ᴀᴠᴀɪʟᴀʙʟᴇ ᴏɴ ᴛʜᴇ ɪɴᴛᴇʀɴᴇᴛ, ᴡᴇ ᴊᴜsᴛ ᴜᴘʟᴏᴀᴅ ɪᴛ ʜᴇʀᴇ.</p>
+            <p>&copy; 2025 DoreBox | Maintained by CJH</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>},
       { title: "Little Space War", url: "https://t.me/doremonallmoviesepisodes/2038", poster: "https://i.postimg.cc/wTt8Th7t/Doraemon-in-Nobitas-Little-Space-War-Movie-Hindi-Tamil-Telugu-Download-HD-jpg-990x557.png" },
       { title: "Gadget Museum Ka Rahasya", url: "https://t.me/doremonallmoviesepisodes/2041", poster: "https://i.postimg.cc/9QsfxJbw/Doraemon-Gadget-Museum-Ka-Rahasya-by-cjh.jpg" },
       { title: "Doraemon: Nobita's New Dinosaur (fan Dubbed)", url: "https://t.me/doremonallmoviesepisodes/2043", poster: "https://i.postimg.cc/hG0HJGX4/Doraemon-Nobitas-new-dinosaur-by-cjh.jpg" },
