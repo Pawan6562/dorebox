@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Movie...</title>
+    
+    <!-- Video.js Library -->
+    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+    <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+
+    <!-- Video.js IMA SDK (to show VAST ads) -->
+    <script src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-ima/2.1.0/videojs.ima.min.js"></script>
+
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #0d1117;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .video-js {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+        }
+        #content-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        #skip-button {
+            display: none; /* Hidden by default */
+            margin-top: 20px;
+            padding: 12px 25px;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        #skip-button:hover {
+            background-color: #0056b3;
+        }
+        #loading-text {
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="content-container">
+        <h2 id="loading-text">Your movie is loading...</h2>
+        <video id="ad-player" class="video-js vjs-default-skin" playsinline></video>
+        <a id="skip-button" href="#">Go to Movie</a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Get the movie URL from the page's query parameter
+            const params = new URLSearchParams(window.location.search);
+            const encodedMovieUrl = params.get('movie');
+            
+            if (!encodedMovieUrl) {
+                document.getElementById('loading-text').innerText = "Error: Movie link not found.";
+                return;
+            }
+
+            const movieUrl = atob(encodedMovieUrl); // Decode the Base64 URL
+            const skipButton = document.getElementById('skip-button');
+            skipButton.href = movieUrl; // Set the button's link to the movie URL
+
+            // 2. VAST Ad Tag from HilltopAds
+            const vastAdTag = 'https://altruistic-departure.com/dPm/F.z_deGQNfvSZTGbU-/zeMm/9/u/ZBUYlhkIPbTHYU2tMXD/EP2hNKzHAetlNVjUYpwPMSTsYy3/MVQG';
+
+            // 3. Set up the video player
+            const player = videojs('ad-player', {
+                controls: true,
+                autoplay: true,
+                muted: true, // Autoplay requires the video to be muted
+                width: 640,
+                height: 360
+            });
+
+            // 4. Set up the IMA SDK
+            const imaOptions = {
+                id: 'ad-player',
+                adTagUrl: vastAdTag
+            };
+            player.ima(imaOptions);
+
+            // 5. Logic to show the "Go to Movie" button
+            let adFinished = false;
+
+            function showSkipButton() {
+                skipButton.style.display = 'block';
+                document.getElementById('loading-text').style.display = 'none';
+            }
+
+            // Show the button after 10 seconds, regardless of ad status
+            setTimeout(showSkipButton, 10000); // 10 seconds
+
+            // Also show the button if the ad finishes or if there's an error
+            player.on('ima:adend', showSkipButton);
+            player.on('ima:aderror', showSkipButton);
+            player.on('ended', showSkipButton); // If the (non-existent) main video ends
+
+        });
+    </script>
+
+</body>
+</html>
