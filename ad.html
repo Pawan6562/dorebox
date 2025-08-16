@@ -10,10 +10,29 @@
     <link href="https://unpkg.com/videojs-ima/dist/videojs.ima.css" rel="stylesheet" type="text/css" />
 
     <style>
-        body { margin: 0; background-color: #000; color: white; font-family: sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+        body { margin: 0; background-color: #000; color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
         #ad-container { position: absolute; top:0; left:0; width: 100%; height: 100%; }
         .video-js { width: 100%; height: 100%; }
-        #message-overlay { font-size: 1.2em; text-align: center; padding: 20px; z-index: 10; }
+        #message-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 1.2em;
+            z-index: 10;
+            /* Shuru me isko hide rakho jab tak ad fail na ho */
+            visibility: hidden; 
+            opacity: 0;
+            transition: visibility 0s, opacity 0.5s linear;
+        }
+        #message-overlay.visible {
+            visibility: visible;
+            opacity: 1;
+        }
         #countdown { font-size: 1.5em; font-weight: bold; margin-top: 15px; }
     </style>
 </head>
@@ -25,7 +44,7 @@
     
     <div id="message-overlay">
         <p>Advertisement</p>
-        <p id="countdown">Your movie will start shortly...</p>
+        <p id="countdown"></p>
     </div>
 
     <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
@@ -35,66 +54,49 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            const messageOverlay = document.getElementById('message-overlay');
             const countdownElement = document.getElementById('countdown');
             const urlParams = new URLSearchParams(window.location.search);
             const movieUrl = urlParams.get('redirect');
-            let adPlayed = false;
+            let adFailed = false;
 
             const redirectToMovie = () => {
-                if (movieUrl) {
-                    window.location.href = movieUrl;
-                } else {
-                    countdownElement.textContent = 'Error: Movie link not found!';
-                }
+                if (movieUrl) window.location.href = movieUrl;
             };
 
             if (!movieUrl) {
-                redirectToMovie();
+                messageOverlay.classList.add('visible');
+                countdownElement.textContent = 'Error: Movie link not found!';
                 return;
             }
 
-            // Minimum 7 second ka wait time
-            const MIN_WAIT_TIME = 7000; // 7 seconds
-            const startTime = Date.now();
-
-            const finalRedirect = () => {
-                const elapsedTime = Date.now() - startTime;
-                const remainingTime = MIN_WAIT_TIME - elapsedTime;
+            const handleAdFailure = () => {
+                if (adFailed) return; // Sirf ek baar chalao
+                adFailed = true;
+                messageOverlay.classList.add('visible');
                 
-                if (remainingTime > 0) {
-                    setTimeout(redirectToMovie, remainingTime);
-                } else {
-                    redirectToMovie();
-                }
+                let timeLeft = 5; // Fail hone par 5 second ka countdown
+                countdownElement.textContent = `Redirecting in ${timeLeft}...`;
+                const interval = setInterval(() => {
+                    timeLeft--;
+                    if (timeLeft > 0) {
+                        countdownElement.textContent = `Redirecting in ${timeLeft}...`;
+                    } else {
+                        clearInterval(interval);
+                        redirectToMovie();
+                    }
+                }, 1000);
             };
 
             const player = videojs('ad-player', { autoplay: true, muted: true, controls: false });
-            player.ima({
-                adTagUrl: 'https://altruistic-departure.com/d.mkFczddkGZNiv/ZVGnUJ/beRm/9_uVZSUllVk/PUT/YW2hMqD/E/5tMuzDkRt/NcjzYlwRM/TMkD0WMaAx'
-            });
+            
+            // === GOOGLE KA TEST AD LINK ===
+            const adTagUrl = 'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dlinear&correlator=';
 
-            player.on('adsended', () => {
-                adPlayed = true;
-                finalRedirect();
-            });
+            player.ima({ adTagUrl: adTagUrl });
 
-            player.on(['adserror', 'adtimeout', 'nopreroll'], (event) => {
-                console.error('Ad failed to load:', event.type);
-                finalRedirect();
-            });
-
-            // Countdown timer UI
-            let timeLeft = Math.ceil(MIN_WAIT_TIME / 1000);
-            countdownElement.textContent = `Redirecting in ${timeLeft}...`;
-            const interval = setInterval(() => {
-                timeLeft--;
-                if (timeLeft > 0) {
-                    countdownElement.textContent = `Redirecting in ${timeLeft}...`;
-                } else {
-                    clearInterval(interval);
-                }
-            }, 1000);
-
+            player.on('adsended', redirectToMovie);
+            player.on(['adserror', 'adtimeout', 'nopreroll'], handleAdFailure);
         });
     </script>
 </body>
