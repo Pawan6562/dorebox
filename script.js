@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchBar = document.getElementById("search-bar");
     const noResults = document.getElementById("no-results");
 
-    // Function to display movies WITH ads (YouTube style)
+    // Function to display movies WITH ad placeholders
     function displayMoviesWithAds(movieArray) {
         movieGrid.innerHTML = "";
         if (movieArray.length === 0) {
@@ -64,28 +64,12 @@ document.addEventListener("DOMContentLoaded", () => {
             movieGrid.appendChild(movieCard);
             contentCounter++;
 
-            // Add ad card every 4 movies
+            // Add ad placeholder card every 4 movies
             if (contentCounter % 4 === 0) {
-                const adCard = document.createElement("div");
-                adCard.className = "movie-card ad-card"; // Use same class for similar styling
-                
-                // Create and append the HilltopAds script dynamically
-                const adScript = document.createElement('script');
-                adScript.innerHTML = `
-                (function(wjjd){
-                var d = document,
-                    s = d.createElement('script'),
-                    l = d.scripts[d.scripts.length - 1];
-                s.settings = wjjd || {};
-                s.src = "\\/\\/fondstudy.com\\/bUX\\/VxsKd.GclV0IY\\/Wpcw\\/aegml9luOZtUAl\\/kCPQT\\/YK1jOjTDkP4-MTTIMbtdNKjhUb5ZO\\/TCgqxvNBAA";
-                s.async = true;
-                s.referrerPolicy = 'no-referrer-when-downgrade';
-                l.parentNode.insertBefore(s, l);
-                })({})
-                `;
-                
-                adCard.appendChild(adScript);
-                movieGrid.appendChild(adCard);
+                const adPlaceholder = document.createElement("div");
+                adPlaceholder.className = "movie-card ad-card"; // Use same class for similar styling
+                // This div will be automatically filled by the HilltopAds script
+                movieGrid.appendChild(adPlaceholder);
             }
         });
     }
@@ -119,4 +103,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Search functionality
     searchBar.addEventListener("keyup", (e) => {
-        const searchTerm = e.targe
+        const searchTerm = e.target.value.toLowerCase();
+        const filteredMovies = movies.filter(movie => {
+            return movie.title.toLowerCase().includes(searchTerm);
+        });
+        // Search results should also have ads
+        displayMoviesWithAds(filteredMovies);
+    });
+
+    // Initial display of all movies WITH ad placeholders
+    displayMoviesWithAds(movies);
+});
