@@ -1,6 +1,7 @@
+// Clean script.js - ONLY FOR DISPLAYING MOVIES
+
 document.addEventListener("DOMContentLoaded", () => {
     
-    // Your movie database
     const movies = [
       { title: "Chronicle of the Moon", url: "https://smallshorts.com/NobitaChronicleoftheMoon", poster: "https://i.postimg.cc/BbmtZs0X/m3.jpg" },
       { title: "Sky Utopia", url: "https://t.me/doremonallmoviesepisodes/2019", poster: "https://i.postimg.cc/Nf3QTNXq/doraemon-movie-nobitas-sky-utopia-in-hindi.jpg" },
@@ -36,20 +37,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchBar = document.getElementById("search-bar");
     const noResults = document.getElementById("no-results");
 
-    // Function to display movies and ONE ad placeholder
-    function displayContent(movieArray) {
+    // Function to display movies
+    function displayMovies(movieArray) {
         movieGrid.innerHTML = "";
         if (movieArray.length === 0) {
             noResults.classList.remove("hidden");
-            return;
+        } else {
+            noResults.classList.add("hidden");
         }
-        noResults.classList.add("hidden");
-
-        for (let i = 0; i < movieArray.length; i++) {
-            // Add the movie card
-            const movie = movieArray[i];
+        
+        movieArray.forEach(movie => {
             const movieCard = document.createElement("div");
             movieCard.className = "movie-card";
+            
             movieCard.innerHTML = `
                 <a href="${movie.url}" target="_blank">
                     <div class="poster-container">
@@ -62,30 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </a>
             `;
             movieGrid.appendChild(movieCard);
-
-            // After the 4th movie (i=3), add the ad placeholder
-            if (i === 3) {
-                const adCard = document.createElement("div");
-                adCard.className = "ad-card"; // Use the specific class for styling
-                
-                // This is the ad code from HilltopAds
-                const adScript = document.createElement('script');
-                adScript.innerHTML = `
-                (function(rbg){
-                var d = document,
-                    s = d.createElement('script'),
-                    l = d.scripts[d.scripts.length - 1];
-                s.settings = rbg || {};
-                s.src = "\\/\\/fondstudy.com\\/bxX\\/V\\/sZd.Gwle0\\/YXW_cn\\/CeymX9suvZuUNlhkRPqTlYX1qO-T\\/kd4kMFTsMrt\\/NRjjUd5ROXTQgCxWNJAL";
-                s.async = true;
-                s.referrerPolicy = 'no-referrer-when-downgrade';
-                l.parentNode.insertBefore(s, l);
-                })({})
-                `;
-                adCard.appendChild(adScript);
-                movieGrid.appendChild(adCard);
-            }
-        }
+        });
     }
 
     // Search functionality
@@ -94,9 +71,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const filteredMovies = movies.filter(movie => {
             return movie.title.toLowerCase().includes(searchTerm);
         });
-        displayContent(filteredMovies);
+        displayMovies(filteredMovies);
     });
 
-    // Initial display
-    displayContent(movies);
+    // Initial display of all movies
+    displayMovies(movies);
+
 });
