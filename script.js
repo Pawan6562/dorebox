@@ -1,5 +1,3 @@
-// Clean script.js - ONLY FOR DISPLAYING MOVIES
-
 document.addEventListener("DOMContentLoaded", () => {
     
     const movies = [
@@ -37,8 +35,85 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchBar = document.getElementById("search-bar");
     const noResults = document.getElementById("no-results");
 
-    // Function to display movies
-    function displayMovies(movieArray) {
+    // Function to display movies WITH ONE ad
+    function displayMoviesWithOneAd(movieArray) {
+        movieGrid.innerHTML = "";
+        if (movieArray.length === 0) {
+            noResults.classList.remove("hidden");
+        } else {
+            noResults.classList.add("hidden");
+        }
+        
+        movieArray.forEach((movie, index) => {
+            // Create and append the movie card
+            const movieCard = document.createElement("div");
+            movieCard.className = "movie-card";
+            movieCard.innerHTML = `
+                <a href="${movie.url}" target="_blank">
+                    <div class="poster-container">
+                        <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
+                        <div class="play-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="30" height="30"><path d="M8 5v14l11-7z"></path></svg>
+                        </div>
+                    </div>
+                    <h3>${movie.title}</h3>
+                </a>
+            `;
+            movieGrid.appendChild(movieCard);
+
+            // Add ONE ad card after the 4th movie (index 3)
+            if (index === 3) {
+                const adCard = document.createElement("div");
+                // CRITICAL FIX: Make the ad card span the full width
+                adCard.style.gridColumn = "1 / -1"; 
+                adCard.style.textAlign = "center";
+                adCard.style.margin = "10px 0";
+
+                // Create and append the HilltopAds script dynamically INSIDE the card
+                const adScript = document.createElement('script');
+                adScript.innerHTML = `
+                (function(rbg){
+                var d = document,
+                    s = d.createElement('script'),
+                    l = d.scripts[d.scripts.length - 1];
+                s.settings = rbg || {};
+                s.src = "\\/\\/fondstudy.com\\/bxX\\/V\\/sZd.Gwle0\\/YXW_cn\\/CeymX9suvZuUNlhkRPqTlYX1qO-T\\/kd4kMFTsMrt\\/NRjjUd5ROXTQgCxWNJAL";
+                s.async = true;
+                s.referrerPolicy = 'no-referrer-when-downgrade';
+                // IMPORTANT: We append the script to the adCard, not the document body
+                // This is a guess, but a good one. If this fails, the ad network is the problem.
+                // A better way would be to find the current script and insert before it.
+                // Let's try a more robust way.
+                var currentScript = document.currentScript || l;
+                currentScript.parentNode.insertBefore(s, currentScript);
+                })({})
+                `;
+                
+                // A safer way to inject the script for this specific ad network
+                const adContainer = document.createElement('div');
+                adContainer.innerHTML = `
+                    <script>
+                    (function(rbg){
+                    var d = document,
+                        s = d.createElement('script'),
+                        l = d.scripts[d.scripts.length - 1];
+                    s.settings = rbg || {};
+                    s.src = "\\/\\/fondstudy.com\\/bxX\\/V\\/sZd.Gwle0\\/YXW_cn\\/CeymX9suvZuUNlhkRPqTlYX1qO-T\\/kd4kMFTsMrt\\/NRjjUd5ROXTQgCxWNJAL";
+                    s.async = true;
+                    s.referrerPolicy = 'no-referrer-when-downgrade';
+                    l.parentNode.insertBefore(s, l);
+                    })({})
+                    <\/script>
+                `;
+
+                adCard.appendChild(adContainer);
+                movieGrid.appendChild(adCard);
+            }
+        });
+    }
+
+    // Function to display only movies (for search results)
+    function displayMoviesOnly(movieArray) {
         movieGrid.innerHTML = "";
         if (movieArray.length === 0) {
             noResults.classList.remove("hidden");
@@ -49,7 +124,6 @@ document.addEventListener("DOMContentLoaded", () => {
         movieArray.forEach(movie => {
             const movieCard = document.createElement("div");
             movieCard.className = "movie-card";
-            
             movieCard.innerHTML = `
                 <a href="${movie.url}" target="_blank">
                     <div class="poster-container">
@@ -71,10 +145,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const filteredMovies = movies.filter(movie => {
             return movie.title.toLowerCase().includes(searchTerm);
         });
-        displayMovies(filteredMovies);
+        displayMoviesOnly(filteredMovies);
     });
 
-    // Initial display of all movies
-    displayMovies(movies);
-
+    // Initial display of all movies WITH ONE ad
+    displayMoviesWithOneAd(movies);
 });
