@@ -3,109 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loading Ad...</title>
+    <title>Advertisement</title>
     
-    <!-- Step 1: Zaroori Libraries -->
     <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
     <link href="https://unpkg.com/videojs-contrib-ads/dist/videojs.ads.css" rel="stylesheet" />
     <link href="https://unpkg.com/videojs-ima/dist/videojs.ima.css" rel="stylesheet" />
 
     <style>
-        /* Poori screen ko cover karo */
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background-color: #000;
-        }
-        /* Player ko poori screen do */
-        #ad-player {
-            width: 100%;
-            height: 100%;
-        }
-        /* Backup message, agar kuch na chale */
-        #fallback-message {
-            display: none; /* Shuru me hide rakho */
+        html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: #000; }
+        #ad-container { width: 100%; height: 100%; }
+        .video-js { width: 100%; height: 100%; }
+        
+        /* Play button ke liye overlay */
+        #play-overlay {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-family: sans-serif;
-            font-size: 1.2em;
-            text-align: center;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 20; /* Sabse upar */
+        }
+        #play-button {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid white;
+        }
+        #play-button svg {
+            width: 40px;
+            height: 40px;
+            fill: white;
+            margin-left: 5px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Video Player ka Element -->
-    <video id="ad-player" class="video-js" playsinline></video>
-
-    <!-- Backup Message -->
-    <div id="fallback-message">
-        <p>Loading your movie...</p>
+    <div id="ad-container">
+        <video id="ad-player" class="video-js" playsinline></video>
     </div>
 
-    <!-- Step 2: Zaroori Scripts -->
+    <!-- Ad chalane ke liye Play Button -->
+    <div id="play-overlay">
+        <div id="play-button">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+        </div>
+    </div>
+
     <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
     <script src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
     <script src="https://unpkg.com/videojs-contrib-ads/dist/videojs.ads.min.js"></script>
     <script src="https://unpkg.com/videojs-ima/dist/videojs.ima.min.js"></script>
 
     <script>
-        // Self-invoking function to avoid global scope issues
         (function() {
-            const fallbackMessage = document.getElementById('fallback-message');
+            const playOverlay = document.getElementById('play-overlay');
             const urlParams = new URLSearchParams(window.location.search);
             const movieUrl = urlParams.get('redirect');
 
-            // Function to redirect
             const redirectToMovie = () => {
-                if (movieUrl) {
-                    window.location.href = movieUrl;
-                } else {
-                    fallbackMessage.style.display = 'block';
-                    fallbackMessage.innerText = 'Error: Movie link not found.';
-                }
+                if (movieUrl) window.location.href = movieUrl;
             };
 
-            // Agar movie link hi nahi hai, to aage mat badho
             if (!movieUrl) {
-                redirectToMovie();
+                document.body.innerHTML = "<h1>Error: Movie link not found.</h1>";
                 return;
             }
 
-            // Ad fail hone par 5 second ka wait
-            const handleAdFailure = () => {
-                fallbackMessage.style.display = 'block';
-                setTimeout(redirectToMovie, 5000); // 5 second baad redirect
+            // Player ko initialize karo, lekin autoplay mat karo
+            const player = videojs('ad-player', { controls: false });
+
+            // Ad plugin ko set karo
+            const imaOptions = {
+                // Yahan Google ka test link hai. Iske chalne ke baad apna link daalna.
+                adTagUrl: 'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dlinear&correlator='
             };
+            player.ima(imaOptions);
 
-            try {
-                // Player ko initialize karo
-                const player = videojs('ad-player', {
-                    autoplay: true,
-                    muted: true,
-                    controls: false // Ad ke time control nahi chahiye
-                });
+            // Ad khatam hone par redirect karo
+            player.on('adsended', redirectToMovie);
+            // Ad fail hone par bhi redirect karo
+            player.on(['adserror', 'adtimeout', 'nopreroll'], redirectToMovie);
 
-                // Google ka Test Ad Link
-                const adTagUrl = 'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dlinear&correlator=';
-
-                // IMA plugin ko set karo
-                player.ima({ adTagUrl: adTagUrl });
-
-                // Events
-                player.on('adsended', redirectToMovie);
-                player.on(['adserror', 'adtimeout', 'nopreroll'], handleAdFailure);
-
-            } catch (error) {
-                console.error("Player initialization failed:", error);
-                handleAdFailure(); // Agar player banane me hi error aa jaye
-            }
+            // Jab user Play button par click karega
+            playOverlay.addEventListener('click', () => {
+                // Overlay ko hata do
+                playOverlay.style.display = 'none';
+                // Ab player ko play karo (user ne permission de di hai)
+                player.play();
+            });
         })();
     </script>
 
