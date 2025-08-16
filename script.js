@@ -36,46 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchBar = document.getElementById("search-bar");
     const noResults = document.getElementById("no-results");
 
-    // Function to display movies WITH ad placeholders
-    function displayMoviesWithAds(movieArray) {
-        movieGrid.innerHTML = "";
-        if (movieArray.length === 0) {
-            noResults.classList.remove("hidden");
-        } else {
-            noResults.classList.add("hidden");
-        }
-        
-        let contentCounter = 0;
-        movieArray.forEach((movie) => {
-            // Create and append the movie card
-            const movieCard = document.createElement("div");
-            movieCard.className = "movie-card";
-            movieCard.innerHTML = `
-                <a href="${movie.url}" target="_blank">
-                    <div class="poster-container">
-                        <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
-                        <div class="play-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="30" height="30"><path d="M8 5v14l11-7z"></path></svg>
-                        </div>
-                    </div>
-                    <h3>${movie.title}</h3>
-                </a>
-            `;
-            movieGrid.appendChild(movieCard);
-            contentCounter++;
-
-            // Add ad placeholder card every 4 movies
-            if (contentCounter % 4 === 0) {
-                const adPlaceholder = document.createElement("div");
-                adPlaceholder.className = "movie-card ad-card"; // Use same class for similar styling
-                // This div will be automatically filled by the HilltopAds script
-                movieGrid.appendChild(adPlaceholder);
-            }
-        });
-    }
-
-    // Function to display only movies (for search results, no ads)
-    function displayMoviesOnly(movieArray) {
+    // Function to display movies
+    function displayMovies(movieArray) {
         movieGrid.innerHTML = "";
         if (movieArray.length === 0) {
             noResults.classList.remove("hidden");
@@ -86,6 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
         movieArray.forEach(movie => {
             const movieCard = document.createElement("div");
             movieCard.className = "movie-card";
+            
             movieCard.innerHTML = `
                 <a href="${movie.url}" target="_blank">
                     <div class="poster-container">
@@ -107,10 +70,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const filteredMovies = movies.filter(movie => {
             return movie.title.toLowerCase().includes(searchTerm);
         });
-        // Search results should also have ads
-        displayMoviesWithAds(filteredMovies);
+        displayMovies(filteredMovies);
     });
 
-    // Initial display of all movies WITH ad placeholders
-    displayMoviesWithAds(movies);
+    // Initial display of all movies
+    displayMovies(movies);
+
 });
