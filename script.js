@@ -1,3 +1,5 @@
+// Clean script.js - ONLY FOR DISPLAYING MOVIES
+
 document.addEventListener("DOMContentLoaded", () => {
     
     const movies = [
@@ -5,38 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
       { title: "Sky Utopia", url: "https://t.me/doremonallmoviesepisodes/2019", poster: "https://i.postimg.cc/Nf3QTNXq/doraemon-movie-nobitas-sky-utopia-in-hindi.jpg" },
       { title: "Antarctic Adventure", url: "https://t.me/doremonallmoviesepisodes/2024", poster: "https://i.postimg.cc/9f4SpVHL/Doraemon-Nobita-Chal-Pada-Antarctica-Hindi-by-cjh.jpg" },
       { title: "Doraemon jadoo Mantar aur jhanoom", url: "https://t.me/doremonallmoviesepisodes/2037", poster: "https://i.postimg.cc/Z5t0TfkP/Doraemon-The-Movie-Jadoo-Mantar-Aur-Jahnoom-by-cjh.jpg" },
-      { <div style="text-align: center; margin: 20px 0;">
-                <script>
-                (function(rbg){
-                var d = document,
-                    s = d.createElement('script'),
-                    l = d.scripts[d.scripts.length - 1];
-                s.settings = rbg || {};
-                s.src = "\/\/fondstudy.com\/bxX\/V\/sZd.Gwle0\/YXW_cn\/CeymX9suvZuUNlhkRPqTlYX1qO-T\/kd4kMFTsMrt\/NRjjUd5ROXTQgCxWNJAL";
-                s.async = true;
-                s.referrerPolicy = 'no-referrer-when-downgrade';
-                l.parentNode.insertBefore(s, l);
-                })({})
-                </script>
-            </div>
-            <!-- ===== AD CONTAINER END ===== -->
-
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p><strong>This website is by CJH (CARTOON JUNCTION HINDI)</strong></p>
-            <p>At this website you will get all the movies of Doraemon wich is released to India</p>
-            <p class="disclaimer">ᴅɪsᴄʟᴀɪᴍᴇʀ -: ᴡᴇ ᴀʀᴇ ɴᴏᴛ ᴛʜᴇ ᴏᴡɴᴇʀ ᴏғ ᴡʜᴀᴛᴇᴠᴇʀ ᴡᴇ ᴜᴘʟᴏᴀᴅ, ɪᴛ ɪs ᴀʟʀᴇᴀᴅʏ ᴀᴠᴀɪʟᴀʙʟᴇ ᴏɴ ᴛʜᴇ ɪɴᴛᴇʀɴᴇᴛ, ᴡᴇ ᴊᴜsᴛ ᴜᴘʟᴏᴀᴅ ɪᴛ ʜᴇʀᴇ.</p>
-            <p>&copy; 2025 DoreBox | Maintained by CJH</p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-
-</body>
-</html>},
       { title: "Little Space War", url: "https://t.me/doremonallmoviesepisodes/2038", poster: "https://i.postimg.cc/wTt8Th7t/Doraemon-in-Nobitas-Little-Space-War-Movie-Hindi-Tamil-Telugu-Download-HD-jpg-990x557.png" },
       { title: "Gadget Museum Ka Rahasya", url: "https://t.me/doremonallmoviesepisodes/2041", poster: "https://i.postimg.cc/9QsfxJbw/Doraemon-Gadget-Museum-Ka-Rahasya-by-cjh.jpg" },
       { title: "Doraemon: Nobita's New Dinosaur (fan Dubbed)", url: "https://t.me/doremonallmoviesepisodes/2043", poster: "https://i.postimg.cc/hG0HJGX4/Doraemon-Nobitas-new-dinosaur-by-cjh.jpg" },
@@ -67,60 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchBar = document.getElementById("search-bar");
     const noResults = document.getElementById("no-results");
 
-    // Function to display movies WITH ONE ad
-    function displayMoviesWithOneAd(movieArray) {
-        movieGrid.innerHTML = "";
-        if (movieArray.length === 0) {
-            noResults.classList.remove("hidden");
-        } else {
-            noResults.classList.add("hidden");
-        }
-        
-        movieArray.forEach((movie, index) => {
-            // Create and append the movie card
-            const movieCard = document.createElement("div");
-            movieCard.className = "movie-card";
-            movieCard.innerHTML = `
-                <a href="${movie.url}" target="_blank">
-                    <div class="poster-container">
-                        <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
-                        <div class="play-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="30" height="30"><path d="M8 5v14l11-7z"></path></svg>
-                        </div>
-                    </div>
-                    <h3>${movie.title}</h3>
-                </a>
-            `;
-            movieGrid.appendChild(movieCard);
-
-            // Add ONE ad card after the 4th movie (index 3)
-            if (index === 3) {
-                const adCard = document.createElement("div");
-                adCard.className = "ad-card"; // Use the class we defined in style.css
-                
-                // Create and append the HilltopAds script dynamically
-                const adScript = document.createElement('script');
-                adScript.innerHTML = `
-                (function(rbg){
-                var d = document,
-                    s = d.createElement('script'),
-                    l = d.scripts[d.scripts.length - 1];
-                s.settings = rbg || {};
-                s.src = "\\/\\/fondstudy.com\\/bxX\\/V\\/sZd.Gwle0\\/YXW_cn\\/CeymX9suvZuUNlhkRPqTlYX1qO-T\\/kd4kMFTsMrt\\/NRjjUd5ROXTQgCxWNJAL";
-                s.async = true;
-                s.referrerPolicy = 'no-referrer-when-downgrade';
-                l.parentNode.insertBefore(s, l);
-                })({})
-                `;
-                
-                adCard.appendChild(adScript);
-                movieGrid.appendChild(adCard);
-            }
-        });
-    }
-
-    // Function to display only movies (for search results)
-    function displayMoviesOnly(movieArray) {
+    // Function to display movies
+    function displayMovies(movieArray) {
         movieGrid.innerHTML = "";
         if (movieArray.length === 0) {
             noResults.classList.remove("hidden");
@@ -131,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
         movieArray.forEach(movie => {
             const movieCard = document.createElement("div");
             movieCard.className = "movie-card";
+            
             movieCard.innerHTML = `
                 <a href="${movie.url}" target="_blank">
                     <div class="poster-container">
@@ -152,10 +71,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const filteredMovies = movies.filter(movie => {
             return movie.title.toLowerCase().includes(searchTerm);
         });
-        // For now, search results will not have ads to keep it simple
-        displayMoviesOnly(filteredMovies);
+        displayMovies(filteredMovies);
     });
 
-    // Initial display of all movies WITH ONE ad
-    displayMoviesWithOneAd(movies);
+    // Initial display of all movies
+    displayMovies(movies);
+
 });
