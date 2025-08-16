@@ -34,68 +34,52 @@ document.addEventListener("DOMContentLoaded", () => {
     const movieGrid = document.getElementById("movie-grid");
     const searchBar = document.getElementById("search-bar");
     const noResults = document.getElementById("no-results");
-    const heroWatchButton = document.querySelector('#hero .btn-primary');
+    const heroButton = document.querySelector('#hero .btn-primary');
 
-    // Function to redirect to the ad page
-    function redirectToAdPage(movieUrl) {
-        // We encode the movie URL so it can be safely passed as a parameter
-        const encodedUrl = btoa(movieUrl); // Base64 encoding
-        window.location.href = `ad.html?movie=${encodedUrl}`;
+    // Function to create the ad redirect URL
+    function createAdRedirectUrl(targetUrl) {
+        const encodedUrl = encodeURIComponent(targetUrl);
+        // IMPORTANT: ad.html se pehle ./ lagao taaki link sahi bane
+        return `./ad.html?redirect=${encodedUrl}`;
+    }
+
+    // Hero section ke button ke liye Ad link set karo
+    if (heroButton) {
+        const originalHeroUrl = heroButton.getAttribute('href');
+        heroButton.href = createAdRedirectUrl(originalHeroUrl);
+        heroButton.removeAttribute('target'); // target="_blank" hata do
     }
 
     // Function to display movies
     function displayMovies(movieArray) {
         movieGrid.innerHTML = "";
-        if (movieArray.length === 0) {
-            noResults.classList.remove("hidden");
-        } else {
-            noResults.classList.add("hidden");
-        }
+        noResults.classList.toggle("hidden", movieArray.length > 0);
         
         movieArray.forEach(movie => {
             const movieCard = document.createElement("div");
             movieCard.className = "movie-card";
             
-            // We use a standard div, not an 'a' tag, to control the click
+            const adUrl = createAdRedirectUrl(movie.url);
+
             movieCard.innerHTML = `
-                <div class="poster-container">
+                <a href="${adUrl}">
                     <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
-                    <div class="play-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="30" height="30"><path d="M8 5v14l11-7z"></path></svg>
-                    </div>
-                </div>
-                <h3>${movie.title}</h3>
+                    <h3>${movie.title}</h3>
+                </a>
             `;
-
-            // Add the click event listener to the entire card
-            movieCard.addEventListener('click', (e) => {
-                e.preventDefault(); // Prevent any default behavior
-                redirectToAdPage(movie.url);
-            });
-
             movieGrid.appendChild(movieCard);
-        });
-    }
-
-    // Add click listener to the main "Watch Now" button in the hero section
-    if (heroWatchButton) {
-        heroWatchButton.addEventListener('click', (e) => {
-            e.preventDefault(); // Stop the default link behavior
-            const movieUrl = heroWatchButton.href; // Get the movie URL from the button
-            redirectToAdPage(movieUrl);
         });
     }
 
     // Search functionality
     searchBar.addEventListener("keyup", (e) => {
         const searchTerm = e.target.value.toLowerCase();
-        const filteredMovies = movies.filter(movie => {
-            return movie.title.toLowerCase().includes(searchTerm);
-        });
+        const filteredMovies = movies.filter(movie => 
+            movie.title.toLowerCase().includes(searchTerm)
+        );
         displayMovies(filteredMovies);
     });
 
     // Initial display of all movies
     displayMovies(movies);
-
 });
