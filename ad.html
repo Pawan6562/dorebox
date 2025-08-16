@@ -5,67 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Advertisement</title>
     
-    <!-- Video.js aur IMA SDK ke liye zaroori library -->
     <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
     <link href="https://unpkg.com/videojs-contrib-ads/dist/videojs.ads.css" rel="stylesheet" type="text/css" />
     <link href="https://unpkg.com/videojs-ima/dist/videojs.ima.css" rel="stylesheet" type="text/css" />
 
     <style>
-        /* Basic styling */
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #000;
-            color: white;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-        }
-        /* Player ka container */
-        #ad-container {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        /* Video player ko poori screen par fit karne ke liye */
-        .video-js {
-            width: 100%;
-            height: 100%;
-        }
-        /* Loading/Error message ke liye */
-        #message-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: none; /* Shuru me hide rakho */
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            font-size: 1.2em;
-            padding: 20px;
-        }
+        body { margin: 0; background-color: #000; color: white; font-family: sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+        #ad-container { position: absolute; top:0; left:0; width: 100%; height: 100%; }
+        .video-js { width: 100%; height: 100%; }
+        #message-overlay { font-size: 1.2em; text-align: center; padding: 20px; z-index: 10; }
+        #countdown { font-size: 1.5em; font-weight: bold; margin-top: 15px; }
     </style>
 </head>
 <body>
 
     <div id="ad-container">
-        <!-- Yahan ad play hoga -->
         <video id="ad-player" class="video-js vjs-default-skin" playsinline></video>
     </div>
     
     <div id="message-overlay">
-        <p id="message-text"></p>
+        <p>Advertisement</p>
+        <p id="countdown">Your movie will start shortly...</p>
     </div>
 
-    <!-- Zaroori JavaScript libraries -->
     <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
     <script src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
     <script src="https://unpkg.com/videojs-contrib-ads/dist/videojs.ads.min.js"></script>
@@ -73,25 +35,16 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const messageOverlay = document.getElementById('message-overlay');
-            const messageText = document.getElementById('message-text');
-
-            // 1. URL se movie ka link nikalo
+            const countdownElement = document.getElementById('countdown');
             const urlParams = new URLSearchParams(window.location.search);
             const movieUrl = urlParams.get('redirect');
+            let adPlayed = false;
 
-            // Function to redirect to the movie
             const redirectToMovie = () => {
                 if (movieUrl) {
-                    messageText.textContent = 'Ad finished or failed. Redirecting to your movie...';
-                    messageOverlay.style.display = 'flex';
-                    // Thoda delay do taaki user message padh sake
-                    setTimeout(() => {
-                        window.location.href = movieUrl;
-                    }, 1500);
+                    window.location.href = movieUrl;
                 } else {
-                    messageText.textContent = 'Error: Movie link not found!';
-                    messageOverlay.style.display = 'flex';
+                    countdownElement.textContent = 'Error: Movie link not found!';
                 }
             };
 
@@ -100,50 +53,49 @@
                 return;
             }
 
-            // 2. Video player ko set karo
-            const playerOptions = {
-                autoplay: true, // Auto play karo
-                muted: true,    // Mute rakho (browser policy ke liye zaroori)
-                controls: false, // User ko control mat do
-            };
-            const player = videojs('ad-player', playerOptions);
+            // Minimum 7 second ka wait time
+            const MIN_WAIT_TIME = 7000; // 7 seconds
+            const startTime = Date.now();
 
-            // 3. IMA (Ad) plugin ke options
-            const imaOptions = {
-                // YAHAN TUMHARA NAYA AD UNIT LINK HAI
+            const finalRedirect = () => {
+                const elapsedTime = Date.now() - startTime;
+                const remainingTime = MIN_WAIT_TIME - elapsedTime;
+                
+                if (remainingTime > 0) {
+                    setTimeout(redirectToMovie, remainingTime);
+                } else {
+                    redirectToMovie();
+                }
+            };
+
+            const player = videojs('ad-player', { autoplay: true, muted: true, controls: false });
+            player.ima({
                 adTagUrl: 'https://altruistic-departure.com/d.mkFczddkGZNiv/ZVGnUJ/beRm/9_uVZSUllVk/PUT/YW2hMqD/E/5tMuzDkRt/NcjzYlwRM/TMkD0WMaAx'
-            };
+            });
 
-            // Player par IMA plugin ko shuru karo
-            player.ima(imaOptions);
-
-            // 4. Events ko handle karo
-            
-            // Jab ad khatam ho jaye
             player.on('adsended', () => {
-                console.log('Ad finished successfully.');
-                redirectToMovie();
+                adPlayed = true;
+                finalRedirect();
             });
 
-            // Jab ad me koi error aaye (sabse important)
-            player.on('adserror', (event) => {
-                console.error('Ad Error:', event);
-                redirectToMovie();
+            player.on(['adserror', 'adtimeout', 'nopreroll'], (event) => {
+                console.error('Ad failed to load:', event.type);
+                finalRedirect();
             });
 
-            // Jab koi ad na mile
-            player.on('adtimeout', () => {
-                console.warn('Ad timed out.');
-                redirectToMovie();
-            });
-            
-            player.on('nopreroll', () => {
-                console.log('No ad available to play.');
-                redirectToMovie();
-            });
+            // Countdown timer UI
+            let timeLeft = Math.ceil(MIN_WAIT_TIME / 1000);
+            countdownElement.textContent = `Redirecting in ${timeLeft}...`;
+            const interval = setInterval(() => {
+                timeLeft--;
+                if (timeLeft > 0) {
+                    countdownElement.textContent = `Redirecting in ${timeLeft}...`;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 1000);
 
         });
     </script>
-
 </body>
 </html>
