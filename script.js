@@ -36,8 +36,60 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchBar = document.getElementById("search-bar");
     const noResults = document.getElementById("no-results");
 
-    // Function to display movies
-    function displayMovies(movieArray) {
+    // Function to display movies WITH ONE ad
+    function displayMoviesWithOneAd(movieArray) {
+        movieGrid.innerHTML = "";
+        if (movieArray.length === 0) {
+            noResults.classList.remove("hidden");
+        } else {
+            noResults.classList.add("hidden");
+        }
+        
+        movieArray.forEach((movie, index) => {
+            // Create and append the movie card
+            const movieCard = document.createElement("div");
+            movieCard.className = "movie-card";
+            movieCard.innerHTML = `
+                <a href="${movie.url}" target="_blank">
+                    <div class="poster-container">
+                        <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
+                        <div class="play-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="30" height="30"><path d="M8 5v14l11-7z"></path></svg>
+                        </div>
+                    </div>
+                    <h3>${movie.title}</h3>
+                </a>
+            `;
+            movieGrid.appendChild(movieCard);
+
+            // Add ONE ad card after the 4th movie (index 3)
+            if (index === 3) {
+                const adCard = document.createElement("div");
+                adCard.className = "movie-card ad-card"; // Use same class for similar styling
+                
+                // Create and append the HilltopAds script dynamically
+                const adScript = document.createElement('script');
+                adScript.innerHTML = `
+                (function(rbg){
+                var d = document,
+                    s = d.createElement('script'),
+                    l = d.scripts[d.scripts.length - 1];
+                s.settings = rbg || {};
+                s.src = "\\/\\/fondstudy.com\\/bxX\\/V\\/sZd.Gwle0\\/YXW_cn\\/CeymX9suvZuUNlhkRPqTlYX1qO-T\\/kd4kMFTsMrt\\/NRjjUd5ROXTQgCxWNJAL";
+                s.async = true;
+                s.referrerPolicy = 'no-referrer-when-downgrade';
+                l.parentNode.insertBefore(s, l);
+                })({})
+                `;
+                
+                adCard.appendChild(adScript);
+                movieGrid.appendChild(adCard);
+            }
+        });
+    }
+
+    // Function to display only movies (for search results)
+    function displayMoviesOnly(movieArray) {
         movieGrid.innerHTML = "";
         if (movieArray.length === 0) {
             noResults.classList.remove("hidden");
@@ -48,7 +100,6 @@ document.addEventListener("DOMContentLoaded", () => {
         movieArray.forEach(movie => {
             const movieCard = document.createElement("div");
             movieCard.className = "movie-card";
-            
             movieCard.innerHTML = `
                 <a href="${movie.url}" target="_blank">
                     <div class="poster-container">
@@ -70,10 +121,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const filteredMovies = movies.filter(movie => {
             return movie.title.toLowerCase().includes(searchTerm);
         });
-        displayMovies(filteredMovies);
+        // For now, search results will not have ads to keep it simple
+        displayMoviesOnly(filteredMovies);
     });
 
-    // Initial display of all movies
-    displayMovies(movies);
-
+    // Initial display of all movies WITH ONE ad
+    displayMoviesWithOneAd(movies);
 });
