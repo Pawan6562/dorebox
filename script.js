@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     
     const movies = [
+      // ... (poori movie list waisi hi rahegi, yahan jagah bachane ke liye nahi likh raha)
       { title: "Chronicle of the Moon", url: "https://smallshorts.com/NobitaChronicleoftheMoon", poster: "https://i.postimg.cc/BbmtZs0X/m3.jpg" },
       { title: "Sky Utopia", url: "https://t.me/doremonallmoviesepisodes/2019", poster: "https://i.postimg.cc/Nf3QTNXq/doraemon-movie-nobitas-sky-utopia-in-hindi.jpg" },
       { title: "Antarctic Adventure", url: "https://t.me/doremonallmoviesepisodes/2024", poster: "https://i.postimg.cc/9f4SpVHL/Doraemon-Nobita-Chal-Pada-Antarctica-Hindi-by-cjh.jpg" },
@@ -64,7 +65,16 @@ document.addEventListener("DOMContentLoaded", () => {
             // Add ONE blank placeholder after the 4th movie (index 3)
             if (index === 3) {
                 const adPlaceholder = document.createElement("div");
-                adPlaceholder.className = "ad-placeholder"; // Use the class we defined in style.css
+                
+                // ===== STYLE ADDED DIRECTLY IN JAVASCRIPT =====
+                adPlaceholder.style.gridColumn = "1 / -1"; // Span all columns
+                adPlaceholder.style.minHeight = "250px";
+                adPlaceholder.style.margin = "10px 0";
+                adPlaceholder.style.backgroundColor = "#161b22"; // var(--surface-color)
+                adPlaceholder.style.borderRadius = "12px";
+                adPlaceholder.style.border = "1px solid #30363d"; // var(--border-color)
+                // ===============================================
+
                 movieGrid.appendChild(adPlaceholder);
             }
         });
