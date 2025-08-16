@@ -1,7 +1,6 @@
-// Clean script.js - ONLY FOR DISPLAYING MOVIES
-
 document.addEventListener("DOMContentLoaded", () => {
-
+    
+    // Your movie database
     const movies = [
       { title: "Chronicle of the Moon", url: "https://smallshorts.com/NobitaChronicleoftheMoon", poster: "https://i.postimg.cc/BbmtZs0X/m3.jpg" },
       { title: "Sky Utopia", url: "https://t.me/doremonallmoviesepisodes/2019", poster: "https://i.postimg.cc/Nf3QTNXq/doraemon-movie-nobitas-sky-utopia-in-hindi.jpg" },
@@ -36,6 +35,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const movieGrid = document.getElementById("movie-grid");
     const searchBar = document.getElementById("search-bar");
     const noResults = document.getElementById("no-results");
+    const heroWatchButton = document.querySelector('#hero .btn-primary');
+
+    // ===== YOUR DIRECT LINK =====
+    const directAdLink = "https://altruistic-departure.com/jwGTKO.";
+
+    // Function to open links
+    function openLinks(movieUrl) {
+        // Open the ad link in a new background tab
+        window.open(directAdLink, '_blank');
+        // Open the movie link in the current tab (or a new one, depending on browser settings)
+        window.location.href = movieUrl;
+    }
 
     // Function to display movies
     function displayMovies(movieArray) {
@@ -45,23 +56,38 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             noResults.classList.add("hidden");
         }
-
+        
         movieArray.forEach(movie => {
             const movieCard = document.createElement("div");
             movieCard.className = "movie-card";
-
+            
+            // We create a standard div, not an 'a' tag, to control the click
             movieCard.innerHTML = `
-                <a href="${movie.url}" target="_blank">
-                    <div class="poster-container">
-                        <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
-                        <div class="play-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="30" height="30"><path d="M8 5v14l11-7z"></path></svg>
-                        </div>
+                <div class="poster-container">
+                    <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
+                    <div class="play-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="30" height="30"><path d="M8 5v14l11-7z"></path></svg>
                     </div>
-                    <h3>${movie.title}</h3>
-                </a>
+                </div>
+                <h3>${movie.title}</h3>
             `;
+
+            // Add the click event listener to the entire card
+            movieCard.addEventListener('click', (e) => {
+                e.preventDefault(); // Prevent any default behavior
+                openLinks(movie.url);
+            });
+
             movieGrid.appendChild(movieCard);
+        });
+    }
+
+    // Add click listener to the main "Watch Now" button in the hero section
+    if (heroWatchButton) {
+        heroWatchButton.addEventListener('click', (e) => {
+            e.preventDefault(); // Stop the default link behavior
+            const movieUrl = heroWatchButton.href; // Get the movie URL from the button
+            openLinks(movieUrl);
         });
     }
 
