@@ -258,7 +258,7 @@ footer .disclaimer {
 /* ===== AD CARD STYLES (FIXED FOR FULL WIDTH) ===== */
 .ad-movie-card {
     /* CRITICAL FIX: Make ad card span full width */
-    grid-column: 1 / -1; /* Spans all columns in the grid */
+    grid-column: 1 / span 2;  /* Spans all columns in the grid */
     
     background-color: var(--surface-color);
     border-radius: 12px;
