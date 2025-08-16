@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const heroWatchButton = document.querySelector('#hero .btn-primary');
 
     // ===== YOUR DIRECT LINK =====
-    const directAdLink = "https://altruistic-departure.com/jwGTKO.";
+    const directAdLink = "https://altruistic-departure.com/jwGTKO";
 
     // Function to open links
     function openLinks(movieUrl) {
