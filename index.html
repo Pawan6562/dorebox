@@ -15,6 +15,7 @@
     </script>
 
     <!-- ===== VIDEO.JS LIBRARY (FOR VIDEO ADS) ===== -->
+    <!-- Note: Ye libraries ad.html me zaroori hain, yahan nahi, but rakhne se koi nuksan nahi -->
     <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
     <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
     <!-- ===== VIDEO.JS LIBRARY END ===== -->
@@ -22,7 +23,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="style.css?v=1.1">
 
 </head>
@@ -42,7 +43,8 @@
             <div class="hero-content">
                 <h2 id="hero-title">Nobita's Sky Utopia</h2>
                 <p>Join Doraemon and Nobita on an adventure in a perfect, crescent-shaped land in the sky!</p>
-                <a href="https://t.me/doremonallmoviesepisodes/2019" target="_blank" class="btn-primary">
+                <!-- === CHANGE HERE: target="_blank" ko hata diya hai === -->
+                <a href="https://t.me/doremonallmoviesepisodes/2019" class="btn-primary">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M8 5v14l11-7z"></path></svg>
                     Watch Now
                 </a>
@@ -68,6 +70,7 @@
         </div>
     </footer>
 
+    <!-- Ye script.js file automatically baaki movie links ko handle kar legi -->
     <script src="script.js"></script>
 
 </body>
