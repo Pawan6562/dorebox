@@ -311,3 +311,26 @@ footer .disclaimer {
         padding: 15px;
     }
 }
+
+/* ===== AD CARD STYLES (NEW & IMPROVED) ===== */
+.ad-card {
+    /* CRITICAL FIX: Make ad card span full width of the grid */
+    grid-column: 1 / -1; 
+    
+    /* Give it a fixed height to match the ad */
+    min-height: 250px; 
+    
+    /* Center the ad inside the card */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Optional: Add some vertical spacing */
+    margin: 10px 0; 
+    
+    /* Make it look like other cards */
+    background-color: var(--surface-color);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
