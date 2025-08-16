@@ -3,121 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loading Movie...</title>
+    <title>Advertisement</title>
     
-    <!-- Video.js Library -->
+    <!-- Video.js aur IMA SDK ke liye zaroori library -->
     <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
-    <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
-
-    <!-- Video.js IMA SDK (to show VAST ads) -->
-    <script src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-ima/2.1.0/videojs.ima.min.js"></script>
+    <link href="https://unpkg.com/videojs-contrib-ads/dist/videojs.ads.css" rel="stylesheet" type="text/css" />
+    <link href="https://unpkg.com/videojs-ima/dist/videojs.ima.css" rel="stylesheet" type="text/css" />
 
     <style>
-        body, html {
+        /* Basic styling */
+        body {
             margin: 0;
             padding: 0;
-            height: 100%;
-            background-color: #0d1117;
-            font-family: 'Poppins', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            background-color: #000;
             color: white;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
         }
+        /* Player ka container */
+        #ad-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        /* Video player ko poori screen par fit karne ke liye */
         .video-js {
             width: 100%;
-            max-width: 800px;
-            height: auto;
+            height: 100%;
         }
-        #content-container {
+        /* Loading/Error message ke liye */
+        #message-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            background: rgba(0, 0, 0, 0.8);
+            display: none; /* Shuru me hide rakho */
             justify-content: center;
-        }
-        #skip-button {
-            display: none; /* Hidden by default */
-            margin-top: 20px;
-            padding: 12px 25px;
+            align-items: center;
+            text-align: center;
             font-size: 1.2em;
-            font-weight: 600;
-            color: #fff;
-            background-color: #007BFF;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        #skip-button:hover {
-            background-color: #0056b3;
-        }
-        #loading-text {
-            margin-bottom: 20px;
-            font-size: 1.5em;
+            padding: 20px;
         }
     </style>
 </head>
 <body>
 
-    <div id="content-container">
-        <h2 id="loading-text">Your movie is loading...</h2>
+    <div id="ad-container">
+        <!-- Yahan ad play hoga -->
         <video id="ad-player" class="video-js vjs-default-skin" playsinline></video>
-        <a id="skip-button" href="#">Go to Movie</a>
     </div>
+    
+    <div id="message-overlay">
+        <p id="message-text"></p>
+    </div>
+
+    <!-- Zaroori JavaScript libraries -->
+    <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+    <script src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+    <script src="https://unpkg.com/videojs-contrib-ads/dist/videojs.ads.min.js"></script>
+    <script src="https://unpkg.com/videojs-ima/dist/videojs.ima.min.js"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            // 1. Get the movie URL from the page's query parameter
-            const params = new URLSearchParams(window.location.search);
-            const encodedMovieUrl = params.get('movie');
-            
-            if (!encodedMovieUrl) {
-                document.getElementById('loading-text').innerText = "Error: Movie link not found.";
+            const messageOverlay = document.getElementById('message-overlay');
+            const messageText = document.getElementById('message-text');
+
+            // 1. URL se movie ka link nikalo
+            const urlParams = new URLSearchParams(window.location.search);
+            const movieUrl = urlParams.get('redirect');
+
+            // Function to redirect to the movie
+            const redirectToMovie = () => {
+                if (movieUrl) {
+                    messageText.textContent = 'Ad finished or failed. Redirecting to your movie...';
+                    messageOverlay.style.display = 'flex';
+                    // Thoda delay do taaki user message padh sake
+                    setTimeout(() => {
+                        window.location.href = movieUrl;
+                    }, 1500);
+                } else {
+                    messageText.textContent = 'Error: Movie link not found!';
+                    messageOverlay.style.display = 'flex';
+                }
+            };
+
+            if (!movieUrl) {
+                redirectToMovie();
                 return;
             }
 
-            const movieUrl = atob(encodedMovieUrl); // Decode the Base64 URL
-            const skipButton = document.getElementById('skip-button');
-            skipButton.href = movieUrl; // Set the button's link to the movie URL
-
-            // 2. VAST Ad Tag from HilltopAds
-            const vastAdTag = 'https://altruistic-departure.com/dPm/F.z_deGQNfvSZTGbU-/zeMm/9/u/ZBUYlhkIPbTHYU2tMXD/EP2hNKzHAetlNVjUYpwPMSTsYy3/MVQG';
-
-            // 3. Set up the video player
-            const player = videojs('ad-player', {
-                controls: true,
-                autoplay: true,
-                muted: true, // Autoplay requires the video to be muted
-                width: 640,
-                height: 360
-            });
-
-            // 4. Set up the IMA SDK
-            const imaOptions = {
-                id: 'ad-player',
-                adTagUrl: vastAdTag
+            // 2. Video player ko set karo
+            const playerOptions = {
+                autoplay: true, // Auto play karo
+                muted: true,    // Mute rakho (browser policy ke liye zaroori)
+                controls: false, // User ko control mat do
             };
+            const player = videojs('ad-player', playerOptions);
+
+            // 3. IMA (Ad) plugin ke options
+            const imaOptions = {
+                // YAHAN TUMHARA NAYA AD UNIT LINK HAI
+                adTagUrl: 'https://altruistic-departure.com/d.mkFczddkGZNiv/ZVGnUJ/beRm/9_uVZSUllVk/PUT/YW2hMqD/E/5tMuzDkRt/NcjzYlwRM/TMkD0WMaAx'
+            };
+
+            // Player par IMA plugin ko shuru karo
             player.ima(imaOptions);
 
-            // 5. Logic to show the "Go to Movie" button
-            let adFinished = false;
+            // 4. Events ko handle karo
+            
+            // Jab ad khatam ho jaye
+            player.on('adsended', () => {
+                console.log('Ad finished successfully.');
+                redirectToMovie();
+            });
 
-            function showSkipButton() {
-                skipButton.style.display = 'block';
-                document.getElementById('loading-text').style.display = 'none';
-            }
+            // Jab ad me koi error aaye (sabse important)
+            player.on('adserror', (event) => {
+                console.error('Ad Error:', event);
+                redirectToMovie();
+            });
 
-            // Show the button after 10 seconds, regardless of ad status
-            setTimeout(showSkipButton, 10000); // 10 seconds
-
-            // Also show the button if the ad finishes or if there's an error
-            player.on('ima:adend', showSkipButton);
-            player.on('ima:aderror', showSkipButton);
-            player.on('ended', showSkipButton); // If the (non-existent) main video ends
+            // Jab koi ad na mile
+            player.on('adtimeout', () => {
+                console.warn('Ad timed out.');
+                redirectToMovie();
+            });
+            
+            player.on('nopreroll', () => {
+                console.log('No ad available to play.');
+                redirectToMovie();
+            });
 
         });
     </script>
