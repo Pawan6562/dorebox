@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     
     const movies = [
-      // Tumhari saari movies ki list yahan aayegi...
-      // ... (poori list jaisi pehle thi)
       { title: "Chronicle of the Moon", url: "https://smallshorts.com/NobitaChronicleoftheMoon", poster: "https://i.postimg.cc/BbmtZs0X/m3.jpg" },
       { title: "Sky Utopia", url: "https://t.me/doremonallmoviesepisodes/2019", poster: "https://i.postimg.cc/Nf3QTNXq/doraemon-movie-nobitas-sky-utopia-in-hindi.jpg" },
       { title: "Antarctic Adventure", url: "https://t.me/doremonallmoviesepisodes/2024", poster: "https://i.postimg.cc/9f4SpVHL/Doraemon-Nobita-Chal-Pada-Antarctica-Hindi-by-cjh.jpg" },
@@ -36,38 +34,28 @@ document.addEventListener("DOMContentLoaded", () => {
     const movieGrid = document.getElementById("movie-grid");
     const searchBar = document.getElementById("search-bar");
     const noResults = document.getElementById("no-results");
-    const heroButton = document.querySelector('#hero .btn-primary');
-
-    // === YAHAN HAI ASLI CHANGE ===
-    // Ab hum poora URL use karenge taaki galti na ho
-    const adPageUrl = 'https://pawan6562.github.io/dorebox/ad.html';
-
-    function createAdRedirectUrl(targetUrl) {
-        const encodedUrl = encodeURIComponent(targetUrl);
-        return `${adPageUrl}?redirect=${encodedUrl}`;
-    }
-
-    // Hero section ke button ke liye Ad link set karo
-    if (heroButton) {
-        const originalHeroUrl = heroButton.getAttribute('href');
-        heroButton.href = createAdRedirectUrl(originalHeroUrl);
-        heroButton.removeAttribute('target');
-    }
 
     // Function to display movies
     function displayMovies(movieArray) {
         movieGrid.innerHTML = "";
-        noResults.classList.toggle("hidden", movieArray.length > 0);
+        if (movieArray.length === 0) {
+            noResults.classList.remove("hidden");
+        } else {
+            noResults.classList.add("hidden");
+        }
         
         movieArray.forEach(movie => {
             const movieCard = document.createElement("div");
             movieCard.className = "movie-card";
             
-            const adUrl = createAdRedirectUrl(movie.url);
-
             movieCard.innerHTML = `
-                <a href="${adUrl}">
-                    <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
+                <a href="${movie.url}" target="_blank">
+                    <div class="poster-container">
+                        <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
+                        <div class="play-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="30" height="30"><path d="M8 5v14l11-7z"></path></svg>
+                        </div>
+                    </div>
                     <h3>${movie.title}</h3>
                 </a>
             `;
@@ -78,12 +66,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // Search functionality
     searchBar.addEventListener("keyup", (e) => {
         const searchTerm = e.target.value.toLowerCase();
-        const filteredMovies = movies.filter(movie => 
-            movie.title.toLowerCase().includes(searchTerm)
-        );
+        const filteredMovies = movies.filter(movie => {
+            return movie.title.toLowerCase().includes(searchTerm);
+        });
         displayMovies(filteredMovies);
     });
 
     // Initial display of all movies
     displayMovies(movies);
+
 });
