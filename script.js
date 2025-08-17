@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
       { title: "Doraemon Nobita's Treasure Island", url: "https://t.me/doremonallmoviesepisodes/2138", poster: "https://i.postimg.cc/t46rgZ36/Doraemon-the-Nobita-s-Treasure-Island-by-cjh.jpg" },
       { title: "Doraemon The Movie Nobita The Explorer Bow Bow", url: "https://t.me/doremonallmoviesepisodes/2150", poster: "https://i.postimg.cc/HxY336f0/The-Movie-Nobita-The-Explorer-Bow-Bow-by-cjh.png" },
       { title: "Doraemon Nobita and the Windmasters", url: "https://t.me/doremonallmoviesepisodes/2154", poster: "https://i.postimg.cc/bYFLHHLb/Doraemon-Toofani-Adventure-by-cjh.jpg" },
-      { title: "Doraemon Nobita and the Island of Miracle", url: "https://t.postimg.cc/yd8X0kZv/Doraemon-The-Movie-Nobita-Aur-Jadooi-Tapu-by-cjh.jpg", poster: "https://i.postimg.cc/yd8X0kZv/Doraemon-The-Movie-Nobita-Aur-Jadooi-Tapu-by-cjh.jpg" },
+      { title: "Doraemon Nobita and the Island of Miracle", url: "https://t.me/doremonallmoviesepisodes/2158", poster: "https://i.postimg.cc/yd8X0kZv/Doraemon-The-Movie-Nobita-Aur-Jadooi-Tapu-by-cjh.jpg" },
       { title: "Doraemon Galaxy Super Express Hindi", url: "https://t.me/doremonallmoviesepisodes/2165", poster: "https://i.postimg.cc/XY6fQ25Z/Doraemon-The-Movie-Galaxy-Super-Express-by-cjh.png" }, 
       { title: "Doraemon Nobita And The Kingdom Of Robot Singham", url: "https://t.me/doremonallmoviesepisodes/2174", poster: "https://i.postimg.cc/j5fNHPj6/The-Movie-Nobita-and-the-Kingdom-of-Robot-by-cjh.jpg" }
     ];
@@ -35,18 +35,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchBar = document.getElementById("search-bar");
     const noResults = document.getElementById("no-results");
 
-    // Ad banner HTML code
-    const adBanner = `
-        <div class="ad-card">
-            <h3>Sponsored</h3>
-            <div id="ad-frame">
-              <iframe data-aa='2407034' src='//ad.a-ads.com/2407034/?size=300x250'
-                                style='border:0; padding:0; width:100%; height:100%; overflow:hidden; display: block;margin: auto'></iframe>
-            </div>
+    // Naya ad unit code ko ek variable mein store kiya
+    const adCode = `
+        <div id="frame" style="width: 300px;margin: auto;z-index: 99998;height: auto">
+          <iframe data-aa='2407034' src='//ad.a-ads.com/2407034/?size=300x250'
+                            style='border:0; padding:0; width:300px; height:250px; overflow:hidden;display: block;margin: auto'></iframe>
         </div>
     `;
 
-    // Function to display movies
+    // Function to display movies (with ads)
     function displayMovies(movieArray) {
         movieGrid.innerHTML = "";
         if (movieArray.length === 0) {
@@ -71,12 +68,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 </a>
             `;
             movieGrid.appendChild(movieCard);
-            
-            // Insert ad card after every 6th movie
-            if ((index + 1) % 6 === 0) {
-                const adWrapper = document.createElement('div');
-                adWrapper.innerHTML = adBanner;
-                movieGrid.appendChild(adWrapper.firstChild);
+
+            // Har 5th movie ke baad ad card add karein
+            if ((index + 1) % 5 === 0) {
+                const adCard = document.createElement("div");
+                adCard.className = "ad-card";
+                adCard.innerHTML = adCode;
+                movieGrid.appendChild(adCard);
             }
         });
     }
