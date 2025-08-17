@@ -334,23 +334,3 @@ footer .disclaimer {
     overflow: hidden;
     border: 1px solid var(--border-color);
 }
-
-
-/* ===== BANNER AD CARD STYLES ===== */
-.ad-card {
-    /* Ad ko poori grid ki width do */
-    grid-column: 1 / -1; 
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    /* Ad ke size ke hisab se thodi jagah banao */
-    min-height: 260px; 
-    
-    /* Baaki cards jaisa look do */
-    background-color: var(--surface-color);
-    border-radius: 12px;
-    margin: 10px 0;
-    overflow: hidden;
-}
