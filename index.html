@@ -5,29 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DoreBox - By CJH</title>
 
-    <!-- GOOGLE ANALYTICS CODE -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1T5SLRNG3F"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-1T5SLRNG3F');
-    </script>
-
-    <!-- ===== VIDEO.JS LIBRARY (FOR VIDEO ADS) ===== -->
-    <!-- Note: Ye libraries ad.html me zaroori hain, yahan nahi, but rakhne se koi nuksan nahi -->
+    <!-- Zaroori Libraries -->
     <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
-    <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
-    <!-- ===== VIDEO.JS LIBRARY END ===== -->
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://unpkg.com/videojs-contrib-ads/dist/videojs.ads.css" rel="stylesheet" />
+    <link href="https://unpkg.com/videojs-ima/dist/videojs.ima.css" rel="stylesheet" />
+    
+    <!-- Tumhara Original CSS -->
+    <link rel="stylesheet" href="style.css?v=1.2">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css?v=1.1">
-
+    <style>
+        /* Ad Overlay ke liye CSS */
+        #ad-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 9999;
+            display: none; /* Shuru me hide rakho */
+        }
+        #ad-player {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
+
+    <!-- ===== AD OVERLAY SECTION ===== -->
+    <div id="ad-overlay">
+        <video id="ad-player" class="video-js" playsinline></video>
+    </div>
+    <!-- ===== AD OVERLAY END ===== -->
 
     <header id="main-header">
         <div class="container">
@@ -43,8 +54,7 @@
             <div class="hero-content">
                 <h2 id="hero-title">Nobita's Sky Utopia</h2>
                 <p>Join Doraemon and Nobita on an adventure in a perfect, crescent-shaped land in the sky!</p>
-                <!-- === CHANGE HERE: target="_blank" ko hata diya hai === -->
-                <a href="https://t.me/doremonallmoviesepisodes/2019" class="btn-primary">
+                <a href="https://t.me/doremonallmoviesepisodes/2019" class="btn-primary watch-link">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M8 5v14l11-7z"></path></svg>
                     Watch Now
                 </a>
@@ -55,13 +65,14 @@
         <section id="movie-gallery" class="container">
             <h2 class="section-title">All Movies</h2>
             <div id="movie-grid" class="movie-grid">
-                <!-- Movies will be loaded here by JavaScript -->
+                <!-- Movies yahan load honge -->
             </div>
             <p id="no-results" class="hidden">No movies found matching your search.</p>
         </section>
     </main>
 
     <footer>
+        <!-- Tumhara footer jaisa tha waisa hi hai -->
         <div class="container">
             <p><strong>This website is by CJH (CARTOON JUNCTION HINDI)</strong></p>
             <p>At this website you will get all the movies of Doraemon wich is released to India</p>
@@ -70,8 +81,99 @@
         </div>
     </footer>
 
-    <!-- Ye script.js file automatically baaki movie links ko handle kar legi -->
-    <script src="script.js"></script>
+    <!-- Zaroori Scripts -->
+    <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+    <script src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+    <script src="https://unpkg.com/videojs-contrib-ads/dist/videojs.ads.min.js"></script>
+    <script src="https://unpkg.com/videojs-ima/dist/videojs.ima.min.js"></script>
 
+    <!-- Hamara Naya JavaScript -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const movies = [
+              // Tumhari poori movie list yahan daal do
+              { title: "Chronicle of the Moon", url: "https://smallshorts.com/NobitaChronicleoftheMoon", poster: "https://i.postimg.cc/BbmtZs0X/m3.jpg" },
+              { title: "Sky Utopia", url: "https://t.me/doremonallmoviesepisodes/2019", poster: "https://i.postimg.cc/Nf3QTNXq/doraemon-movie-nobitas-sky-utopia-in-hindi.jpg" },
+              // ... baaki saari movies
+            ];
+
+            const movieGrid = document.getElementById("movie-grid");
+            const searchBar = document.getElementById("search-bar");
+            const noResults = document.getElementById("no-results");
+            const adOverlay = document.getElementById('ad-overlay');
+            let movieToRedirect = '';
+
+            // Ad Player ko set up karo
+            const player = videojs('ad-player', {
+                autoplay: true,
+                muted: true,
+                controls: false
+            });
+
+            const imaOptions = {
+                adTagUrl: 'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dlinear&correlator='
+            };
+            player.ima(imaOptions);
+
+            // Ad khatam ya fail hone par kya karna hai
+            const onAdEnded = () => {
+                adOverlay.style.display = 'none'; // Overlay hide karo
+                if (movieToRedirect) {
+                    window.location.href = movieToRedirect; // Movie par bhej do
+                }
+            };
+            player.on(['adsended', 'adserror', 'adtimeout', 'nopreroll'], onAdEnded);
+
+            // Function jo ad chalu karega
+            const playAd = (movieUrl) => {
+                movieToRedirect = movieUrl;
+                adOverlay.style.display = 'block'; // Overlay dikhao
+                player.ima.requestAds();
+                player.play();
+            };
+
+            // Saare movie links par click event lagao
+            const setupEventListeners = () => {
+                document.querySelectorAll('.watch-link').forEach(link => {
+                    link.addEventListener('click', (event) => {
+                        event.preventDefault(); // Link ko follow mat karo
+                        const movieUrl = event.currentTarget.href;
+                        playAd(movieUrl);
+                    });
+                });
+            };
+
+            // Movies ko display karo
+            function displayMovies(movieArray) {
+                movieGrid.innerHTML = "";
+                noResults.classList.toggle("hidden", movieArray.length > 0);
+                
+                movieArray.forEach(movie => {
+                    const movieCard = document.createElement("div");
+                    movieCard.className = "movie-card";
+                    movieCard.innerHTML = `
+                        <a href="${movie.url}" class="watch-link">
+                            <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
+                            <h3>${movie.title}</h3>
+                        </a>
+                    `;
+                    movieGrid.appendChild(movieCard);
+                });
+                setupEventListeners(); // Naye links par event listener lagao
+            }
+
+            // Search functionality
+            searchBar.addEventListener("keyup", (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                const filteredMovies = movies.filter(movie => 
+                    movie.title.toLowerCase().includes(searchTerm)
+                );
+                displayMovies(filteredMovies);
+            });
+
+            // Shuru me saari movies dikhao
+            displayMovies(movies);
+        });
+    </script>
 </body>
 </html>
