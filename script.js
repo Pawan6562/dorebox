@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-    
+
+    // Tumhari saari movies
     const movies = [
       { title: "Chronicle of the Moon", url: "https://smallshorts.com/NobitaChronicleoftheMoon", poster: "https://i.postimg.cc/BbmtZs0X/m3.jpg" },
       { title: "Sky Utopia", url: "https://t.me/doremonallmoviesepisodes/2019", poster: "https://i.postimg.cc/Nf3QTNXq/doraemon-movie-nobitas-sky-utopia-in-hindi.jpg" },
@@ -35,31 +36,44 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchBar = document.getElementById("search-bar");
     const noResults = document.getElementById("no-results");
 
-    // Function to display movies
-    function displayMovies(movieArray) {
+    // Tumhara Ad Unit Code
+    const adCode = `
+        <script type="text/javascript">
+            atOptions = {
+                'key' : '7f7dcddc8dac34dafd83fc6e2b553a4e',
+                'format' : 'iframe',
+                'height' : 250,
+                'width' : 300,
+                'params' : {}
+            };
+        <\/script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/7f7dcddc8dac34dafd83fc6e2b553a4e/invoke.js"><\/script>
+    `;
+
+    // Function to display movies and ads
+    function displayContent(movieArray) {
         movieGrid.innerHTML = "";
-        if (movieArray.length === 0) {
-            noResults.classList.remove("hidden");
-        } else {
-            noResults.classList.add("hidden");
-        }
-        
-        movieArray.forEach(movie => {
+        noResults.classList.toggle("hidden", movieArray.length === 0);
+
+        movieArray.forEach((movie, index) => {
+            // Movie card banao
             const movieCard = document.createElement("div");
             movieCard.className = "movie-card";
-            
             movieCard.innerHTML = `
                 <a href="${movie.url}" target="_blank">
-                    <div class="poster-container">
-                        <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
-                        <div class="play-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="30" height="30"><path d="M8 5v14l11-7z"></path></svg>
-                        </div>
-                    </div>
+                    <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
                     <h3>${movie.title}</h3>
                 </a>
             `;
             movieGrid.appendChild(movieCard);
+
+            // Har 8 movies ke baad ek ad daalo (index 7, 15, 23...)
+            if ((index + 1) % 8 === 0) {
+                const adCard = document.createElement("div");
+                adCard.className = "ad-card";
+                adCard.innerHTML = adCode;
+                movieGrid.appendChild(adCard);
+            }
         });
     }
 
@@ -69,10 +83,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const filteredMovies = movies.filter(movie => {
             return movie.title.toLowerCase().includes(searchTerm);
         });
-        displayMovies(filteredMovies);
+        // Search me ads nahi dikhayenge, sirf movies
+        displayContent(filteredMovies);
     });
 
     // Initial display of all movies
-    displayMovies(movies);
-
+    displayContent(movies);
 });
