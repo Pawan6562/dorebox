@@ -55,11 +55,6 @@ body {
     margin: 0;
 }
 
-.search-container {
-    flex-grow: 1;
-    text-align: right;
-}
-
 #search-bar {
     width: 150px;
     padding: 8px 15px;
@@ -168,7 +163,7 @@ body {
 
 .movie-card {
     background-color: var(--surface-color);
-    border-radius: 12px; /* Softer corners */
+    border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0,0,0,0.4);
     transition: transform 0.2s ease-in-out;
@@ -176,7 +171,7 @@ body {
     border: 1px solid var(--border-color);
 }
 
-.movie-card:active { /* Touch feedback for mobile */
+.movie-card:active {
     transform: scale(0.96);
 }
 
@@ -190,33 +185,10 @@ body {
 
 .movie-card img {
     width: 100%;
-    height: 230px; /* Slightly taller */
+    height: 230px;
     object-fit: cover;
     display: block;
     border-bottom: 1px solid var(--border-color);
-}
-
-.poster-container {
-    position: relative;
-}
-
-.play-icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.7);
-    border-radius: 50%;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.2s ease;
-}
-
-.movie-card:hover .play-icon {
-    opacity: 1;
 }
 
 .movie-card h3 {
@@ -229,7 +201,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 50px; /* Ensure consistent height */
+    min-height: 50px;
 }
 
 #no-results {
@@ -237,7 +209,7 @@ body {
     font-size: 1.2em;
     text-align: center;
     padding: 50px;
-    grid-column: 1 / -1; /* Make it span full width */
+    grid-column: 1 / -1;
 }
 
 .hidden {
@@ -266,26 +238,6 @@ footer .disclaimer {
     opacity: 0.7;
 }
 
-/* --- AD CARD STYLES --- */
-.ad-card {
-    grid-column: 1 / -1; /* Mobile aur Desktop dono mein full width rakhega */
-    background-color: var(--surface-color);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-    border: 1px solid var(--border-color);
-    min-height: 250px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.ad-card iframe {
-    /* Ad iframe ko center karne ke liye */
-    display: block;
-    margin: 0 auto;
-}
-
 /* --- DESKTOP STYLES --- */
 @media (min-width: 768px) {
     body { padding-top: 70px; }
@@ -298,12 +250,68 @@ footer .disclaimer {
     #hero-title { font-size: 3em; }
     .hero-content p { font-size: 1.1em; }
     .btn-primary:hover { background-color: #0062cc; transform: translateY(-2px); }
-    .movie-grid { 
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
-        gap: 25px; 
-    }
+    .movie-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 25px; }
     .movie-card:hover { transform: translateY(-8px); box-shadow: 0 10px 20px rgba(0, 123, 255, 0.2); }
     .movie-card img { height: 300px; }
-    .movie-card h3 { font-size: 1em; }
-    .play-icon svg { width: 40px; height: 40px; }
+}
+
+/* ===== AD CARD STYLES (NEW & IMPROVED) ===== */
+.ad-card {
+    /* Make the ad card span the full width of the grid */
+    grid-column: 1 / -1; 
+    
+    background-color: var(--surface-color);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+.ad-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 123, 255, 0.2);
+}
+
+.ad-card h3 {
+    font-size: 0.9em;
+    font-weight: 500;
+    color: var(--text-secondary);
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 8px 12px;
+    margin: 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+#ad-frame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    flex-grow: 1;
+}
+
+#ad-frame iframe {
+    max-width: 100%;
+    height: 250px;
+    display: block;
+}
+
+/* Mobile styles for ad card */
+@media (max-width: 767px) {
+    .ad-card {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+/* Desktop styles for ad card */
+@media (min-width: 768px) {
+    .ad-card {
+        margin-top: 25px;
+        margin-bottom: 25px;
+    }
 }
