@@ -55,6 +55,11 @@ body {
     margin: 0;
 }
 
+.search-container {
+    flex-grow: 1;
+    text-align: right;
+}
+
 #search-bar {
     width: 150px;
     padding: 8px 15px;
@@ -191,6 +196,29 @@ body {
     border-bottom: 1px solid var(--border-color);
 }
 
+.poster-container {
+    position: relative;
+}
+
+.play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.movie-card:hover .play-icon {
+    opacity: 1;
+}
+
 .movie-card h3 {
     padding: 12px;
     margin: 0;
@@ -238,6 +266,26 @@ footer .disclaimer {
     opacity: 0.7;
 }
 
+/* --- AD CARD STYLES --- */
+.ad-card {
+    grid-column: 1 / -1; /* Mobile aur Desktop dono mein full width rakhega */
+    background-color: var(--surface-color);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    border: 1px solid var(--border-color);
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ad-card iframe {
+    /* Ad iframe ko center karne ke liye */
+    display: block;
+    margin: 0 auto;
+}
+
 /* --- DESKTOP STYLES --- */
 @media (min-width: 768px) {
     body { padding-top: 70px; }
@@ -250,87 +298,12 @@ footer .disclaimer {
     #hero-title { font-size: 3em; }
     .hero-content p { font-size: 1.1em; }
     .btn-primary:hover { background-color: #0062cc; transform: translateY(-2px); }
-    .movie-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 25px; }
+    .movie-grid { 
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+        gap: 25px; 
+    }
     .movie-card:hover { transform: translateY(-8px); box-shadow: 0 10px 20px rgba(0, 123, 255, 0.2); }
     .movie-card img { height: 300px; }
-}
-
-/* ===== AD CARD STYLES (FIXED FOR FULL WIDTH) ===== */
-.ad-movie-card {
-    /* CRITICAL FIX: Make ad card span full width */
-    grid-column: 1 / span 2;  /* Spans all columns in the grid */
-    
-    background-color: var(--surface-color);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-    border: 1px solid var(--border-color);
-    display: flex;
-    flex-direction: column;
-    
-    /* Give ad enough space */
-    min-height: 300px;
-    max-width: 100%;
-    margin: 10px 0; /* Add some vertical spacing */
-}
-
-.ad-movie-card .ad-banner-area {
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    border-bottom: 1px solid var(--border-color);
-    min-height: 250px; /* Ensure 250px height for the ad */
-    padding: 10px; /* Add padding so ad doesn't touch edges */
-}
-
-.ad-movie-card h3 {
-    padding: 12px;
-    margin: 0;
-    font-size: 0.9em;
-    font-weight: 500;
-    text-align: center;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 40px; /* Smaller title area since we have more space */
-    color: var(--text-secondary);
-    background-color: rgba(0,0,0,0.2); /* Subtle background for title */
-}
-
-/* Desktop styles for ad card */
-@media (min-width: 768px) {
-    .ad-movie-card {
-        min-height: 320px; /* Slightly more space on desktop */
-    }
-    
-    .ad-movie-card .ad-banner-area {
-        min-height: 270px; /* More space for ad on desktop */
-        padding: 15px;
-    }
-}
-
-/* ===== AD CARD STYLES (NEW & IMPROVED) ===== */
-.ad-card {
-    /* CRITICAL FIX: Make ad card span full width of the grid */
-    grid-column: 1 / -1; 
-    
-    /* Give it a fixed height to match the ad */
-    min-height: 250px; 
-    
-    /* Center the ad inside the card */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    /* Optional: Add some vertical spacing */
-    margin: 10px 0; 
-    
-    /* Make it look like other cards */
-    background-color: var(--surface-color);
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid var(--border-color);
+    .movie-card h3 { font-size: 1em; }
+    .play-icon svg { width: 40px; height: 40px; }
 }
