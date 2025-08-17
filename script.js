@@ -35,21 +35,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchBar = document.getElementById("search-bar");
     const noResults = document.getElementById("no-results");
 
-    // Ad unit code ko ek variable mein store kiya
-    const adCode = `
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '7f7dcddc8dac34dafd83fc6e2b553a4e',
-                'format' : 'iframe',
-                'height' : 250,
-                'width' : 300,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/7f7dcddc8dac34dafd83fc6e2b553a4e/invoke.js"></script>
+    // Ad banner HTML code
+    const adBanner = `
+        <div class="ad-card">
+            <h3>Sponsored</h3>
+            <div id="ad-frame">
+              <iframe data-aa='2407034' src='//ad.a-ads.com/2407034/?size=300x250'
+                                style='border:0; padding:0; width:100%; height:100%; overflow:hidden; display: block;margin: auto'></iframe>
+            </div>
+        </div>
     `;
 
-    // Function to display movies (with ads)
+    // Function to display movies
     function displayMovies(movieArray) {
         movieGrid.innerHTML = "";
         if (movieArray.length === 0) {
@@ -74,13 +71,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 </a>
             `;
             movieGrid.appendChild(movieCard);
-
-            // Har 5th movie ke baad ad card add karein
-            if ((index + 1) % 5 === 0) {
-                const adCard = document.createElement("div");
-                adCard.className = "ad-card";
-                adCard.innerHTML = adCode;
-                movieGrid.appendChild(adCard);
+            
+            // Insert ad card after every 6th movie
+            if ((index + 1) % 6 === 0) {
+                const adWrapper = document.createElement('div');
+                adWrapper.innerHTML = adBanner;
+                movieGrid.appendChild(adWrapper.firstChild);
             }
         });
     }
@@ -96,4 +92,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initial display of all movies
     displayMovies(movies);
+
 });
