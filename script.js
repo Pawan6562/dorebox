@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    
+
     const movies = [
       { title: "Chronicle of the Moon", url: "https://smallshorts.com/NobitaChronicleoftheMoon", poster: "https://i.postimg.cc/BbmtZs0X/m3.jpg" },
       { title: "Sky Utopia", url: "https://t.me/doremonallmoviesepisodes/2019", poster: "https://i.postimg.cc/Nf3QTNXq/doraemon-movie-nobitas-sky-utopia-in-hindi.jpg" },
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
       { title: "Doraemon Nobita's Treasure Island", url: "https://t.me/doremonallmoviesepisodes/2138", poster: "https://i.postimg.cc/t46rgZ36/Doraemon-the-Nobita-s-Treasure-Island-by-cjh.jpg" },
       { title: "Doraemon The Movie Nobita The Explorer Bow Bow", url: "https://t.me/doremonallmoviesepisodes/2150", poster: "https://i.postimg.cc/HxY336f0/The-Movie-Nobita-The-Explorer-Bow-Bow-by-cjh.png" },
       { title: "Doraemon Nobita and the Windmasters", url: "https://t.me/doremonallmoviesepisodes/2154", poster: "https://i.postimg.cc/bYFLHHLb/Doraemon-Toofani-Adventure-by-cjh.jpg" },
-      { title: "Doraemon Nobita and the Island of Miracle", url: "https://t.me/doremonallmoviesepisodes/2158", poster: "https://i.postimg.cc/yd8X0kZv/Doraemon-The-Movie-Nobita-Aur-Jadooi-Tapu-by-cjh.jpg" },
+      { title: "Doraemon Nobita and the Island of Miracle", url: "https://t.postimg.cc/yd8X0kZv/Doraemon-The-Movie-Nobita-Aur-Jadooi-Tapu-by-cjh.jpg", poster: "https://i.postimg.cc/yd8X0kZv/Doraemon-The-Movie-Nobita-Aur-Jadooi-Tapu-by-cjh.jpg" },
       { title: "Doraemon Galaxy Super Express Hindi", url: "https://t.me/doremonallmoviesepisodes/2165", poster: "https://i.postimg.cc/XY6fQ25Z/Doraemon-The-Movie-Galaxy-Super-Express-by-cjh.png" }, 
       { title: "Doraemon Nobita And The Kingdom Of Robot Singham", url: "https://t.me/doremonallmoviesepisodes/2174", poster: "https://i.postimg.cc/j5fNHPj6/The-Movie-Nobita-and-the-Kingdom-of-Robot-by-cjh.jpg" }
     ];
@@ -35,7 +35,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchBar = document.getElementById("search-bar");
     const noResults = document.getElementById("no-results");
 
-    // Function to display movies
+    // Ad unit code ko ek variable mein store kiya
+    const adCode = `
+        <script type="text/javascript">
+            atOptions = {
+                'key' : '7f7dcddc8dac34dafd83fc6e2b553a4e',
+                'format' : 'iframe',
+                'height' : 250,
+                'width' : 300,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/7f7dcddc8dac34dafd83fc6e2b553a4e/invoke.js"></script>
+    `;
+
+    // Function to display movies (with ads)
     function displayMovies(movieArray) {
         movieGrid.innerHTML = "";
         if (movieArray.length === 0) {
@@ -43,11 +57,11 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             noResults.classList.add("hidden");
         }
-        
-        movieArray.forEach(movie => {
+
+        movieArray.forEach((movie, index) => {
             const movieCard = document.createElement("div");
             movieCard.className = "movie-card";
-            
+
             movieCard.innerHTML = `
                 <a href="${movie.url}" target="_blank">
                     <div class="poster-container">
@@ -60,6 +74,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 </a>
             `;
             movieGrid.appendChild(movieCard);
+
+            // Har 5th movie ke baad ad card add karein
+            if ((index + 1) % 5 === 0) {
+                const adCard = document.createElement("div");
+                adCard.className = "ad-card";
+                adCard.innerHTML = adCode;
+                movieGrid.appendChild(adCard);
+            }
         });
     }
 
@@ -74,5 +96,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initial display of all movies
     displayMovies(movies);
-
 });
