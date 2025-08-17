@@ -11,7 +11,7 @@
     <link href="https://unpkg.com/videojs-ima/dist/videojs.ima.css" rel="stylesheet" />
     
     <!-- Tumhara Original CSS -->
-    <link rel="stylesheet" href="style.css?v=1.2">
+    <link rel="stylesheet" href="style.css?v=1.3"> <!-- Version badha diya -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
@@ -54,7 +54,7 @@
             <div class="hero-content">
                 <h2 id="hero-title">Nobita's Sky Utopia</h2>
                 <p>Join Doraemon and Nobita on an adventure in a perfect, crescent-shaped land in the sky!</p>
-                <a href="https://t.me/doremonallmoviesepisodes/2019" class="btn-primary watch-link">
+                <a href="https://t.me/doremonallmoviesepisodes/2019" class="watch-link">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M8 5v14l11-7z"></path></svg>
                     Watch Now
                 </a>
@@ -90,11 +90,36 @@
     <!-- Hamara Naya JavaScript -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            // === TUMHARI POORI MOVIE LIST ===
             const movies = [
-              // Tumhari poori movie list yahan daal do
               { title: "Chronicle of the Moon", url: "https://smallshorts.com/NobitaChronicleoftheMoon", poster: "https://i.postimg.cc/BbmtZs0X/m3.jpg" },
               { title: "Sky Utopia", url: "https://t.me/doremonallmoviesepisodes/2019", poster: "https://i.postimg.cc/Nf3QTNXq/doraemon-movie-nobitas-sky-utopia-in-hindi.jpg" },
-              // ... baaki saari movies
+              { title: "Antarctic Adventure", url: "https://t.me/doremonallmoviesepisodes/2024", poster: "https://i.postimg.cc/9f4SpVHL/Doraemon-Nobita-Chal-Pada-Antarctica-Hindi-by-cjh.jpg" },
+              { title: "Doraemon jadoo Mantar aur jhanoom", url: "https://t.me/doremonallmoviesepisodes/2037", poster: "https://i.postimg.cc/Z5t0TfkP/Doraemon-The-Movie-Jadoo-Mantar-Aur-Jahnoom-by-cjh.jpg" },
+              { title: "Little Space War", url: "https://t.me/doremonallmoviesepisodes/2038", poster: "https://i.postimg.cc/wTt8Th7t/Doraemon-in-Nobitas-Little-Space-War-Movie-Hindi-Tamil-Telugu-Download-HD-jpg-990x557.png" },
+              { title: "Gadget Museum Ka Rahasya", url: "https://t.me/doremonallmoviesepisodes/2041", poster: "https://i.postimg.cc/9QsfxJbw/Doraemon-Gadget-Museum-Ka-Rahasya-by-cjh.jpg" },
+              { title: "Doraemon: Nobita's New Dinosaur (fan Dubbed)", url: "https://t.me/doremonallmoviesepisodes/2043", poster: "https://i.postimg.cc/hG0HJGX4/Doraemon-Nobitas-new-dinosaur-by-cjh.jpg" },
+              { title: "Space Hero", url: "https://t.me/doremonallmoviesepisodes/2045", poster: "https://i.postimg.cc/50CKBN0F/Doraemon-The-Movie-Nobita-aur-Antarishk-Daku-bycjh.jpg" },
+              { title: "Steel Troops – New Age", url: "https://t.me/doremonallmoviesepisodes/2048", poster: "https://i.postimg.cc/43C9KJr0/Doraemon-The-Movie-Nobita-and-the-Steel-Troops.jpg" },
+              { title: "Three Visionary Swordsmen", url: "https://t.me/doremonallmoviesepisodes/2051", poster: "https://i.postimg.cc/RZ82qxJ3/Doraemon-The-Movie-Nobita-s-Three-Magical-Swordsmen.png" },
+              { title: "Nobita In Hara Hara Planet", url: "https://t.me/doremonallmoviesepisodes/2055", poster: "https://i.postimg.cc/RV6bNkLK/Doraemon-The-Movie-Nobitain-Hara-Hara-Planet-bycjh.jpg" },
+              { title: "Adventure of Koya Koya", url: "https://t.me/doremonallmoviesepisodes/2061", poster: "https://i.postimg.cc/DwCg656n/Adventures-of-Koya-Koya-Planet-Movie-by-cjh.png" },
+              { title: "Doraemon nobita and the Birthday of japan", url: "https://t.me/doremonallmoviesepisodes/2063", poster: "https://i.postimg.cc/MKqNrP7Q/Doraemon-The-Movie-Nobita-and-the-birth-of-Japan.jpg" },
+              { title: "Nobita's Dinosaur", url: "https://t.me/doremonallmoviesepisodes/2065", poster: "https://i.postimg.cc/5NKgqnn1/Doraemon-Nobitas-new-dinosaur-by-cjh.jpg" },
+              { title: "Parallel Visit to West", url: "https://t.me/doremonallmoviesepisodes/2067", poster: "https://i.postimg.cc/prbYFGHC/Doraemon-Nobita-Bana-Superhero-Hindi-by-cjh.jpg" },
+              { title: "Legend of Sun King", url: "https://t.me/doremonallmoviesepisodes/2070", poster: "https://i.postimg.cc/mrQ7v7Qd/Doraemon-nobita-and-the-legend-of-sun-king-by-cjh.jpg" },
+              { title: "Stand by Me – Part 1", url: "https://t.me/doremonallmoviesepisodes/2071", poster: "https://i.postimg.cc/vmkLDN1X/Doraemon-The-Movie-Stand-by-Me-by-cjh.png" },
+              { title: "Stand by Me – Part 2", url: "https://t.me/doremonallmoviesepisodes/2072", poster: "https://i.postimg.cc/y8wkR4PJ/Doraemon-The-Movie-Stand-by-Me-2-by-cjh.png" },
+              { title: "Doraemon Nobita's Great Adventure in the South Seas", url: "https://t.me/doremonallmoviesepisodes/2152", poster: "https://i.postimg.cc/8zC06x5V/Nobita-Great-Adventure-to-the-South-Seas-by-cjh.jpg" },
+              { title: "Khilone Ki Bhul Bhulaiya", url: "https://t.me/doremonallmoviesepisodes/2095", poster: "https://i.postimg.cc/w38qYR5V/Doraemon-Khel-Khilona-Bhool-Bhulaiya-by-cjh.jpg" },
+              { title: "Doraemon The Movie – Nobita and the Underwater Adventure", url: "https://t.me/doremonallmoviesepisodes/2120", poster: "https://i.postimg.cc/VLgfVvrj/Doraemon-The-Movie-Nobita-and-the-Underwater-Adventure.jpg" },
+              { title: "Birdopia Ka Sultan", url: "https://t.me/doremonallmoviesepisodes/2129", poster: "https://i.postimg.cc/hjVgbtRQ/Doraemon-The-Movie-Nobita-Aur-Birdopia-Ka-Sultan.jpg" },
+              { title: "Doraemon Nobita's Treasure Island", url: "https://t.me/doremonallmoviesepisodes/2138", poster: "https://i.postimg.cc/t46rgZ36/Doraemon-the-Nobita-s-Treasure-Island-by-cjh.jpg" },
+              { title: "Doraemon The Movie Nobita The Explorer Bow Bow", url: "https://t.me/doremonallmoviesepisodes/2150", poster: "https://i.postimg.cc/HxY336f0/The-Movie-Nobita-The-Explorer-Bow-Bow-by-cjh.png" },
+              { title: "Doraemon Nobita and the Windmasters", url: "https://t.me/doremonallmoviesepisodes/2154", poster: "https://i.postimg.cc/bYFLHHLb/Doraemon-Toofani-Adventure-by-cjh.jpg" },
+              { title: "Doraemon Nobita and the Island of Miracle", url: "https://t.me/doremonallmoviesepisodes/2158", poster: "https://i.postimg.cc/yd8X0kZv/Doraemon-The-Movie-Nobita-Aur-Jadooi-Tapu-by-cjh.jpg" },
+              { title: "Doraemon Galaxy Super Express Hindi", url: "https://t.me/doremonallmoviesepisodes/2165", poster: "https://i.postimg.cc/XY6fQ25Z/Doraemon-The-Movie-Galaxy-Super-Express-by-cjh.png" }, 
+              { title: "Doraemon Nobita And The Kingdom Of Robot Singham", url: "https://t.me/doremonallmoviesepisodes/2174", poster: "https://i.postimg.cc/j5fNHPj6/The-Movie-Nobita-and-the-Kingdom-of-Robot-by-cjh.jpg" }
             ];
 
             const movieGrid = document.getElementById("movie-grid");
@@ -102,41 +127,51 @@
             const noResults = document.getElementById("no-results");
             const adOverlay = document.getElementById('ad-overlay');
             let movieToRedirect = '';
-
-            // Ad Player ko set up karo
-            const player = videojs('ad-player', {
-                autoplay: true,
-                muted: true,
-                controls: false
-            });
-
-            const imaOptions = {
-                adTagUrl: 'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dlinear&correlator='
-            };
-            player.ima(imaOptions);
-
-            // Ad khatam ya fail hone par kya karna hai
-            const onAdEnded = () => {
-                adOverlay.style.display = 'none'; // Overlay hide karo
-                if (movieToRedirect) {
-                    window.location.href = movieToRedirect; // Movie par bhej do
-                }
-            };
-            player.on(['adsended', 'adserror', 'adtimeout', 'nopreroll'], onAdEnded);
+            let player; // Player ko global rakho
 
             // Function jo ad chalu karega
             const playAd = (movieUrl) => {
                 movieToRedirect = movieUrl;
-                adOverlay.style.display = 'block'; // Overlay dikhao
-                player.ima.requestAds();
-                player.play();
+                adOverlay.style.display = 'block';
+                
+                // Agar player pehli baar ban raha hai
+                if (!player) {
+                    player = videojs('ad-player', {
+                        autoplay: false, // Autoplay false rakho
+                        muted: true,
+                        controls: true // Controls dikhao
+                    });
+
+                    const imaOptions = {
+                        adTagUrl: 'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dlinear&correlator='
+                    };
+                    player.ima(imaOptions);
+
+                    player.on(['adsended', 'adserror', 'adtimeout', 'nopreroll'], () => {
+                        adOverlay.style.display = 'none';
+                        if (movieToRedirect) {
+                            window.location.href = movieToRedirect;
+                        }
+                    });
+                }
+                
+                // Har baar click par ad request karo aur play karo
+                setTimeout(() => {
+                    player.ima.requestAds();
+                    player.play();
+                }, 100);
             };
 
             // Saare movie links par click event lagao
             const setupEventListeners = () => {
                 document.querySelectorAll('.watch-link').forEach(link => {
+                    // Pehle purana listener hatao taaki double na ho
+                    link.replaceWith(link.cloneNode(true));
+                });
+                // Ab naye cloned links par listener lagao
+                document.querySelectorAll('.watch-link').forEach(link => {
                     link.addEventListener('click', (event) => {
-                        event.preventDefault(); // Link ko follow mat karo
+                        event.preventDefault();
                         const movieUrl = event.currentTarget.href;
                         playAd(movieUrl);
                     });
@@ -146,7 +181,7 @@
             // Movies ko display karo
             function displayMovies(movieArray) {
                 movieGrid.innerHTML = "";
-                noResults.classList.toggle("hidden", movieArray.length > 0);
+                noResults.classList.toggle("hidden", movieArray.length === 0);
                 
                 movieArray.forEach(movie => {
                     const movieCard = document.createElement("div");
@@ -159,7 +194,7 @@
                     `;
                     movieGrid.appendChild(movieCard);
                 });
-                setupEventListeners(); // Naye links par event listener lagao
+                setupEventListeners();
             }
 
             // Search functionality
