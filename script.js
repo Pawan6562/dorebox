@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     
     const movies = [
+      // Tumhari saari movies ki list yahan aayegi...
+      // ... (poori list jaisi pehle thi)
       { title: "Chronicle of the Moon", url: "https://smallshorts.com/NobitaChronicleoftheMoon", poster: "https://i.postimg.cc/BbmtZs0X/m3.jpg" },
       { title: "Sky Utopia", url: "https://t.me/doremonallmoviesepisodes/2019", poster: "https://i.postimg.cc/Nf3QTNXq/doraemon-movie-nobitas-sky-utopia-in-hindi.jpg" },
       { title: "Antarctic Adventure", url: "https://t.me/doremonallmoviesepisodes/2024", poster: "https://i.postimg.cc/9f4SpVHL/Doraemon-Nobita-Chal-Pada-Antarctica-Hindi-by-cjh.jpg" },
@@ -36,18 +38,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const noResults = document.getElementById("no-results");
     const heroButton = document.querySelector('#hero .btn-primary');
 
-    // Function to create the ad redirect URL
+    // === YAHAN HAI ASLI CHANGE ===
+    // Ab hum poora URL use karenge taaki galti na ho
+    const adPageUrl = 'https://pawan6562.github.io/dorebox/ad.html';
+
     function createAdRedirectUrl(targetUrl) {
         const encodedUrl = encodeURIComponent(targetUrl);
-        // IMPORTANT: ad.html se pehle ./ lagao taaki link sahi bane
-        return `./ad.html?redirect=${encodedUrl}`;
+        return `${adPageUrl}?redirect=${encodedUrl}`;
     }
 
     // Hero section ke button ke liye Ad link set karo
     if (heroButton) {
         const originalHeroUrl = heroButton.getAttribute('href');
         heroButton.href = createAdRedirectUrl(originalHeroUrl);
-        heroButton.removeAttribute('target'); // target="_blank" hata do
+        heroButton.removeAttribute('target');
     }
 
     // Function to display movies
