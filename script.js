@@ -35,12 +35,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchBar = document.getElementById("search-bar");
     const noResults = document.getElementById("no-results");
 
-    // Naya ad unit code ko ek variable mein store kiya
+    // Ad unit code ko ek variable mein store kiya
     const adCode = `
-        <div id="frame" style="width: 300px;margin: auto;z-index: 99998;height: auto">
-          <iframe data-aa='2407034' src='//ad.a-ads.com/2407034/?size=300x250'
-                            style='border:0; padding:0; width:300px; height:250px; overflow:hidden;display: block;margin: auto'></iframe>
-        </div>
+        <script type="text/javascript">
+            atOptions = {
+                'key' : '7f7dcddc8dac34dafd83fc6e2b553a4e',
+                'format' : 'iframe',
+                'height' : 250,
+                'width' : 300,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/7f7dcddc8dac34dafd83fc6e2b553a4e/invoke.js"></script>
     `;
 
     // Function to display movies (with ads)
