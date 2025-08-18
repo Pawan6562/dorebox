@@ -39,31 +39,46 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Video player elements
     const videoModal = document.getElementById('video-player-modal');
-    let videoPlayer = null; // Player abhi initialize nahi hoga
+    let videoPlayer = null;
     let redirectUrl = null;
+    let adTimeout = null;
 
     // Function to handle movie clicks
     window.playAdAndRedirect = function(movieUrl) {
         redirectUrl = movieUrl;
         
-        // Video player ko tabhi initialize karenge jab zarurat ho
+        // Agar player initialize nahi hua hai to karein
         if (!videoPlayer) {
             videoPlayer = videojs('my-video');
             videoPlayer.ima({ adTagUrl: VAST_AD_URL });
             
             // Ad khatam hone par redirect
             videoPlayer.ima.addEventListener('ended', function() {
+                clearTimeout(adTimeout);
                 if (redirectUrl) {
                     window.open(redirectUrl, '_blank');
                 }
-                // Modal band karein
                 videoModal.classList.remove('active');
                 videoPlayer.ima.adPlaying = false;
             });
+            
+            // Player start hote hi redirect timeout clear kar de
+            videoPlayer.on('play', function() {
+                clearTimeout(adTimeout);
+            });
+            
+            // Agar ad play nahi hua to redirect karein
+            adTimeout = setTimeout(() => {
+                videoModal.classList.remove('active');
+                if (redirectUrl) {
+                    window.open(redirectUrl, '_blank');
+                }
+            }, 5000); // 5 seconds ka timeout
 
-            // Agar ad play hone se pehle user modal close kar de
+            // Agar user modal close kar de
             videoModal.addEventListener('click', function(e) {
                 if(e.target === videoModal) {
+                    clearTimeout(adTimeout);
                     videoModal.classList.remove('active');
                     videoPlayer.ima.adPlaying = false;
                     videoPlayer.pause();
@@ -74,7 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
         videoModal.classList.add('active');
         videoPlayer.play();
     };
-
 
     function displayMovies(movieArray) {
         movieGrid.innerHTML = "";
@@ -108,7 +122,6 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
             movieGrid.appendChild(movieCard);
 
-            // Ad will now appear after every 4th movie
             if ((index + 1) % 4 === 0) {
                 const adCard = document.createElement("div");
                 adCard.className = "ad-card";
