@@ -42,6 +42,20 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             noResults.classList.add("hidden");
         }
+
+        // Adsterra ka code yahan define kiya gaya hai
+        const adCode = `
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '7f7dcddc8dac34dafd83fc6e2b553a4e',
+                    'format' : 'iframe',
+                    'height' : 250,
+                    'width' : 300,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/7f7dcddc8dac34dafd83fc6e2b553a4e/invoke.js"></script>
+        `;
         
         movieArray.forEach((movie, index) => {
             const movieCard = document.createElement("div");
@@ -60,23 +74,14 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
             movieGrid.appendChild(movieCard);
 
+            // Har 5th movie ke baad ad card add karein
             if ((index + 1) % 5 === 0) {
                 const adCard = document.createElement("div");
                 adCard.className = "ad-card";
                 
-                // Main ad container
-                const adFrame = document.createElement("div");
-                adFrame.id = "frame";
-                adFrame.style.cssText = "width: 300px; margin: auto; z-index: 99998; height: auto";
-
-                // The iframe itself
-                const iframe = document.createElement("iframe");
-                iframe.setAttribute("data-aa", "2407034");
-                iframe.src = "//ad.a-ads.com/2407034/?size=300x250";
-                iframe.style.cssText = "border: 0; padding: 0; width: 300px; height: 250px; overflow: hidden; display: block; margin: auto";
-
-                adFrame.appendChild(iframe);
-                adCard.appendChild(adFrame);
+                // innerHTML se ad code inject kiya gaya
+                adCard.innerHTML = adCode;
+                
                 movieGrid.appendChild(adCard);
             }
         });
