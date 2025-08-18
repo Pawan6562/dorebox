@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
     const movies = [
       { title: "Chronicle of the Moon", url: "https://smallshorts.com/NobitaChronicleoftheMoon", poster: "https://i.postimg.cc/BbmtZs0X/m3.jpg" },
       { title: "Sky Utopia", url: "https://t.me/doremonallmoviesepisodes/2019", poster: "https://i.postimg.cc/Nf3QTNXq/doraemon-movie-nobitas-sky-utopia-in-hindi.jpg" },
@@ -26,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
       { title: "Doraemon Nobita's Treasure Island", url: "https://t.me/doremonallmoviesepisodes/2138", poster: "https://i.postimg.cc/t46rgZ36/Doraemon-the-Nobita-s-Treasure-Island-by-cjh.jpg" },
       { title: "Doraemon The Movie Nobita The Explorer Bow Bow", url: "https://t.me/doremonallmoviesepisodes/2150", poster: "https://i.postimg.cc/HxY336f0/The-Movie-Nobita-The-Explorer-Bow-Bow-by-cjh.png" },
       { title: "Doraemon Nobita and the Windmasters", url: "https://t.me/doremonallmoviesepisodes/2154", poster: "https://i.postimg.cc/bYFLHHLb/Doraemon-Toofani-Adventure-by-cjh.jpg" },
-      { title: "Doraemon Nobita and the Island of Miracle", url: "https://t.me/doremonallmoviesepisodes/2158", poster: "https://i.postimg.cc/yd8X0kZv/Doraemon-The-Movie-Nobita-Aur-Jadooi-Tapu-by-cjh.jpg" },
+      { title: "Doraemon Nobita and the Island of Miracle", url: "https://t.postimg.cc/yd8X0kZv/Doraemon-The-Movie-Nobita-Aur-Jadooi-Tapu-by-cjh.jpg" },
       { title: "Doraemon Galaxy Super Express Hindi", url: "https://t.me/doremonallmoviesepisodes/2165", poster: "https://i.postimg.cc/XY6fQ25Z/Doraemon-The-Movie-Galaxy-Super-Express-by-cjh.png" }, 
       { title: "Doraemon Nobita And The Kingdom Of Robot Singham", url: "https://t.me/doremonallmoviesepisodes/2174", poster: "https://i.postimg.cc/j5fNHPj6/The-Movie-Nobita-and-the-Kingdom-of-Robot-by-cjh.jpg" }
     ];
@@ -34,6 +33,35 @@ document.addEventListener("DOMContentLoaded", () => {
     const movieGrid = document.getElementById("movie-grid");
     const searchBar = document.getElementById("search-bar");
     const noResults = document.getElementById("no-results");
+    
+    // VAST Ad URL
+    const VAST_AD_URL = "https://enviousgarbage.com/d.mqFmz/dHG/NkvfZdGPUe/ve/mb9VuwZKU/l-kqPKTKYv2QMMDnEC5BMPz-kVt_N/jDYww/MGTZkX0xMtAM";
+    
+    // Video player elements
+    const videoModal = document.getElementById('video-player-modal');
+    const videoPlayer = videojs('my-video');
+    let redirectUrl = null;
+
+    // Initialize IMA plugin
+    videoPlayer.ima({ adTagUrl: VAST_AD_URL });
+
+    // Handle ad completion and redirection
+    videoPlayer.ima.addEventListener('ended', function() {
+        if (redirectUrl) {
+            window.open(redirectUrl, '_blank');
+        }
+        // Close the modal and reset
+        videoModal.classList.remove('active');
+        videoPlayer.pause();
+    });
+
+    // Function to handle movie clicks
+    window.playAdAndRedirect = function(movieUrl) {
+        redirectUrl = movieUrl;
+        videoModal.classList.add('active');
+        videoPlayer.play();
+    };
+
 
     function displayMovies(movieArray) {
         movieGrid.innerHTML = "";
@@ -42,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             noResults.classList.add("hidden");
         }
-        
+
         const adCode = `
             <div id="frame" style="width: 300px;margin: auto;z-index: 99998;height: auto">
                 <iframe data-aa='2407034' src='//ad.a-ads.com/2407034/?size=300x250'
@@ -55,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
             movieCard.className = "movie-card";
 
             movieCard.innerHTML = `
-                <a href="${movie.url}" target="_blank">
+                <a href="#" onclick="playAdAndRedirect('${movie.url}'); return false;">
                     <div class="poster-container">
                         <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
                         <div class="play-icon">
@@ -86,5 +114,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     displayMovies(movies);
-
 });
