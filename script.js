@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             noResults.classList.add("hidden");
         }
-        
+
         movieArray.forEach((movie, index) => {
             const movieCard = document.createElement("div");
             movieCard.className = "movie-card";
@@ -60,7 +60,8 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
             movieGrid.appendChild(movieCard);
 
-            if ((index + 1) % 5 === 0) {
+            // Ad will now appear after every 4th movie
+            if ((index + 1) % 4 === 0) {
                 const adCard = document.createElement("div");
                 adCard.className = "ad-card";
                 
