@@ -35,6 +35,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchBar = document.getElementById("search-bar");
     const noResults = document.getElementById("no-results");
 
+    // Naya ad unit code ko ek variable mein store kiya
+    const adCode = `
+        <div id="frame" style="width: 300px;margin: auto;z-index: 99998;height: auto">
+          <iframe data-aa='2407034' src='//ad.a-ads.com/2407034/?size=300x250'
+                            style='border:0; padding:0; width:300px; height:250px; overflow:hidden;display: block;margin: auto'></iframe>
+        </div>
+    `;
+
+    // Function to display movies (with ads)
     function displayMovies(movieArray) {
         movieGrid.innerHTML = "";
         if (movieArray.length === 0) {
@@ -60,37 +69,17 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
             movieGrid.appendChild(movieCard);
 
-            // Ad will now appear after every 4th movie
-            if ((index + 1) % 4 === 0) {
+            // Har 5th movie ke baad ad card add karein
+            if ((index + 1) % 5 === 0) {
                 const adCard = document.createElement("div");
                 adCard.className = "ad-card";
-                
-                // Adsterra ka code inject karne ka naya tareeka
-                // Yeh code ad code ke dono parts ko alag-alag handle karta hai
-                
-                const script1 = document.createElement('script');
-                script1.type = 'text/javascript';
-                script1.innerHTML = `
-                    atOptions = {
-                        'key' : '7f7dcddc8dac34dafd83fc6e2b553a4e',
-                        'format' : 'iframe',
-                        'height' : 250,
-                        'width' : 300,
-                        'params' : {}
-                    };
-                `;
-                adCard.appendChild(script1);
-                
-                const script2 = document.createElement('script');
-                script2.type = 'text/javascript';
-                script2.src = '//www.highperformanceformat.com/7f7dcddc8dac34dafd83fc6e2b553a4e/invoke.js';
-                adCard.appendChild(script2);
-                
+                adCard.innerHTML = adCode;
                 movieGrid.appendChild(adCard);
             }
         });
     }
 
+    // Search functionality
     searchBar.addEventListener("keyup", (e) => {
         const searchTerm = e.target.value.toLowerCase();
         const filteredMovies = movies.filter(movie => {
@@ -99,6 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
         displayMovies(filteredMovies);
     });
 
+    // Initial display of all movies
     displayMovies(movies);
 
 });
