@@ -35,7 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchBar = document.getElementById("search-bar");
     const noResults = document.getElementById("no-results");
 
-    // Function to display movies (with ads)
     function displayMovies(movieArray) {
         movieGrid.innerHTML = "";
         if (movieArray.length === 0) {
@@ -44,14 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
             noResults.classList.add("hidden");
         }
         
-        // Ad code ko function ke andar move kiya
-        const adCode = `
-            <div id="frame" style="width: 300px;margin: auto;z-index: 99998;height: auto">
-                <iframe data-aa='2407034' src='//ad.a-ads.com/2407034/?size=300x250'
-                                style='border:0; padding:0; width:300px; height:250px; overflow:hidden;display: block;margin: auto'></iframe>
-            </div>
-        `;
-
         movieArray.forEach((movie, index) => {
             const movieCard = document.createElement("div");
             movieCard.className = "movie-card";
@@ -69,17 +60,28 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
             movieGrid.appendChild(movieCard);
 
-            // Har 5th movie ke baad ad card add karein
             if ((index + 1) % 5 === 0) {
                 const adCard = document.createElement("div");
                 adCard.className = "ad-card";
-                adCard.innerHTML = adCode;
+                
+                // Main ad container
+                const adFrame = document.createElement("div");
+                adFrame.id = "frame";
+                adFrame.style.cssText = "width: 300px; margin: auto; z-index: 99998; height: auto";
+
+                // The iframe itself
+                const iframe = document.createElement("iframe");
+                iframe.setAttribute("data-aa", "2407034");
+                iframe.src = "//ad.a-ads.com/2407034/?size=300x250";
+                iframe.style.cssText = "border: 0; padding: 0; width: 300px; height: 250px; overflow: hidden; display: block; margin: auto";
+
+                adFrame.appendChild(iframe);
+                adCard.appendChild(adFrame);
                 movieGrid.appendChild(adCard);
             }
         });
     }
 
-    // Search functionality
     searchBar.addEventListener("keyup", (e) => {
         const searchTerm = e.target.value.toLowerCase();
         const filteredMovies = movies.filter(movie => {
@@ -88,7 +90,6 @@ document.addEventListener("DOMContentLoaded", () => {
         displayMovies(filteredMovies);
     });
 
-    // Initial display of all movies
     displayMovies(movies);
 
 });
