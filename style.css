@@ -268,7 +268,7 @@ footer .disclaimer {
 
 /* --- AD CARD STYLES --- */
 .ad-card {
-    grid-column: 1 / -1; /* Mobile aur Desktop dono mein full width rakhega */
+    grid-column: 1 / -1; /* This makes the ad span across all columns on mobile */
     background-color: var(--surface-color);
     border-radius: 12px;
     overflow: hidden;
@@ -286,6 +286,13 @@ footer .disclaimer {
     .ad-card {
         min-height: 270px; /* Slightly more space on desktop */
         padding: 15px;
+        grid-column: 1 / -1; /* This makes the ad span across all columns on desktop */
+    }
+
+    /* Movie grid updated for desktop to show 4 movies per row */
+    .movie-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+        gap: 25px; 
     }
 }
 
@@ -301,10 +308,6 @@ footer .disclaimer {
     #hero-title { font-size: 3em; }
     .hero-content p { font-size: 1.1em; }
     .btn-primary:hover { background-color: #0062cc; transform: translateY(-2px); }
-    .movie-grid { 
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
-        gap: 25px; 
-    }
     .movie-card:hover { transform: translateY(-8px); box-shadow: 0 10px 20px rgba(0, 123, 255, 0.2); }
     .movie-card img { height: 300px; }
     .movie-card h3 { font-size: 1em; }
