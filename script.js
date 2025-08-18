@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
       { title: "Doraemon Nobita's Treasure Island", url: "https://t.me/doremonallmoviesepisodes/2138", poster: "https://i.postimg.cc/t46rgZ36/Doraemon-the-Nobita-s-Treasure-Island-by-cjh.jpg" },
       { title: "Doraemon The Movie Nobita The Explorer Bow Bow", url: "https://t.me/doremonallmoviesepisodes/2150", poster: "https://i.postimg.cc/HxY336f0/The-Movie-Nobita-The-Explorer-Bow-Bow-by-cjh.png" },
       { title: "Doraemon Nobita and the Windmasters", url: "https://t.me/doremonallmoviesepisodes/2154", poster: "https://i.postimg.cc/bYFLHHLb/Doraemon-Toofani-Adventure-by-cjh.jpg" },
-      { title: "Doraemon Nobita and the Island of Miracle", url: "https://t.postimg.cc/yd8X0kZv/Doraemon-The-Movie-Nobita-Aur-Jadooi-Tapu-by-cjh.jpg" },
+      { title: "Doraemon Nobita and the Island of Miracle", url: "https://t.me/doremonallmoviesepisodes/2158", poster: "https://i.postimg.cc/yd8X0kZv/Doraemon-The-Movie-Nobita-Aur-Jadooi-Tapu-by-cjh.jpg" },
       { title: "Doraemon Galaxy Super Express Hindi", url: "https://t.me/doremonallmoviesepisodes/2165", poster: "https://i.postimg.cc/XY6fQ25Z/Doraemon-The-Movie-Galaxy-Super-Express-by-cjh.png" }, 
       { title: "Doraemon Nobita And The Kingdom Of Robot Singham", url: "https://t.me/doremonallmoviesepisodes/2174", poster: "https://i.postimg.cc/j5fNHPj6/The-Movie-Nobita-and-the-Kingdom-of-Robot-by-cjh.jpg" }
     ];
@@ -39,25 +39,38 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Video player elements
     const videoModal = document.getElementById('video-player-modal');
-    const videoPlayer = videojs('my-video');
+    let videoPlayer = null; // Player abhi initialize nahi hoga
     let redirectUrl = null;
-
-    // Initialize IMA plugin
-    videoPlayer.ima({ adTagUrl: VAST_AD_URL });
-
-    // Handle ad completion and redirection
-    videoPlayer.ima.addEventListener('ended', function() {
-        if (redirectUrl) {
-            window.open(redirectUrl, '_blank');
-        }
-        // Close the modal and reset
-        videoModal.classList.remove('active');
-        videoPlayer.pause();
-    });
 
     // Function to handle movie clicks
     window.playAdAndRedirect = function(movieUrl) {
         redirectUrl = movieUrl;
+        
+        // Video player ko tabhi initialize karenge jab zarurat ho
+        if (!videoPlayer) {
+            videoPlayer = videojs('my-video');
+            videoPlayer.ima({ adTagUrl: VAST_AD_URL });
+            
+            // Ad khatam hone par redirect
+            videoPlayer.ima.addEventListener('ended', function() {
+                if (redirectUrl) {
+                    window.open(redirectUrl, '_blank');
+                }
+                // Modal band karein
+                videoModal.classList.remove('active');
+                videoPlayer.ima.adPlaying = false;
+            });
+
+            // Agar ad play hone se pehle user modal close kar de
+            videoModal.addEventListener('click', function(e) {
+                if(e.target === videoModal) {
+                    videoModal.classList.remove('active');
+                    videoPlayer.ima.adPlaying = false;
+                    videoPlayer.pause();
+                }
+            });
+        }
+        
         videoModal.classList.add('active');
         videoPlayer.play();
     };
