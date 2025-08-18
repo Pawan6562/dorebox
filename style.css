@@ -281,10 +281,6 @@ footer .disclaimer {
     padding: 10px; /* Ad ke liye thoda space */
 }
 
-.ad-card #frame {
-    margin: 0; /* Margin remove karein */
-}
-
 /* Desktop styles for ad card */
 @media (min-width: 768px) {
     .ad-card {
