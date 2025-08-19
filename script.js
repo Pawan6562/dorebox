@@ -41,8 +41,15 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             noResults.classList.add("hidden");
         }
+        
+        const adCode = `
+            <div id="frame" style="width: 300px;margin: auto;z-index: 99998;height: auto">
+                <iframe data-aa='2407034' src='//ad.a-ads.com/2407034/?size=300x250'
+                                style='border:0; padding:0; width:300px; height:250px; overflow:hidden;display: block;margin: auto'></iframe>
+            </div>
+        `;
 
-        movieArray.forEach(movie => {
+        movieArray.forEach((movie, index) => {
             const movieCard = document.createElement("div");
             movieCard.className = "movie-card";
 
@@ -58,6 +65,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 </a>
             `;
             movieGrid.appendChild(movieCard);
+
+            if ((index + 1) % 4 === 0) {
+                const adCard = document.createElement("div");
+                adCard.className = "ad-card";
+                adCard.innerHTML = adCode;
+                movieGrid.appendChild(adCard);
+            }
         });
     }
 
