@@ -105,4 +105,3 @@ document.addEventListener("DOMContentLoaded", () => {
         displayMovies(movies);
     }
 });
-
