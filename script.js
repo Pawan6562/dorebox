@@ -34,25 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchBar = document.getElementById("search-bar");
     const noResults = document.getElementById("no-results");
 
-    // VAST Ad URL
-    const VAST_AD_URL = "https://enviousgarbage.com/d.mqFmz/dHG/NkvfZdGPUe/ve/mb9VuwZKU/l-kqPKTKYv2QMMDnEC5BMPz-kVt_N/jDYww/MGTZkX0xMtAM";
-
-    // Function to open ad in a new tab and then redirect
-    window.playAdAndRedirect = function(movieUrl) {
-        // Ek naya tab open karo
-        const adWindow = window.open('ad-player.html', '_blank');
-
-        // URL parameters set karo
-        adWindow.onload = () => {
-            const message = {
-                adUrl: VAST_AD_URL,
-                redirectUrl: movieUrl
-            };
-            adWindow.postMessage(message, window.location.origin);
-        };
-    };
-
-
     function displayMovies(movieArray) {
         movieGrid.innerHTML = "";
         if (movieArray.length === 0) {
@@ -61,19 +42,12 @@ document.addEventListener("DOMContentLoaded", () => {
             noResults.classList.add("hidden");
         }
 
-        const adCode = `
-            <div id="frame" style="width: 300px;margin: auto;z-index: 99998;height: auto">
-                <iframe data-aa='2407034' src='//ad.a-ads.com/2407034/?size=300x250'
-                                style='border:0; padding:0; width:300px; height:250px; overflow:hidden;display: block;margin: auto'></iframe>
-            </div>
-        `;
-
-        movieArray.forEach((movie, index) => {
+        movieArray.forEach(movie => {
             const movieCard = document.createElement("div");
             movieCard.className = "movie-card";
 
             movieCard.innerHTML = `
-                <a href="#" onclick="playAdAndRedirect('${movie.url}'); return false;">
+                <a href="${movie.url}" target="_blank">
                     <div class="poster-container">
                         <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
                         <div class="play-icon">
@@ -84,13 +58,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 </a>
             `;
             movieGrid.appendChild(movieCard);
-
-            if ((index + 1) % 4 === 0) {
-                const adCard = document.createElement("div");
-                adCard.className = "ad-card";
-                adCard.innerHTML = adCode;
-                movieGrid.appendChild(adCard);
-            }
         });
     }
 
