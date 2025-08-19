@@ -33,62 +33,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const movieGrid = document.getElementById("movie-grid");
     const searchBar = document.getElementById("search-bar");
     const noResults = document.getElementById("no-results");
-    
+
     // VAST Ad URL
     const VAST_AD_URL = "https://enviousgarbage.com/d.mqFmz/dHG/NkvfZdGPUe/ve/mb9VuwZKU/l-kqPKTKYv2QMMDnEC5BMPz-kVt_N/jDYww/MGTZkX0xMtAM";
-    
-    // Video player elements
-    const videoModal = document.getElementById('video-player-modal');
-    let videoPlayer = null;
-    let redirectUrl = null;
-    let adTimeout = null;
 
-    // Function to handle movie clicks
+    // Function to open ad in a new tab and then redirect
     window.playAdAndRedirect = function(movieUrl) {
-        redirectUrl = movieUrl;
-        
-        // Agar player initialize nahi hua hai to karein
-        if (!videoPlayer) {
-            videoPlayer = videojs('my-video');
-            videoPlayer.ima({ adTagUrl: VAST_AD_URL });
-            
-            // Ad khatam hone par redirect
-            videoPlayer.ima.addEventListener('ended', function() {
-                clearTimeout(adTimeout);
-                if (redirectUrl) {
-                    window.open(redirectUrl, '_blank');
-                }
-                videoModal.classList.remove('active');
-                videoPlayer.ima.adPlaying = false;
-            });
-            
-            // Player start hote hi redirect timeout clear kar de
-            videoPlayer.on('play', function() {
-                clearTimeout(adTimeout);
-            });
-            
-            // Agar ad play nahi hua to redirect karein
-            adTimeout = setTimeout(() => {
-                videoModal.classList.remove('active');
-                if (redirectUrl) {
-                    window.open(redirectUrl, '_blank');
-                }
-            }, 5000); // 5 seconds ka timeout
+        // Ek naya tab open karo
+        const adWindow = window.open('ad-player.html', '_blank');
 
-            // Agar user modal close kar de
-            videoModal.addEventListener('click', function(e) {
-                if(e.target === videoModal) {
-                    clearTimeout(adTimeout);
-                    videoModal.classList.remove('active');
-                    videoPlayer.ima.adPlaying = false;
-                    videoPlayer.pause();
-                }
-            });
-        }
-        
-        videoModal.classList.add('active');
-        videoPlayer.play();
+        // URL parameters set karo
+        adWindow.onload = () => {
+            const message = {
+                adUrl: VAST_AD_URL,
+                redirectUrl: movieUrl
+            };
+            adWindow.postMessage(message, window.location.origin);
+        };
     };
+
 
     function displayMovies(movieArray) {
         movieGrid.innerHTML = "";
