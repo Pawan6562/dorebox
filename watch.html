@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch Movie - DoreBox</title>
+    <!-- Hum tumhari main style.css file ko yahan use kar rahe hain -->
+    <link rel="stylesheet" href="style.css?v=1.2"> 
+    <style>
+        /* Is page ke liye extra styling */
+        body {
+            padding-top: 20px;
+        }
+        .watch-container {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+        .video-player-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            background-color: #000;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+        }
+        .video-player-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .movie-info h1 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        .download-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+        .download-button:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="watch-container">
+        <!-- Video Player Yahan Dikhega -->
+        <div class="video-player-wrapper" id="video-player">
+            <!-- JavaScript isme embed code daalega -->
+        </div>
+        
+        <!-- Movie ki Jaankari -->
+        <div class="movie-info">
+            <h1 id="movie-title">Loading Movie...</h1>
+            <a id="download-link" href="#" class="download-button" target="_blank">Download Movie</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            // URL se Embed code, title, aur download link nikalo
+            const embedCode = urlParams.get('embed');
+            const title = urlParams.get('title');
+            const downloadUrl = urlParams.get('download');
+
+            if (embedCode && title && downloadUrl) {
+                // Player me embed code daalo
+                document.getElementById('video-player').innerHTML = decodeURIComponent(embedCode);
+                
+                // Page par title set karo
+                document.getElementById('movie-title').textContent = decodeURIComponent(title);
+                document.title = `Watch ${decodeURIComponent(title)} - DoreBox`; // Browser tab ka title bhi badlo
+                
+                // Download button ka link set karo
+                document.getElementById('download-link').href = decodeURIComponent(downloadUrl);
+            } else {
+                // Agar URL me info nahi mili to error dikhao
+                document.querySelector('.watch-container').innerHTML = "<h1>Error: Movie details not found. Please go back and try again.</h1>";
+            }
+        });
+    </script>
+</body>
+</html>
