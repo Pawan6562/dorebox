@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
             poster: "https://i.postimg.cc/yYLjw5Pn/Doraemon-The-Movie-Nobita.jpg",
             description: "Join Nobita and his friends on a thrilling journey deep beneath the waves to an ancient, mysterious kingdom. A story of courage, friendship, and underwater wonders awaits!",
             embed: `<IFRAME SRC="https://mivalyo.com/embed/2jjv05e2r19g" FRAMEBORDER=0 MARGINWIDTH=0 MARGINHEIGHT=0 SCROLLING=NO WIDTH=640 HEIGHT=360 allowfullscreen></IFRAME>`,
-            download: `https://mivalyo.com/download/2jjv05e2r19g` 
+            download: `https://gplinks.co/Underworldadventurebycjh` 
         },
         // Baaki movies ke liye bhi aise hi entry karni hai
         { title: "Chronicle of the Moon", poster: "https://i.postimg.cc/BbmtZs0X/m3.jpg", description: "Coming Soon...", embed: ``, download: `` },
