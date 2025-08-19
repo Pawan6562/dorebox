@@ -7,10 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
             poster: "https://i.postimg.cc/yYLjw5Pn/Doraemon-The-Movie-Nobita.jpg",
             description: "Join Nobita and his friends on a thrilling journey deep beneath the waves to an ancient, mysterious kingdom. A story of courage, friendship, and underwater wonders awaits!",
             embed: `<IFRAME SRC="https://mivalyo.com/embed/2jjv05e2r19g" FRAMEBORDER=0 MARGINWIDTH=0 MARGINHEIGHT=0 SCROLLING=NO WIDTH=640 HEIGHT=360 allowfullscreen></IFRAME>`,
-            download: `https://gplinks.co/Underworldadventurebycjh` 
+            download: `https://mivalyo.com/download/2jjv05e2r19g` 
         },
         // Baaki movies ke liye bhi aise hi entry karni hai
-        // Jin movies ka embed code nahi hai, wo "Coming Soon" dikhengi
         { title: "Chronicle of the Moon", poster: "https://i.postimg.cc/BbmtZs0X/m3.jpg", description: "Coming Soon...", embed: ``, download: `` },
         { title: "Sky Utopia", poster: "https://i.postimg.cc/Nf3QTNXq/doraemon-movie-nobitas-sky-utopia-in-hindi.jpg", description: "Coming Soon...", embed: ``, download: `` },
         { title: "Antarctic Adventure", poster: "https://i.postimg.cc/9f4SpVHL/Doraemon-Nobita-Chal-Pada-Antarctica-Hindi-by-cjh.jpg", description: "Coming Soon...", embed: ``, download: `` },
@@ -40,21 +39,27 @@ document.addEventListener("DOMContentLoaded", () => {
         { title: "Doraemon Nobita And The Kingdom Of Robot Singham", poster: "https://i.postimg.cc/j5fNHPj6/The-Movie-Nobita-and-the-Kingdom-of-Robot-by-cjh.jpg", description: "Coming Soon...", embed: ``, download: `` }
     ];
 
-    // Is code ko mat badalna
     const movieGrid = document.getElementById("movie-grid");
     const searchBar = document.getElementById("search-bar");
     const noResults = document.getElementById("no-results");
 
+    // Tumhara A-Ads ka Banner Code
+    const adCode = `
+        <div style="width: 300px; margin: auto;">
+            <iframe data-aa='2407034' src='//ad.a-ads.com/2407034/?size=300x250'
+                    style='border:0; padding:0; width:300px; height:250px; overflow:hidden; display: block; margin: auto'></iframe>
+        </div>
+    `;
+
     function displayMovies(movieArray) {
-        if (!movieGrid) return; // Agar movie grid nahi hai to kuch mat karo
+        if (!movieGrid) return;
         movieGrid.innerHTML = "";
         noResults.classList.toggle("hidden", movieArray.length === 0);
 
-        movieArray.forEach(movie => {
+        movieArray.forEach((movie, index) => {
             const movieCard = document.createElement("div");
             movieCard.className = "movie-card";
             
-            // Agar embed code nahi hai, to link ko disable kar do
             const isAvailable = movie.embed && movie.download;
             const watchPageUrl = isAvailable ? `watch.html?title=${encodeURIComponent(movie.title)}` : '#';
             
@@ -71,6 +76,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 </a>
             `;
             movieGrid.appendChild(movieCard);
+
+            // Har 4 movie ke baad ek ad daalo
+            if ((index + 1) % 4 === 0) {
+                const adCard = document.createElement("div");
+                adCard.className = "ad-card"; // Ye class style.css me honi chahiye
+                adCard.innerHTML = adCode;
+                movieGrid.appendChild(adCard);
+            }
         });
     }
 
@@ -80,15 +93,15 @@ document.addEventListener("DOMContentLoaded", () => {
             const filteredMovies = movies.filter(movie => 
                 movie.title.toLowerCase().includes(searchTerm)
             );
+            // Search me ads nahi dikhayenge, taaki layout na bigde
             displayMovies(filteredMovies);
         });
     }
 
-    // Global 'movies' variable banao taaki watch.html use kar sake
     window.dorebox_movies = movies;
     
     // Sirf index.html par hi movies display karo
-    if (window.location.pathname.endsWith('/') || window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/dorebox/')) {
+    if (document.getElementById('movie-grid')) {
         displayMovies(movies);
     }
 });
