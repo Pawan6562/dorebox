@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
             poster: "https://i.postimg.cc/xjpCppDL/Doraemon-The-Movie-Nobita-in-Ichi-Mera-Dost-Hindi.png",
             description: "Nobita finds a mysterious seed which grows into a sapling. This sapling can move and think, and soon becomes Nobita's best friend, Ichi. A heartwarming tale of an unusual friendship.",
             embed: `<iframe src="https://voe.sx/e/tpmrkohlmfdz" width="560" height="315" allowfullscreen allowtransparency allow="autoplay" scrolling="no" frameborder="0"></iframe>`,
-            download: `https://voe.sx/tpmrkohlmfdz` // Isko baad me asli download link se badal dena
+            download: `https://gplinks.co/Ichimeradost` // Isko baad me asli download link se badal dena
         }
     ];
 
