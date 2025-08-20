@@ -1,22 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
     // Yahan hum apni saari movies ki list banayenge
     const movies = [
-        // Tumhari nayi movie, "ICHI MERA DOST"
-        { 
-            title: "ICHI MERA DOST", 
-            poster: "https://i.postimg.cc/xjpCppDL/Doraemon-The-Movie-Nobita-in-Ichi-Mera-Dost-Hindi.png",
-            description: "Nobita finds a mysterious seed which grows into a sapling. This sapling can move and think, and soon becomes Nobita's best friend, Ichi. A heartwarming tale of an unusual friendship.",
-            embed: `<IFRAME SRC="https://mivalyo.com/embed/xxtoy17hqrfj" FRAMEBORDER=0 MARGINWIDTH=0 MARGINHEIGHT=0 SCROLLING=NO WIDTH=640 HEIGHT=360 allowfullscreen></IFRAME>`,
-            // Download link abhi nahi hai, to isko embed link se hi kaam chalate hain
-            download: `https://mivalyo.com/embed/xxtoy17hqrfj` 
-        },
-        // Purani movie
+        // Tumhari nayi movie, sabse upar!
         { 
             title: "Doraemon The Movie Nobita and the Underwater Adventure", 
             poster: "https://i.postimg.cc/yYLjw5Pn/Doraemon-The-Movie-Nobita.jpg",
             description: "Join Nobita and his friends on a thrilling journey deep beneath the waves to an ancient, mysterious kingdom. A story of courage, friendship, and underwater wonders awaits!",
             embed: `<IFRAME SRC="https://mivalyo.com/embed/2jjv05e2r19g" FRAMEBORDER=0 MARGINWIDTH=0 MARGINHEIGHT=0 SCROLLING=NO WIDTH=640 HEIGHT=360 allowfullscreen></IFRAME>`,
-            download: `https://mivalyo.com/download/2jjv05e2r19g` 
+            download: `https://gplinks.co/Underworldadventurebycjh` 
         },
         // Baaki movies ke liye bhi aise hi entry karni hai
         { title: "Chronicle of the Moon", poster: "https://i.postimg.cc/BbmtZs0X/m3.jpg", description: "Coming Soon...", embed: ``, download: `` },
@@ -52,18 +43,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchBar = document.getElementById("search-bar");
     const noResults = document.getElementById("no-results");
 
+    // Tumhara A-Ads ka Banner Code
+    const adCode = `
+        <div style="width: 300px; margin: auto;">
+            <iframe data-aa='2407034' src='//ad.a-ads.com/2407034/?size=300x250'
+                    style='border:0; padding:0; width:300px; height:250px; overflow:hidden; display: block; margin: auto'></iframe>
+        </div>
+    `;
+
     function displayMovies(movieArray) {
         if (!movieGrid) return;
         movieGrid.innerHTML = "";
         noResults.classList.toggle("hidden", movieArray.length === 0);
 
-        movieArray.forEach(movie => {
+        movieArray.forEach((movie, index) => {
             const movieCard = document.createElement("div");
             movieCard.className = "movie-card";
-            
+
             const isAvailable = movie.embed && movie.download;
             const watchPageUrl = isAvailable ? `watch.html?title=${encodeURIComponent(movie.title)}` : '#';
-            
+
             movieCard.innerHTML = `
                 <a href="${watchPageUrl}" class="${!isAvailable ? 'coming-soon' : ''}">
                     <div class="poster-container">
@@ -77,6 +76,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 </a>
             `;
             movieGrid.appendChild(movieCard);
+
+            // Har 4 movie ke baad ek ad daalo
+            if ((index + 1) % 4 === 0) {
+                const adCard = document.createElement("div");
+                adCard.className = "ad-card"; // Ye class style.css me honi chahiye
+                adCard.innerHTML = adCode;
+                movieGrid.appendChild(adCard);
+            }
         });
     }
 
@@ -86,12 +93,14 @@ document.addEventListener("DOMContentLoaded", () => {
             const filteredMovies = movies.filter(movie => 
                 movie.title.toLowerCase().includes(searchTerm)
             );
+            // Search me ads nahi dikhayenge, taaki layout na bigde
             displayMovies(filteredMovies);
         });
     }
 
     window.dorebox_movies = movies;
-    
+
+    // Sirf index.html par hi movies display karo
     if (document.getElementById('movie-grid')) {
         displayMovies(movies);
     }
