@@ -2,26 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Yahan hum apni saari movies ki list banayenge
     const movies = [
         // ==================================================
-        // NAYI MOVIE YAHAN ADD KI HAI
+        // "COMING SOON" WALI MOVIES UPAR HAIN
         // ==================================================
-        { 
-            title: "ICHI MERA DOST", 
-            poster: "https://i.postimg.cc/xjpCppDL/Doraemon-The-Movie-Nobita-in-Ichi-Mera-Dost-Hindi.png",
-            description: "Nobita finds a mysterious seed which grows into a sapling. This sapling can move and think, and soon becomes Nobita's best friend, Ichi. A heartwarming tale of an unusual friendship.",
-            embed: `<IFRAME SRC="https://mivalyo.com/embed/xxtoy17hqrfj" FRAMEBORDER=0 MARGINWIDTH=0 MARGINHEIGHT=0 SCROLLING=NO WIDTH=640 HEIGHT=360 allowfullscreen></IFRAME>`,
-            download: `https://mivalyo.com/embed/xxtoy17hqrfj` // Isko baad me asli download link se badal dena
-        },
-        // ==================================================
-        // Purani movies neeche hain
-        // ==================================================
-        { 
-            title: "Doraemon The Movie Nobita and the Underwater Adventure", 
-            poster: "https://i.postimg.cc/yYLjw5Pn/Doraemon-The-Movie-Nobita.jpg",
-            description: "Join Nobita and his friends on a thrilling journey deep beneath the waves to an ancient, mysterious kingdom. A story of courage, friendship, and underwater wonders awaits!",
-            embed: `<IFRAME SRC="https://mivalyo.com/embed/2jjv05e2r19g" FRAMEBORDER=0 MARGINWIDTH=0 MARGINHEIGHT=0 SCROLLING=NO WIDTH=640 HEIGHT=360 allowfullscreen></IFRAME>`,
-            download: `https://gplinks.co/Underworldadventurebycjh` 
-        },
-        // Baaki movies ke liye bhi aise hi entry karni hai
         { title: "Chronicle of the Moon", poster: "https://i.postimg.cc/BbmtZs0X/m3.jpg", description: "Coming Soon...", embed: ``, download: `` },
         { title: "Sky Utopia", poster: "https://i.postimg.cc/Nf3QTNXq/doraemon-movie-nobitas-sky-utopia-in-hindi.jpg", description: "Coming Soon...", embed: ``, download: `` },
         { title: "Antarctic Adventure", poster: "https://i.postimg.cc/9f4SpVHL/Doraemon-Nobita-Chal-Pada-Antarctica-Hindi-by-cjh.jpg", description: "Coming Soon...", embed: ``, download: `` },
@@ -48,7 +30,25 @@ document.addEventListener("DOMContentLoaded", () => {
         { title: "Doraemon Nobita and the Windmasters", poster: "https://i.postimg.cc/bYFLHHLb/Doraemon-Toofani-Adventure-by-cjh.jpg", description: "Coming Soon...", embed: ``, download: `` },
         { title: "Doraemon Nobita and the Island of Miracle", poster: "https://i.postimg.cc/yd8X0kZv/Doraemon-The-Movie-Nobita-Aur-Jadooi-Tapu-by-cjh.jpg", description: "Coming Soon...", embed: ``, download: `` },
         { title: "Doraemon Galaxy Super Express Hindi", poster: "https://i.postimg.cc/XY6fQ25Z/Doraemon-The-Movie-Galaxy-Super-Express-by-cjh.png", description: "Coming Soon...", embed: ``, download: `` }, 
-        { title: "Doraemon Nobita And The Kingdom Of Robot Singham", poster: "https://i.postimg.cc/j5fNHPj6/The-Movie-Nobita-and-the-Kingdom-of-Robot-by-cjh.jpg", description: "Coming Soon...", embed: ``, download: `` }
+        { title: "Doraemon Nobita And The Kingdom Of Robot Singham", poster: "https://i.postimg.cc/j5fNHPj6/The-Movie-Nobita-and-the-Kingdom-of-Robot-by-cjh.jpg", description: "Coming Soon...", embed: ``, download: `` },
+
+        // ==================================================
+        // AVAILABLE MOVIES AB NEECHE HAIN
+        // ==================================================
+        { 
+            title: "Doraemon The Movie Nobita and the Underwater Adventure", 
+            poster: "https://i.postimg.cc/yYLjw5Pn/Doraemon-The-Movie-Nobita.jpg",
+            description: "Join Nobita and his friends on a thrilling journey deep beneath the waves to an ancient, mysterious kingdom. A story of courage, friendship, and underwater wonders awaits!",
+            embed: `<IFRAME SRC="https://mivalyo.com/embed/2jjv05e2r19g" FRAMEBORDER=0 MARGINWIDTH=0 MARGINHEIGHT=0 SCROLLING=NO WIDTH=640 HEIGHT=360 allowfullscreen></IFRAME>`,
+            download: `https://gplinks.co/Underworldadventurebycjh` 
+        },
+        { 
+            title: "ICHI MERA DOST", 
+            poster: "https://i.postimg.cc/xjpCppDL/Doraemon-The-Movie-Nobita-in-Ichi-Mera-Dost-Hindi.png",
+            description: "Nobita finds a mysterious seed which grows into a sapling. This sapling can move and think, and soon becomes Nobita's best friend, Ichi. A heartwarming tale of an unusual friendship.",
+            embed: `<IFRAME SRC="https://mivalyo.com/embed/xxtoy17hqrfj" FRAMEBORDER=0 MARGINWIDTH=0 MARGINHEIGHT=0 SCROLLING=NO WIDTH=640 HEIGHT=360 allowfullscreen></IFRAME>`,
+            download: `https://mivalyo.com/embed/xxtoy17hqrfj` // Isko baad me asli download link se badal dena
+        }
     ];
 
     const movieGrid = document.getElementById("movie-grid");
