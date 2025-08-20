@@ -1,7 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
     // Yahan hum apni saari movies ki list banayenge
     const movies = [
-        // Tumhari nayi movie, sabse upar!
+        // ==================================================
+        // NAYI MOVIE YAHAN ADD KI HAI
+        // ==================================================
+        { 
+            title: "ICHI MERA DOST", 
+            poster: "https://i.postimg.cc/xjpCppDL/Doraemon-The-Movie-Nobita-in-Ichi-Mera-Dost-Hindi.png",
+            description: "Nobita finds a mysterious seed which grows into a sapling. This sapling can move and think, and soon becomes Nobita's best friend, Ichi. A heartwarming tale of an unusual friendship.",
+            embed: `<IFRAME SRC="https://mivalyo.com/embed/xxtoy17hqrfj" FRAMEBORDER=0 MARGINWIDTH=0 MARGINHEIGHT=0 SCROLLING=NO WIDTH=640 HEIGHT=360 allowfullscreen></IFRAME>`,
+            download: `https://mivalyo.com/embed/xxtoy17hqrfj` // Isko baad me asli download link se badal dena
+        },
+        // ==================================================
+        // Purani movies neeche hain
+        // ==================================================
         { 
             title: "Doraemon The Movie Nobita and the Underwater Adventure", 
             poster: "https://i.postimg.cc/yYLjw5Pn/Doraemon-The-Movie-Nobita.jpg",
