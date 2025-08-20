@@ -35,7 +35,13 @@ document.addEventListener("DOMContentLoaded", () => {
         // ==================================================
         // AVAILABLE MOVIES AB NEECHE HAIN
         // ==================================================
-        { 
+{
+            title: "Dinosaur Yodha", 
+            poster: "https://i.postimg.cc/3w83qTtr/Doraemon-The-Movie-Dinosaur-Yoddhha-Hindi-Tamil-Telugu-Download-FHD-990x557.jpg", 
+            description: "Coming Soon...",
+            embed: `<iframe src="https://voe.sx/e/q4snkojimceg" width="560" height="315" allowfullscreen allowtransparency allow="autoplay" scrolling="no" frameborder="0"></iframe>`, 
+            download: `https://voe.sx/q4snkojimceg/download` }, 
+{ 
             title: "Doraemon The Movie Nobita and the Underwater Adventure", 
             poster: "https://i.postimg.cc/yYLjw5Pn/Doraemon-The-Movie-Nobita.jpg",
             description: "Join Nobita and his friends on a thrilling journey deep beneath the waves to an ancient, mysterious kingdom. A story of courage, friendship, and underwater wonders awaits!",
