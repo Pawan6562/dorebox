@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
             poster: "https://i.postimg.cc/3w83qTtr/Doraemon-The-Movie-Dinosaur-Yoddhha-Hindi-Tamil-Telugu-Download-FHD-990x557.jpg", 
             description: "Coming Soon...",
             embed: `<iframe src="https://voe.sx/e/q4snkojimceg" width="560" height="315" allowfullscreen allowtransparency allow="autoplay" scrolling="no" frameborder="0"></iframe>`, 
-            download: `https://voe.sx/q4snkojimceg/download` }, 
+            download: `https://cdn-yrhohklc10mfxrgy.orbitcache.com/engine/download/01/15189/q4snkojimceg_n.mp4?t=od_BjHI3Y24E_Bnj6gpZHlvtXt6Ze-dyFzH4RfonZ48&s=1755696522&e=14400&f=75946881&node=9/YfUrcSSltRxRudPemYIkc9gzkqTBAOOy6oaT96arE=&i=0.1&sp=380&asn=55836&n=Doraemon-Nobita-and-the-Knights-on-Dinosaurs.mp4&d=1` }, 
 { 
             title: "Doraemon The Movie Nobita and the Underwater Adventure", 
             poster: "https://i.postimg.cc/yYLjw5Pn/Doraemon-The-Movie-Nobita.jpg",
