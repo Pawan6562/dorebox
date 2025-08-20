@@ -42,12 +42,15 @@ document.addEventListener("DOMContentLoaded", () => {
             embed: `<IFRAME SRC="https://mivalyo.com/embed/2jjv05e2r19g" FRAMEBORDER=0 MARGINWIDTH=0 MARGINHEIGHT=0 SCROLLING=NO WIDTH=640 HEIGHT=360 allowfullscreen></IFRAME>`,
             download: `https://gplinks.co/Underworldadventurebycjh` 
         },
+        // ==================================================
+        // NAYI MOVIE KA CODE YAHAN UPDATE KIYA HAI
+        // ==================================================
         { 
             title: "ICHI MERA DOST", 
             poster: "https://i.postimg.cc/xjpCppDL/Doraemon-The-Movie-Nobita-in-Ichi-Mera-Dost-Hindi.png",
             description: "Nobita finds a mysterious seed which grows into a sapling. This sapling can move and think, and soon becomes Nobita's best friend, Ichi. A heartwarming tale of an unusual friendship.",
-            embed: `<IFRAME SRC="https://mivalyo.com/embed/xxtoy17hqrfj" FRAMEBORDER=0 MARGINWIDTH=0 MARGINHEIGHT=0 SCROLLING=NO WIDTH=640 HEIGHT=360 allowfullscreen></IFRAME>`,
-            download: `https://mivalyo.com/embed/xxtoy17hqrfj` // Isko baad me asli download link se badal dena
+            embed: `<iframe src="https://voe.sx/e/tpmrkohlmfdz" width="560" height="315" allowfullscreen allowtransparency allow="autoplay" scrolling="no" frameborder="0"></iframe>`,
+            download: `https://voe.sx/tpmrkohlmfdz` // Isko baad me asli download link se badal dena
         }
     ];
 
