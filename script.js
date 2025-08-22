@@ -7,6 +7,19 @@ document.addEventListener("DOMContentLoaded", () => {
         { title: "Chronicle of the Moon", poster: "https://i.postimg.cc/BbmtZs0X/m3.jpg", description: "Coming Soon...", embed: ``, download: ``, tgLink: `https://t.me/doremonallmoviesepisodes/2018` },
         { title: "Sky Utopia", poster: "https://i.postimg.cc/Nf3QTNXq/doraemon-movie-nobitas-sky-utopia-in-hindi.jpg", description: "Coming Soon...", embed: ``, download: ``, tgLink: `https://t.me/doremonallmoviesepisodes/2019` },
         { title: "Antarctic Adventure", poster: "https://i.postimg.cc/9f4SpVHL/Doraemon-Nobita-Chal-Pada-Antarctica-Hindi-by-cjh.jpg", description: "Coming Soon...", embed: ``, download: ``, tgLink: `https://t.me/doremonallmoviesepisodes/2024` },
+        
+        // ==================================================
+        // YAHAN DESCRIPTION UPDATE KIYA HAI
+        // ==================================================
+        { 
+            title: "Doraemon jadoo Mantar aur jhanoom", 
+            poster: "https://i.postimg.cc/Z5t0TfkP/Doraemon-The-Movie-Jadoo-Mantar-Aur-Jahnoom-by-cjh.jpg", 
+            description: `🎬 𝗗𝗼𝗿𝗮𝗲𝗺𝗼𝗻 𝗧𝗵𝗲 𝗠𝗼𝘃𝗶𝗲: 𝗝𝗮𝗱𝗼𝗼 𝗠𝗮𝗻𝘁𝗮𝗿 𝗔𝘂𝗿 𝗝𝗵𝗮𝗻𝗼𝗼𝗺\n[ 𝟮𝟬𝟮𝟯 • 𝟭𝗵 𝟱𝟮𝗺 • 𝗔𝗱𝘃𝗲𝗻𝘁𝘂𝗿𝗲 • 𝗛𝗗 ]\n\n✨ 𝘼 𝙢𝙖𝙜𝙞𝙘𝙖𝙡 𝙬𝙞𝙨𝙝 𝙨𝙥𝙖𝙧𝙠𝙨 𝙖 𝙘𝙤𝙨𝙢𝙞𝙘 𝙖𝙙𝙫𝙚𝙣𝙩𝙪𝙧𝙚.\n𝙉𝙤𝙗𝙞𝙩𝙖’𝙨 𝙞𝙢𝙖𝙜𝙞𝙣𝙖𝙩𝙞𝙤𝙣 𝙘𝙧𝙚𝙖𝙩𝙚𝙨 𝙖 𝙢𝙖𝙜𝙞𝙘𝙖𝙡 𝙬𝙤𝙧𝙡𝙙, 𝙗𝙪𝙩 𝙬𝙝𝙚𝙣 𝙖 𝙙𝙚𝙢𝙤𝙣𝙞𝙘 𝙥𝙡𝙖𝙣𝙚𝙩 𝙩𝙝𝙧𝙚𝙖𝙩𝙚𝙣𝙨 𝙀𝙖𝙧𝙩𝙝, 𝙛𝙖𝙣𝙩𝙖𝙨𝙮 𝙩𝙪𝙧𝙣𝙨 𝙩𝙤 𝙙𝙖𝙣𝙜𝙚𝙧.\n\n🌌 𝙒𝙞𝙩𝙝 𝙢𝙖𝙜𝙞𝙘𝙞𝙖𝙣 𝙈𝙞𝙮𝙤𝙠𝙤, 𝘿𝙤𝙧𝙖𝙚𝙢𝙤𝙣 𝙖𝙣𝙙 𝙛𝙧𝙞𝙚𝙣𝙙𝙨 𝙟𝙤𝙪𝙧𝙣𝙚𝙮 𝙞𝙣𝙩𝙤 𝙩𝙝𝙚 𝙐𝙣𝙙𝙚𝙧𝙬𝙤𝙧𝙡𝙙 𝙩𝙤 𝙛𝙖𝙘𝙚 𝙩𝙝𝙚 𝙙𝙧𝙚𝙖𝙙𝙚𝙙 𝘿𝙚𝙢𝙤𝙣 𝙆𝙞𝙣𝙜.`, 
+            embed: ``, 
+            download: ``, 
+            tgLink: `https://t.me/doremonallmoviesepisodes/2037` 
+        },
+        
         { title: "Little Space War", poster: "https://i.postimg.cc/wTt8Th7t/Doraemon-in-Nobitas-Little-Space-War-Movie-Hindi-Tamil-Telugu-Download-HD-jpg-990x557.png", description: "Coming Soon...", embed: ``, download: ``, tgLink: `https://t.me/doremonallmoviesepisodes/2038` },
         { title: "Gadget Museum Ka Rahasya", poster: "https://i.postimg.cc/9QsfxJbw/Doraemon-Gadget-Museum-Ka-Rahasya-by-cjh.jpg", description: "Coming Soon...", embed: ``, download: ``, tgLink: `https://t.me/doremonallmoviesepisodes/2041` },
         { title: "Doraemon: Nobita's New Dinosaur (fan Dubbed)", poster: "https://i.postimg.cc/hG0HJGX4/Doraemon-Nobitas-new-dinosaur-by-cjh.jpg", description: "Coming Soon...", embed: ``, download: ``, tgLink: `https://t.me/doremonallmoviesepisodes/2043` },
@@ -42,12 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
             download: `https://cdn-yrhohklc10mfxrgy.orbitcache.com/engine/download/01/15189/q4snkojimceg_n.mp4?t=od_BjHI3Y24E_Bnj6gpZHlvtXt6Ze-dyFzH4RfonZ48&s=1755696522&e=14400&f=75946881&node=9/YfUrcSSltRxRudPemYIkc9gzkqTBAOOy6oaT96arE=&i=0.1&sp=380&asn=55836&n=Doraemon-Nobita-and-the-Knights-on-Dinosaurs.mp4&d=1`,
             tgLink: `https://t.me/doremonallmoviesepisodes/2066`
         }, 
-        { 
-            title: "Doraemon jadoo Mantar aur jhanoom",    poster: "https://i.postimg.cc/Z5t0TfkP/Doraemon-The-Movie-Jadoo-Mantar-Aur-Jahnoom-by-cjh.jpg",
-             description: "", embed: `<iframe src="https://voe.sx/e/jb8n6abxke5j" width="560" height="315" allowfullscreen allowtransparency allow="autoplay" scrolling="no" frameborder="0"></iframe>
-`, 
-             download: `https://gplinks.co/jadu_mantaraur_jhanoom`, 
-             tgLink: `https://t.me/doraemonall_episode/17` },
         { 
             title: "Doraemon The Movie Nobita and the Underwater Adventure", 
             poster: "https://i.postimg.cc/yYLjw5Pn/Doraemon-The-Movie-Nobita.jpg",
