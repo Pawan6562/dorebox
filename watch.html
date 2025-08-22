@@ -6,103 +6,25 @@
     <title>Watch Movie - DoreBox</title>
     <link rel="stylesheet" href="style.css?v=1.3"> 
     <style>
-        /* Watch Page ki Styling */
-        body {
-            padding-top: 20px;
-            background-color: #080a0e;
-        }
-        .watch-container {
-            max-width: 1100px;
-            margin: 20px auto;
-            padding: 0 15px;
-        }
-        .video-player-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            background-color: #000;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            border: 1px solid var(--border-color);
-        }
-        .video-player-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-        .movie-details-grid {
-            display: grid;
-            grid-template-columns: 150px 1fr;
-            gap: 25px;
-            align-items: flex-start;
-        }
-        .movie-details-grid img {
-            width: 100%;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-        }
-        .movie-info h1 {
-            font-size: 2.2em;
-            margin: 0 0 10px 0;
-            line-height: 1.2;
-        }
-        .movie-info p {
-            font-size: 1em;
-            color: var(--text-secondary);
-            margin: 0 0 20px 0;
-            max-width: 80ch;
-        }
-        /* Button Container */
-        .button-group {
-            display: flex;
-            gap: 15px; /* Buttons ke beech me gap */
-            flex-wrap: wrap; /* Mobile par neeche aa jayega */
-        }
-        /* Dono buttons ke liye common style */
-        .btn {
-            display: inline-flex; /* Icon aur text ko align karne ke liye */
-            align-items: center;
-            gap: 8px;
-            color: #fff;
-            padding: 12px 25px;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.2s ease;
-            border: none;
-        }
-        .btn:hover {
-            transform: translateY(-2px);
-        }
-        /* Download Button ka alag color */
-        .download-button {
-            background-color: var(--primary-color);
-        }
-        /* Telegram Button ka alag color */
-        .tg-button {
-            background-color: #2AABEE; /* Telegram ka official color */
-        }
-        .related-movies {
-            margin-top: 50px;
-            border-top: 1px solid var(--border-color);
-            padding-top: 30px;
-        }
-        .related-movies h2 {
-            font-size: 1.8em;
-            margin-bottom: 20px;
-        }
+        /* Watch Page ki Styling (koi change nahi) */
+        body { padding-top: 20px; background-color: #080a0e; }
+        .watch-container { max-width: 1100px; margin: 20px auto; padding: 0 15px; }
+        .video-player-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background-color: #000; border-radius: 12px; margin-bottom: 25px; border: 1px solid var(--border-color); }
+        .video-player-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        .movie-details-grid { display: grid; grid-template-columns: 150px 1fr; gap: 25px; align-items: flex-start; }
+        .movie-details-grid img { width: 100%; border-radius: 8px; border: 1px solid var(--border-color); }
+        .movie-info h1 { font-size: 2.2em; margin: 0 0 10px 0; line-height: 1.2; }
+        .movie-info p { font-size: 1em; color: var(--text-secondary); margin: 0 0 20px 0; max-width: 80ch; }
+        .button-group { display: flex; gap: 15px; flex-wrap: wrap; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; color: #fff; padding: 12px 25px; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.2s ease; border: none; }
+        .btn:hover { transform: translateY(-2px); }
+        .download-button { background-color: var(--primary-color); }
+        .tg-button { background-color: #2AABEE; }
+        .related-movies { margin-top: 50px; border-top: 1px solid var(--border-color); padding-top: 30px; }
+        .related-movies h2 { font-size: 1.8em; margin-bottom: 20px; }
         @media (max-width: 600px) {
-            .movie-details-grid {
-                grid-template-columns: 1fr;
-            }
-            .movie-details-grid img {
-                max-width: 120px;
-                margin-bottom: 15px;
-            }
+            .movie-details-grid { grid-template-columns: 1fr; }
+            .movie-details-grid img { max-width: 120px; margin-bottom: 15px; }
             .movie-info h1 { font-size: 1.8em; }
         }
     </style>
@@ -118,13 +40,10 @@
             <div class="movie-info">
                 <h1 id="movie-title"></h1>
                 <p id="movie-description"></p>
-                <!-- Naya Button Group -->
                 <div class="button-group">
                     <a id="download-link" href="#" class="btn download-button" target="_blank">Download Movie</a>
                     <a id="tg-link" href="#" class="btn tg-button" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"/>
-                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"/></svg>
                         VIEW ON TG
                     </a>
                 </div>
@@ -134,59 +53,11 @@
         <!-- Related Movies ka Section -->
         <section class="related-movies">
             <h2>You Might Also Like</h2>
-            <div id="movie-grid" class="movie-grid"></div>
+            <div id="related-movie-grid" class="movie-grid"></div>
         </section>
     </div>
 
+    <!-- Ab saara kaam sirf ye ek file karegi -->
     <script src="script.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const currentTitle = decodeURIComponent(urlParams.get('title'));
-            const allMovies = window.dorebox_movies || [];
-            const currentMovie = allMovies.find(m => m.title === currentTitle);
-
-            if (currentMovie) {
-                document.title = `Watch ${currentMovie.title} - DoreBox`;
-                document.getElementById('video-player-container').innerHTML = currentMovie.embed;
-                document.getElementById('movie-poster').src = currentMovie.poster;
-                document.getElementById('movie-title').textContent = currentMovie.title;
-                document.getElementById('movie-description').textContent = currentMovie.description;
-                document.getElementById('download-link').href = currentMovie.download;
-
-                // Telegram button ko handle karo
-                const tgButton = document.getElementById('tg-link');
-                if (currentMovie.tgLink) {
-                    tgButton.href = currentMovie.tgLink;
-                    tgButton.style.display = 'inline-flex'; // Button ko dikhao
-                } else {
-                    tgButton.style.display = 'none'; // Agar link nahi hai to button ko chhupa do
-                }
-
-                // Related movies dikhao
-                const related = allMovies.filter(m => m.title !== currentTitle && m.embed);
-                const movieGrid = document.getElementById("movie-grid");
-                
-                if(movieGrid) {
-                    movieGrid.innerHTML = '';
-                    for(let i = 0; i < Math.min(4, related.length); i++) {
-                        const movie = related[i];
-                        const movieCard = document.createElement("div");
-                        movieCard.className = "movie-card";
-                        const watchPageUrl = `watch.html?title=${encodeURIComponent(movie.title)}`;
-                        movieCard.innerHTML = `
-                            <a href="${watchPageUrl}">
-                                <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
-                                <h3>${movie.title}</h3>
-                            </a>
-                        `;
-                        movieGrid.appendChild(movieCard);
-                    }
-                }
-            } else {
-                document.querySelector('.watch-container').innerHTML = "<h1>Error: Movie details not found.</h1>";
-            }
-        });
-    </script>
 </body>
 </html>
