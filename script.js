@@ -44,7 +44,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 
         { 
             title: "Doraemon jadoo Mantar aur jhanoom",    poster: "https://i.postimg.cc/Z5t0TfkP/Doraemon-The-Movie-Jadoo-Mantar-Aur-Jahnoom-by-cjh.jpg",
-             description: "Coming Soon...", embed: `<iframe src="https://voe.sx/e/jb8n6abxke5j" width="560" height="315" allowfullscreen allowtransparency allow="autoplay" scrolling="no" frameborder="0"></iframe>
+             description: "🎬 𝗗𝗼𝗿𝗮𝗲𝗺𝗼𝗻 𝗧𝗵𝗲 𝗠𝗼𝘃𝗶𝗲: 𝗝𝗮𝗱𝗼𝗼 𝗠𝗮𝗻𝘁𝗮𝗿 𝗔𝘂𝗿 𝗝𝗵𝗮𝗻𝗼𝗼𝗺
+[ 𝟮𝟬𝟮𝟯 • 𝟭𝗵 𝟱𝟮𝗺 • 𝗔𝗱𝘃𝗲𝗻𝘁𝘂𝗿𝗲 • 𝗛𝗗 ]
+
+✨ 𝘼 𝙢𝙖𝙜𝙞𝙘𝙖𝙡 𝙬𝙞𝙨𝙝 𝙨𝙥𝙖𝙧𝙠𝙨 𝙖 𝙘𝙤𝙨𝙢𝙞𝙘 𝙖𝙙𝙫𝙚𝙣𝙩𝙪𝙧𝙚.
+𝙉𝙤𝙗𝙞𝙩𝙖’𝙨 𝙞𝙢𝙖𝙜𝙞𝙣𝙖𝙩𝙞𝙤𝙣 𝙘𝙧𝙚𝙖𝙩𝙚𝙨 𝙖 𝙢𝙖𝙜𝙞𝙘𝙖𝙡 𝙬𝙤𝙧𝙡𝙙, 𝙗𝙪𝙩 𝙬𝙝𝙚𝙣 𝙖 𝙙𝙚𝙢𝙤𝙣𝙞𝙘 𝙥𝙡𝙖𝙣𝙚𝙩 𝙩𝙝𝙧𝙚𝙖𝙩𝙚𝙣𝙨 𝙀𝙖𝙧𝙩𝙝, 𝙛𝙖𝙣𝙩𝙖𝙨𝙮 𝙩𝙪𝙧𝙣𝙨 𝙩𝙤 𝙙𝙖𝙣𝙜𝙚𝙧.
+
+🌌 𝙒𝙞𝙩𝙝 𝙢𝙖𝙜𝙞𝙘𝙞𝙖𝙣 𝙈𝙞𝙮𝙤𝙠𝙤, 𝘿𝙤𝙧𝙖𝙚𝙢𝙤𝙣 𝙖𝙣𝙙 𝙛𝙧𝙞𝙚𝙣𝙙𝙨 𝙟𝙤𝙪𝙧𝙣𝙚𝙮 𝙞𝙣𝙩𝙤 𝙩𝙝𝙚 𝙐𝙣𝙙𝙚𝙧𝙬𝙤𝙧𝙡𝙙 𝙩𝙤 𝙛𝙖𝙘𝙚 𝙩𝙝𝙚 𝙙𝙧𝙚𝙖𝙙𝙚𝙙 𝘿𝙚𝙢𝙤𝙣 𝙆𝙞𝙣𝙜.", embed: `<iframe src="https://voe.sx/e/jb8n6abxke5j" width="560" height="315" allowfullscreen allowtransparency allow="autoplay" scrolling="no" frameborder="0"></iframe>
 `, 
              download: `https://gplinks.co/jadu_mantaraur_jhanoom`, 
              tgLink: `https://t.me/doraemonall_episode/17` },
