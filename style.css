@@ -286,7 +286,7 @@ footer .disclaimer {
     .ad-card {
         min-height: 270px; /* Slightly more space on desktop */
         padding: 15px;
-        grid-column: 1 / -1; /* This makes the ad span across all columns on desktop */
+        grid-column: auto; /* Reset to default */
     }
 
     /* Movie grid updated for desktop to show 4 movies per row */
@@ -333,4 +333,3 @@ footer .disclaimer {
 .movie-card a.coming-soon .poster-container img {
     filter: grayscale(80%); /* Movie ko black & white dikhayega */
 }
-
