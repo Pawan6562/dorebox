@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Movie - DoreBox</title>
+    <!-- Link to the main stylesheet -->
+    <link rel="stylesheet" href="style.css?v=1.8"> 
+    <style>
+        /* --- FINAL POLISHED UI FOR DOWNLOAD PAGE --- */
+        body {
+            background-color: #0d1117;
+            color: var(--text-primary);
+            font-family: var(--font-family);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            margin: 0;
+        }
+        .download-page-container {
+            width: 100%;
+            max-width: 380px; /* A bit narrower for a sleeker look */
+            text-align: center;
+        }
+        #movie-poster {
+            width: 100%;
+            max-width: 280px; /* Poster size as per your new design */
+            border-radius: 12px;
+            margin-bottom: 25px;
+            /* Removing the extra border and shadow for a flatter, modern look */
+        }
+        #movie-title {
+            font-size: 1.8em; /* Slightly smaller, cleaner font size */
+            font-weight: 600; /* Less bold for a softer feel */
+            margin: 0 0 30px 0;
+            line-height: 1.4;
+        }
+        .quality-options-grid {
+            display: grid;
+            gap: 16px; /* A bit more space between buttons */
+            width: 100%;
+            margin: 0 auto;
+        }
+        .quality-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary-color);
+            color: #fff;
+            text-decoration: none;
+            padding: 14px;
+            border-radius: 12px; /* More rounded corners as per your design */
+            text-align: center;
+            font-weight: 600;
+            font-size: 1em;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            border: none; /* No border for a cleaner button */
+        }
+        .quality-btn:hover {
+            transform: translateY(-2px);
+            background-color: #0062cc;
+        }
+        #back-to-watch {
+            display: inline-block;
+            margin-top: 30px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: color 0.2s ease;
+        }
+        #back-to-watch:hover {
+            color: var(--primary-color);
+        }
+
+        /* Responsive adjustments for very small screens */
+        @media (max-width: 360px) {
+            #movie-title {
+                font-size: 1.5em;
+            }
+            .quality-btn {
+                padding: 12px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="download-page-container">
+        <img id="movie-poster" src="" alt="Movie Poster">
+        <h1 id="movie-title"></h1>
+        
+        <div id="quality-options" class="quality-options-grid">
+            <!-- Download links yahan JavaScript se aayenge -->
+        </div>
+
+        <a id="back-to-watch" href="#">&larr; Back to Watch Page</a>
+    </div>
+
+    <!-- Hamari main JavaScript file -->
+    <script src="script.js"></script>
+
+</body>
+</html>
