@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Download Movie - DoreBox</title>
-    <!-- Link to the main stylesheet -->
-    <link rel="stylesheet" href="style.css?v=1.8"> 
+    <link rel="stylesheet" href="style.css?v=2.4"> 
     <style>
-        /* --- FINAL POLISHED UI FOR DOWNLOAD PAGE --- */
+        /* --- DOWNLOAD PAGE STYLING --- */
         body {
             background-color: #0d1117;
             color: var(--text-primary);
@@ -21,25 +20,24 @@
         }
         .download-page-container {
             width: 100%;
-            max-width: 380px; /* A bit narrower for a sleeker look */
+            max-width: 380px;
             text-align: center;
         }
         #movie-poster {
             width: 100%;
-            max-width: 280px; /* Poster size as per your new design */
+            max-width: 280px;
             border-radius: 12px;
             margin-bottom: 25px;
-            /* Removing the extra border and shadow for a flatter, modern look */
         }
         #movie-title {
-            font-size: 1.8em; /* Slightly smaller, cleaner font size */
-            font-weight: 600; /* Less bold for a softer feel */
+            font-size: 1.8em;
+            font-weight: 600;
             margin: 0 0 30px 0;
             line-height: 1.4;
         }
         .quality-options-grid {
             display: grid;
-            gap: 16px; /* A bit more space between buttons */
+            gap: 16px;
             width: 100%;
             margin: 0 auto;
         }
@@ -51,20 +49,37 @@
             color: #fff;
             text-decoration: none;
             padding: 14px;
-            border-radius: 12px; /* More rounded corners as per your design */
+            border-radius: 12px;
             text-align: center;
             font-weight: 600;
             font-size: 1em;
             transition: transform 0.2s ease, background-color 0.2s ease;
-            border: none; /* No border for a cleaner button */
+            border: none;
         }
         .quality-btn:hover {
             transform: translateY(-2px);
             background-color: #0062cc;
         }
+        
+        /* === YAHAN UPAR KA SPACE KAM KIYA GAYA HAI === */
+        .how-to-download-link {
+            display: block;
+            margin-top: 20px; /* Upar ka space 30px se 20px kar diya */
+            margin-bottom: 15px;
+            color: #e53935; /* Red Color */
+            text-decoration: underline;
+            font-size: 0.95em;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            text-align: right;
+            padding-right: 5px;
+        }
+        .how-to-download-link:hover {
+            color: #c62828;
+        }
+
         #back-to-watch {
             display: inline-block;
-            margin-top: 30px;
             color: var(--text-secondary);
             text-decoration: none;
             font-size: 0.9em;
@@ -74,15 +89,9 @@
             color: var(--primary-color);
         }
 
-        /* Responsive adjustments for very small screens */
         @media (max-width: 360px) {
-            #movie-title {
-                font-size: 1.5em;
-            }
-            .quality-btn {
-                padding: 12px;
-                font-size: 0.9em;
-            }
+            #movie-title { font-size: 1.5em; }
+            .quality-btn { padding: 12px; font-size: 0.9em; }
         }
     </style>
 </head>
@@ -91,15 +100,18 @@
     <div class="download-page-container">
         <img id="movie-poster" src="" alt="Movie Poster">
         <h1 id="movie-title"></h1>
-        
+
         <div id="quality-options" class="quality-options-grid">
             <!-- Download links yahan JavaScript se aayenge -->
         </div>
 
+        <a href="https://t.me/doraemon_all_movies_bycjh/2237" target="_blank" class="how-to-download-link">
+            How to Download Movies?
+        </a>
+
         <a id="back-to-watch" href="#">&larr; Back to Watch Page</a>
     </div>
 
-    <!-- Hamari main JavaScript file -->
     <script src="script.js"></script>
 
 </body>
