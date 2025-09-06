@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Watch Movie - DoreBox</title>
+
+    <!-- AdSense Code Snippet -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4494331077135172"
+         crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="style.css?v=1.9"> 
     <style>
         /* Watch Page ki Styling */
         body { padding-top: 20px; background-color: #080a0e; }
         .watch-container { max-width: 1100px; margin: 20px auto; padding: 0 15px; }
-        
+
         .player-message-box {
             background-color: #e53935;
             color: white;
@@ -33,10 +38,7 @@
         .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; color: #fff; padding: 12px 25px; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.2s ease; border: none; cursor: pointer; }
         .btn:hover { transform: translateY(-2px); }
         .download-button { background-color: var(--primary-color); }
-        
-        /* --- NAYA SHARE BUTTON STYLE --- */
-        .share-button { background-color: #25D366; } /* WhatsApp Green */
-
+        .share-button { background-color: #25D366; }
         .related-movies { margin-top: 50px; border-top: 1px solid var(--border-color); padding-top: 30px; }
         .related-movies h2 { font-size: 1.8em; margin-bottom: 20px; }
         @media (max-width: 600px) {
@@ -61,7 +63,6 @@
                 <p id="movie-description"></p>
                 <div class="button-group">
                     <a id="download-link" href="#" class="btn download-button">Download Movie</a>
-                    <!-- === TG BUTTON KI JAGAH NAYA SHARE BUTTON === -->
                     <button id="share-button" class="btn share-button">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
                             <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
