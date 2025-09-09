@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // --- NAYI MOVIE YAHAN ADD KI HAI ---
         { 
             title: "Doraemon The Movie Nobita In Jannat No 1", 
-            poster: "https://iili.io/KzFgEog.png", 
+            poster: "https://iili.io/KzKuPMQ.jpg", 
             description: "Join Nobita and his friends on an exciting adventure to a magical kingdom in the clouds. A paradise awaits, but is everything as perfect as it seems?", 
             embed: "", // Watch link nahi hai, isliye khali rakha hai
             downloadLinks: { 
