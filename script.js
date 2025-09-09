@@ -3,7 +3,19 @@ document.addEventListener("DOMContentLoaded", () => {
     // MASTER MOVIE DATABASE
     // ==================================================
     const movies = [
-        // --- WATCH & DOWNLOAD MOVIES ---
+        // --- NAYI MOVIE YAHAN ADD KI HAI ---
+        { 
+            title: "Doraemon The Movie Nobita In Jannat No 1", 
+            poster: "https://iili.io/KzFgEog.png", 
+            description: "Join Nobita and his friends on an exciting adventure to a magical kingdom in the clouds. A paradise awaits, but is everything as perfect as it seems?", 
+            embed: "", // Watch link nahi hai, isliye khali rakha hai
+            downloadLinks: { 
+                '1080p': 'https://gplinks.co/kingdomofcloudin1080pbycjh', 
+                '720p': 'https://gplinks.co/kingdomofcloudin720pbycjh', 
+                '360p': 'https://gplinks.co/kingdomofcloudin360pbycjh' 
+            }
+        },
+        // --- Aapki baaki ki movies ---
         { 
             title: "Doraemon jadoo Mantar aur jhanoom", 
             poster: "https://i.postimg.cc/Z5t0TfkP/Doraemon-The-Movie-Jadoo-Mantar-Aur-Jahnoom-by-cjh.jpg", 
@@ -32,8 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
             embed: `<iframe src="https://voe.sx/e/tpmrkohlmfdz" width="560" height="315" allowfullscreen allowtransparency allow="autoplay" scrolling="no" frameborder="0"></iframe>`,
             downloadLinks: { '1080p': 'https://gplinks.co/Ichimeradostin1080pbycjh', '720p': 'https://gplinks.co/Ichimeradostin720pbycjh', '360p': 'https://gplinks.co/Ichimeradostin360pbycjh' }
         },
-
-        // --- DOWNLOAD ONLY MOVIES ---
         { 
             title: "Doraemon Nobita's Dorabian Nights", 
             poster: "https://iili.io/KqRfWdv.png", 
@@ -83,18 +93,19 @@ document.addEventListener("DOMContentLoaded", () => {
         const movieGrid = document.getElementById("movie-grid");
         const searchBar = document.getElementById("search-bar");
         const noResults = document.getElementById("no-results");
-        const adCode = `<div class="ad-card"><iframe data-aa='2407034' src='//ad.a-ads.com/2407034/?size=300x250' style='border:0; padding:0; width:300px; height:250px; overflow:hidden; display: block; margin: auto'></iframe></div>`;
+        
+        // A-ADS ka code yahan se hata diya gaya hai
 
         function displayMovies(movieArray) {
             movieGrid.innerHTML = "";
             noResults.classList.toggle("hidden", movieArray.length === 0);
-            let movieCounter = 0;
+            
             movieArray.forEach((movie) => {
                 const movieCard = document.createElement("div");
                 movieCard.className = "movie-card";
                 const isAvailable = movie.embed || movie.downloadLinks;
                 let pageUrl = `watch.html?title=${encodeURIComponent(movie.title)}`;
-                
+
                 movieCard.innerHTML = `
                     <a href="${pageUrl}">
                         <div class="poster-container">
@@ -105,13 +116,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     </a>
                 `;
                 movieGrid.appendChild(movieCard);
-                movieCounter++;
-                if (movieCounter % 4 === 0) {
-                    const adElement = document.createElement('div');
-                    adElement.className = 'ad-card';
-                    adElement.innerHTML = adCode;
-                    movieGrid.appendChild(adElement);
-                }
             });
         }
 
@@ -135,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById('movie-poster').src = currentMovie.poster;
             document.getElementById('movie-title').textContent = currentMovie.title;
             document.getElementById('movie-description').textContent = currentMovie.description;
-            
+
             const playerContainer = document.getElementById('video-player-container');
             const playerMessage = document.getElementById('player-message');
 
@@ -155,7 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 downloadButton.style.display = 'none';
             }
-            
+
             const shareButton = document.getElementById('share-button');
             shareButton.addEventListener('click', () => {
                 const shareData = {
