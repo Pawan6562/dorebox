@@ -5,6 +5,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const movies = [
         // --- NAYI MOVIE YAHAN ADD KI HAI ---
         { 
+            title: "Doraemon Nobita and the Spiral City", 
+            poster: "https://iili.io/KTEEtjI.jpg", 
+            description: "Using a gadget, Doraemon and Nobita create a new city in a different dimension. But when criminals from their world find a way in, they must protect their new home.", 
+            embed: "", // Watch link nahi hai
+            downloadLinks: { 
+                '1080p': 'https://gplinks.co/thespiralcityin1080pbycjh', 
+                '720p': 'https://gplinks.co/thespiralcityin720pbycjh', 
+                '360p': 'https://gplinks.co/thespiralcityin360pbycjh' 
+            }
+        },
+        // --- Aapki baaki ki movies ---
+        { 
             title: "Doraemon The Movie Nobita In Jannat No 1", 
             poster: "https://iili.io/KzKuPMQ.jpg", 
             description: "Join Nobita and his friends on an exciting adventure to a magical kingdom in the clouds. A paradise awaits, but is everything as perfect as it seems?", 
@@ -15,7 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 '360p': 'https://gplinks.co/kingdomofcloudin360pbycjh' 
             }
         },
-        // --- Aapki baaki ki movies ---
         { 
             title: "Doraemon jadoo Mantar aur jhanoom", 
             poster: "https://i.postimg.cc/Z5t0TfkP/Doraemon-The-Movie-Jadoo-Mantar-Aur-Jahnoom-by-cjh.jpg", 
@@ -93,17 +104,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const movieGrid = document.getElementById("movie-grid");
         const searchBar = document.getElementById("search-bar");
         const noResults = document.getElementById("no-results");
-        
-        // A-ADS ka code yahan se hata diya gaya hai
 
         function displayMovies(movieArray) {
             movieGrid.innerHTML = "";
             noResults.classList.toggle("hidden", movieArray.length === 0);
-            
+
             movieArray.forEach((movie) => {
                 const movieCard = document.createElement("div");
                 movieCard.className = "movie-card";
-                const isAvailable = movie.embed || movie.downloadLinks;
                 let pageUrl = `watch.html?title=${encodeURIComponent(movie.title)}`;
 
                 movieCard.innerHTML = `
