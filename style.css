@@ -1,26 +1,41 @@
-/* --- Global Styles & Variables (Mobile-First) --- */
+/* --- Global Styles & Variables (Divya Raatri Theme) --- */
 :root {
-    --bg-color: #0d1117; /* Slightly softer black */
-    --surface-color: #161b22;
-    --primary-color: #007BFF;
-    --text-primary: #f0f6fc;
-    --text-secondary: #8b949e;
-    --font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    --border-color: #30363d;
+    --bg-color: #020A24;
+    --surface-color: #0A193A;
+    --primary-color: #FFC107;
+    --primary-hover: #FFA000;
+    --text-primary: #E0E0E0;
+    --text-secondary: #9E9E9E;
+    --font-family: 'Hind', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    --border-color: rgba(255, 193, 7, 0.2);
 }
 
 html {
     scroll-behavior: smooth;
 }
 
+/* --- Floating Stars Background --- */
 body {
     background-color: var(--bg-color);
     color: var(--text-primary);
     font-family: var(--font-family);
     margin: 0;
-    padding-top: 60px;
+    padding-top: 115px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-image: 
+        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+        radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
+        radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+    background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+    background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+    animation: stars-move 180s linear infinite;
+}
+
+@keyframes stars-move {
+    from { background-position: 0 0, 40px 60px, 130px 270px, 70px 100px; }
+    to { background-position: 0 550px, 40px 410px, 130px 820px, 70px 250px; }
 }
 
 .container {
@@ -29,10 +44,10 @@ body {
     padding: 0 15px;
 }
 
-/* --- Header & Search Bar (Mobile) --- */
+/* --- Header & Search Bar --- */
 #main-header {
-    background-color: rgba(13, 17, 23, 0.8);
-    backdrop-filter: blur(10px);
+    background-color: rgba(2, 10, 36, 0.7);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-color);
     padding: 10px 0;
     position: fixed;
@@ -48,16 +63,120 @@ body {
     align-items: center;
 }
 
-.logo {
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#music-toggle {
+    background: none;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
+    font-size: 1.2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+#music-toggle:hover {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    transform: scale(1.1) rotate(360deg);
+}
+
+/* --- UTSAV PATRIKA COUNTDOWN BANNER --- */
+#countdown-banner {
+    position: fixed;
+    top: 60px;
+    width: 100%;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    animation: slideDownBanner 1s ease-out;
+}
+
+@keyframes slideDownBanner {
+    from { top: -100px; }
+    to { top: 60px; }
+}
+
+.banner-content {
+    background-color: rgba(10, 25, 58, 0.85);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+    padding: 5px 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+}
+
+.banner-title {
+    font-size: 0.9em;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+#countdown-timer {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.time-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(0,0,0,0.3);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.time-block span {
     font-size: 1.5em;
     font-weight: 700;
     color: var(--primary-color);
-    margin: 0;
+    line-height: 1;
 }
 
-.search-container {
-    flex-grow: 1;
-    text-align: right;
+.time-block small {
+    font-size: 0.6em;
+    color: var(--text-secondary);
+}
+
+.time-separator {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: var(--primary-color);
+    animation: blinkSeparator 1.5s infinite;
+    padding-bottom: 5px;
+}
+
+@keyframes blinkSeparator {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@media (max-width: 600px) {
+    body { padding-top: 135px; }
+    .banner-content { flex-direction: column; gap: 8px; padding: 10px; }
+    .time-block span { font-size: 1.4em; }
+}
+
+.logo {
+    font-size: 1.6em;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 0;
+    text-shadow: 0 0 8px rgba(255, 193, 7, 0.5);
 }
 
 #search-bar {
@@ -65,119 +184,130 @@ body {
     padding: 8px 15px;
     border-radius: 20px;
     border: 1px solid var(--border-color);
-    background-color: var(--bg-color);
+    background-color: var(--surface-color);
     color: var(--text-primary);
     font-size: 0.9em;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.3s ease;
 }
 
 #search-bar:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3);
+    box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.3);
 }
 
-/* --- Hero Section (Mobile) --- */
 #hero {
     position: relative;
-    height: 70vh;
+    height: 85vh;
     display: flex;
-    align-items: flex-end;
-    padding-bottom: 40px;
+    align-items: center;
+    padding: 0 5%;
     color: #fff;
-}
-
-.hero-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('https://i.postimg.cc/Nf3QTNXq/doraemon-movie-nobitas-sky-utopia-in-hindi.jpg');
+    box-sizing: border-box;
+    z-index: 1;
+    background-image: url('https://iili.io/KYzkcil.png');
     background-size: cover;
-    background-position: center 30%;
-    z-index: -1;
+    background-position: center 60%;
+    filter: brightness(0.8) saturate(1.1);
 }
 
-.hero-background::after {
+#hero::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(180deg, rgba(13,17,23,0) 50%, rgba(13,17,23,1) 95%);
+    background: linear-gradient(90deg, rgba(2, 10, 36, 0.8) 10%, rgba(2, 10, 36, 0) 60%);
+    z-index: -1;
 }
 
 .hero-content {
-    padding: 0 5%;
-    width: 100%;
+    max-width: 550px;
+    z-index: 2;
 }
 
 #hero-title {
-    font-size: 2.5em;
+    font-size: 3.2em;
     font-weight: 700;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     line-height: 1.2;
+    color: #FFFFFF;
+    text-shadow: 0 0 15px rgba(255, 193, 7, 0.6), 0 0 5px rgba(0,0,0,1);
 }
 
 .hero-content p {
-    font-size: 1em;
+    font-size: 1.2em;
     margin-bottom: 20px;
-    max-width: 90%;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    color: var(--text-primary);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.9);
+}
+
+/* --- GAME TRIGGER BUTTON STYLING --- */
+.arghya-trigger-container {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: -50px;
+    position: relative;
+    z-index: 10;
 }
 
 .btn-primary {
     background-color: var(--primary-color);
-    color: #fff;
-    padding: 12px 20px;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: 600;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: transform 0.2s ease, background-color 0.2s ease;
+    color: #000;
+    border: none;
+    border-radius: 30px;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    font-weight: 700;
+    font-family: var(--font-family);
+    cursor: pointer;
+    box-shadow: 0 0 20px var(--primary-hover);
+    transition: all 0.3s ease;
 }
 
-.btn-primary:active { /* Touch feedback for mobile */
-    transform: scale(0.95);
+.btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px var(--primary-hover);
 }
 
-/* --- Movie Gallery (Mobile) --- */
 #movie-gallery {
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    position: relative;
+    z-index: 1;
 }
 
 .section-title {
-    font-size: 1.8em;
+    font-size: 2em;
     font-weight: 600;
-    margin-bottom: 20px;
-    border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 8px;
+    margin-bottom: 25px;
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 10px;
     display: inline-block;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px var(--primary-color);
 }
 
 .movie-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 25px;
 }
 
 .movie-card {
     background-color: var(--surface-color);
-    border-radius: 12px; /* Softer corners */
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-    transition: transform 0.2s ease-in-out;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
     border: 1px solid var(--border-color);
 }
 
-.movie-card:active { /* Touch feedback for mobile */
-    transform: scale(0.96);
+.movie-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 0 30px var(--primary-color), 0 5px 15px rgba(0,0,0,0.4);
 }
 
 .movie-card a {
@@ -190,14 +320,36 @@ body {
 
 .movie-card img {
     width: 100%;
-    height: 230px; /* Slightly taller */
+    height: 300px;
     object-fit: cover;
     display: block;
     border-bottom: 1px solid var(--border-color);
+    transition: filter 0.3s ease;
+}
+
+.movie-card:hover img {
+    filter: brightness(1.1);
 }
 
 .poster-container {
     position: relative;
+}
+
+.poster-container::before {
+    content: '🪔';
+    position: absolute;
+    top: -5px;
+    left: 10px;
+    font-size: 1.5em;
+    z-index: 2;
+    text-shadow: 0 0 15px var(--primary-color), 0 0 10px var(--primary-hover);
+    transition: all 0.3s ease;
+    transform-origin: bottom center;
+}
+
+.movie-card:hover .poster-container::before {
+    transform: scale(1.2);
+    text-shadow: 0 0 25px var(--primary-color), 0 0 15px var(--primary-hover);
 }
 
 .play-icon {
@@ -207,12 +359,19 @@ body {
     transform: translate(-50%, -50%);
     background-color: rgba(0, 0, 0, 0.7);
     border-radius: 50%;
-    padding: 10px;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.3s ease;
+    border: 2px solid var(--primary-color);
+}
+
+.play-icon svg {
+    width: 24px;
+    height: 24px;
 }
 
 .movie-card:hover .play-icon {
@@ -220,16 +379,17 @@ body {
 }
 
 .movie-card h3 {
-    padding: 12px;
+    padding: 15px 12px;
     margin: 0;
-    font-size: 0.9em;
-    font-weight: 500;
+    font-size: 1em;
+    font-weight: 600;
     text-align: center;
     flex-grow: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 50px; /* Ensure consistent height */
+    min-height: 60px;
+    color: var(--text-primary);
 }
 
 #no-results {
@@ -237,99 +397,241 @@ body {
     font-size: 1.2em;
     text-align: center;
     padding: 50px;
-    grid-column: 1 / -1; /* Make it span full width */
+    grid-column: 1 / -1;
 }
 
-.hidden {
-    display: none;
-}
+.hidden { display: none; }
 
-/* --- Footer --- */
 footer {
-    background-color: #0a0a0a;
+    background-color: #01061A;
     color: var(--text-secondary);
     text-align: center;
-    padding: 20px;
-    margin-top: 30px;
+    padding: 25px;
+    margin-top: 40px;
     border-top: 1px solid var(--border-color);
+    position: relative;
+    z-index: 1;
 }
 
-footer p {
-    margin: 8px 0;
-    font-size: 0.9em;
+footer p { margin: 8px 0; font-size: 0.9em; }
+footer .disclaimer { font-size: 0.7em; max-width: 90%; margin: 15px auto; opacity: 0.7; }
+
+.diya {
+    position: fixed;
+    bottom: -150px;
+    width: 50px;
+    height: 50px;
+    background-image: url('https://iili.io/KYRFaEX.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: float-up 20s linear infinite;
+    z-index: 0;
+    opacity: 0;
+    filter: drop-shadow(0 0 10px var(--primary-color));
 }
 
-footer .disclaimer {
-    font-size: 0.7em;
-    max-width: 90%;
-    margin: 15px auto;
-    opacity: 0.7;
+@keyframes float-up {
+    0% { transform: translateX(0) scale(0.8); bottom: -150px; opacity: 0; }
+    10% { transform: translateX(-10px) scale(1); opacity: 0.7; }
+    90% { opacity: 0.7; }
+    100% { transform: translateX(20px) scale(1.2); bottom: 110vh; opacity: 0; }
 }
 
-/* --- AD CARD STYLES --- */
-.ad-card {
-    grid-column: 1 / -1; /* This makes the ad span across all columns on mobile */
-    background-color: var(--surface-color);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-    border: 1px solid var(--border-color);
-    min-height: 250px; /* Ad ki height ke barabar */
+@media (max-width: 768px) {
+    #hero { height: 70vh; align-items: flex-end; padding-bottom: 40px; }
+    #hero::after { background: linear-gradient(180deg, rgba(2, 10, 36, 0) 50%, rgba(2, 10, 36, 0.9) 100%); }
+    #hero-title { font-size: 2.5em; }
+    .hero-content p { font-size: 1em; }
+    .movie-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .movie-card img { height: 230px; }
+    .movie-card h3 { font-size: 0.9em; min-height: 50px; }
+}
+
+#festival-splash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
     display: flex;
-    align-items: center;
     justify-content: center;
-    padding: 10px; /* Ad ke liye thoda space */
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 1s ease-out, visibility 1s ease-out;
+    opacity: 1;
+    visibility: visible;
 }
 
-/* Desktop styles for ad card */
-@media (min-width: 768px) {
-    .ad-card {
-        min-height: 270px; /* Slightly more space on desktop */
-        padding: 15px;
-        grid-column: auto; /* Reset to default */
-    }
-
-    /* Movie grid updated for desktop to show 4 movies per row */
-    .movie-grid {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
-        gap: 25px; 
-    }
+#festival-splash.hidden {
+    opacity: 0;
+    visibility: hidden;
 }
 
-/* --- DESKTOP STYLES --- */
-@media (min-width: 768px) {
-    body { padding-top: 70px; }
-    .container { padding: 0 20px; }
-    .logo { font-size: 1.8em; }
-    #search-bar { width: 250px; }
-    #hero { height: 60vh; align-items: center; }
-    .hero-background::after { background: linear-gradient(90deg, rgba(13,17,23,1) 20%, rgba(13,17,23,0.4) 60%, rgba(13,17,23,0) 100%); }
-    .hero-content { padding: 0 5%; max-width: 50%; }
-    #hero-title { font-size: 3em; }
-    .hero-content p { font-size: 1.1em; }
-    .btn-primary:hover { background-color: #0062cc; transform: translateY(-2px); }
-    .movie-card:hover { transform: translateY(-8px); box-shadow: 0 10px 20px rgba(0, 123, 255, 0.2); }
-    .movie-card img { height: 300px; }
-    .movie-card h3 { font-size: 1em; }
-    .play-icon svg { width: 40px; height: 40px; }
+.splash-content {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* ===== COMING SOON STYLING ===== */
-.movie-card a.coming-soon {
-    cursor: not-allowed; /* Click disable jaisa feel dega */
+.splash-image {
+    width: 90vw;
+    max-width: 500px;
+    height: auto;
+    border-radius: 15px;
+    opacity: 0;
+    animation: fadeInScene 2s ease-in-out forwards;
 }
-.poster-container .coming-soon-badge {
+
+.splash-text {
     position: absolute;
-    top: 10px;
+    bottom: 10%;
+    color: #fff;
+    font-size: 2.2em;
+    text-align: center;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    animation: fadeInText 2s ease-in 2s forwards;
+}
+
+@keyframes fadeInScene {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeInText {
+    to { opacity: 1; }
+}
+
+@media (max-width: 600px) {
+    .splash-text { font-size: 1.5em; }
+}
+
+/* ===== RIVER OF PRAYERS GAME STYLING ===== */
+.game-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.game-modal-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.game-content {
+    position: relative;
+    width: 90%;
+    height: 85%;
+    max-width: 450px;
+    background: #0a2d4d;
+    border: 3px solid var(--primary-color);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 30px var(--primary-hover);
+}
+
+#close-game-btn {
+    position: absolute;
+    top: 5px;
     right: 10px;
-    background-color: var(--primary-color);
+    font-size: 2em;
     color: white;
-    padding: 5px 10px;
-    font-size: 0.8em;
-    font-weight: 600;
-    border-radius: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 30;
+    text-shadow: 0 0 5px black;
+}
+
+#game-canvas-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-image: linear-gradient(45deg, rgba(255,255,255,0.05) 25%, transparent 25%),
+                      linear-gradient(-45deg, rgba(255,255,255,0.05) 25%, transparent 25%);
+    background-size: 40px 40px;
+    animation: move-water 8s linear infinite;
+}
+
+@keyframes move-water {
+    from { background-position: 0 0; }
+    to { background-position: 80px 40px; }
+}
+
+.boat {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    z-index: 10;
+    transition: left 0.1s linear;
+}
+
+.boat img {
+    width: 100%;
+    filter: drop-shadow(0 0 10px #ffc107);
+    animation: boat-bob 3s ease-in-out infinite;
+}
+
+@keyframes boat-bob {
+    50% { transform: translateY(-4px) rotate(1deg); }
+}
+
+.obstacle {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-image: url('https://i.imgur.com/OqG01pA.png');
+    background-size: contain;
+    opacity: 0.6;
     z-index: 5;
 }
-.movie-card a.coming-soon .poster-container img {
-    filter: grayscale(80%); /* Movie ko black & white dikhayega */
+
+#flame-meter-container {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 120px;
+    height: 20px;
+    background-color: rgba(0,0,0,0.5);
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+    padding: 2px;
+    z-index: 20;
+}
+
+#flame-meter-bar {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #ff4500, #ffc107);
+    border-radius: 7px;
+    transition: width 0.5s ease-out;
+}
+
+#game-instructions {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    background-color: rgba(0,0,0,0.5);
+    padding: 5px 15px;
+    border-radius: 10px;
+    font-size: 0.8em;
+    z-index: 20;
 }
