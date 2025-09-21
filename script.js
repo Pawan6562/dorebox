@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function createDiyas() {
         const body = document.body;
         if (!body) return;
-        const diyaCount = 15;
+        const diyaCount = 7;
         const baseAnimationDuration = 20;
         const zoneWidth = 100 / diyaCount;
         for (let i = 0; i < diyaCount; i++) {
