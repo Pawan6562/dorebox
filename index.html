@@ -3,12 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DoreBox - By CJH</title>
-
-    <!-- AdSense Code Snippet -->
+    <title>DoreBox - Chhath Puja Special</title>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4494331077135172"
          crossorigin="anonymous"></script>
-
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1T5SLRNG3F"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -16,41 +13,74 @@
       gtag('js', new Date());
       gtag('config', 'G-1T5SLRNG3F');
     </script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css?v=1.9"> 
 
-    <link rel="stylesheet" href="style.css?v=1.1">
 </head>
 <body>
+
+    <!-- ===== GRAND SPLASH SCREEN START ===== -->
+    <div id="festival-splash">
+        <div class="splash-content">
+            <img src="https://iili.io/KY5UO6F.jpg" alt="Chhath Puja Kalash" class="splash-image">
+            <h1 class="splash-text">छठ पूजा २०२५ मुबारक हो!</h1>
+        </div>
+    </div>
+    <!-- ===== SPLASH SCREEN END ===== -->
 
     <header id="main-header">
         <div class="container">
             <h1 class="logo">DoreBox</h1>
-            <div class="search-container">
-                <input type="text" id="search-bar" placeholder="Search for a movie...">
+            <div class="header-controls">
+                <button id="music-toggle" title="Play Music">
+                    <span class="icon-play" style="display: none;">🌞</span>
+                    <span class="icon-mute">🔇</span>
+                </button>
+                <div class="search-container">
+                    <input type="text" id="search-bar" placeholder="Search for a movie...">
+                </div>
             </div>
         </div>
     </header>
 
+    <!-- ===== UTSAV PATRIKA COUNTDOWN BANNER START ===== -->
+    <div id="countdown-banner">
+        <div class="banner-content">
+            <span class="banner-title">⏳ संध्या अर्घ्य तक शेष:</span>
+            <div id="countdown-timer">
+                <div class="time-block"><span id="days">00</span><small>दिन</small></div>
+                <div class="time-separator">:</div>
+                <div class="time-block"><span id="hours">00</span><small>घंटे</small></div>
+                <div class="time-separator">:</div>
+                <div class="time-block"><span id="minutes">00</span><small>मिनट</small></div>
+                <div class="time-separator">:</div>
+                <div class="time-block"><span id="seconds">00</span><small>सेकंड</small></div>
+            </div>
+        </div>
+    </div>
+    <!-- ===== COUNTDOWN TIMER BANNER END ===== -->
+
     <main>
         <section id="hero">
             <div class="hero-content">
-                <h2 id="hero-title">Nobita's Sky Utopia</h2>
-                <p>Join Doraemon and Nobita on an adventure in a perfect, crescent-shaped land in the sky!</p>
-                <a href="https://t.me/doremonallmoviesepisodes/2019" class="btn-primary" target="_blank">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M8 5v14l11-7z"></path></svg>
-                    Watch Now
-                </a>
+                <h2 id="hero-title">छठ पर्व का दिव्य उत्सव</h2>
+                <p>डोरेमोन, नोबिता और शिज़ुका के साथ मनाएं आस्था और सूर्य उपासना का यह महापर्व।</p>
             </div>
-            <div class="hero-background"></div>
         </section>
 
+        <!-- ===== 3D VIEWER TRIGGER BUTTON (TEXT BADAL DIYA GAYA HAI) ===== -->
+        <div class="arghya-trigger-container">
+            <button id="arghya-game-btn" class="btn-primary">
+                🪔 3D कलश देखें
+            </button>
+        </div>
+        
         <section id="movie-gallery" class="container">
             <h2 class="section-title">All Movies</h2>
-            <div id="movie-grid" class="movie-grid">
-                </div>
+            <div id="movie-grid" class="movie-grid"></div>
             <p id="no-results" class="hidden">No movies found matching your search.</p>
         </section>
     </main>
@@ -64,7 +94,29 @@
         </div>
     </footer>
 
+    <!-- ===== BACKGROUND MUSIC AUDIO TAG ===== -->
+    <audio id="bg-music" loop>
+        <source src="https://files.catbox.moe/708c9w.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- ===== 3D VIEWER MODAL (EMBED CODE KE SAATH) ===== -->
+    <div id="arghya-game-modal" class="game-modal game-modal-hidden">
+        <div class="game-content">
+            <button id="close-game-btn" class="close-game-btn">&times;</button>
+            <div id="game-canvas-container">
+                <!-- ===== SKETCHFAB EMBED CODE YAHAN DAALA GAYA HAI ===== -->
+                <div class="sketchfab-embed-wrapper" style="width: 100%; height: 100%;"> 
+                    <iframe title="KALASH" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/bc30d3fd235248fb81ddb156fa78774e/embed" style="width: 100%; height: 100%;"> </iframe> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ===== MODAL END ===== -->
+
+    <!-- ===== SCRIPT LINKS (SIRF script.js KI ZAROORAT HAI) ===== -->
     <script src="script.js"></script>
+    <!-- river_game.js ki ab zaroorat nahi hai -->
 
 </body>
 </html>
