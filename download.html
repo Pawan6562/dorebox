@@ -9,7 +9,7 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4494331077135172"
          crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="style.css?v=2.4"> 
+    <link rel="stylesheet" href="style.css?v=1.5"> 
     <style>
         /* --- DOWNLOAD PAGE STYLING --- */
         body {
@@ -27,6 +27,9 @@
             width: 100%;
             max-width: 380px;
             text-align: center;
+            /* === YAHAN FIX KIYA GAYA HAI === */
+            position: relative; /* z-index kaam karne ke liye zaroori hai */
+            z-index: 1;       /* Diyas (z-index: 0) ke upar laane ke liye */
         }
         #movie-poster {
             width: 100%;
