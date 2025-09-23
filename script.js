@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const hours = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
             const minutes = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
             const seconds = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
-            
+
             document.getElementById("days").innerText = days;
             document.getElementById("hours").innerText = hours;
             document.getElementById("minutes").innerText = minutes;
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const bgMusic = document.getElementById('bg-music');
     const iconPlay = document.querySelector('.icon-play');
     const iconMute = document.querySelector('.icon-mute');
-    
+
     if (musicToggle && bgMusic && iconPlay && iconMute) {
         // Initial state: Music paused, show play icon
         iconPlay.style.display = 'inline';
@@ -108,7 +108,14 @@ document.addEventListener("DOMContentLoaded", () => {
         { title: "Sky Utopia", poster: "https://i.postimg.cc/Nf3QTNXq/doraemon-movie-nobitas-sky-utopia-in-hindi.jpg", description: "This movie is available for download.", embed: "", downloadLinks: { '1080p': 'https://gplinks.co/NobitaSkyutopiain1080pbycjh', '720p': 'https://gplinks.co/NobitaSkyutopiain7200pbycjh', '360p': 'https://gplinks.co/NobitaSkyutopiain360pbycjh' } },
         { title: "Antarctic Adventure", poster: "https://iili.io/Kx9Qifn.jpg", description: "Doraemon and friends travel to Antarctica and discover a huge pyramid.", embed: "", downloadLinks: { '1080p': 'https://gplinks.co/antarcticadventurein1080pbycjh', '720p': 'https://gplinks.co/antarcticadventurein720pbycjh', '360p': 'https://gplinks.co/antarcticadventurein360pbycjh' } },
         { title: "Little Space War", poster: "https://i.postimg.cc/wTt8Th7t/Doraemon-in-Nobitas-Little-Space-War-Movie-Hindi-Tamil-Telugu-Download-HD-jpg-990x557.png", description: "This movie is available for download.", embed: "", downloadLinks: { '1080p': '#', '720p': '#', '360p': '#' } },
-        { title: "Gadget Museum Ka Rahasya", poster: "https://i.postimg.cc/9QsfxJbw/Doraemon-Gadget-Museum-Ka-Rahasya-by-cjh.jpg", description: "This movie is available for download.", embed: "", downloadLinks: { '1080p': 'https://gplinks.co/Gadetmuseuminbotat1080p', '720p': 'https://gplinks.co/Nobitagadgetin720pbycjh', '360p': 'https://gplinks.co/Nobitagadgetin360pbycjh' } },
+        { 
+            title: "Gadget Museum Ka Rahasya", 
+            poster: "https://i.postimg.cc/9QsfxJbw/Doraemon-Gadget-Museum-Ka-Rahasya-by-cjh.jpg", 
+            description: "This movie is available for download.", 
+            // --- VIDEO EMBED CODE ADDED HERE ---
+            embed: `<script src="https://fast.wistia.com/player.js" async></script><script src="https://fast.wistia.com/embed/3x0hp0jjn5.js" async type="module"></script><style>wistia-player[media-id='3x0hp0jjn5']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/3x0hp0jjn5/swatch'); display: block; filter: blur(5px); padding-top:56.25%; }</style> <wistia-player media-id="3x0hp0jjn5" aspect="1.7777777777777777"></wistia-player>`, 
+            downloadLinks: { '1080p': 'https://gplinks.co/Gadetmuseuminbotat1080p', '720p': 'https://gplinks.co/Nobitagadgetin720pbycjh', '360p': 'https://gplinks.co/Nobitagadgetin360pbycjh' } 
+        },
         { title: "Doraemon: Nobita's New Dinosaur (fan Dubbed)", poster: "https://i.postimg.cc/hG0HJGX4/Doraemon-Nobitas-new-dinosaur-by-cjh.jpg", description: "This movie is available for download.", embed: "", downloadLinks: { '1080p': '#', '720p': '#', '360p': '#' } },
         { title: "Space Hero", poster: "https://i.postimg.cc/50CKBN0F/Doraemon-The-Movie-Nobita-aur-Antarishk-Daku-bycjh.jpg", description: "This movie is available for download.", embed: "", downloadLinks: { '1080p': '#', '720p': '#', '360p': '#' } },
         { title: "Steel Troops – New Age", poster: "https://i.postimg.cc/43C9KJr0/Doraemon-The-Movie-Nobita-and-the-Steel-Troops.jpg", description: "This movie is available for download.", embed: "", downloadLinks: { '1080p': 'https://gplinks.co/nobitasteelstroopsin1080pbycjh', '720p': 'https://gplinks.co/nobitasteelstroopsin720pbycjh', '360p': 'https://gplinks.co/nobitasteelstroopsin360pbycjh' } },
