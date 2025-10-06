@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!countdownBanner) return;
 
         const countdownDate = new Date("October 28, 2025 17:30:00").getTime();
+        
         const timerInterval = setInterval(() => {
             const now = new Date().getTime();
             const distance = countdownDate - now;
@@ -68,32 +69,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
-
+    
     // ==================================================
-    // CHHATH PUJA THEME: FLOATING DIYAS
-    // ==================================================
-    function createDiyas() {
-        const body = document.body;
-        if (!body) return;
-        const diyaCount = 7;
-        const baseAnimationDuration = 20;
-        const zoneWidth = 100 / diyaCount;
-        for (let i = 0; i < diyaCount; i++) {
-            const diya = document.createElement('div');
-            diya.classList.add('diya');
-            const zoneStart = zoneWidth * i;
-            diya.style.left = (zoneStart + Math.random() * zoneWidth) + 'vw';
-            const animationDelay = (baseAnimationDuration / diyaCount) * i;
-            const animationDuration = baseAnimationDuration + (Math.random() * 10 - 5);
-            diya.style.animation = `float-up ${animationDuration}s linear ${animationDelay}s infinite`;
-            diya.style.transform = `scale(${Math.random() * 0.4 + 0.6})`;
-            body.appendChild(diya);
-        }
-    }
-    createDiyas();
-
-    // ==================================================
-    // MASTER MOVIE DATABASE
+    // MASTER DATABASES
     // ==================================================
     const movies = [
         { title: "Doraemon Nobita and the Spiral City", poster: "https://iili.io/KTEEtjI.jpg", description: "Using a gadget, Doraemon and Nobita create a new city in a different dimension. But when criminals from their world find a way in, they must protect their new home.", embed: "", downloadLinks: { '1080p': 'https://gplinks.co/Spiralcityonbotat1080p', '720p': 'https://gplinks.co/thespiralcityin720pbycjh', '360p': 'https://gplinks.co/thespiralcityin360pbycjh' } },
@@ -130,68 +108,134 @@ document.addEventListener("DOMContentLoaded", () => {
         { title: "Doraemon Galaxy Super Express Hindi", poster: "https://i.postimg.cc/XY6fQ25Z/Doraemon-The-Movie-Galaxy-Super-Express-by-cjh.png", description: "This movie is available for download.", embed: "", downloadLinks: { '1080p': 'https://gplinks.co/galaxyexpressonbotat1080p', '720p': '#', '360p': '#' } },
         { title: "Doraemon Nobita And The Kingdom Of Robot Singham", poster: "https://i.postimg.cc/j5fNHPj6/The-Movie-Nobita-and-the-Kingdom-of-Robot-by-cjh.jpg", description: "This movie is available for download.", embed: "", downloadLinks: { '1080p': 'https://gplinks.co/Robotsinghamonbotat1080p', '720p': '#', '360p': '#' } },
     ];
-    window.dorebox_movies = movies;
+    
+    const episodes = [];
+    const shortMovies = [];
+
+    window.dorebox_content = { movies, episodes, shortMovies };
 
     // ==================================================
-    // WEBSITE FUNCTIONALITY (INDEX, WATCH, DOWNLOAD PAGES)
+    // PAGE DETECTION & ROUTING
     // ==================================================
-    const isIndexPage = document.getElementById('movie-grid');
+    const isIndexPage = document.getElementById('content-tabs');
     const isWatchPage = document.querySelector('.watch-container');
     const isDownloadPage = document.querySelector('.download-page-container');
 
     // --- INDEX PAGE LOGIC ---
     if (isIndexPage) {
-        const movieGrid = document.getElementById("movie-grid");
         const searchBar = document.getElementById("search-bar");
-        const noResults = document.getElementById("no-results");
+        const tabLinks = document.querySelectorAll(".tab-link");
+        const tabContents = document.querySelectorAll(".tab-content");
 
-        function displayMovies(movieArray) {
-            movieGrid.innerHTML = "";
-            noResults.classList.toggle("hidden", movieArray.length === 0);
-            movieArray.forEach((movie) => {
-                const movieCard = document.createElement("div");
-                movieCard.className = "movie-card";
-                let pageUrl = `watch.html?title=${encodeURIComponent(movie.title)}`;
-                movieCard.innerHTML = `
+        const grids = {
+            movies: document.getElementById("movie-grid"),
+            episodes: document.getElementById("episode-grid"),
+            shorts: document.getElementById("short-movie-grid")
+        };
+
+        const noResults = {
+            movies: document.getElementById("no-results-movies"),
+            episodes: document.getElementById("no-results-episodes"),
+            shorts: document.getElementById("no-results-shorts")
+        };
+
+        function displayContent(type, contentArray) {
+            const grid = grids[type];
+            const noResultEl = noResults[type];
+            if (!grid || !noResultEl) return;
+
+            grid.innerHTML = "";
+            noResultEl.classList.toggle("hidden", contentArray.length > 0);
+
+            contentArray.forEach((item) => {
+                const card = document.createElement("div");
+                card.className = "movie-card";
+                let pageUrl = `watch.html?title=${encodeURIComponent(item.title)}&type=${type}`;
+                card.innerHTML = `
                     <a href="${pageUrl}">
                         <div class="poster-container">
-                            <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
+                            <img src="${item.poster}" alt="${item.title}" loading="lazy">
                             <div class="play-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="30" height="30"><path d="M8 5v14l11-7z"></path></svg></div>
                         </div>
-                        <h3>${movie.title}</h3>
+                        <h3>${item.title}</h3>
                     </a>
                 `;
-                movieGrid.appendChild(movieCard);
+                grid.appendChild(card);
             });
         }
+
+        tabLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                const tab = link.getAttribute('data-tab');
+                let newPlaceholder = '';
+
+                if (tab === 'movies') {
+                    newPlaceholder = 'Search All Movies...';
+                } else if (tab === 'episodes') {
+                    newPlaceholder = 'Search All Episodes...';
+                } else if (tab === 'shorts') {
+                    newPlaceholder = 'Search Short Movies...';
+                }
+
+                if (searchBar.placeholder !== newPlaceholder) {
+                    searchBar.classList.add('placeholder-fade');
+                    setTimeout(() => {
+                        searchBar.placeholder = newPlaceholder;
+                        searchBar.classList.remove('placeholder-fade');
+                    }, 300);
+                }
+
+                tabLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === `${tab}-content`) {
+                        content.classList.add('active');
+                    }
+                });
+                searchBar.value = '';
+                displayContent('movies', movies);
+                displayContent('episodes', episodes);
+                displayContent('shorts', shortMovies);
+            });
+        });
 
         if (searchBar) {
             searchBar.addEventListener("keyup", (e) => {
                 const searchTerm = e.target.value.toLowerCase();
-                const filteredMovies = movies.filter(movie => movie.title.toLowerCase().includes(searchTerm));
-                displayMovies(filteredMovies);
+                
+                displayContent('movies', movies.filter(m => m.title.toLowerCase().includes(searchTerm)));
+                displayContent('episodes', episodes.filter(ep => ep.title.toLowerCase().includes(searchTerm)));
+                displayContent('shorts', shortMovies.filter(s => s.title.toLowerCase().includes(searchTerm)));
             });
         }
-        displayMovies(movies);
+
+        displayContent('movies', movies);
+        displayContent('episodes', episodes);
+        displayContent('shorts', shortMovies);
     }
 
     // --- WATCH PAGE LOGIC ---
     if (isWatchPage) {
         const urlParams = new URLSearchParams(window.location.search);
         const currentTitle = decodeURIComponent(urlParams.get('title'));
-        const currentMovie = movies.find(m => m.title === currentTitle);
+        const currentType = urlParams.get('type') || 'movies';
+        
+        const allContent = (window.dorebox_content && window.dorebox_content[currentType]) ? window.dorebox_content[currentType] : [];
+        const currentItem = allContent.find(m => m.title === currentTitle);
 
-        if (currentMovie) {
-            document.title = `Watch ${currentMovie.title} - DoreBox`;
-            document.getElementById('movie-poster').src = currentMovie.poster;
-            document.getElementById('movie-title').textContent = currentMovie.title;
-            document.getElementById('movie-description').textContent = currentMovie.description;
+        if (currentItem) {
+            document.title = `Watch ${currentItem.title} - DoreBox`;
+            document.getElementById('movie-poster').src = currentItem.poster;
+            document.getElementById('movie-title').textContent = currentItem.title;
+            document.getElementById('movie-description').textContent = currentItem.description;
 
             const playerContainer = document.getElementById('video-player-container');
             const playerMessage = document.getElementById('player-message');
 
-            if (currentMovie.embed) {
-                playerContainer.innerHTML = currentMovie.embed;
+            if (currentItem.embed && currentItem.embed.trim() !== "") {
+                playerContainer.innerHTML = currentItem.embed;
                 playerContainer.style.display = 'block';
                 if(playerMessage) playerMessage.style.display = 'none';
             } else {
@@ -200,8 +244,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             const downloadButton = document.getElementById('download-link');
-            if (currentMovie.downloadLinks) {
-                downloadButton.href = `download.html?title=${encodeURIComponent(currentMovie.title)}`;
+            if (currentItem.downloadLinks) {
+                downloadButton.href = `download.html?title=${encodeURIComponent(currentItem.title)}&type=${currentType}`;
                 downloadButton.style.display = 'inline-flex';
             } else {
                 downloadButton.style.display = 'none';
@@ -211,8 +255,8 @@ document.addEventListener("DOMContentLoaded", () => {
             if (shareButton) {
                 shareButton.addEventListener('click', () => {
                     const shareData = {
-                        title: `Watch ${currentMovie.title} on DoreBox`,
-                        text: `I'm watching ${currentMovie.title} on DoreBox. You can watch or download it from here:`,
+                        title: `Watch ${currentItem.title} on DoreBox`,
+                        text: `I'm watching ${currentItem.title} on DoreBox. You can watch or download it from here:`,
                         url: window.location.href
                     };
                     if (navigator.share) {
@@ -223,23 +267,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
 
-            // ===== RELATED MOVIES LOGIC (YAHAN CHANGE KIYA GAYA HAI) =====
             const relatedGrid = document.getElementById("related-movie-grid");
-            if (relatedGrid) {
-                // 1. Filter out the current movie
-                const otherMovies = movies.filter(m => m.title !== currentTitle);
-                
-                // 2. Shuffle the array of other movies
+            if (relatedGrid && window.dorebox_content && window.dorebox_content.movies) {
+                const otherMovies = window.dorebox_content.movies.filter(m => m.title !== currentTitle);
                 const shuffledMovies = otherMovies.sort(() => 0.5 - Math.random());
-                
-                // 3. Take the first 4 movies from the shuffled list
                 const randomMovies = shuffledMovies.slice(0, 4);
 
-                relatedGrid.innerHTML = ''; // Clear previous movies
+                relatedGrid.innerHTML = '';
                 randomMovies.forEach(movie => {
                     const movieCard = document.createElement("div");
                     movieCard.className = "movie-card";
-                    const watchPageUrl = `watch.html?title=${encodeURIComponent(movie.title)}`;
+                    const watchPageUrl = `watch.html?title=${encodeURIComponent(movie.title)}&type=movies`;
                     movieCard.innerHTML = `
                         <a href="${watchPageUrl}">
                             <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
@@ -249,10 +287,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     relatedGrid.appendChild(movieCard);
                 });
             }
-            // =============================================================
 
         } else {
-            document.querySelector('.watch-container').innerHTML = "<h1>Error: Movie details not found.</h1>";
+            document.querySelector('.watch-container').innerHTML = "<h1>Error: Content details not found. Please go back to the homepage.</h1>";
         }
     }
 
@@ -260,19 +297,22 @@ document.addEventListener("DOMContentLoaded", () => {
     if (isDownloadPage) {
         const urlParams = new URLSearchParams(window.location.search);
         const currentTitle = decodeURIComponent(urlParams.get('title'));
-        const currentMovie = movies.find(m => m.title === currentTitle);
+        const currentType = urlParams.get('type') || 'movies';
+        
+        const allContent = (window.dorebox_content && window.dorebox_content[currentType]) ? window.dorebox_content[currentType] : [];
+        const currentItem = allContent.find(m => m.title === currentTitle);
 
-        if (currentMovie) {
-            document.title = `Download ${currentMovie.title} - DoreBox`;
-            document.getElementById('movie-poster').src = currentMovie.poster;
-            document.getElementById('movie-title').textContent = currentMovie.title;
+        if (currentItem) {
+            document.title = `Download ${currentItem.title} - DoreBox`;
+            document.getElementById('movie-poster').src = currentItem.poster;
+            document.getElementById('movie-title').textContent = currentItem.title;
 
             const qualityOptionsContainer = document.getElementById('quality-options');
             qualityOptionsContainer.innerHTML = '';
 
-            if (currentMovie.downloadLinks && Object.keys(currentMovie.downloadLinks).length > 0) {
-                for (const quality in currentMovie.downloadLinks) {
-                    const link = currentMovie.downloadLinks[quality];
+            if (currentItem.downloadLinks && Object.keys(currentItem.downloadLinks).length > 0) {
+                for (const quality in currentItem.downloadLinks) {
+                    const link = currentItem.downloadLinks[quality];
                     if (link && link !== '#') {
                         const qualityBtn = document.createElement('a');
                         qualityBtn.href = link;
@@ -288,10 +328,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const backButton = document.getElementById('back-to-watch');
             if (backButton) {
-                backButton.href = `watch.html?title=${encodeURIComponent(currentMovie.title)}`;
+                backButton.href = `watch.html?title=${encodeURIComponent(currentItem.title)}&type=${currentType}`;
             }
         } else {
-            document.querySelector('.download-page-container').innerHTML = "<h1>Error: Movie details not found.</h1>";
+            document.querySelector('.download-page-container').innerHTML = "<h1>Error: Movie details not found. Please go back to the homepage.</h1>";
         }
     }
 
