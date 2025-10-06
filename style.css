@@ -23,7 +23,6 @@ body {
     padding-top: 115px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* Animated background has been replaced with a static, lighter one */
     background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
 }
 
@@ -169,14 +168,14 @@ body {
 }
 
 #search-bar {
-    width: 150px;
+    width: 200px;
     padding: 8px 15px;
     border-radius: 20px;
     border: 1px solid var(--border-color);
     background-color: var(--surface-color);
     color: var(--text-primary);
     font-size: 0.9em;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease, opacity 0.3s ease-in-out; /* Opacity transition add kiya gaya hai */
 }
 
 #search-bar:focus {
@@ -184,6 +183,12 @@ body {
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.3);
 }
+
+/* Search bar ke animation ke liye naya class */
+#search-bar.placeholder-fade {
+    opacity: 0;
+}
+
 
 #hero {
     position: relative;
@@ -232,52 +237,6 @@ body {
     text-shadow: 1px 1px 3px rgba(0,0,0,0.9);
 }
 
-/* --- GAME TRIGGER BUTTON STYLING --- */
-.arghya-trigger-container {
-    text-align: center;
-    padding: 20px 0;
-    margin-top: -50px;
-    position: relative;
-    z-index: 10;
-}
-
-.btn-primary {
-    background-color: var(--primary-color);
-    color: #000;
-    border: none;
-    border-radius: 30px;
-    padding: 15px 30px;
-    font-size: 1.2em;
-    font-weight: 700;
-    font-family: var(--font-family);
-    cursor: pointer;
-    box-shadow: 0 0 20px var(--primary-hover);
-    transition: all 0.3s ease;
-}
-
-.btn-primary:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 30px var(--primary-hover);
-}
-
-#movie-gallery {
-    padding-top: 50px;
-    padding-bottom: 50px;
-    position: relative;
-    z-index: 1;
-}
-
-.section-title {
-    font-size: 2em;
-    font-weight: 600;
-    margin-bottom: 25px;
-    border-bottom: 3px solid var(--primary-color);
-    padding-bottom: 10px;
-    display: inline-block;
-    color: var(--primary-color);
-    text-shadow: 0 0 10px var(--primary-color);
-}
-
 .movie-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -314,7 +273,6 @@ body {
     display: block;
     border-bottom: 1px solid var(--border-color);
     transition: filter 0.3s ease;
-    /* PERFORMANCE OPTIMIZATION: Tells browser what will change */
     will-change: filter;
 }
 
@@ -382,15 +340,9 @@ body {
     color: var(--text-primary);
 }
 
-#no-results {
-    color: var(--text-secondary);
-    font-size: 1.2em;
-    text-align: center;
-    padding: 50px;
-    grid-column: 1 / -1;
+.hidden { 
+    display: none; 
 }
-
-.hidden { display: none; }
 
 footer {
     background-color: #01061A;
@@ -403,24 +355,18 @@ footer {
     z-index: 1;
 }
 
-footer p { margin: 8px 0; font-size: 0.9em; }
-footer .disclaimer { font-size: 0.7em; max-width: 90%; margin: 15px auto; opacity: 0.7; }
-
-/* --- PERFORMANCE OPTIMIZATION: Floating diyas are now removed --- */
-.diya {
-    display: none;
+footer p { 
+    margin: 8px 0; 
+    font-size: 0.9em; 
+}
+footer .disclaimer { 
+    font-size: 0.7em; 
+    max-width: 90%; 
+    margin: 15px auto; 
+    opacity: 0.7; 
 }
 
-@media (max-width: 768px) {
-    #hero { height: 70vh; align-items: flex-end; padding-bottom: 40px; }
-    #hero::after { background: linear-gradient(180deg, rgba(2, 10, 36, 0) 50%, rgba(2, 10, 36, 0.9) 100%); }
-    #hero-title { font-size: 2.5em; }
-    .hero-content p { font-size: 1em; }
-    .movie-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
-    .movie-card img { height: 230px; }
-    .movie-card h3 { font-size: 0.9em; min-height: 50px; }
-}
-
+/* --- Splash Screen --- */
 #festival-splash {
     position: fixed;
     top: 0;
@@ -478,134 +424,106 @@ footer .disclaimer { font-size: 0.7em; max-width: 90%; margin: 15px auto; opacit
     to { opacity: 1; }
 }
 
-@media (max-width: 600px) {
-    .splash-text { font-size: 1.5em; }
+/* ===== TAB SYSTEM STYLING ===== */
+#content-tabs {
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 
-/* ===== RIVER OF PRAYERS GAME STYLING ===== */
-.game-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 10000;
+.tab-navigation {
     display: flex;
     justify-content: center;
-    align-items: center;
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
 }
 
-.game-modal-hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
-
-.game-content {
-    position: relative;
-    width: 90%;
-    height: 85%;
-    max-width: 450px;
-    background: #0a2d4d;
-    border: 3px solid var(--primary-color);
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 0 30px var(--primary-hover);
-}
-
-#close-game-btn {
-    position: absolute;
-    top: 5px;
-    right: 10px;
-    font-size: 2em;
-    color: white;
-    background: none;
-    border: none;
+.tab-link {
+    padding: 10px 25px;
+    font-size: 1.1em;
+    font-weight: 600;
+    font-family: var(--font-family);
+    color: var(--text-secondary);
+    background-color: transparent;
+    border: 2px solid var(--border-color);
+    border-radius: 30px;
     cursor: pointer;
-    z-index: 30;
-    text-shadow: 0 0 5px black;
+    transition: all 0.3s ease;
 }
 
-#game-canvas-container {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    background-image: linear-gradient(45deg, rgba(255,255,255,0.05) 25%, transparent 25%),
-                      linear-gradient(-45deg, rgba(255,255,255,0.05) 25%, transparent 25%);
-    background-size: 40px 40px;
-    animation: move-water 8s linear infinite;
+.tab-link:hover {
+    color: var(--text-primary);
+    background-color: var(--surface-color);
 }
 
-@keyframes move-water {
-    from { background-position: 0 0; }
-    to { background-position: 80px 40px; }
+.tab-link.active {
+    color: #000;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px var(--primary-hover);
 }
 
-.boat {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 60px;
-    z-index: 10;
-    transition: left 0.1s linear;
+.tab-content {
+    display: none;
+    animation: fadeIn 0.6s ease-in-out;
 }
 
-.boat img {
-    width: 100%;
-    filter: drop-shadow(0 0 10px #ffc107);
-    animation: boat-bob 3s ease-in-out infinite;
+.tab-content.active {
+    display: block;
 }
 
-@keyframes boat-bob {
-    50% { transform: translateY(-4px) rotate(1deg); }
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.obstacle {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    background-image: url('https://i.imgur.com/OqG01pA.png');
-    background-size: contain;
-    opacity: 0.6;
-    z-index: 5;
+.no-results {
+    color: var(--text-secondary);
+    font-size: 1.2em;
+    text-align: center;
+    padding: 50px;
 }
 
-#flame-meter-container {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    width: 120px;
-    height: 20px;
-    background-color: rgba(0,0,0,0.5);
-    border: 2px solid var(--primary-color);
-    border-radius: 10px;
-    padding: 2px;
-    z-index: 20;
+/* --- Responsive Styles --- */
+@media (max-width: 768px) {
+    #hero { 
+        height: 70vh; 
+        align-items: flex-end; 
+        padding-bottom: 40px; 
+    }
+    #hero::after { 
+        background: linear-gradient(180deg, rgba(2, 10, 36, 0) 50%, rgba(2, 10, 36, 0.9) 100%); 
+    }
+    #hero-title { 
+        font-size: 2.5em; 
+    }
+    .hero-content p { 
+        font-size: 1em; 
+    }
+    .movie-grid { 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 15px; 
+    }
+    .movie-card img { 
+        height: 230px; 
+    }
+    .movie-card h3 { 
+        font-size: 0.9em; 
+        min-height: 50px; 
+    }
+    #search-bar {
+        width: 150px;
+    }
 }
 
-#flame-meter-bar {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, #ff4500, #ffc107);
-    border-radius: 7px;
-    transition: width 0.5s ease-out;
-}
-
-#game-instructions {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
-    background-color: rgba(0,0,0,0.5);
-    padding: 5px 15px;
-    border-radius: 10px;
-    font-size: 0.8em;
-    z-index: 20;
+@media (max-width: 600px) {
+    .splash-text { 
+        font-size: 1.5em; 
+    }
 }
