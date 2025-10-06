@@ -26,7 +26,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css?v=1.9"> 
+    <link rel="stylesheet" href="style.css?v=2.1"> 
 
 </head>
 <body>
@@ -80,19 +80,40 @@
             </div>
         </section>
 
-        <!-- ===== 3D VIEWER TRIGGER BUTTON ===== -->
-        <div class="arghya-trigger-container">
-            <button id="arghya-game-btn" class="btn-primary">
-                🪔 3D कलश देखें
-            </button>
-        </div>
+        <!-- ===== 3D VIEWER TRIGGER BUTTON REMOVED ===== -->
+        <!-- Yahan se button hata diya gaya hai -->
 
-        <section id="movie-gallery" class="container">
-            <!-- ===== HEADING YAHAN WAPAS CHANGE KAR DI GAYI HAI ===== -->
-            <h2 class="section-title">All Movies</h2>
-            <div id="movie-grid" class="movie-grid"></div>
-            <p id="no-results" class="hidden">No movies found matching your search.</p>
+        <!-- ===== NEW TAB SYSTEM START ===== -->
+        <section id="content-tabs" class="container">
+            <div class="tab-navigation">
+                <button class="tab-link active" data-tab="movies">All Movies</button>
+                <button class="tab-link" data-tab="episodes">All Episodes</button>
+                <button class="tab-link" data-tab="shorts">All Short Movies</button>
+            </div>
+
+            <div class="tab-content active" id="movies-content">
+                <div id="movie-grid" class="movie-grid">
+                    <!-- Movies yahan JavaScript se aayenge -->
+                </div>
+                <p id="no-results-movies" class="no-results hidden">No movies found matching your search.</p>
+            </div>
+
+            <div class="tab-content" id="episodes-content">
+                <div id="episode-grid" class="movie-grid">
+                    <!-- Episodes yahan JavaScript se aayenge -->
+                </div>
+                <p id="no-results-episodes" class="no-results hidden">No episodes found matching your search.</p>
+            </div>
+
+            <div class="tab-content" id="shorts-content">
+                <div id="short-movie-grid" class="movie-grid">
+                    <!-- Short Movies yahan JavaScript se aayenge -->
+                </div>
+                <p id="no-results-shorts" class="no-results hidden">No short movies found matching your search.</p>
+            </div>
         </section>
+        <!-- ===== NEW TAB SYSTEM END ===== -->
+
     </main>
 
     <footer>
@@ -110,18 +131,8 @@
         Your browser does not support the audio element.
     </audio>
 
-    <!-- ===== 3D VIEWER MODAL (EMBED CODE KE SAATH) ===== -->
-    <div id="arghya-game-modal" class="game-modal game-modal-hidden">
-        <div class="game-content">
-            <button id="close-game-btn" class="close-game-btn">&times;</button>
-            <div id="game-canvas-container">
-                <div class="sketchfab-embed-wrapper" style="width: 100%; height: 100%;"> 
-                    <iframe title="KALASH" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/bc30d3fd235248fb81ddb156fa78774e/embed" style="width: 100%; height: 100%;"> </iframe> 
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ===== MODAL END ===== -->
+    <!-- ===== 3D VIEWER MODAL REMOVED ===== -->
+    <!-- Yahan se modal code hata diya gaya hai -->
 
     <script src="script.js"></script>
 
