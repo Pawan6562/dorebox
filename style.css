@@ -14,7 +14,7 @@ html {
     scroll-behavior: smooth;
 }
 
-/* --- Floating Stars Background --- */
+/* --- PERFORMANCE OPTIMIZATION: STATIC BACKGROUND --- */
 body {
     background-color: var(--bg-color);
     color: var(--text-primary);
@@ -23,19 +23,8 @@ body {
     padding-top: 115px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-image: 
-        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
-        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
-        radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
-        radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
-    background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
-    background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
-    animation: stars-move 180s linear infinite;
-}
-
-@keyframes stars-move {
-    from { background-position: 0 0, 40px 60px, 130px 270px, 70px 100px; }
-    to { background-position: 0 550px, 40px 410px, 130px 820px, 70px 250px; }
+    /* Animated background has been replaced with a static, lighter one */
+    background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
 }
 
 .container {
@@ -325,6 +314,8 @@ body {
     display: block;
     border-bottom: 1px solid var(--border-color);
     transition: filter 0.3s ease;
+    /* PERFORMANCE OPTIMIZATION: Tells browser what will change */
+    will-change: filter;
 }
 
 .movie-card:hover img {
@@ -344,7 +335,6 @@ body {
     z-index: 2;
     text-shadow: 0 0 15px var(--primary-color), 0 0 10px var(--primary-hover);
     transition: all 0.3s ease;
-    transform-origin: bottom center;
 }
 
 .movie-card:hover .poster-container::before {
@@ -416,25 +406,9 @@ footer {
 footer p { margin: 8px 0; font-size: 0.9em; }
 footer .disclaimer { font-size: 0.7em; max-width: 90%; margin: 15px auto; opacity: 0.7; }
 
+/* --- PERFORMANCE OPTIMIZATION: Floating diyas are now removed --- */
 .diya {
-    position: fixed;
-    bottom: -150px;
-    width: 50px;
-    height: 50px;
-    background-image: url('https://iili.io/KYRFaEX.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    animation: float-up 20s linear infinite;
-    z-index: 0;
-    opacity: 0;
-    filter: drop-shadow(0 0 10px var(--primary-color));
-}
-
-@keyframes float-up {
-    0% { transform: translateX(0) scale(0.8); bottom: -150px; opacity: 0; }
-    10% { transform: translateX(-10px) scale(1); opacity: 0.7; }
-    90% { opacity: 0.7; }
-    100% { transform: translateX(20px) scale(1.2); bottom: 110vh; opacity: 0; }
+    display: none;
 }
 
 @media (max-width: 768px) {
