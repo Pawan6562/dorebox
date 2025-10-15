@@ -1,78 +1,50 @@
-document.addEventListener("DOMContentLoaded", () => {
+// ==================================================
+// SHARED FUNCTIONS & CONFIG
+// ==================================================
+const REWARD_AMOUNT = 0.0030;
+const MIN_WITHDRAWAL = 1.00;
 
-    // ==================================================
-    // SPLASH SCREEN LOGIC
-    // ==================================================
-    const splashScreen = document.getElementById('festival-splash');
-    if (splashScreen) {
-        setTimeout(() => {
-            splashScreen.classList.add('hidden');
-        }, 4000);
+// Function to get or create a unique user ID
+function getOrCreateUserID() {
+    let userID = localStorage.getItem('dorebox_user_id');
+    if (!userID) {
+        userID = Math.floor(100000 + Math.random() * 900000).toString();
+        localStorage.setItem('dorebox_user_id', userID);
     }
+    return userID;
+}
 
-    // ==================================================
-    // COUNTDOWN TIMER LOGIC
-    // ==================================================
-    function startCountdown() {
-        const countdownBanner = document.getElementById("countdown-banner");
-        if (!countdownBanner) return;
-
-        const countdownDate = new Date("October 28, 2025 17:30:00").getTime();
-        
-        const timerInterval = setInterval(() => {
-            const now = new Date().getTime();
-            const distance = countdownDate - now;
-
-            if (distance < 0) {
-                clearInterval(timerInterval);
-                countdownBanner.innerHTML = "<div class='banner-content' style='justify-content: center;'>छठ पूजा की हार्दिक शुभकामनाएं!</div>";
-                return;
-            }
-
-            const days = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
-            const hours = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-            const minutes = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-            const seconds = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
-
-            document.getElementById("days").innerText = days;
-            document.getElementById("hours").innerText = hours;
-            document.getElementById("minutes").innerText = minutes;
-            document.getElementById("seconds").innerText = seconds;
-        }, 1000);
+// Function to get or initialize user data (balance, etc.)
+function getUserData() {
+    const defaultData = { balance: 0.0000 };
+    try {
+        const data = JSON.parse(localStorage.getItem('dorebox_user_data'));
+        return data || defaultData;
+    } catch (error) {
+        return defaultData;
     }
-    startCountdown();
+}
 
-    // ==================================================
-    // MUSIC TOGGLE LOGIC
-    // ==================================================
-    const musicToggle = document.getElementById('music-toggle');
-    const bgMusic = document.getElementById('bg-music');
-    const iconPlay = document.querySelector('.icon-play');
-    const iconMute = document.querySelector('.icon-mute');
+// Function to save user data
+function saveUserData(data) {
+    localStorage.setItem('dorebox_user_data', JSON.stringify(data));
+}
 
-    if (musicToggle && bgMusic && iconPlay && iconMute) {
-        iconPlay.style.display = 'inline';
-        iconMute.style.display = 'none';
-        musicToggle.title = "Play Music";
+// Hashing function for security
+async function hashString(str) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(str);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
 
-        musicToggle.addEventListener('click', () => {
-            if (bgMusic.paused) {
-                bgMusic.play().catch(e => console.log("Music play failed:", e));
-                iconPlay.style.display = 'none';
-                iconMute.style.display = 'inline';
-                musicToggle.title = "Pause Music";
-            } else {
-                bgMusic.pause();
-                iconPlay.style.display = 'inline';
-                iconMute.style.display = 'none';
-                musicToggle.title = "Play Music";
-            }
-        });
-    }
-    
-    // ==================================================
-    // MASTER DATABASES
-    // ==================================================
+const currentUserID = getOrCreateUserID();
+console.log("DoreBox User ID:", currentUserID);
+
+// ==================================================
+// MASTER DATABASES
+// ==================================================
     const movies = [
         { title: "Doraemon Nobita and the Spiral City", poster: "https://iili.io/KTEEtjI.jpg", description: "Using a gadget, Doraemon and Nobita create a new city in a different dimension. But when criminals from their world find a way in, they must protect their new home.", embed: "", downloadLinks: { '1080p': 'https://gplinks.co/Spiralcityonbotat1080p', '720p': 'https://gplinks.co/thespiralcityin720pbycjh', '360p': 'https://gplinks.co/thespiralcityin360pbycjh' } },
         { title: "Doraemon The Movie Nobita In Jannat No 1", poster: "https://iili.io/KzKuPMQ.jpg", description: "Join Nobita and his friends on an exciting adventure to a magical kingdom in the clouds. A paradise awaits, but is everything as perfect as it seems?", embed: "", downloadLinks: { '1080p': 'https://gplinks.co/kingdomofcloudin1080pbycjh', '720p': 'https://gplinks.co/kingdomofcloudin720pbycjh', '360p': 'https://gplinks.co/kingdomofcloudin360pbycjh' } },
@@ -108,31 +80,60 @@ document.addEventListener("DOMContentLoaded", () => {
         { title: "Doraemon Galaxy Super Express Hindi", poster: "https://i.postimg.cc/XY6fQ25Z/Doraemon-The-Movie-Galaxy-Super-Express-by-cjh.png", description: "This movie is available for download.", embed: "", downloadLinks: { '1080p': 'https://gplinks.co/galaxyexpressonbotat1080p', '720p': '#', '360p': '#' } },
         { title: "Doraemon Nobita And The Kingdom Of Robot Singham", poster: "https://i.postimg.cc/j5fNHPj6/The-Movie-Nobita-and-the-Kingdom-of-Robot-by-cjh.jpg", description: "This movie is available for download.", embed: "", downloadLinks: { '1080p': 'https://gplinks.co/Robotsinghamonbotat1080p', '720p': '#', '360p': '#' } },
     ];
-    
-    const episodes = [];
-    const shortMovies = [];
+const episodes = [];
+const shortMovies = [];
+window.dorebox_content = { movies, episodes, shortMovies };
 
-    window.dorebox_content = { movies, episodes, shortMovies };
+
+// ==================================================
+// MAIN WEBSITE LOGIC
+// ==================================================
+document.addEventListener("DOMContentLoaded", () => {
+    const body = document.body;
 
     // ==================================================
-    // PAGE DETECTION & ROUTING
+    // PAGE: INDEX.HTML
     // ==================================================
-    const isIndexPage = document.getElementById('content-tabs');
-    const isWatchPage = document.querySelector('.watch-container');
-    const isDownloadPage = document.querySelector('.download-page-container');
+    if (body.classList.contains('home-page')) {
+        const splashScreen = document.getElementById('festival-splash');
+        if (splashScreen) {
+            setTimeout(() => {
+                splashScreen.classList.add('hidden');
+            }, 4000);
+        }
 
-    // --- INDEX PAGE LOGIC ---
-    if (isIndexPage) {
+        function startCountdown() {
+            const countdownBanner = document.getElementById("countdown-banner");
+            if (!countdownBanner) return;
+            const countdownDate = new Date("October 28, 2025 17:30:00").getTime();
+            const timerInterval = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = countdownDate - now;
+                if (distance < 0) {
+                    clearInterval(timerInterval);
+                    countdownBanner.innerHTML = "<div class='banner-content' style='justify-content: center;'>छठ पूजा की हार्दिक शुभकामनाएं!</div>";
+                    return;
+                }
+                const days = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
+                const hours = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+                const minutes = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+                const seconds = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
+                document.getElementById("days").innerText = days;
+                document.getElementById("hours").innerText = hours;
+                document.getElementById("minutes").innerText = minutes;
+                document.getElementById("seconds").innerText = seconds;
+            }, 1000);
+        }
+        startCountdown();
+
         const searchBar = document.getElementById("search-bar");
         const tabLinks = document.querySelectorAll(".tab-link");
         const tabContents = document.querySelectorAll(".tab-content");
-
         const grids = {
             movies: document.getElementById("movie-grid"),
             episodes: document.getElementById("episode-grid"),
             shorts: document.getElementById("short-movie-grid")
         };
-
         const noResults = {
             movies: document.getElementById("no-results-movies"),
             episodes: document.getElementById("no-results-episodes"),
@@ -143,23 +144,13 @@ document.addEventListener("DOMContentLoaded", () => {
             const grid = grids[type];
             const noResultEl = noResults[type];
             if (!grid || !noResultEl) return;
-
             grid.innerHTML = "";
             noResultEl.classList.toggle("hidden", contentArray.length > 0);
-
             contentArray.forEach((item) => {
                 const card = document.createElement("div");
                 card.className = "movie-card";
                 let pageUrl = `watch.html?title=${encodeURIComponent(item.title)}&type=${type}`;
-                card.innerHTML = `
-                    <a href="${pageUrl}">
-                        <div class="poster-container">
-                            <img src="${item.poster}" alt="${item.title}" loading="lazy">
-                            <div class="play-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="30" height="30"><path d="M8 5v14l11-7z"></path></svg></div>
-                        </div>
-                        <h3>${item.title}</h3>
-                    </a>
-                `;
+                card.innerHTML = `<a href="${pageUrl}"><div class="poster-container"><img src="${item.poster}" alt="${item.title}" loading="lazy"><div class="play-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="30" height="30"><path d="M8 5v14l11-7z"></path></svg></div></div><h3>${item.title}</h3></a>`;
                 grid.appendChild(card);
             });
         }
@@ -167,16 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
         tabLinks.forEach(link => {
             link.addEventListener('click', () => {
                 const tab = link.getAttribute('data-tab');
-                let newPlaceholder = '';
-
-                if (tab === 'movies') {
-                    newPlaceholder = 'Search All Movies...';
-                } else if (tab === 'episodes') {
-                    newPlaceholder = 'Search All Episodes...';
-                } else if (tab === 'shorts') {
-                    newPlaceholder = 'Search Short Movies...';
-                }
-
+                let newPlaceholder = (tab === 'movies') ? 'Search All Movies...' : (tab === 'episodes') ? 'Search All Episodes...' : 'Search Short Movies...';
                 if (searchBar.placeholder !== newPlaceholder) {
                     searchBar.classList.add('placeholder-fade');
                     setTimeout(() => {
@@ -184,16 +166,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         searchBar.classList.remove('placeholder-fade');
                     }, 300);
                 }
-
                 tabLinks.forEach(l => l.classList.remove('active'));
                 link.classList.add('active');
-
-                tabContents.forEach(content => {
-                    content.classList.remove('active');
-                    if (content.id === `${tab}-content`) {
-                        content.classList.add('active');
-                    }
-                });
+                tabContents.forEach(content => content.classList.toggle('active', content.id === `${tab}-content`));
                 searchBar.value = '';
                 displayContent('movies', movies);
                 displayContent('episodes', episodes);
@@ -204,7 +179,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (searchBar) {
             searchBar.addEventListener("keyup", (e) => {
                 const searchTerm = e.target.value.toLowerCase();
-                
                 displayContent('movies', movies.filter(m => m.title.toLowerCase().includes(searchTerm)));
                 displayContent('episodes', episodes.filter(ep => ep.title.toLowerCase().includes(searchTerm)));
                 displayContent('shorts', shortMovies.filter(s => s.title.toLowerCase().includes(searchTerm)));
@@ -216,12 +190,13 @@ document.addEventListener("DOMContentLoaded", () => {
         displayContent('shorts', shortMovies);
     }
 
-    // --- WATCH PAGE LOGIC ---
-    if (isWatchPage) {
+    // ==================================================
+    // PAGE: WATCH.HTML
+    // ==================================================
+    if (body.classList.contains('watch-page')) {
         const urlParams = new URLSearchParams(window.location.search);
         const currentTitle = decodeURIComponent(urlParams.get('title'));
         const currentType = urlParams.get('type') || 'movies';
-        
         const allContent = (window.dorebox_content && window.dorebox_content[currentType]) ? window.dorebox_content[currentType] : [];
         const currentItem = allContent.find(m => m.title === currentTitle);
 
@@ -230,19 +205,16 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById('movie-poster').src = currentItem.poster;
             document.getElementById('movie-title').textContent = currentItem.title;
             document.getElementById('movie-description').textContent = currentItem.description;
-
             const playerContainer = document.getElementById('video-player-container');
             const playerMessage = document.getElementById('player-message');
-
             if (currentItem.embed && currentItem.embed.trim() !== "") {
                 playerContainer.innerHTML = currentItem.embed;
                 playerContainer.style.display = 'block';
-                if(playerMessage) playerMessage.style.display = 'none';
+                if (playerMessage) playerMessage.style.display = 'none';
             } else {
                 playerContainer.style.display = 'none';
-                if(playerMessage) playerMessage.style.display = 'block';
+                if (playerMessage) playerMessage.style.display = 'block';
             }
-
             const downloadButton = document.getElementById('download-link');
             if (currentItem.downloadLinks) {
                 downloadButton.href = `download.html?title=${encodeURIComponent(currentItem.title)}&type=${currentType}`;
@@ -250,55 +222,43 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 downloadButton.style.display = 'none';
             }
-
             const shareButton = document.getElementById('share-button');
             if (shareButton) {
                 shareButton.addEventListener('click', () => {
-                    const shareData = {
-                        title: `Watch ${currentItem.title} on DoreBox`,
-                        text: `I'm watching ${currentItem.title} on DoreBox. You can watch or download it from here:`,
-                        url: window.location.href
-                    };
                     if (navigator.share) {
-                        navigator.share(shareData).catch(console.error);
+                        navigator.share({
+                            title: `Watch ${currentItem.title} on DoreBox`,
+                            text: `I'm watching ${currentItem.title} on DoreBox. You can watch or download it from here:`,
+                            url: window.location.href
+                        }).catch(console.error);
                     } else {
                         alert("Sharing is not supported on this browser. Please copy the link manually.");
                     }
                 });
             }
-
             const relatedGrid = document.getElementById("related-movie-grid");
             if (relatedGrid && window.dorebox_content && window.dorebox_content.movies) {
-                const otherMovies = window.dorebox_content.movies.filter(m => m.title !== currentTitle);
-                const shuffledMovies = otherMovies.sort(() => 0.5 - Math.random());
-                const randomMovies = shuffledMovies.slice(0, 4);
-
+                const otherMovies = window.dorebox_content.movies.filter(m => m.title !== currentTitle).sort(() => 0.5 - Math.random()).slice(0, 4);
                 relatedGrid.innerHTML = '';
-                randomMovies.forEach(movie => {
+                otherMovies.forEach(movie => {
                     const movieCard = document.createElement("div");
                     movieCard.className = "movie-card";
-                    const watchPageUrl = `watch.html?title=${encodeURIComponent(movie.title)}&type=movies`;
-                    movieCard.innerHTML = `
-                        <a href="${watchPageUrl}">
-                            <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
-                            <h3>${movie.title}</h3>
-                        </a>
-                    `;
+                    movieCard.innerHTML = `<a href="watch.html?title=${encodeURIComponent(movie.title)}&type=movies"><img src="${movie.poster}" alt="${movie.title}" loading="lazy"><h3>${movie.title}</h3></a>`;
                     relatedGrid.appendChild(movieCard);
                 });
             }
-
         } else {
             document.querySelector('.watch-container').innerHTML = "<h1>Error: Content details not found. Please go back to the homepage.</h1>";
         }
     }
 
-    // --- DOWNLOAD PAGE LOGIC ---
-    if (isDownloadPage) {
+    // ==================================================
+    // PAGE: DOWNLOAD.HTML
+    // ==================================================
+    if (body.classList.contains('download-page')) {
         const urlParams = new URLSearchParams(window.location.search);
         const currentTitle = decodeURIComponent(urlParams.get('title'));
         const currentType = urlParams.get('type') || 'movies';
-        
         const allContent = (window.dorebox_content && window.dorebox_content[currentType]) ? window.dorebox_content[currentType] : [];
         const currentItem = allContent.find(m => m.title === currentTitle);
 
@@ -306,10 +266,8 @@ document.addEventListener("DOMContentLoaded", () => {
             document.title = `Download ${currentItem.title} - DoreBox`;
             document.getElementById('movie-poster').src = currentItem.poster;
             document.getElementById('movie-title').textContent = currentItem.title;
-
             const qualityOptionsContainer = document.getElementById('quality-options');
             qualityOptionsContainer.innerHTML = '';
-
             if (currentItem.downloadLinks && Object.keys(currentItem.downloadLinks).length > 0) {
                 for (const quality in currentItem.downloadLinks) {
                     const link = currentItem.downloadLinks[quality];
@@ -325,7 +283,6 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 qualityOptionsContainer.innerHTML = '<p>Sorry, download links are not available for this movie.</p>';
             }
-
             const backButton = document.getElementById('back-to-watch');
             if (backButton) {
                 backButton.href = `watch.html?title=${encodeURIComponent(currentItem.title)}&type=${currentType}`;
@@ -335,4 +292,165 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // ==================================================
+    // PAGE: PROFILE.HTML
+    // ==================================================
+    if (body.classList.contains('profile-page')) {
+        const profilePageUserIDElement = document.getElementById('profile-page-user-id');
+        if (profilePageUserIDElement) {
+            profilePageUserIDElement.textContent = currentUserID;
+        }
+
+        const clearIdButton = document.getElementById('clear-id-btn');
+        if (clearIdButton) {
+            clearIdButton.addEventListener('click', () => {
+                if (confirm("Are you sure you want to clear your User ID and ALL your data (including balance)? This cannot be undone.")) {
+                    localStorage.removeItem('dorebox_user_id');
+                    localStorage.removeItem('dorebox_user_data');
+                    localStorage.removeItem('dorebox_current_task');
+                    alert("Your data has been cleared. A new ID will be generated on the next visit.");
+                    window.location.reload();
+                }
+            });
+        }
+    }
+
+    // ==================================================
+    // PAGE: REWARDS.HTML
+    // ==================================================
+    if (body.classList.contains('rewards-page')) {
+        const balanceEl = document.getElementById('user-balance');
+        const generateBtn = document.getElementById('generate-task-btn');
+        const withdrawBtn = document.getElementById('withdraw-btn');
+        const taskLinkContainer = document.getElementById('task-link-container');
+        const taskLinkInput = document.getElementById('task-link-input');
+        const copyLinkBtn = document.getElementById('copy-link-btn');
+        const messageEl = document.getElementById('task-message');
+        const spinner = document.querySelector('.spinner');
+        const btnText = document.querySelector('.btn-text');
+
+        // Load and display balance
+        const userData = getUserData();
+        balanceEl.textContent = `$${userData.balance.toFixed(4)}`;
+
+        // Update withdraw button state
+        if (userData.balance >= MIN_WITHDRAWAL) {
+            withdrawBtn.classList.remove('disabled');
+            withdrawBtn.textContent = `Withdraw $${userData.balance.toFixed(2)}`;
+        }
+
+        // Check if a task is already pending
+        const pendingTask = JSON.parse(localStorage.getItem('dorebox_current_task'));
+        if (pendingTask && pendingTask.status === 'pending') {
+            generateBtn.disabled = true;
+            btnText.textContent = 'Task Pending...';
+            messageEl.textContent = 'You have a pending task. Please complete it first.';
+            messageEl.style.color = 'orange';
+        }
+
+        // Event listener for Generate Task button
+        generateBtn.addEventListener('click', async () => {
+            generateBtn.disabled = true;
+            spinner.classList.remove('hidden');
+            btnText.classList.add('hidden');
+            messageEl.textContent = '';
+
+            // 1. Create a secret token
+            const secretToken = Math.random().toString(36).substring(2, 12);
+            const tokenHash = await hashString(secretToken);
+
+            // 2. Save task info to local storage
+            const taskInfo = {
+                hash: tokenHash,
+                status: 'pending',
+                generatedAt: Date.now()
+            };
+            localStorage.setItem('dorebox_current_task', JSON.stringify(taskInfo));
+
+            try {
+                // 3. Call our serverless function to get the short link
+                const response = await fetch('/api/generate-link', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ secretToken: secretToken })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // 4. Display the short link
+                    taskLinkInput.value = data.shortUrl;
+                    taskLinkContainer.classList.remove('hidden');
+                    messageEl.textContent = 'Task link generated successfully!';
+                    messageEl.style.color = 'lightgreen';
+                } else {
+                    throw new Error(data.error || 'Unknown error');
+                }
+
+            } catch (error) {
+                messageEl.textContent = `Error: ${error.message}`;
+                messageEl.style.color = 'red';
+                localStorage.removeItem('dorebox_current_task'); // Clear task on error
+            } finally {
+                spinner.classList.add('hidden');
+                btnText.classList.remove('hidden');
+                btnText.textContent = 'Task Pending...'; // Keep it disabled
+            }
+        });
+
+        // Event listener for Copy button
+        copyLinkBtn.addEventListener('click', () => {
+            taskLinkInput.select();
+            document.execCommand('copy');
+            copyLinkBtn.textContent = 'Copied!';
+            setTimeout(() => { copyLinkBtn.textContent = 'Copy Link'; }, 2000);
+        });
+    }
+
+    // ==================================================
+    // PAGE: TASK-COMPLETED.HTML
+    // ==================================================
+    if (body.classList.contains('verification-page')) {
+        const statusEl = document.getElementById('verification-status');
+
+        const verifyTask = async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const receivedToken = urlParams.get('token');
+
+            if (!receivedToken) {
+                statusEl.innerHTML = '<h1>Verification Failed</h1><p>No token found. Please complete the task properly.</p>';
+                return;
+            }
+
+            const pendingTask = JSON.parse(localStorage.getItem('dorebox_current_task'));
+
+            if (!pendingTask || pendingTask.status !== 'pending') {
+                statusEl.innerHTML = '<h1>Verification Failed</h1><p>Task is invalid or has already been completed.</p>';
+                return;
+            }
+
+            const expectedHash = pendingTask.hash;
+            const receivedTokenHash = await hashString(receivedToken);
+
+            if (receivedTokenHash === expectedHash) {
+                // SUCCESS!
+                localStorage.removeItem('dorebox_current_task'); // Crucial: Remove task to prevent replay
+
+                const userData = getUserData();
+                userData.balance += REWARD_AMOUNT;
+                saveUserData(userData);
+
+                statusEl.innerHTML = `<h1>Success!</h1><p>$${REWARD_AMOUNT.toFixed(4)} has been added to your balance.</p><p>Redirecting you back...</p>`;
+                setTimeout(() => {
+                    window.location.href = '/rewards.html';
+                }, 3000);
+
+            } else {
+                // FAILURE!
+                statusEl.innerHTML = '<h1>Verification Failed</h1><p>Token mismatch. Please do not try to cheat the system.</p>';
+            }
+        };
+
+        verifyTask();
+    }
 });
