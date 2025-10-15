@@ -20,7 +20,7 @@ body {
     color: var(--text-primary);
     font-family: var(--font-family);
     margin: 0;
-    padding-top: 115px;
+    padding-top: 125px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
@@ -57,26 +57,6 @@ body {
     gap: 15px;
 }
 
-#music-toggle {
-    background: none;
-    border: 2px solid var(--primary-color);
-    color: var(--primary-color);
-    border-radius: 50%;
-    width: 38px;
-    height: 38px;
-    cursor: pointer;
-    font-size: 1.2em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.3s ease;
-}
-
-#music-toggle:hover {
-    background-color: var(--primary-color);
-    color: var(--bg-color);
-    transform: scale(1.1) rotate(360deg);
-}
 
 /* --- UTSAV PATRIKA COUNTDOWN BANNER --- */
 #countdown-banner {
@@ -526,4 +506,267 @@ footer .disclaimer {
     .splash-text { 
         font-size: 1.5em; 
     }
+}
+
+/* ===== NEW PROFILE SECTION STYLING ===== */
+#profile-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--surface-color);
+    padding: 6px 12px 6px 8px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.profile-icon {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#header-user-id {
+    font-size: 0.9em;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Music toggle button ko hatane ke liye (agar CSS mein pehle se hai to) */
+#music-toggle {
+    display: none;
+}
+
+/*
+==============================================
+SPECIFIC PAGE STYLES
+==============================================
+*/
+
+/* --- Watch Page Styling --- */
+body.watch-page, body.download-page, body.profile-page {
+    padding-top: 80px; /* Inner pages ke liye kam padding */
+}
+
+.watch-container { max-width: 1100px; margin: 20px auto; padding: 0 15px; position: relative; z-index: 1; }
+.player-message-box { background-color: #e53935; color: white; padding: 20px; border-radius: 12px; margin-bottom: 25px; text-align: center; font-size: 1.2em; font-weight: 600; line-height: 1.5; display: none; }
+.video-player-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background-color: #000; border-radius: 12px; margin-bottom: 25px; border: 1px solid var(--border-color); }
+.video-player-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+.movie-details-grid { display: grid; grid-template-columns: 150px 1fr; gap: 25px; align-items: flex-start; }
+.movie-details-grid img { width: 100%; border-radius: 8px; border: 1px solid var(--border-color); }
+.movie-info h1 { font-size: 2.2em; margin: 0 0 10px 0; line-height: 1.2; }
+.movie-info p { font-size: 1em; color: var(--text-secondary); margin: 0 0 20px 0; max-width: 80ch; }
+.button-group { display: flex; gap: 15px; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; color: #fff; padding: 12px 25px; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.2s ease; border: none; cursor: pointer; }
+.btn:hover { transform: translateY(-2px); }
+.download-button { background-color: var(--primary-color); color: #000; }
+.share-button { background-color: #25D366; }
+.related-movies { margin-top: 50px; border-top: 1px solid var(--border-color); padding-top: 30px; }
+.related-movies h2 { font-size: 1.8em; margin-bottom: 20px; }
+@media (max-width: 600px) {
+    .movie-details-grid { grid-template-columns: 1fr; }
+    .movie-details-grid img { max-width: 120px; margin-bottom: 15px; }
+    .movie-info h1 { font-size: 1.8em; }
+}
+
+/* --- Download Page Styling --- */
+.download-page-container { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: calc(100vh - 80px); width: 100%; max-width: 380px; text-align: center; margin: 0 auto; padding: 20px; }
+.download-page-container #movie-poster { width: 100%; max-width: 280px; border-radius: 12px; margin-bottom: 25px; }
+.download-page-container #movie-title { font-size: 1.8em; font-weight: 600; margin: 0 0 30px 0; line-height: 1.4; }
+.quality-options-grid { display: grid; gap: 16px; width: 100%; margin: 0 auto; }
+.quality-btn { display: flex; align-items: center; justify-content: center; background-color: var(--primary-color); color: #000; text-decoration: none; padding: 14px; border-radius: 12px; text-align: center; font-weight: 600; font-size: 1em; transition: transform 0.2s ease, background-color 0.2s ease; border: none; }
+.quality-btn:hover { transform: translateY(-2px); background-color: var(--primary-hover); }
+.how-to-download-link { display: block; margin-top: 20px; margin-bottom: 15px; color: #e53935; text-decoration: underline; font-size: 0.95em; font-weight: 500; transition: color 0.2s ease; text-align: right; padding-right: 5px; }
+.how-to-download-link:hover { color: #c62828; }
+.download-page-container #back-to-watch { display: inline-block; color: var(--text-secondary); text-decoration: none; font-size: 0.9em; transition: color 0.2s ease; margin-top: 20px; }
+.download-page-container #back-to-watch:hover { color: var(--primary-color); }
+@media (max-width: 360px) {
+    .download-page-container #movie-title { font-size: 1.5em; }
+    .quality-btn { padding: 12px; font-size: 0.9em; }
+}
+
+/* ===== NEW PROFILE SECTION & PAGE STYLING ===== */
+#profile-section { display: flex; align-items: center; background-color: var(--surface-color); padding: 6px; border-radius: 50%; border: 1px solid var(--border-color); transition: all 0.3s ease; text-decoration: none; }
+#profile-section:hover { background-color: var(--primary-color); transform: scale(1.1); }
+#profile-section:hover .profile-icon { background-color: transparent; color: var(--bg-color); }
+.profile-icon { background-color: var(--primary-color); color: var(--bg-color); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
+
+.profile-page-container { max-width: 700px; margin: 0 auto; padding: 20px; }
+.profile-header { display: flex; align-items: center; gap: 20px; background-color: var(--surface-color); padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 30px; }
+.profile-header .profile-icon { width: 60px; height: 60px; flex-shrink: 0; }
+.profile-header .profile-icon svg { width: 36px; height: 36px; }
+.profile-info h2 { margin: 0 0 5px 0; font-size: 1.2em; color: var(--text-secondary); }
+.profile-info #profile-page-user-id { font-size: 1.8em; font-weight: 700; color: var(--primary-color); letter-spacing: 1px; }
+.profile-options .option-card { background-color: var(--surface-color); border-radius: 10px; padding: 20px; margin-bottom: 15px; border-left: 4px solid var(--primary-color); transition: all 0.3s ease; cursor: pointer; }
+.profile-options .option-card:hover { transform: translateX(5px); border-left-color: var(--primary-hover); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+.profile-options h3 { margin: 0 0 8px 0; }
+.profile-options p { margin: 0; color: var(--text-secondary); font-size: 0.9em; }
+.back-link { display: inline-block; margin-top: 20px; color: var(--text-secondary); text-decoration: none; }
+.back-link:hover { color: var(--primary-color); }
+
+/* ===== PROFILE PAGE ICONS STYLING ===== */
+.option-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.option-title svg {
+    color: var(--primary-color);
+    flex-shrink: 0; /* Taki icon chota na ho */
+}
+
+.option-title h3 {
+    margin: 0; /* H3 se extra margin hata diya */
+}
+
+/* ===== REWARDS & VERIFICATION PAGE STYLING ===== */
+.rewards-page-container, .verification-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.balance-card, .task-card {
+    background-color: var(--surface-color);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+}
+
+.balance-card h2 {
+    margin: 0 0 10px 0;
+    color: var(--text-secondary);
+    font-size: 1.2em;
+}
+
+#user-balance {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+#withdraw-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 1em;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#withdraw-btn.disabled {
+    background-color: #333;
+    color: #777;
+    cursor: not-allowed;
+}
+
+.task-card h2 {
+    margin: 0 0 10px 0;
+}
+
+.task-card p {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+#generate-task-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1em;
+    font-weight: 700;
+    background-color: var(--primary-color);
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#generate-task-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+#generate-task-btn:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(0, 0, 0, 0.3);
+    border-top-color: #000;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+#task-link-container {
+    margin-top: 20px;
+    text-align: left;
+}
+
+#task-link-input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+#copy-link-btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.message {
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+.verification-container {
+    text-align: center;
+    padding-top: 50px;
+}
+
+/* ===== PROFILE PAGE LINK COLOR FIX ===== */
+.option-card-link {
+    text-decoration: none; /* Link se underline hatane ke liye */
+    color: inherit;       /* Parent element (card) ka color lene ke liye */
+}
+
+.option-card-link .option-title h3 {
+    color: var(--text-primary); /* "Rewards" text ka color white karne ke liye */
+}
+
+.option-card-link .option-title svg {
+    color: var(--primary-color); /* Icon ka color yellow karne ke liye */
 }
