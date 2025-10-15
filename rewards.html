@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Rewards - DoreBox</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" href="https://iili.io/KXmopGj.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=2.5">
+</head>
+<body class="rewards-page">
+
+    <header id="main-header">
+        <div class="container">
+            <a href="index.html" class="logo-link"><h1 class="logo">DoreBox</h1></a>
+            <a href="profile.html" id="profile-section" title="View Profile">
+                <div class="profile-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path></svg>
+                </div>
+            </a>
+        </div>
+    </header>
+
+    <main class="rewards-page-container">
+        <div class="balance-card">
+            <h2>Your Current Balance</h2>
+            <p id="user-balance">$0.0000</p>
+            <button id="withdraw-btn" class="disabled">Withdraw (Min $1.00)</button>
+        </div>
+
+        <div class="task-card">
+            <h2>Earn Rewards</h2>
+            <p>Click the button below to generate a task link. Complete the task to earn $0.0030.</p>
+            <button id="generate-task-btn">
+                <span class="btn-text">Generate Task Link</span>
+                <span class="spinner hidden"></span>
+            </button>
+            <div id="task-link-container" class="hidden">
+                <p>Your unique link is ready. Please complete the task:</p>
+                <input type="text" id="task-link-input" readonly>
+                <button id="copy-link-btn">Copy Link</button>
+            </div>
+            <p id="task-message" class="message"></p>
+        </div>
+
+        <a href="profile.html" class="back-link">&larr; Back to Profile</a>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
