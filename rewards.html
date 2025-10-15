@@ -38,6 +38,7 @@
                 <span class="btn-text">Generate Task Link</span>
                 <span class="spinner hidden"></span>
             </button>
+            <!-- Ye purana link container ab use nahi hoga, par rakha hai just in case -->
             <div id="task-link-container" class="hidden">
                 <p>Your unique link is ready. Please complete the task:</p>
                 <input type="text" id="task-link-input" readonly>
@@ -47,6 +48,21 @@
         </div>
 
         <a href="profile.html" class="back-link">&larr; Back to Profile</a>
+
+        <!-- ============================================= -->
+        <!-- === YAHAN NAYA POPUP KA CODE ADD KIYA GAYA HAI === -->
+        <!-- ============================================= -->
+        <div id="redirect-modal" class="modal-overlay hidden">
+            <div class="modal-content">
+                <h2>Your Task is Ready!</h2>
+                <p>Please complete the task by visiting the link below. You will be redirected automatically.</p>
+                <div class="modal-link-container">
+                    <input type="text" id="modal-task-link" readonly>
+                </div>
+                <p id="modal-countdown">Redirecting in 5 seconds...</p>
+            </div>
+        </div>
+
     </main>
 
     <script src="script.js"></script>
