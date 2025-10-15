@@ -1,0 +1,15 @@
+{
+  "name": "dorebox-project",
+  "version": "1.0.0",
+  "description": "DoreBox website with rewards system.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "AJH",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}
