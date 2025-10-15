@@ -771,7 +771,7 @@ body.watch-page, body.download-page, body.profile-page {
     color: var(--primary-color); /* Icon ka color yellow karne ke liye */
 }
 
-/* ===== REDIRECT POPUP MODAL STYLING ===== */
+/* === NAYA CODE (ISKO PASTE KARNA HAI) === */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -779,17 +779,20 @@ body.watch-page, body.download-page, body.profile-page {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(5px);
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     z-index: 2000;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    backdrop-filter: blur(5px);
+    opacity: 0; /* Shuru mein poori tarah se gayab */
+    pointer-events: none; /* Shuru mein ispar click nahi hoga (YAHI HAI FIX) */
+    transition: opacity 0.3s ease; /* Dheere se aane ka effect */
 }
 
+/* Jab .hidden class HATEGI, tab ye style lagega */
 .modal-overlay:not(.hidden) {
-    opacity: 1;
+    opacity: 1; /* Poori tarah se dikhega */
+    pointer-events: auto; /* Ab ispar click ho sakta hai */
 }
 
 .modal-content {
