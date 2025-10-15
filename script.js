@@ -4,7 +4,6 @@
 const REWARD_AMOUNT = 0.0030;
 const MIN_WITHDRAWAL = 1.00;
 
-// Function to get or create a unique user ID
 function getOrCreateUserID() {
     let userID = localStorage.getItem('dorebox_user_id');
     if (!userID) {
@@ -14,7 +13,6 @@ function getOrCreateUserID() {
     return userID;
 }
 
-// Function to get or initialize user data (balance, etc.)
 function getUserData() {
     const defaultData = { balance: 0.0000 };
     try {
@@ -25,12 +23,10 @@ function getUserData() {
     }
 }
 
-// Function to save user data
 function saveUserData(data) {
     localStorage.setItem('dorebox_user_data', JSON.stringify(data));
 }
 
-// Hashing function for security
 async function hashString(str) {
     const encoder = new TextEncoder();
     const data = encoder.encode(str);
@@ -84,7 +80,6 @@ const episodes = [];
 const shortMovies = [];
 window.dorebox_content = { movies, episodes, shortMovies };
 
-
 // ==================================================
 // MAIN WEBSITE LOGIC
 // ==================================================
@@ -96,11 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==================================================
     if (body.classList.contains('home-page')) {
         const splashScreen = document.getElementById('festival-splash');
-        if (splashScreen) {
-            setTimeout(() => {
-                splashScreen.classList.add('hidden');
-            }, 4000);
-        }
+        if (splashScreen) { setTimeout(() => { splashScreen.classList.add('hidden'); }, 4000); }
 
         function startCountdown() {
             const countdownBanner = document.getElementById("countdown-banner");
@@ -114,14 +105,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     countdownBanner.innerHTML = "<div class='banner-content' style='justify-content: center;'>छठ पूजा की हार्दिक शुभकामनाएं!</div>";
                     return;
                 }
-                const days = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
-                const hours = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-                const minutes = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-                const seconds = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
-                document.getElementById("days").innerText = days;
-                document.getElementById("hours").innerText = hours;
-                document.getElementById("minutes").innerText = minutes;
-                document.getElementById("seconds").innerText = seconds;
+                document.getElementById("days").innerText = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
+                document.getElementById("hours").innerText = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+                document.getElementById("minutes").innerText = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+                document.getElementById("seconds").innerText = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
             }, 1000);
         }
         startCountdown();
@@ -129,16 +116,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const searchBar = document.getElementById("search-bar");
         const tabLinks = document.querySelectorAll(".tab-link");
         const tabContents = document.querySelectorAll(".tab-content");
-        const grids = {
-            movies: document.getElementById("movie-grid"),
-            episodes: document.getElementById("episode-grid"),
-            shorts: document.getElementById("short-movie-grid")
-        };
-        const noResults = {
-            movies: document.getElementById("no-results-movies"),
-            episodes: document.getElementById("no-results-episodes"),
-            shorts: document.getElementById("no-results-shorts")
-        };
+        const grids = { movies: document.getElementById("movie-grid"), episodes: document.getElementById("episode-grid"), shorts: document.getElementById("short-movie-grid") };
+        const noResults = { movies: document.getElementById("no-results-movies"), episodes: document.getElementById("no-results-episodes"), shorts: document.getElementById("no-results-shorts") };
 
         function displayContent(type, contentArray) {
             const grid = grids[type];
@@ -149,8 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
             contentArray.forEach((item) => {
                 const card = document.createElement("div");
                 card.className = "movie-card";
-                let pageUrl = `watch.html?title=${encodeURIComponent(item.title)}&type=${type}`;
-                card.innerHTML = `<a href="${pageUrl}"><div class="poster-container"><img src="${item.poster}" alt="${item.title}" loading="lazy"><div class="play-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="30" height="30"><path d="M8 5v14l11-7z"></path></svg></div></div><h3>${item.title}</h3></a>`;
+                card.innerHTML = `<a href="watch.html?title=${encodeURIComponent(item.title)}&type=${type}"><div class="poster-container"><img src="${item.poster}" alt="${item.title}" loading="lazy"><div class="play-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="30" height="30"><path d="M8 5v14l11-7z"></path></svg></div></div><h3>${item.title}</h3></a>`;
                 grid.appendChild(card);
             });
         }
@@ -161,10 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 let newPlaceholder = (tab === 'movies') ? 'Search All Movies...' : (tab === 'episodes') ? 'Search All Episodes...' : 'Search Short Movies...';
                 if (searchBar.placeholder !== newPlaceholder) {
                     searchBar.classList.add('placeholder-fade');
-                    setTimeout(() => {
-                        searchBar.placeholder = newPlaceholder;
-                        searchBar.classList.remove('placeholder-fade');
-                    }, 300);
+                    setTimeout(() => { searchBar.placeholder = newPlaceholder; searchBar.classList.remove('placeholder-fade'); }, 300);
                 }
                 tabLinks.forEach(l => l.classList.remove('active'));
                 link.classList.add('active');
@@ -226,11 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (shareButton) {
                 shareButton.addEventListener('click', () => {
                     if (navigator.share) {
-                        navigator.share({
-                            title: `Watch ${currentItem.title} on DoreBox`,
-                            text: `I'm watching ${currentItem.title} on DoreBox. You can watch or download it from here:`,
-                            url: window.location.href
-                        }).catch(console.error);
+                        navigator.share({ title: `Watch ${currentItem.title} on DoreBox`, text: `I'm watching ${currentItem.title} on DoreBox. You can watch or download it from here:`, url: window.location.href }).catch(console.error);
                     } else {
                         alert("Sharing is not supported on this browser. Please copy the link manually.");
                     }
@@ -296,11 +267,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // PAGE: PROFILE.HTML
     // ==================================================
     if (body.classList.contains('profile-page')) {
-        const profilePageUserIDElement = document.getElementById('profile-page-user-id');
-        if (profilePageUserIDElement) {
-            profilePageUserIDElement.textContent = currentUserID;
-        }
-
+        document.getElementById('profile-page-user-id').textContent = currentUserID;
         const clearIdButton = document.getElementById('clear-id-btn');
         if (clearIdButton) {
             clearIdButton.addEventListener('click', () => {
@@ -322,24 +289,18 @@ document.addEventListener("DOMContentLoaded", () => {
         const balanceEl = document.getElementById('user-balance');
         const generateBtn = document.getElementById('generate-task-btn');
         const withdrawBtn = document.getElementById('withdraw-btn');
-        const taskLinkContainer = document.getElementById('task-link-container');
-        const taskLinkInput = document.getElementById('task-link-input');
-        const copyLinkBtn = document.getElementById('copy-link-btn');
         const messageEl = document.getElementById('task-message');
         const spinner = document.querySelector('.spinner');
         const btnText = document.querySelector('.btn-text');
 
-        // Load and display balance
         const userData = getUserData();
         balanceEl.textContent = `$${userData.balance.toFixed(4)}`;
 
-        // Update withdraw button state
         if (userData.balance >= MIN_WITHDRAWAL) {
             withdrawBtn.classList.remove('disabled');
             withdrawBtn.textContent = `Withdraw $${userData.balance.toFixed(2)}`;
         }
 
-        // Check if a task is already pending
         const pendingTask = JSON.parse(localStorage.getItem('dorebox_current_task'));
         if (pendingTask && pendingTask.status === 'pending') {
             generateBtn.disabled = true;
@@ -348,62 +309,60 @@ document.addEventListener("DOMContentLoaded", () => {
             messageEl.style.color = 'orange';
         }
 
-        // Event listener for Generate Task button
         generateBtn.addEventListener('click', async () => {
             generateBtn.disabled = true;
             spinner.classList.remove('hidden');
             btnText.classList.add('hidden');
             messageEl.textContent = '';
 
-            // 1. Create a secret token
             const secretToken = Math.random().toString(36).substring(2, 12);
             const tokenHash = await hashString(secretToken);
 
-            // 2. Save task info to local storage
-            const taskInfo = {
-                hash: tokenHash,
-                status: 'pending',
-                generatedAt: Date.now()
-            };
+            const taskInfo = { hash: tokenHash, status: 'pending', generatedAt: Date.now() };
             localStorage.setItem('dorebox_current_task', JSON.stringify(taskInfo));
 
             try {
-                // 3. Call our serverless function to get the short link
                 const response = await fetch('/api/generate-link', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ secretToken: secretToken })
                 });
-
                 const data = await response.json();
-
                 if (response.ok) {
-                    // 4. Display the short link
-                    taskLinkInput.value = data.shortUrl;
-                    taskLinkContainer.classList.remove('hidden');
-                    messageEl.textContent = 'Task link generated successfully!';
-                    messageEl.style.color = 'lightgreen';
+                    // Show the redirect popup modal
+                    const modal = document.getElementById('redirect-modal');
+                    const modalLinkInput = document.getElementById('modal-task-link');
+                    const modalCountdown = document.getElementById('modal-countdown');
+
+                    modalLinkInput.value = data.shortUrl;
+                    modal.classList.remove('hidden');
+
+                    // Start the countdown
+                    let countdown = 5;
+                    modalCountdown.textContent = `Redirecting in ${countdown} seconds...`;
+
+                    const countdownInterval = setInterval(() => {
+                        countdown--;
+                        modalCountdown.textContent = `Redirecting in ${countdown} seconds...`;
+                        if (countdown <= 0) {
+                            clearInterval(countdownInterval);
+                            window.location.href = data.shortUrl; // Redirect now
+                        }
+                    }, 1000);
+
                 } else {
                     throw new Error(data.error || 'Unknown error');
                 }
-
             } catch (error) {
                 messageEl.textContent = `Error: ${error.message}`;
                 messageEl.style.color = 'red';
-                localStorage.removeItem('dorebox_current_task'); // Clear task on error
-            } finally {
+                localStorage.removeItem('dorebox_current_task');
+                // Re-enable the button on error
+                generateBtn.disabled = false;
                 spinner.classList.add('hidden');
                 btnText.classList.remove('hidden');
-                btnText.textContent = 'Task Pending...'; // Keep it disabled
+                btnText.textContent = 'Generate Task Link';
             }
-        });
-
-        // Event listener for Copy button
-        copyLinkBtn.addEventListener('click', () => {
-            taskLinkInput.select();
-            document.execCommand('copy');
-            copyLinkBtn.textContent = 'Copied!';
-            setTimeout(() => { copyLinkBtn.textContent = 'Copy Link'; }, 2000);
         });
     }
 
@@ -412,45 +371,31 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==================================================
     if (body.classList.contains('verification-page')) {
         const statusEl = document.getElementById('verification-status');
-
         const verifyTask = async () => {
             const urlParams = new URLSearchParams(window.location.search);
             const receivedToken = urlParams.get('token');
-
             if (!receivedToken) {
                 statusEl.innerHTML = '<h1>Verification Failed</h1><p>No token found. Please complete the task properly.</p>';
                 return;
             }
-
             const pendingTask = JSON.parse(localStorage.getItem('dorebox_current_task'));
-
             if (!pendingTask || pendingTask.status !== 'pending') {
                 statusEl.innerHTML = '<h1>Verification Failed</h1><p>Task is invalid or has already been completed.</p>';
                 return;
             }
-
             const expectedHash = pendingTask.hash;
             const receivedTokenHash = await hashString(receivedToken);
-
             if (receivedTokenHash === expectedHash) {
-                // SUCCESS!
-                localStorage.removeItem('dorebox_current_task'); // Crucial: Remove task to prevent replay
-
+                localStorage.removeItem('dorebox_current_task');
                 const userData = getUserData();
                 userData.balance += REWARD_AMOUNT;
                 saveUserData(userData);
-
                 statusEl.innerHTML = `<h1>Success!</h1><p>$${REWARD_AMOUNT.toFixed(4)} has been added to your balance.</p><p>Redirecting you back...</p>`;
-                setTimeout(() => {
-                    window.location.href = '/rewards.html';
-                }, 3000);
-
+                setTimeout(() => { window.location.href = '/rewards.html'; }, 3000);
             } else {
-                // FAILURE!
                 statusEl.innerHTML = '<h1>Verification Failed</h1><p>Token mismatch. Please do not try to cheat the system.</p>';
             }
         };
-
         verifyTask();
     }
 });
