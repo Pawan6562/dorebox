@@ -4,16 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Download Movie - DoreBox</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" href="https://iili.io/KXmopGj.png" type="image/png">
 
     <!-- AdSense Code Snippet -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4494331077135172"
          crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="style.css?v=1.5"> 
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css?v=2.5"> 
+
+    <!-- === YAHAN STYLING WAAPIS ADD KI GAYI HAI === -->
     <style>
         /* --- DOWNLOAD PAGE STYLING --- */
-        body {
-            background-color: #0d1117;
+        body.download-page {
+            background-color: var(--bg-color); /* Match the main theme */
             color: var(--text-primary);
             font-family: var(--font-family);
             display: flex;
@@ -27,17 +32,16 @@
             width: 100%;
             max-width: 380px;
             text-align: center;
-            /* === YAHAN FIX KIYA GAYA HAI === */
-            position: relative; /* z-index kaam karne ke liye zaroori hai */
-            z-index: 1;       /* Diyas (z-index: 0) ke upar laane ke liye */
+            position: relative;
+            z-index: 1;
         }
-        #movie-poster {
+        .download-page-container #movie-poster {
             width: 100%;
             max-width: 280px;
             border-radius: 12px;
             margin-bottom: 25px;
         }
-        #movie-title {
+        .download-page-container #movie-title {
             font-size: 1.8em;
             font-weight: 600;
             margin: 0 0 30px 0;
@@ -54,19 +58,20 @@
             align-items: center;
             justify-content: center;
             background-color: var(--primary-color);
-            color: #fff;
+            color: #000; /* Text color changed to black for better contrast on yellow */
             text-decoration: none;
             padding: 14px;
             border-radius: 12px;
             text-align: center;
-            font-weight: 600;
+            font-weight: 700; /* Font weight increased */
             font-size: 1em;
-            transition: transform 0.2s ease, background-color 0.2s ease;
+            transition: all 0.2s ease;
             border: none;
         }
         .quality-btn:hover {
-            transform: translateY(-2px);
-            background-color: #0062cc;
+            transform: translateY(-3px);
+            background-color: var(--primary-hover);
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
         }
         .how-to-download-link {
             display: block;
@@ -83,23 +88,24 @@
         .how-to-download-link:hover {
             color: #c62828;
         }
-        #back-to-watch {
+        .download-page-container #back-to-watch {
             display: inline-block;
             color: var(--text-secondary);
             text-decoration: none;
             font-size: 0.9em;
             transition: color 0.2s ease;
+            margin-top: 10px;
         }
-        #back-to-watch:hover {
+        .download-page-container #back-to-watch:hover {
             color: var(--primary-color);
         }
         @media (max-width: 360px) {
-            #movie-title { font-size: 1.5em; }
+            .download-page-container #movie-title { font-size: 1.5em; }
             .quality-btn { padding: 12px; font-size: 0.9em; }
         }
     </style>
 </head>
-<body>
+<body class="download-page">
 
     <div class="download-page-container">
         <img id="movie-poster" src="" alt="Movie Poster">
