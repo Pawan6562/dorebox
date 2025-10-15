@@ -770,3 +770,73 @@ body.watch-page, body.download-page, body.profile-page {
 .option-card-link .option-title svg {
     color: var(--primary-color); /* Icon ka color yellow karne ke liye */
 }
+
+/* ===== REDIRECT POPUP MODAL STYLING ===== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay:not(.hidden) {
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: var(--surface-color);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid var(--border-color);
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay:not(.hidden) .modal-content {
+    transform: scale(1);
+}
+
+.modal-content h2 {
+    margin: 0 0 15px 0;
+    color: var(--primary-color);
+}
+
+.modal-content p {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.modal-link-container {
+    margin-bottom: 20px;
+}
+
+#modal-task-link {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    text-align: center;
+    font-size: 0.9em;
+    box-sizing: border-box;
+}
+
+#modal-countdown {
+    font-weight: 700;
+    font-size: 1.1em;
+    color: var(--primary-hover);
+}
