@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==================================================
     // PAGE: INDEX.HTML
     // ==================================================
-    if (body.classList.contains('home-page')) {
+    if (document.getElementById('hero')) { // Check if it's the homepage
         const splashScreen = document.getElementById('festival-splash');
         if (splashScreen) { setTimeout(() => { splashScreen.classList.add('hidden'); }, 4000); }
 
@@ -305,15 +305,17 @@ document.addEventListener("DOMContentLoaded", () => {
         if (pendingTask && pendingTask.status === 'pending') {
             generateBtn.disabled = true;
             btnText.textContent = 'Task Pending...';
-            messageEl.textContent = 'You have a pending task. Please complete it first.';
-            messageEl.style.color = 'orange';
+            if (messageEl) {
+                messageEl.textContent = 'You have a pending task. Please complete it first.';
+                messageEl.style.color = 'orange';
+            }
         }
 
         generateBtn.addEventListener('click', async () => {
             generateBtn.disabled = true;
             spinner.classList.remove('hidden');
             btnText.classList.add('hidden');
-            messageEl.textContent = '';
+            if (messageEl) messageEl.textContent = '';
 
             const secretToken = Math.random().toString(36).substring(2, 12);
             const tokenHash = await hashString(secretToken);
@@ -329,7 +331,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
                 const data = await response.json();
                 if (response.ok) {
-                    // Show the redirect popup modal
                     const modal = document.getElementById('redirect-modal');
                     const modalLinkInput = document.getElementById('modal-task-link');
                     const modalCountdown = document.getElementById('modal-countdown');
@@ -337,7 +338,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     modalLinkInput.value = data.shortUrl;
                     modal.classList.remove('hidden');
 
-                    // Start the countdown
                     let countdown = 5;
                     modalCountdown.textContent = `Redirecting in ${countdown} seconds...`;
 
@@ -346,7 +346,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         modalCountdown.textContent = `Redirecting in ${countdown} seconds...`;
                         if (countdown <= 0) {
                             clearInterval(countdownInterval);
-                            window.location.href = data.shortUrl; // Redirect now
+                            window.location.href = data.shortUrl;
                         }
                     }, 1000);
 
@@ -354,10 +354,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     throw new Error(data.error || 'Unknown error');
                 }
             } catch (error) {
-                messageEl.textContent = `Error: ${error.message}`;
-                messageEl.style.color = 'red';
+                if (messageEl) {
+                    messageEl.textContent = `Error: ${error.message}`;
+                    messageEl.style.color = 'red';
+                }
                 localStorage.removeItem('dorebox_current_task');
-                // Re-enable the button on error
                 generateBtn.disabled = false;
                 spinner.classList.add('hidden');
                 btnText.classList.remove('hidden');
