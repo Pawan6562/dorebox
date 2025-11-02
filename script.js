@@ -200,17 +200,18 @@ if (body.classList.contains('watch-page')) {
         const playerMessage = document.getElementById('player-message');
         const videoElement = document.getElementById('player');
 
-        // NAYA PLAYER LOGIC
+        // NAYA PROXY PLAYER LOGIC
         if (currentItem.m3u8 && Hls.isSupported()) {
             playerContainer.style.display = 'block';
             playerMessage.style.display = 'none';
             
+            // Hum direct link ki jagah apne API se link maangenge
+            const proxyUrl = `/api/get-stream?url=${encodeURIComponent(currentItem.m3u8)}`;
+            
             const hls = new Hls();
-            hls.loadSource(currentItem.m3u8);
+            hls.loadSource(proxyUrl);
             hls.attachMedia(videoElement);
-            window.player = new Plyr(videoElement, {
-                // Aap yahan player ki settings badal sakte hain
-            });
+            window.player = new Plyr(videoElement, {});
 
         } else if (currentItem.embed && currentItem.embed.trim() !== "") {
             // Purana embed logic (baaki videos ke liye)
@@ -258,7 +259,6 @@ if (body.classList.contains('watch-page')) {
         document.querySelector('.watch-container').innerHTML = "<h1>Error: Content details not found. Please go back to the homepage.</h1>";
     }
 }
-
 
     // ==================================================
     // PAGE: DOWNLOAD.HTML
