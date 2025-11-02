@@ -181,62 +181,84 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==================================================
-    // PAGE: WATCH.HTML
-    // ==================================================
-    if (body.classList.contains('watch-page')) {
-        const urlParams = new URLSearchParams(window.location.search);
-        const currentTitle = decodeURIComponent(urlParams.get('title'));
-        const currentType = urlParams.get('type') || 'movies';
-        const allContent = (window.dorebox_content && window.dorebox_content[currentType]) ? window.dorebox_content[currentType] : [];
-        const currentItem = allContent.find(m => m.title === currentTitle);
+// PAGE: WATCH.HTML
+// ==================================================
+if (body.classList.contains('watch-page')) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentTitle = decodeURIComponent(urlParams.get('title'));
+    const currentType = urlParams.get('type') || 'movies';
+    const allContent = (window.dorebox_content && window.dorebox_content[currentType]) ? window.dorebox_content[currentType] : [];
+    const currentItem = allContent.find(m => m.title === currentTitle);
 
-        if (currentItem) {
-            document.title = `Watch ${currentItem.title} - DoreBox`;
-            document.getElementById('movie-poster').src = currentItem.poster;
-            document.getElementById('movie-title').textContent = currentItem.title;
-            document.getElementById('movie-description').textContent = currentItem.description;
-            const playerContainer = document.getElementById('video-player-container');
-            const playerMessage = document.getElementById('player-message');
-            if (currentItem.embed && currentItem.embed.trim() !== "") {
-                playerContainer.innerHTML = currentItem.embed;
-                playerContainer.style.display = 'block';
-                if (playerMessage) playerMessage.style.display = 'none';
-            } else {
-                playerContainer.style.display = 'none';
-                if (playerMessage) playerMessage.style.display = 'block';
-            }
-            const downloadButton = document.getElementById('download-link');
-            if (currentItem.downloadLinks) {
-                downloadButton.href = `download.html?title=${encodeURIComponent(currentItem.title)}&type=${currentType}`;
-                downloadButton.style.display = 'inline-flex';
-            } else {
-                downloadButton.style.display = 'none';
-            }
-            const shareButton = document.getElementById('share-button');
-            if (shareButton) {
-                shareButton.addEventListener('click', () => {
-                    if (navigator.share) {
-                        navigator.share({ title: `Watch ${currentItem.title} on DoreBox`, text: `I'm watching ${currentItem.title} on DoreBox. You can watch or download it from here:`, url: window.location.href }).catch(console.error);
-                    } else {
-                        alert("Sharing is not supported on this browser. Please copy the link manually.");
-                    }
-                });
-            }
-            const relatedGrid = document.getElementById("related-movie-grid");
-            if (relatedGrid && window.dorebox_content && window.dorebox_content.movies) {
-                const otherMovies = window.dorebox_content.movies.filter(m => m.title !== currentTitle).sort(() => 0.5 - Math.random()).slice(0, 4);
-                relatedGrid.innerHTML = '';
-                otherMovies.forEach(movie => {
-                    const movieCard = document.createElement("div");
-                    movieCard.className = "movie-card";
-                    movieCard.innerHTML = `<a href="watch.html?title=${encodeURIComponent(movie.title)}&type=movies"><img src="${movie.poster}" alt="${movie.title}" loading="lazy"><h3>${movie.title}</h3></a>`;
-                    relatedGrid.appendChild(movieCard);
-                });
-            }
+    if (currentItem) {
+        document.title = `Watch ${currentItem.title} - DoreBox`;
+        document.getElementById('movie-poster').src = currentItem.poster;
+        document.getElementById('movie-title').textContent = currentItem.title;
+        document.getElementById('movie-description').textContent = currentItem.description;
+        
+        const playerContainer = document.getElementById('video-player-container');
+        const playerMessage = document.getElementById('player-message');
+        const videoElement = document.getElementById('player');
+
+        // NAYA PLAYER LOGIC
+        if (currentItem.m3u8 && Hls.isSupported()) {
+            playerContainer.style.display = 'block';
+            playerMessage.style.display = 'none';
+            
+            const hls = new Hls();
+            hls.loadSource(currentItem.m3u8);
+            hls.attachMedia(videoElement);
+            window.player = new Plyr(videoElement, {
+                // Aap yahan player ki settings badal sakte hain
+            });
+
+        } else if (currentItem.embed && currentItem.embed.trim() !== "") {
+            // Purana embed logic (baaki videos ke liye)
+            playerContainer.innerHTML = currentItem.embed;
+            playerContainer.style.display = 'block';
+            playerMessage.style.display = 'none';
+
         } else {
-            document.querySelector('.watch-container').innerHTML = "<h1>Error: Content details not found. Please go back to the homepage.</h1>";
+            // Jab koi video source na ho
+            playerContainer.style.display = 'none';
+            playerMessage.style.display = 'block';
         }
+
+        const downloadButton = document.getElementById('download-link');
+        if (currentItem.downloadLinks) {
+            downloadButton.href = `download.html?title=${encodeURIComponent(currentItem.title)}&type=${currentType}`;
+            downloadButton.style.display = 'inline-flex';
+        } else {
+            downloadButton.style.display = 'none';
+        }
+        
+        const shareButton = document.getElementById('share-button');
+        if (shareButton) {
+            shareButton.addEventListener('click', () => {
+                if (navigator.share) {
+                    navigator.share({ title: `Watch ${currentItem.title} on DoreBox`, text: `I'm watching ${currentItem.title} on DoreBox. You can watch or download it from here:`, url: window.location.href }).catch(console.error);
+                } else {
+                    alert("Sharing is not supported on this browser. Please copy the link manually.");
+                }
+            });
+        }
+        
+        const relatedGrid = document.getElementById("related-movie-grid");
+        if (relatedGrid && window.dorebox_content && window.dorebox_content.movies) {
+            const otherMovies = window.dorebox_content.movies.filter(m => m.title !== currentTitle).sort(() => 0.5 - Math.random()).slice(0, 4);
+            relatedGrid.innerHTML = '';
+            otherMovies.forEach(movie => {
+                const movieCard = document.createElement("div");
+                movieCard.className = "movie-card";
+                movieCard.innerHTML = `<a href="watch.html?title=${encodeURIComponent(movie.title)}&type=movies"><img src="${movie.poster}" alt="${movie.title}" loading="lazy"><h3>${movie.title}</h3></a>`;
+                relatedGrid.appendChild(movieCard);
+            });
+        }
+    } else {
+        document.querySelector('.watch-container').innerHTML = "<h1>Error: Content details not found. Please go back to the homepage.</h1>";
     }
+}
+
 
     // ==================================================
     // PAGE: DOWNLOAD.HTML
