@@ -195,34 +195,17 @@ if (body.classList.contains('watch-page')) {
         document.getElementById('movie-poster').src = currentItem.poster;
         document.getElementById('movie-title').textContent = currentItem.title;
         document.getElementById('movie-description').textContent = currentItem.description;
-        
         const playerContainer = document.getElementById('video-player-container');
         const playerMessage = document.getElementById('player-message');
-        const videoElement = document.getElementById('player');
 
-        // NAYA PROXY PLAYER LOGIC
-        if (currentItem.m3u8 && Hls.isSupported()) {
-            playerContainer.style.display = 'block';
-            playerMessage.style.display = 'none';
-            
-            // Hum direct link ki jagah apne API se link maangenge
-            const proxyUrl = `/api/get-stream?url=${encodeURIComponent(currentItem.m3u8)}`;
-            
-            const hls = new Hls();
-            hls.loadSource(proxyUrl);
-            hls.attachMedia(videoElement);
-            window.player = new Plyr(videoElement, {});
-
-        } else if (currentItem.embed && currentItem.embed.trim() !== "") {
-            // Purana embed logic (baaki videos ke liye)
+        // Original Embed Logic
+        if (currentItem.embed && currentItem.embed.trim() !== "") {
             playerContainer.innerHTML = currentItem.embed;
             playerContainer.style.display = 'block';
-            playerMessage.style.display = 'none';
-
+            if (playerMessage) playerMessage.style.display = 'none';
         } else {
-            // Jab koi video source na ho
             playerContainer.style.display = 'none';
-            playerMessage.style.display = 'block';
+            if (playerMessage) playerMessage.style.display = 'block';
         }
 
         const downloadButton = document.getElementById('download-link');
@@ -232,7 +215,6 @@ if (body.classList.contains('watch-page')) {
         } else {
             downloadButton.style.display = 'none';
         }
-        
         const shareButton = document.getElementById('share-button');
         if (shareButton) {
             shareButton.addEventListener('click', () => {
@@ -243,7 +225,6 @@ if (body.classList.contains('watch-page')) {
                 }
             });
         }
-        
         const relatedGrid = document.getElementById("related-movie-grid");
         if (relatedGrid && window.dorebox_content && window.dorebox_content.movies) {
             const otherMovies = window.dorebox_content.movies.filter(m => m.title !== currentTitle).sort(() => 0.5 - Math.random()).slice(0, 4);
@@ -259,6 +240,7 @@ if (body.classList.contains('watch-page')) {
         document.querySelector('.watch-container').innerHTML = "<h1>Error: Content details not found. Please go back to the homepage.</h1>";
     }
 }
+
 
     // ==================================================
     // PAGE: DOWNLOAD.HTML
