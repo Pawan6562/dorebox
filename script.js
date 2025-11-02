@@ -48,14 +48,11 @@ console.log("DoreBox User ID:", currentUserID);
     { title: "Dinosaur Yodha", poster: "https://i.postimg.cc/3w83qTtr/Doraemon-The-Movie-Dinosaur-Yoddhha-Hindi-Tamil-Telugu-Download-FHD-990x557.jpg", description: "Nobita and his friends travel back in time to the age of dinosaurs and must protect them from futuristic hunters.", embed: '', downloadLinks: { '1080p': 'https://gplinks.co/Dinasoryodha', '720p': 'https://gplinks.co/Dinasoryodhain720pbycjh', '360p': 'https://gplinks.co/Dinasoryodhain360pbycjh' } },
     { title: "Doraemon The Movie Nobita and the Underwater Adventure", poster: "https://i.postimg.cc/yYLjw5Pn/Doraemon-The-Movie-Nobita.jpg", description: "Join Nobita and his friends on a thrilling journey deep beneath the waves to an ancient, mysterious kingdom.", embed: '', downloadLinks: { '1080p': 'https://gplinks.co/UnderwaterAdventurebycjh', '720p': 'https://gplinks.co/Underworldadventurebycjh', '360p': 'https://gplinks.co/Underworldadventurebycjh' } },
     { title: "ICHI MERA DOST", poster: "https://i.postimg.cc/xjpCppDL/Doraemon-The-Movie-Nobita-in-Ichi-Mera-Dost-Hindi.png", description: "Nobita finds a mysterious seed which grows into a sapling. This sapling can move and think, and soon becomes Nobita's best friend, Ichi.", embed: '', downloadLinks: { '1080p': 'https://gplinks.co/Ichimeradostin1080pbycjh', '720p': 'https://gplinks.co/Ichimeradostin720pbycjh', '360p': 'https://gplinks.co/Ichimeradostin360pbycjh' } },
-    {
-    title: "Doraemon Nobita's Dorabian Nights",
+    { title: "Doraemon Nobita's Dorabian Nights",
     poster: "https://iili.io/KqRfWdv.png",
     description: "Join Doraemon and friends on a magical adventure into the world of the Arabian Nights!",
-    // Purana embed hata diya
-    embed: "", 
-    // Naya m3u8 link add kar diya
-    m3u8: "https://www.dailymotion.com/cdn/manifest/video/x9t2pss.m3u8",
+    embed: `<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;"><iframe src="https://geo.dailymotion.com/player.html?video=x9t2pss" style="width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden; border:none;" allow="fullscreen; web-share" allowfullscreen title="Dailymotion Video Player"></iframe></div>`,
+    // m3u8 waali line hata di hai
     downloadLinks: {
         '1080p': 'https://gplinks.co/dorabiannightonbotat1080pbyahj',
         '720p': '#',
