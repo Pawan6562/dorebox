@@ -11,12 +11,6 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4494331077135172"
          crossorigin="anonymous"></script>
 
-    <!-- === PLYR.IO PLAYER FILES (YEH ADD KIYA HAI) === -->
-    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
-    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-    <!-- === END OF PLAYER FILES === -->
-
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="style.css?v=2.5">
 </head>
@@ -34,15 +28,10 @@
     </header>
 
     <main class="watch-container">
-        <div id="player-message" class="player-message-box" style="display: none;"> <!-- Ise by default hide kar diya hai -->
+        <div id="player-message" class="player-message-box" style="display: none;">
             This movie is not available to watch right now, but you can download it using the button given below.
         </div>
-        
-        <!-- === VIDEO PLAYER CONTAINER (ISKO BADLA HAI) === -->
-        <div class="video-player-wrapper" id="video-player-container">
-            <video id="player" playsinline controls></video>
-        </div>
-        <!-- === END OF PLAYER CONTAINER === -->
+        <div class="video-player-wrapper" id="video-player-container"></div>
 
         <div class="movie-details-grid">
             <img id="movie-poster" src="" alt="Movie Poster">
