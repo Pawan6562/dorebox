@@ -11,12 +11,10 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4494331077135172"
          crossorigin="anonymous"></script>
 
-    <!-- === ONCLICKA MAIN AD SCRIPT === -->
-    <!-- Yeh script ab HEAD mein rahega -->
-    <script async="async" data-cfasync="false" src="//go.onclicka.com/ados.js"></script>
-
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="style.css?v=2.5">
+    
+    <!-- Onclicka scripts ab yahan HEAD mein nahi rahenge -->
 </head>
 <body class="watch-page">
 
@@ -62,17 +60,18 @@
         </section>
     </main>
 
-    <!-- === ONCLICKA INITIALIZATION SCRIPT (As per their guide) === -->
-    <script>
-      window.initCdTma?.({ id: 6097175 }).then(show => {
-        // 'show' function ko global window object par save kar do
-        window.showAdFunction = show;
-        console.log("Onclicka Ad Engine Initialized Successfully.");
-      }).catch(e => console.error("Onclicka Ad Engine Failed to Initialize:", e));
-    </script>
-
     <!-- Hamara Main JavaScript File -->
     <script src="script.js"></script>
+
+    <!-- === ONCLICKA AD SCRIPTS (THEIR NEW, CORRECT METHOD) === -->
+    <!-- Dono scripts yahan, </body> ke theek upar aayenge -->
+    <script src="https://ados.clickadilla.com/ados.js"></script>
+    <script>
+        window.ados && window.ados.run({
+            spot: 6097175, // Aapki Overlay Spot ID
+            selector: '#video-player-container'
+        });
+    </script>
 
 </body>
 </html>
