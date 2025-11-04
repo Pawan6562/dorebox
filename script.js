@@ -198,9 +198,12 @@ if (body.classList.contains('watch-page')) {
 
         // Ad ke baad movie load karne ka function
         const loadMoviePlayer = () => {
-            console.log("Ad finished, loading movie player...");
+            // Pehle check kar lein ki movie pehle se toh load nahi ho gayi
+            if (playerContainer.querySelector('iframe')) return;
+
+            console.log("Ad finished or timed out, loading movie player...");
             if (currentItem.embed && currentItem.embed.trim() !== "") {
-                playerContainer.innerHTML = currentItem.embed; // Yahan Dailymotion ka embed code daal rahe hain
+                playerContainer.innerHTML = currentItem.embed;
                 playerContainer.style.display = 'block';
                 if (playerMessage) playerMessage.style.display = 'none';
             } else {
@@ -210,25 +213,47 @@ if (body.classList.contains('watch-page')) {
         };
 
         // Onclicka ke ad events ko sunne ke liye
-        // Yeh code check karega ki ad kab khatam hua
         window.ados = window.ados || {};
         window.ados.events = window.ados.events || [];
         window.ados.events.push(function(event) {
             console.log('Onclicka Ad Event:', event);
-            // Jab ad poora ho jaaye ya skip ho jaaye
-            if (event.type === 'ad_completed' || event.type === 'ad_skipped' || event.type === 'ad_closed') {
+            if (event.type === 'ad_completed' || event.type === 'ad_skipped' || event.type === 'ad_closed' || event.type === 'ad_error') {
                 loadMoviePlayer();
             }
         });
 
-        // Agar 20 second tak ad se koi event nahi aata (failsafe)
+        // === YEH HAI ASLI FIX ===
+        // Onclicka ko ad chalaane ka command dena
+        try {
+            if (window.ados && window.ados.run) {
+                console.log("Telling Onclicka to run the ad...");
+                window.ados.run();
+            } else {
+                // Agar ados object ready na ho, toh thodi der baad try karein
+                setTimeout(() => {
+                    if (window.ados && window.ados.run) {
+                        console.log("Telling Onclicka to run the ad (delayed)...");
+                        window.ados.run();
+                    } else {
+                         // Agar phir bhi na chale, toh direct movie chala do
+                        console.log("Onclicka script not found, loading movie directly.");
+                        loadMoviePlayer();
+                    }
+                }, 1000);
+            }
+        } catch (e) {
+            console.error("Error running Onclicka ad:", e);
+            loadMoviePlayer(); // Agar ad chalaane mein error aaye, toh movie chala do
+        }
+        // === END OF FIX ===
+
+        // Failsafe: Agar 20 second tak kuch na ho, toh movie chala do
         setTimeout(() => {
-            // Check karein ki player abhi bhi khaali hai ya nahi
-            if (playerContainer.innerHTML.trim() === '') {
-                console.log("Ad failed to load or fire event, loading movie directly.");
+            if (!playerContainer.querySelector('iframe')) {
+                console.log("Failsafe: 20 seconds passed, loading movie directly.");
                 loadMoviePlayer();
             }
-        }, 20000); // 20 second ka timeout
+        }, 20000);
 
         // Baaki ka code (Download, Share, Related Movies) waise hi rahega
         const downloadButton = document.getElementById('download-link');
