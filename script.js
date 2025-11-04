@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==================================================
-// PAGE: WATCH.HTML (THE PROXY SOLUTION)
+// PAGE: WATCH.HTML (Interstitial Ad Test)
 // ==================================================
 if (body.classList.contains('watch-page')) {
     const urlParams = new URLSearchParams(window.location.search);
@@ -194,68 +194,17 @@ if (body.classList.contains('watch-page')) {
         document.getElementById('movie-description').textContent = currentItem.description;
         
         const playerContainer = document.getElementById('video-player-container');
-        const playerMessage = document.getElementById('player-message');
-
-        const loadMoviePlayer = () => {
-            if (playerContainer.querySelector('iframe')) return;
-            console.log("Ad finished. Loading Dailymotion player...");
-            if (currentItem.embed && currentItem.embed.trim() !== "") {
-                playerContainer.innerHTML = currentItem.embed;
-            } else {
-                playerContainer.style.display = 'none';
-                if (playerMessage) playerMessage.style.display = 'block';
-            }
-        };
-
-        const showAd = () => {
-            try {
-                const adPlayerElement = document.createElement('video');
-                adPlayerElement.id = 'ad-player';
-                playerContainer.appendChild(adPlayerElement);
-
-                const adPlayer = new Plyr('#ad-player', {});
-
-                adPlayer.on('ready', () => {
-                    console.log("Plyr player ready. Setting ad source via our proxy...");
-                    adPlayer.source = {
-                        type: 'video',
-                        sources: [{
-                            // Ab hum AdCash se direct nahi, apne server se ad maangenge
-                            src: '/api/get-ad', 
-                            provider: 'vast'
-                        }]
-                    };
-                });
-
-                adPlayer.on('adended', () => {
-                    console.log("Ad ended. Loading movie.");
-                    loadMoviePlayer();
-                });
-
-                adPlayer.on('adserror', (event) => {
-                    console.error("Ad error:", event);
-                    loadMoviePlayer();
-                });
-
-                adPlayer.on('error', (event) => {
-                    console.error("General player error:", event);
-                    loadMoviePlayer();
-                });
-
-            } catch (e) {
-                console.error("Critical error in showAd:", e);
-                loadMoviePlayer();
-            }
-        };
-
+        
+        // Movie ko turant load kar do
+        console.log("Loading movie player directly for Interstitial Ad test...");
         if (currentItem.embed && currentItem.embed.trim() !== "") {
-            showAd();
+            playerContainer.innerHTML = currentItem.embed;
         } else {
             playerContainer.style.display = 'none';
-            if (playerMessage) playerMessage.style.display = 'block';
+            document.getElementById('player-message').style.display = 'block';
         }
 
-        // Baaki ka code waise hi rahega...
+        // Baaki ka code (Download, Share, Related Movies) waise hi rahega
         const downloadButton = document.getElementById('download-link');
         if (currentItem.downloadLinks) {
             downloadButton.href = `download.html?title=${encodeURIComponent(currentItem.title)}&type=${currentType}`;
@@ -263,6 +212,7 @@ if (body.classList.contains('watch-page')) {
         } else {
             downloadButton.style.display = 'none';
         }
+        
         const shareButton = document.getElementById('share-button');
         if (shareButton) {
             shareButton.addEventListener('click', () => {
@@ -273,6 +223,7 @@ if (body.classList.contains('watch-page')) {
                 }
             });
         }
+        
         const relatedGrid = document.getElementById("related-movie-grid");
         if (relatedGrid && window.dorebox_content && window.dorebox_content.movies) {
             const otherMovies = window.dorebox_content.movies.filter(m => m.title !== currentTitle).sort(() => 0.5 - Math.random()).slice(0, 4);
