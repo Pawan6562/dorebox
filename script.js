@@ -192,19 +192,45 @@ if (body.classList.contains('watch-page')) {
         document.getElementById('movie-poster').src = currentItem.poster;
         document.getElementById('movie-title').textContent = currentItem.title;
         document.getElementById('movie-description').textContent = currentItem.description;
+        
         const playerContainer = document.getElementById('video-player-container');
         const playerMessage = document.getElementById('player-message');
 
-        // Original Embed Logic
-        if (currentItem.embed && currentItem.embed.trim() !== "") {
-            playerContainer.innerHTML = currentItem.embed;
-            playerContainer.style.display = 'block';
-            if (playerMessage) playerMessage.style.display = 'none';
-        } else {
-            playerContainer.style.display = 'none';
-            if (playerMessage) playerMessage.style.display = 'block';
-        }
+        // Ad ke baad movie load karne ka function
+        const loadMoviePlayer = () => {
+            console.log("Ad finished, loading movie player...");
+            if (currentItem.embed && currentItem.embed.trim() !== "") {
+                playerContainer.innerHTML = currentItem.embed; // Yahan Dailymotion ka embed code daal rahe hain
+                playerContainer.style.display = 'block';
+                if (playerMessage) playerMessage.style.display = 'none';
+            } else {
+                playerContainer.style.display = 'none';
+                if (playerMessage) playerMessage.style.display = 'block';
+            }
+        };
 
+        // Onclicka ke ad events ko sunne ke liye
+        // Yeh code check karega ki ad kab khatam hua
+        window.ados = window.ados || {};
+        window.ados.events = window.ados.events || [];
+        window.ados.events.push(function(event) {
+            console.log('Onclicka Ad Event:', event);
+            // Jab ad poora ho jaaye ya skip ho jaaye
+            if (event.type === 'ad_completed' || event.type === 'ad_skipped' || event.type === 'ad_closed') {
+                loadMoviePlayer();
+            }
+        });
+
+        // Agar 20 second tak ad se koi event nahi aata (failsafe)
+        setTimeout(() => {
+            // Check karein ki player abhi bhi khaali hai ya nahi
+            if (playerContainer.innerHTML.trim() === '') {
+                console.log("Ad failed to load or fire event, loading movie directly.");
+                loadMoviePlayer();
+            }
+        }, 20000); // 20 second ka timeout
+
+        // Baaki ka code (Download, Share, Related Movies) waise hi rahega
         const downloadButton = document.getElementById('download-link');
         if (currentItem.downloadLinks) {
             downloadButton.href = `download.html?title=${encodeURIComponent(currentItem.title)}&type=${currentType}`;
@@ -212,6 +238,7 @@ if (body.classList.contains('watch-page')) {
         } else {
             downloadButton.style.display = 'none';
         }
+        
         const shareButton = document.getElementById('share-button');
         if (shareButton) {
             shareButton.addEventListener('click', () => {
@@ -222,6 +249,7 @@ if (body.classList.contains('watch-page')) {
                 }
             });
         }
+        
         const relatedGrid = document.getElementById("related-movie-grid");
         if (relatedGrid && window.dorebox_content && window.dorebox_content.movies) {
             const otherMovies = window.dorebox_content.movies.filter(m => m.title !== currentTitle).sort(() => 0.5 - Math.random()).slice(0, 4);
