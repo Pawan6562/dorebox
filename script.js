@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==================================================
-// PAGE: WATCH.HTML (FINAL CODE - BASED ON NEWEST GUIDE)
+// PAGE: WATCH.HTML (THE SMART PLAN: AD PLAYER -> MOVIE PLAYER)
 // ==================================================
 if (body.classList.contains('watch-page')) {
     const urlParams = new URLSearchParams(window.location.search);
@@ -196,12 +196,9 @@ if (body.classList.contains('watch-page')) {
         const playerContainer = document.getElementById('video-player-container');
         const playerMessage = document.getElementById('player-message');
 
-        // Ad ke baad movie load karne ka function
+        // Function to load the Dailymotion movie player
         const loadMoviePlayer = () => {
-            // Check karo ki movie pehle se load toh nahi ho gayi
-            if (playerContainer.querySelector('iframe')) return;
-
-            console.log("Ad finished or skipped. Loading movie player now...");
+            console.log("Ad finished. Loading Dailymotion player now...");
             if (currentItem.embed && currentItem.embed.trim() !== "") {
                 playerContainer.innerHTML = currentItem.embed;
             } else {
@@ -210,25 +207,58 @@ if (body.classList.contains('watch-page')) {
             }
         };
 
-        // Onclicka ke ad events ko sunne ke liye
-        window.ados = window.ados || {};
-        window.ados.events = window.ados.events || [];
-        window.ados.events.push(function(event) {
-            console.log('Onclicka Ad Event Received:', event);
-            // Jab ad poora ho, skip ho, band ho, ya error aaye, tab movie chala do
-            if (event.type === 'ad_completed' || event.type === 'ad_skipped' || event.type === 'ad_closed' || event.type === 'ad_error') {
-                loadMoviePlayer();
-            }
-        });
+        // Function to show the Ad
+        const showAd = () => {
+            // 1. Ek temporary video element banao ad ke liye
+            const adPlayerElement = document.createElement('video');
+            adPlayerElement.id = 'ad-player';
+            adPlayerElement.playsinline = true;
+            adPlayerElement.controls = true;
+            playerContainer.appendChild(adPlayerElement);
 
-        // Failsafe: Agar 25 second tak ad se koi event nahi aata, toh movie chala do
-        // Yeh zaroori hai kyunki ho sakta hai ad na mile aur system atka reh jaaye
-        setTimeout(() => {
-            if (!playerContainer.querySelector('iframe')) {
-                console.log("Failsafe Timer: 25 seconds passed, loading movie directly just in case.");
+            // 2. Plyr.io player ko is temporary element se initialize karo
+            const adPlayer = new Plyr('#ad-player', {
+                // Player options
+            });
+
+            // 3. AdCash VAST URL ko player mein daalo
+            adPlayer.source = {
+                type: 'video',
+                sources: [{
+                    src: 'https://youradexchange.com/video/select.php?v=10587254', // AdCash VAST URL
+                    provider: 'vast'
+                }]
+            };
+
+            // 4. Ad ke events ko suno
+            adPlayer.on('adended', () => {
+                console.log("Ad ended event received.");
                 loadMoviePlayer();
-            }
-        }, 25000);
+            });
+
+            adPlayer.on('adserror', (event) => {
+                console.error("Ad error event received:", event);
+                loadMoviePlayer(); // Agar ad mein error aaye, toh bhi movie chala do
+            });
+            
+            // Failsafe: Agar 20 second tak ad se koi event nahi aata
+            setTimeout(() => {
+                // Check karo ki movie player abhi tak load hua hai ya nahi
+                if (!playerContainer.querySelector('iframe')) {
+                    console.log("Failsafe: 20 seconds passed, loading movie directly.");
+                    loadMoviePlayer();
+                }
+            }, 20000);
+        };
+
+        // Agar movie mein embed code hai, toh ad chalao
+        if (currentItem.embed && currentItem.embed.trim() !== "") {
+            showAd();
+        } else {
+            // Agar embed code nahi hai, toh message dikha do
+            playerContainer.style.display = 'none';
+            if (playerMessage) playerMessage.style.display = 'block';
+        }
 
         // Baaki ka code (Download, Share, Related Movies) waise hi rahega
         const downloadButton = document.getElementById('download-link');
