@@ -178,11 +178,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==================================================
-// PAGE: WATCH.HTML (DEBUGGING MODE)
+// PAGE: WATCH.HTML (THE PROXY SOLUTION)
 // ==================================================
 if (body.classList.contains('watch-page')) {
-    console.log("DEBUG: watch-page loaded.");
-
     const urlParams = new URLSearchParams(window.location.search);
     const currentTitle = decodeURIComponent(urlParams.get('title'));
     const currentType = urlParams.get('type') || 'movies';
@@ -190,8 +188,6 @@ if (body.classList.contains('watch-page')) {
     const currentItem = allContent.find(m => m.title === currentTitle);
 
     if (currentItem) {
-        console.log("DEBUG: Found movie item:", currentItem.title);
-
         document.title = `Watch ${currentItem.title} - DoreBox`;
         document.getElementById('movie-poster').src = currentItem.poster;
         document.getElementById('movie-title').textContent = currentItem.title;
@@ -201,72 +197,60 @@ if (body.classList.contains('watch-page')) {
         const playerMessage = document.getElementById('player-message');
 
         const loadMoviePlayer = () => {
-            console.log("DEBUG: loadMoviePlayer function called.");
-            if (playerContainer.querySelector('iframe')) {
-                console.log("DEBUG: Movie player already loaded. Exiting.");
-                return;
-            }
-            console.log("DEBUG: Loading Dailymotion player now...");
+            if (playerContainer.querySelector('iframe')) return;
+            console.log("Ad finished. Loading Dailymotion player...");
             if (currentItem.embed && currentItem.embed.trim() !== "") {
                 playerContainer.innerHTML = currentItem.embed;
             } else {
-                console.log("DEBUG: No embed code found for this movie.");
                 playerContainer.style.display = 'none';
                 if (playerMessage) playerMessage.style.display = 'block';
             }
         };
 
         const showAd = () => {
-            console.log("DEBUG: showAd function called.");
             try {
                 const adPlayerElement = document.createElement('video');
                 adPlayerElement.id = 'ad-player';
                 playerContainer.appendChild(adPlayerElement);
-                console.log("DEBUG: Temporary <video> element created.");
 
-                const adPlayer = new Plyr('#ad-player', {
-                    // Player options
-                });
-                console.log("DEBUG: Plyr player initialized.");
+                const adPlayer = new Plyr('#ad-player', {});
 
                 adPlayer.on('ready', () => {
-                    console.log("DEBUG: Plyr player is ready!");
+                    console.log("Plyr player ready. Setting ad source via our proxy...");
                     adPlayer.source = {
                         type: 'video',
                         sources: [{
-                            src: 'https://youradexchange.com/video/select.php?v=10587254',
+                            // Ab hum AdCash se direct nahi, apne server se ad maangenge
+                            src: '/api/get-ad', 
                             provider: 'vast'
                         }]
                     };
-                    console.log("DEBUG: VAST ad source set.");
                 });
 
                 adPlayer.on('adended', () => {
-                    console.log("DEBUG: Ad ended event received.");
+                    console.log("Ad ended. Loading movie.");
                     loadMoviePlayer();
                 });
 
                 adPlayer.on('adserror', (event) => {
-                    console.error("DEBUG: Ad error event received:", event);
+                    console.error("Ad error:", event);
                     loadMoviePlayer();
                 });
 
                 adPlayer.on('error', (event) => {
-                    console.error("DEBUG: General player error:", event);
+                    console.error("General player error:", event);
                     loadMoviePlayer();
                 });
 
             } catch (e) {
-                console.error("DEBUG: A critical error occurred in showAd function:", e);
-                loadMoviePlayer(); // Agar kuch bhi galat ho, toh movie chala do
+                console.error("Critical error in showAd:", e);
+                loadMoviePlayer();
             }
         };
 
         if (currentItem.embed && currentItem.embed.trim() !== "") {
-            console.log("DEBUG: Embed code exists. Calling showAd().");
             showAd();
         } else {
-            console.log("DEBUG: No embed code. Showing message directly.");
             playerContainer.style.display = 'none';
             if (playerMessage) playerMessage.style.display = 'block';
         }
@@ -301,7 +285,6 @@ if (body.classList.contains('watch-page')) {
             });
         }
     } else {
-        console.error("DEBUG: Movie item not found in database.");
         document.querySelector('.watch-container').innerHTML = "<h1>Error: Content details not found. Please go back to the homepage.</h1>";
     }
 }
