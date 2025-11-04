@@ -178,9 +178,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==================================================
-// PAGE: WATCH.HTML (THE SMART PLAN: AD PLAYER -> MOVIE PLAYER)
+// PAGE: WATCH.HTML (DEBUGGING MODE)
 // ==================================================
 if (body.classList.contains('watch-page')) {
+    console.log("DEBUG: watch-page loaded.");
+
     const urlParams = new URLSearchParams(window.location.search);
     const currentTitle = decodeURIComponent(urlParams.get('title'));
     const currentType = urlParams.get('type') || 'movies';
@@ -188,6 +190,8 @@ if (body.classList.contains('watch-page')) {
     const currentItem = allContent.find(m => m.title === currentTitle);
 
     if (currentItem) {
+        console.log("DEBUG: Found movie item:", currentItem.title);
+
         document.title = `Watch ${currentItem.title} - DoreBox`;
         document.getElementById('movie-poster').src = currentItem.poster;
         document.getElementById('movie-title').textContent = currentItem.title;
@@ -196,71 +200,78 @@ if (body.classList.contains('watch-page')) {
         const playerContainer = document.getElementById('video-player-container');
         const playerMessage = document.getElementById('player-message');
 
-        // Function to load the Dailymotion movie player
         const loadMoviePlayer = () => {
-            console.log("Ad finished. Loading Dailymotion player now...");
+            console.log("DEBUG: loadMoviePlayer function called.");
+            if (playerContainer.querySelector('iframe')) {
+                console.log("DEBUG: Movie player already loaded. Exiting.");
+                return;
+            }
+            console.log("DEBUG: Loading Dailymotion player now...");
             if (currentItem.embed && currentItem.embed.trim() !== "") {
                 playerContainer.innerHTML = currentItem.embed;
             } else {
+                console.log("DEBUG: No embed code found for this movie.");
                 playerContainer.style.display = 'none';
                 if (playerMessage) playerMessage.style.display = 'block';
             }
         };
 
-        // Function to show the Ad
         const showAd = () => {
-            // 1. Ek temporary video element banao ad ke liye
-            const adPlayerElement = document.createElement('video');
-            adPlayerElement.id = 'ad-player';
-            adPlayerElement.playsinline = true;
-            adPlayerElement.controls = true;
-            playerContainer.appendChild(adPlayerElement);
+            console.log("DEBUG: showAd function called.");
+            try {
+                const adPlayerElement = document.createElement('video');
+                adPlayerElement.id = 'ad-player';
+                playerContainer.appendChild(adPlayerElement);
+                console.log("DEBUG: Temporary <video> element created.");
 
-            // 2. Plyr.io player ko is temporary element se initialize karo
-            const adPlayer = new Plyr('#ad-player', {
-                // Player options
-            });
+                const adPlayer = new Plyr('#ad-player', {
+                    // Player options
+                });
+                console.log("DEBUG: Plyr player initialized.");
 
-            // 3. AdCash VAST URL ko player mein daalo
-            adPlayer.source = {
-                type: 'video',
-                sources: [{
-                    src: 'https://youradexchange.com/video/select.php?v=10587254', // AdCash VAST URL
-                    provider: 'vast'
-                }]
-            };
+                adPlayer.on('ready', () => {
+                    console.log("DEBUG: Plyr player is ready!");
+                    adPlayer.source = {
+                        type: 'video',
+                        sources: [{
+                            src: 'https://youradexchange.com/video/select.php?v=10587254',
+                            provider: 'vast'
+                        }]
+                    };
+                    console.log("DEBUG: VAST ad source set.");
+                });
 
-            // 4. Ad ke events ko suno
-            adPlayer.on('adended', () => {
-                console.log("Ad ended event received.");
-                loadMoviePlayer();
-            });
-
-            adPlayer.on('adserror', (event) => {
-                console.error("Ad error event received:", event);
-                loadMoviePlayer(); // Agar ad mein error aaye, toh bhi movie chala do
-            });
-            
-            // Failsafe: Agar 20 second tak ad se koi event nahi aata
-            setTimeout(() => {
-                // Check karo ki movie player abhi tak load hua hai ya nahi
-                if (!playerContainer.querySelector('iframe')) {
-                    console.log("Failsafe: 20 seconds passed, loading movie directly.");
+                adPlayer.on('adended', () => {
+                    console.log("DEBUG: Ad ended event received.");
                     loadMoviePlayer();
-                }
-            }, 20000);
+                });
+
+                adPlayer.on('adserror', (event) => {
+                    console.error("DEBUG: Ad error event received:", event);
+                    loadMoviePlayer();
+                });
+
+                adPlayer.on('error', (event) => {
+                    console.error("DEBUG: General player error:", event);
+                    loadMoviePlayer();
+                });
+
+            } catch (e) {
+                console.error("DEBUG: A critical error occurred in showAd function:", e);
+                loadMoviePlayer(); // Agar kuch bhi galat ho, toh movie chala do
+            }
         };
 
-        // Agar movie mein embed code hai, toh ad chalao
         if (currentItem.embed && currentItem.embed.trim() !== "") {
+            console.log("DEBUG: Embed code exists. Calling showAd().");
             showAd();
         } else {
-            // Agar embed code nahi hai, toh message dikha do
+            console.log("DEBUG: No embed code. Showing message directly.");
             playerContainer.style.display = 'none';
             if (playerMessage) playerMessage.style.display = 'block';
         }
 
-        // Baaki ka code (Download, Share, Related Movies) waise hi rahega
+        // Baaki ka code waise hi rahega...
         const downloadButton = document.getElementById('download-link');
         if (currentItem.downloadLinks) {
             downloadButton.href = `download.html?title=${encodeURIComponent(currentItem.title)}&type=${currentType}`;
@@ -268,7 +279,6 @@ if (body.classList.contains('watch-page')) {
         } else {
             downloadButton.style.display = 'none';
         }
-        
         const shareButton = document.getElementById('share-button');
         if (shareButton) {
             shareButton.addEventListener('click', () => {
@@ -279,7 +289,6 @@ if (body.classList.contains('watch-page')) {
                 }
             });
         }
-        
         const relatedGrid = document.getElementById("related-movie-grid");
         if (relatedGrid && window.dorebox_content && window.dorebox_content.movies) {
             const otherMovies = window.dorebox_content.movies.filter(m => m.title !== currentTitle).sort(() => 0.5 - Math.random()).slice(0, 4);
@@ -292,6 +301,7 @@ if (body.classList.contains('watch-page')) {
             });
         }
     } else {
+        console.error("DEBUG: Movie item not found in database.");
         document.querySelector('.watch-container').innerHTML = "<h1>Error: Content details not found. Please go back to the homepage.</h1>";
     }
 }
