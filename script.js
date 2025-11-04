@@ -198,14 +198,10 @@ if (body.classList.contains('watch-page')) {
 
         // Ad ke baad movie load karne ka function
         const loadMoviePlayer = () => {
-            // Pehle check kar lein ki movie pehle se toh load nahi ho gayi
             if (playerContainer.querySelector('iframe')) return;
-
             console.log("Ad finished or timed out, loading movie player...");
             if (currentItem.embed && currentItem.embed.trim() !== "") {
                 playerContainer.innerHTML = currentItem.embed;
-                playerContainer.style.display = 'block';
-                if (playerMessage) playerMessage.style.display = 'none';
             } else {
                 playerContainer.style.display = 'none';
                 if (playerMessage) playerMessage.style.display = 'block';
@@ -222,7 +218,27 @@ if (body.classList.contains('watch-page')) {
             }
         });
 
-        // Failsafe: Agar 20 second tak ad se koi event nahi aata, toh movie chala do
+        // === THE FINAL, MANUAL TRIGGER ===
+        // Hum Onclicka ke automatic system par depend nahi karenge.
+        // Hum 1 second wait karenge taaki Onclicka ki scripts load ho jaayein.
+        setTimeout(() => {
+            try {
+                // Hum manually ek naya ad spot banayenge aur usko chalaayenge.
+                console.log("Manually creating and running ad spot...");
+                const adspot = window.ados.addSpot({
+                    id: 6067178, // Hamari Spot ID
+                    selector: '#video-player-container', // Hamara Player Container
+                    type: 'vast' // Hum bata rahe hain ki yeh video ad hai
+                });
+                window.ados.run(adspot); // Ad ko chalaane ka command
+            } catch (e) {
+                console.error("Failed to run Onclicka ad manually:", e);
+                loadMoviePlayer(); // Agar ad chalaane mein error aaye, toh movie chala do
+            }
+        }, 1000); // 1 second ka delay
+        // === END OF FINAL TRIGGER ===
+
+        // Failsafe: Agar 20 second tak kuch na ho, toh movie chala do
         setTimeout(() => {
             if (!playerContainer.querySelector('iframe')) {
                 console.log("Failsafe: 20 seconds passed, loading movie directly.");
@@ -265,6 +281,7 @@ if (body.classList.contains('watch-page')) {
         document.querySelector('.watch-container').innerHTML = "<h1>Error: Content details not found. Please go back to the homepage.</h1>";
     }
 }
+
 
 
     // ==================================================
