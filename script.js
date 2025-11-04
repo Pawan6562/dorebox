@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==================================================
-// PAGE: WATCH.HTML (THE FINAL, WORKING CODE)
+// PAGE: WATCH.HTML (FINAL CODE - BASED ON OFFICIAL GUIDE)
 // ==================================================
 if (body.classList.contains('watch-page')) {
     const urlParams = new URLSearchParams(window.location.search);
@@ -198,8 +198,7 @@ if (body.classList.contains('watch-page')) {
 
         // Ad ke baad movie load karne ka function
         const loadMoviePlayer = () => {
-            if (playerContainer.querySelector('iframe')) return;
-            console.log("Ad finished, loading movie player...");
+            console.log("Loading movie player now...");
             if (currentItem.embed && currentItem.embed.trim() !== "") {
                 playerContainer.innerHTML = currentItem.embed;
             } else {
@@ -208,23 +207,32 @@ if (body.classList.contains('watch-page')) {
             }
         };
 
-        // Onclicka ke ad events ko sunne ke liye
-        window.ados = window.ados || {};
-        window.ados.events = window.ados.events || [];
-        window.ados.events.push(function(event) {
-            console.log('Onclicka Ad Event:', event);
-            if (event.type === 'ad_completed' || event.type === 'ad_skipped' || event.type === 'ad_closed' || event.type === 'ad_error') {
-                loadMoviePlayer();
+        // Ad chalaane ka function
+        const triggerAd = () => {
+            // Check karo ki 'showAdFunction' ready hai ya nahi
+            if (window.showAdFunction) {
+                console.log("Ad function is ready. Trying to show ad...");
+                // Ad chalao
+                window.showAdFunction()
+                    .then(() => {
+                        // Ad poora hone ya skip hone par
+                        console.log('Ad finished or skipped.');
+                        loadMoviePlayer();
+                    })
+                    .catch(e => {
+                        // Agar ad chalaane mein error aaye
+                        console.error('Error playing ad:', e);
+                        loadMoviePlayer(); // Movie phir bhi chala do
+                    });
+            } else {
+                // Agar ad function ready nahi hai, toh 1 second baad phir try karo
+                console.log("Ad function not ready yet, trying again in 1 second...");
+                setTimeout(triggerAd, 1000);
             }
-        });
+        };
 
-        // Failsafe: Agar 25 second tak ad se koi event nahi aata, toh movie chala do
-        setTimeout(() => {
-            if (!playerContainer.querySelector('iframe')) {
-                console.log("Failsafe: 25 seconds passed, loading movie directly.");
-                loadMoviePlayer();
-            }
-        }, 25000);
+        // Page load hone ke 1 second baad ad chalaane ki koshish karo
+        setTimeout(triggerAd, 1000);
 
         // Baaki ka code (Download, Share, Related Movies) waise hi rahega
         const downloadButton = document.getElementById('download-link');
