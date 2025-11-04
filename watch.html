@@ -11,10 +11,12 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4494331077135172"
          crossorigin="anonymous"></script>
 
+    <!-- === PLYR.IO PLAYER FILES (Sirf Ad Chalaane Ke Liye) === -->
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="style.css?v=2.5">
-    
-    <!-- Onclicka scripts ab yahan HEAD mein nahi rahenge -->
 </head>
 <body class="watch-page">
 
@@ -33,8 +35,10 @@
         <div id="player-message" class="player-message-box" style="display: none;">
             This movie is not available to watch right now, but you can download it using the button given below.
         </div>
+        
+        <!-- Is div ke andar pehle ad player, phir movie player load hoga -->
         <div class="video-player-wrapper" id="video-player-container">
-            <!-- Ad aur Movie Player yahan load honge -->
+             <!-- Shuru mein yeh khaali rahega -->
         </div>
 
         <div class="movie-details-grid">
@@ -62,16 +66,6 @@
 
     <!-- Hamara Main JavaScript File -->
     <script src="script.js"></script>
-
-    <!-- === ONCLICKA AD SCRIPTS (THEIR NEW, CORRECT METHOD) === -->
-    <!-- Dono scripts yahan, </body> ke theek upar aayenge -->
-    <script src="https://ados.clickadilla.com/ados.js"></script>
-    <script>
-        window.ados && window.ados.run({
-            spot: 6097175, // Aapki Overlay Spot ID
-            selector: '#video-player-container'
-        });
-    </script>
 
 </body>
 </html>
