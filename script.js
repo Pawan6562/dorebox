@@ -203,7 +203,7 @@ if (body.classList.contains('watch-page')) {
 
             console.log("Ad finished or timed out, loading movie player...");
             if (currentItem.embed && currentItem.embed.trim() !== "") {
-                playerContainer.innerHTML = currentItem.embed; // Yahan Dailymotion ka embed code daal rahe hain
+                playerContainer.innerHTML = currentItem.embed;
                 playerContainer.style.display = 'block';
                 if (playerMessage) playerMessage.style.display = 'none';
             } else {
@@ -217,7 +217,6 @@ if (body.classList.contains('watch-page')) {
         window.ados.events = window.ados.events || [];
         window.ados.events.push(function(event) {
             console.log('Onclicka Ad Event:', event);
-            // Jab ad poora ho jaaye ya skip ho jaaye ya error aaye
             if (event.type === 'ad_completed' || event.type === 'ad_skipped' || event.type === 'ad_closed' || event.type === 'ad_error') {
                 loadMoviePlayer();
             }
