@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==================================================
-// PAGE: WATCH.HTML (SLIDER AD TEST)
+// PAGE: WATCH.HTML (THE FINAL, WORKING CODE)
 // ==================================================
 if (body.classList.contains('watch-page')) {
     const urlParams = new URLSearchParams(window.location.search);
@@ -194,15 +194,37 @@ if (body.classList.contains('watch-page')) {
         document.getElementById('movie-description').textContent = currentItem.description;
         
         const playerContainer = document.getElementById('video-player-container');
-        
-        // Movie ko turant load kar do
-        console.log("Loading movie player for slider test...");
-        if (currentItem.embed && currentItem.embed.trim() !== "") {
-            playerContainer.innerHTML = currentItem.embed;
-        } else {
-            playerContainer.style.display = 'none';
-            document.getElementById('player-message').style.display = 'block';
-        }
+        const playerMessage = document.getElementById('player-message');
+
+        // Ad ke baad movie load karne ka function
+        const loadMoviePlayer = () => {
+            if (playerContainer.querySelector('iframe')) return;
+            console.log("Ad finished, loading movie player...");
+            if (currentItem.embed && currentItem.embed.trim() !== "") {
+                playerContainer.innerHTML = currentItem.embed;
+            } else {
+                playerContainer.style.display = 'none';
+                if (playerMessage) playerMessage.style.display = 'block';
+            }
+        };
+
+        // Onclicka ke ad events ko sunne ke liye
+        window.ados = window.ados || {};
+        window.ados.events = window.ados.events || [];
+        window.ados.events.push(function(event) {
+            console.log('Onclicka Ad Event:', event);
+            if (event.type === 'ad_completed' || event.type === 'ad_skipped' || event.type === 'ad_closed' || event.type === 'ad_error') {
+                loadMoviePlayer();
+            }
+        });
+
+        // Failsafe: Agar 25 second tak ad se koi event nahi aata, toh movie chala do
+        setTimeout(() => {
+            if (!playerContainer.querySelector('iframe')) {
+                console.log("Failsafe: 25 seconds passed, loading movie directly.");
+                loadMoviePlayer();
+            }
+        }, 25000);
 
         // Baaki ka code (Download, Share, Related Movies) waise hi rahega
         const downloadButton = document.getElementById('download-link');
