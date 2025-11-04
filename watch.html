@@ -11,18 +11,15 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4494331077135172"
          crossorigin="anonymous"></script>
 
-    <!-- === ONCLICKA AD SCRIPTS (THE CORRECT URL) === -->
-    <!-- Main Ad Script -->
+    <!-- === ONCLICKA MAIN AD SCRIPT === -->
+    <!-- Yeh script ab HEAD mein rahega -->
     <script async="async" data-cfasync="false" src="//go.onclicka.com/ados.js"></script>
-    <!-- Slider VAST Spot Script (Aapka dhoondha hua sahi URL) -->
-    <script async="async" data-cfasync="false" src="https://bid.onclckstr.com/vast?spot_id=6097186"></script>
 
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="style.css?v=2.5">
 </head>
 <body class="watch-page">
-    <!-- Baaki ka poora body code waise ka waisa hi rahega -->
-    <!-- ... (header, main, etc.) ... -->
+
     <header id="main-header">
         <div class="container">
             <a href="index.html" class="logo-link"><h1 class="logo">DoreBox</h1></a>
@@ -39,7 +36,7 @@
             This movie is not available to watch right now, but you can download it using the button given below.
         </div>
         <div class="video-player-wrapper" id="video-player-container">
-            <!-- Movie player yahan load hoga -->
+            <!-- Ad aur Movie Player yahan load honge -->
         </div>
 
         <div class="movie-details-grid">
@@ -65,7 +62,17 @@
         </section>
     </main>
 
+    <!-- === ONCLICKA INITIALIZATION SCRIPT (As per their guide) === -->
+    <script>
+      window.initCdTma?.({ id: 6097175 }).then(show => {
+        // 'show' function ko global window object par save kar do
+        window.showAdFunction = show;
+        console.log("Onclicka Ad Engine Initialized Successfully.");
+      }).catch(e => console.error("Onclicka Ad Engine Failed to Initialize:", e));
+    </script>
+
     <!-- Hamara Main JavaScript File -->
     <script src="script.js"></script>
+
 </body>
 </html>
