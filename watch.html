@@ -11,6 +11,9 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4494331077135172"
          crossorigin="anonymous"></script>
 
+    <!-- === ADCASH LIBRARY SCRIPT === -->
+    <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
+
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="style.css?v=2.5">
 </head>
@@ -32,7 +35,7 @@
             This movie is not available to watch right now, but you can download it using the button given below.
         </div>
         <div class="video-player-wrapper" id="video-player-container">
-            <!-- AdCash apna player yahan khud banayega -->
+            <!-- Movie player yahan load hoga -->
         </div>
 
         <div class="movie-details-grid">
@@ -61,15 +64,11 @@
     <!-- Hamara Main JavaScript File -->
     <script src="script.js"></script>
 
-    <!-- === ADCASH VAST SCRIPT === -->
-    <script type="text/javascript" src="https://adcdnx.com/adj/adj.js"></script>
+    <!-- === ADCASH INTERSTITIAL TAG SCRIPT === -->
     <script type="text/javascript">
-        var adParams = {
-            vastUrl: 'https://youradexchange.com/video/select.php?v=10587254',
-            container: 'video-player-container',
-            // Yahan aur bhi options add kar sakte hain, agar AdCash de toh
-        };
-        adj.request(adParams);
+        aclib.runInterstitial({
+            zoneId: '10587338',
+        });
     </script>
 
 </body>
