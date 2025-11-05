@@ -61,7 +61,16 @@ console.log("DoreBox User ID:", currentUserID);
 },
 
     { title: "Chronicle of the Moon", poster: "https://i.postimg.cc/BbmtZs0X/m3.jpg", description: "This movie is available for download.", embed: "", downloadLinks: { '1080p': 'https://gplinks.co/ChronicleoftheMoonin1080pbycjh', '720p': 'https://gplinks.co/ChronicleoftheMoonin720pbycjh', '360p': 'https://gplinks.co/ChronicleoftheMoonin360pbycjh' } },
-    { title: "Sky Utopia", poster: "https://i.postimg.cc/Nf3QTNXq/doraemon-movie-nobitas-sky-utopia-in-hindi.jpg", description: "This movie is available for download.", embed: "", downloadLinks: { '1080p': 'https://gplinks.co/NobitaSkyutopiain1080pbycjh', '720p': 'https://gplinks.co/NobitaSkyutopiain7200pbycjh', '360p': 'https://gplinks.co/NobitaSkyutopiain360pbycjh' } },
+    { title: "Sky Utopia", poster: "https://i.postimg.cc/Nf3QTNXq/doraemon-movie-nobitas-sky-utopia-in-hindi.jpg", description: "This movie is available for download.", embed: `<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
+    <iframe 
+        src="https://geo.dailymotion.com/player.html?video=x9qpb4s&autoplay=0"
+        style="width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden; border:none;"
+        allow="fullscreen; web-share" 
+        allowfullscreen
+        title="Dailymotion Video Player">
+    </iframe>
+</div>
+`, downloadLinks: { '1080p': 'https://gplinks.co/NobitaSkyutopiain1080pbycjh', '720p': 'https://gplinks.co/NobitaSkyutopiain7200pbycjh', '360p': 'https://gplinks.co/NobitaSkyutopiain360pbycjh' } },
     { title: "Antarctic Adventure", poster: "https://iili.io/Kx9Qifn.jpg", description: "Doraemon and friends travel to Antarctica and discover a huge pyramid.", embed: "", downloadLinks: { '1080p': 'https://gplinks.co/antarcticadventurein1080pbycjh', '720p': 'https://gplinks.co/antarcticadventurein720pbycjh', '360p': 'https://gplinks.co/antarcticadventurein360pbycjh' } },
     { title: "Little Space War", poster: "https://i.postimg.cc/wTt8Th7t/Doraemon-in-Nobitas-Little-Space-War-Movie-Hindi-Tamil-Telugu-Download-HD-jpg-990x557.png", description: "This movie is available for download.", embed: "", downloadLinks: { '1080p': 'https://gplinks.co/littlespacewaronbotat1080p', '720p': '#', '360p': '#' } },
     { title: "Gadget Museum Ka Rahasya", poster: "https://i.postimg.cc/9QsfxJbw/Doraemon-Gadget-Museum-Ka-Rahasya-by-cjh.jpg", description: "This movie is available for download.", embed: `<script src="https://fast.wistia.com/player.js" async></script><script src="https://fast.wistia.com/embed/3x0hp0jjn5.js" async type="module"></script><style>wistia-player[media-id='3x0hp0jjn5']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/3x0hp0jjn5/swatch'); display: block; filter: blur(5px); padding-top:56.25%; }</style> <wistia-player media-id="3x0hp0jjn5" aspect="1.7777777777777777"></wistia-player>`, downloadLinks: { '1080p': 'https://gplinks.co/Gadetmuseuminbotat1080p', '720p': 'https://gplinks.co/Nobitagadgetin720pbycjh', '360p': 'https://gplinks.co/Nobitagadgetin360pbycjh' } },
