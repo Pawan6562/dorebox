@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==================================================
-// PAGE: WATCH.HTML (Interstitial Ad Test)
+// PAGE: WATCH.HTML (In-stream Video Ad - Final Attempt)
 // ==================================================
 if (body.classList.contains('watch-page')) {
     const urlParams = new URLSearchParams(window.location.search);
@@ -194,14 +194,71 @@ if (body.classList.contains('watch-page')) {
         document.getElementById('movie-description').textContent = currentItem.description;
         
         const playerContainer = document.getElementById('video-player-container');
-        
-        // Movie ko turant load kar do
-        console.log("Loading movie player directly for Interstitial Ad test...");
+        const playerMessage = document.getElementById('player-message');
+
+        const loadMoviePlayer = () => {
+            // Check karo ki movie player pehle se toh nahi hai
+            if (playerContainer.querySelector('iframe')) return;
+            
+            console.log("Ad finished or failed. Loading Dailymotion player...");
+            if (currentItem.embed && currentItem.embed.trim() !== "") {
+                playerContainer.innerHTML = currentItem.embed;
+            } else {
+                playerContainer.style.display = 'none';
+                if (playerMessage) playerMessage.style.display = 'block';
+            }
+        };
+
+        const showAd = () => {
+            try {
+                // AdCash ke instructions ke hisaab se, humein ek VAST-compatible player chahiye. Hum Plyr.io use kar rahe hain.
+                const adPlayer = new Plyr('#ad-player', {
+                    // Player options
+                });
+
+                // Jaise hi player ready ho, usko ad ka source do
+                adPlayer.on('ready', () => {
+                    console.log("Plyr player is ready! Setting VAST ad source from AdCash.");
+                    adPlayer.source = {
+                        type: 'video',
+                        sources: [{
+                            // Yahan humne AdCash ka VAST URL daala hai
+                            src: 'https://youradexchange.com/video/select.php?v=10587254',
+                            provider: 'vast'
+                        }]
+                    };
+                });
+
+                // Jab ad khatam ho jaaye, toh movie chala do
+                adPlayer.on('adended', () => {
+                    console.log("Ad ended event received. Loading movie.");
+                    loadMoviePlayer();
+                });
+
+                // Agar ad mein koi error aaye, toh bhi movie chala do
+                adPlayer.on('adserror', (event) => {
+                    console.error("Ad error event received:", event);
+                    loadMoviePlayer();
+                });
+                
+                adPlayer.on('error', (event) => {
+                    console.error("General player error:", event);
+                    loadMoviePlayer();
+                });
+
+            } catch (e) {
+                console.error("A critical error occurred while setting up the ad player:", e);
+                loadMoviePlayer(); // Agar kuch bhi galat ho, toh movie chala do
+            }
+        };
+
+        // Agar movie ka embed code hai, toh pehle ad dikhao
         if (currentItem.embed && currentItem.embed.trim() !== "") {
-            playerContainer.innerHTML = currentItem.embed;
+            showAd();
         } else {
+            // Agar embed code nahi hai, toh message dikha do
             playerContainer.style.display = 'none';
-            document.getElementById('player-message').style.display = 'block';
+            if (playerMessage) playerMessage.style.display = 'block';
         }
 
         // Baaki ka code (Download, Share, Related Movies) waise hi rahega
