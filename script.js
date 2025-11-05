@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==================================================
-// PAGE: WATCH.HTML (Simple VAST Implementation)
+// PAGE: WATCH.HTML (Interstitial Ad - The Working Solution)
 // ==================================================
 if (body.classList.contains('watch-page')) {
     const urlParams = new URLSearchParams(window.location.search);
@@ -194,34 +194,15 @@ if (body.classList.contains('watch-page')) {
         document.getElementById('movie-description').textContent = currentItem.description;
         
         const playerContainer = document.getElementById('video-player-container');
-        const playerMessage = document.getElementById('player-message');
-
-        // Ad ke baad movie load karne ka function
-        const loadMoviePlayer = () => {
-            if (playerContainer.querySelector('iframe')) return;
-            console.log("Loading Dailymotion player...");
-            if (currentItem.embed && currentItem.embed.trim() !== "") {
-                playerContainer.innerHTML = currentItem.embed;
-            } else {
-                playerContainer.style.display = 'none';
-                if (playerMessage) playerMessage.style.display = 'block';
-            }
-        };
-
-        // AdCash ke ad events ko sunne ka intezaar karo
-        // Note: AdCash ka documentation clear nahi hai, isliye hum ek failsafe use kar rahe hain.
-        // Agar ad khatam hone par movie load na ho, toh hum isko aage fix karenge.
-        // Abhi ke liye, hum maan rahe hain ki ad chalega.
-
-        // Ek failsafe timer: Agar 30 second tak kuch na ho, toh movie load kar do.
-        setTimeout(() => {
-            // Check karo ki player area mein ad chal raha hai ya movie aa chuki hai.
-            if (!playerContainer.querySelector('iframe') && !playerContainer.querySelector('video')) {
-                console.log("Failsafe: 30 seconds passed, loading movie anyway.");
-                loadMoviePlayer();
-            }
-        }, 30000);
-
+        
+        // Movie ko turant load kar do
+        console.log("Loading movie player directly. Interstitial ad will show on top.");
+        if (currentItem.embed && currentItem.embed.trim() !== "") {
+            playerContainer.innerHTML = currentItem.embed;
+        } else {
+            playerContainer.style.display = 'none';
+            document.getElementById('player-message').style.display = 'block';
+        }
 
         // Baaki ka code (Download, Share, Related Movies) waise hi rahega
         const downloadButton = document.getElementById('download-link');
