@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==================================================
-// PAGE: WATCH.HTML (In-stream Video Ad - Final Attempt)
+// PAGE: WATCH.HTML (Simple VAST Implementation)
 // ==================================================
 if (body.classList.contains('watch-page')) {
     const urlParams = new URLSearchParams(window.location.search);
@@ -196,11 +196,10 @@ if (body.classList.contains('watch-page')) {
         const playerContainer = document.getElementById('video-player-container');
         const playerMessage = document.getElementById('player-message');
 
+        // Ad ke baad movie load karne ka function
         const loadMoviePlayer = () => {
-            // Check karo ki movie player pehle se toh nahi hai
             if (playerContainer.querySelector('iframe')) return;
-            
-            console.log("Ad finished or failed. Loading Dailymotion player...");
+            console.log("Loading Dailymotion player...");
             if (currentItem.embed && currentItem.embed.trim() !== "") {
                 playerContainer.innerHTML = currentItem.embed;
             } else {
@@ -209,57 +208,20 @@ if (body.classList.contains('watch-page')) {
             }
         };
 
-        const showAd = () => {
-            try {
-                // AdCash ke instructions ke hisaab se, humein ek VAST-compatible player chahiye. Hum Plyr.io use kar rahe hain.
-                const adPlayer = new Plyr('#ad-player', {
-                    // Player options
-                });
+        // AdCash ke ad events ko sunne ka intezaar karo
+        // Note: AdCash ka documentation clear nahi hai, isliye hum ek failsafe use kar rahe hain.
+        // Agar ad khatam hone par movie load na ho, toh hum isko aage fix karenge.
+        // Abhi ke liye, hum maan rahe hain ki ad chalega.
 
-                // Jaise hi player ready ho, usko ad ka source do
-                adPlayer.on('ready', () => {
-                    console.log("Plyr player is ready! Setting VAST ad source from AdCash.");
-                    adPlayer.source = {
-                        type: 'video',
-                        sources: [{
-                            // Yahan humne AdCash ka VAST URL daala hai
-                            src: 'https://youradexchange.com/video/select.php?v=10587254',
-                            provider: 'vast'
-                        }]
-                    };
-                });
-
-                // Jab ad khatam ho jaaye, toh movie chala do
-                adPlayer.on('adended', () => {
-                    console.log("Ad ended event received. Loading movie.");
-                    loadMoviePlayer();
-                });
-
-                // Agar ad mein koi error aaye, toh bhi movie chala do
-                adPlayer.on('adserror', (event) => {
-                    console.error("Ad error event received:", event);
-                    loadMoviePlayer();
-                });
-                
-                adPlayer.on('error', (event) => {
-                    console.error("General player error:", event);
-                    loadMoviePlayer();
-                });
-
-            } catch (e) {
-                console.error("A critical error occurred while setting up the ad player:", e);
-                loadMoviePlayer(); // Agar kuch bhi galat ho, toh movie chala do
+        // Ek failsafe timer: Agar 30 second tak kuch na ho, toh movie load kar do.
+        setTimeout(() => {
+            // Check karo ki player area mein ad chal raha hai ya movie aa chuki hai.
+            if (!playerContainer.querySelector('iframe') && !playerContainer.querySelector('video')) {
+                console.log("Failsafe: 30 seconds passed, loading movie anyway.");
+                loadMoviePlayer();
             }
-        };
+        }, 30000);
 
-        // Agar movie ka embed code hai, toh pehle ad dikhao
-        if (currentItem.embed && currentItem.embed.trim() !== "") {
-            showAd();
-        } else {
-            // Agar embed code nahi hai, toh message dikha do
-            playerContainer.style.display = 'none';
-            if (playerMessage) playerMessage.style.display = 'block';
-        }
 
         // Baaki ka code (Download, Share, Related Movies) waise hi rahega
         const downloadButton = document.getElementById('download-link');
