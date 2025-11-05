@@ -51,7 +51,7 @@ console.log("DoreBox User ID:", currentUserID);
     { title: "Doraemon Nobita's Dorabian Nights",
     poster: "https://iili.io/KqRfWdv.png",
     description: "Join Doraemon and friends on a magical adventure into the world of the Arabian Nights!",
-    embed: `<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;"><iframe src="https://geo.dailymotion.com/player.html?video=x9t2pss" style="width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden; border:none;" allow="fullscreen; web-share" allowfullscreen title="Dailymotion Video Player"></iframe></div>`,
+    embed: `<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;"><iframe src="https://geo.dailymotion.com/player.html?video=x9t2pss&autoplay=false" style="width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden; border:none;" allow="fullscreen; web-share" allowfullscreen title="Dailymotion Video Player"></iframe></div>`,
     // m3u8 waali line hata di hai
     downloadLinks: {
         '1080p': 'https://gplinks.co/dorabiannightonbotat1080pbyahj',
