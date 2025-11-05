@@ -11,11 +11,6 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4494331077135172"
          crossorigin="anonymous"></script>
 
-    <!-- === PLYR.IO PLAYER LIBRARY (FOR VAST ADS) === -->
-    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
-    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/plyr-vast@2.0.2/dist/plyr-vast.min.js"></script>
-
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="style.css?v=2.5">
 </head>
@@ -37,8 +32,7 @@
             This movie is not available to watch right now, but you can download it using the button given below.
         </div>
         <div class="video-player-wrapper" id="video-player-container">
-            <!-- Yahan par Plyr.io player banega -->
-            <video id="ad-player"></video>
+            <!-- AdCash apna player yahan khud banayega -->
         </div>
 
         <div class="movie-details-grid">
@@ -64,7 +58,19 @@
         </section>
     </main>
 
+    <!-- Hamara Main JavaScript File -->
     <script src="script.js"></script>
+
+    <!-- === ADCASH VAST SCRIPT === -->
+    <script type="text/javascript" src="https://adcdnx.com/adj/adj.js"></script>
+    <script type="text/javascript">
+        var adParams = {
+            vastUrl: 'https://youradexchange.com/video/select.php?v=10587254',
+            container: 'video-player-container',
+            // Yahan aur bhi options add kar sakte hain, agar AdCash de toh
+        };
+        adj.request(adParams);
+    </script>
 
 </body>
 </html>
