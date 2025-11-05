@@ -11,8 +11,10 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4494331077135172"
          crossorigin="anonymous"></script>
 
-    <!-- === ADCASH LIBRARY SCRIPT (STEP 1) === -->
-    <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
+    <!-- === PLYR.IO PLAYER LIBRARY (FOR VAST ADS) === -->
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/plyr-vast@2.0.2/dist/plyr-vast.min.js"></script>
 
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="style.css?v=2.5">
@@ -35,7 +37,8 @@
             This movie is not available to watch right now, but you can download it using the button given below.
         </div>
         <div class="video-player-wrapper" id="video-player-container">
-            <!-- Movie player yahan load hoga -->
+            <!-- Yahan par Plyr.io player banega -->
+            <video id="ad-player"></video>
         </div>
 
         <div class="movie-details-grid">
@@ -61,15 +64,7 @@
         </section>
     </main>
 
-    <!-- Hamara Main JavaScript File -->
     <script src="script.js"></script>
-
-    <!-- === ADCASH TAG SCRIPT (STEP 2) === -->
-    <script type="text/javascript">
-        aclib.runInterstitial({
-            zoneId: '10587338',
-        });
-    </script>
 
 </body>
 </html>
