@@ -1,6 +1,44 @@
 // ==================================================
 // SHARED FUNCTIONS & CONFIG
 // ==================================================
+function updateSEO(movieTitle, movieDescription, pageType) {
+    const titleElement = document.querySelector('title');
+    let descriptionElement = document.querySelector('meta[name="description"]');
+    const canonicalElement = document.querySelector('link[rel="canonical"]');
+    const currentUrl = window.location.href.split('?')[0];
+
+    if (!canonicalElement) {
+        const link = document.createElement('link');
+        link.setAttribute('rel', 'canonical');
+        link.setAttribute('href', currentUrl);
+        document.head.appendChild(link);
+    } else {
+        canonicalElement.setAttribute('href', currentUrl);
+    }
+
+    let newTitle = '';
+    let newDescription = '';
+
+    if (pageType === 'watch') {
+        newTitle = `Watch ${movieTitle} Online in Hindi - DoreBox`;
+        newDescription = `Watch the full movie ${movieTitle} in Hindi for free on DoreBox. High-quality streaming available. Click here to start watching!`;
+    } else if (pageType === 'download') {
+        newTitle = `Download ${movieTitle} Full Movie in Hindi Free - DoreBox`;
+        newDescription = `Download the full movie ${movieTitle} in Hindi for free from DoreBox. Get direct links for 1080p, 720p, and 360p quality.`;
+    }
+
+    if (titleElement) {
+        titleElement.textContent = newTitle;
+    }
+    if (!descriptionElement) {
+        descriptionElement = document.createElement('meta');
+        descriptionElement.setAttribute('name', 'description');
+        document.head.appendChild(descriptionElement);
+    }
+    descriptionElement.setAttribute('content', newDescription);
+}
+// ==================================================
+// ==================================================
 const REWARD_AMOUNT = 0.0030;
 const MIN_WITHDRAWAL = 1.00;
 
@@ -210,11 +248,13 @@ if (body.classList.contains('watch-page')) {
     const currentTitle = decodeURIComponent(urlParams.get('title'));
     const currentType = urlParams.get('type') || 'movies';
     const allContent = (window.dorebox_content && window.dorebox_content[currentType]) ? window.dorebox_content[currentType] : [];
-    const currentItem = allContent.find(m => m.title === currentTitle);
+        const currentItem = allContent.find(m => m.title === currentTitle);
 
-    if (currentItem) {
-        document.title = `Watch ${currentItem.title} - DoreBox`;
-        document.getElementById('movie-poster').src = currentItem.poster;
+        if (currentItem) {
+            // === SEO OPTIMIZATION: Dynamic Meta Tags and Title ===
+            updateSEO(currentItem.title, currentItem.description, 'watch');
+            // ==================================================
+            document.getElementById('movie-poster').src = currentItem.poster;
         document.getElementById('movie-title').textContent = currentItem.title;
         document.getElementById('movie-description').textContent = currentItem.description;
         
@@ -277,7 +317,9 @@ if (body.classList.contains('watch-page')) {
         const currentItem = allContent.find(m => m.title === currentTitle);
 
         if (currentItem) {
-            document.title = `Download ${currentItem.title} - DoreBox`;
+            // === SEO OPTIMIZATION: Dynamic Meta Tags and Title ===
+            updateSEO(currentItem.title, currentItem.description, 'download');
+            // ==================================================
             document.getElementById('movie-poster').src = currentItem.poster;
             document.getElementById('movie-title').textContent = currentItem.title;
             const qualityOptionsContainer = document.getElementById('quality-options');
