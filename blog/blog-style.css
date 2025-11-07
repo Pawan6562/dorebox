@@ -1,5 +1,5 @@
 /* =================================
-   DOREBOX BLOG - CREATIVE UI OVERHAUL
+   DOREBOX BLOG - UI FIXES & IMPROVEMENTS
    ================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap' );
@@ -7,12 +7,11 @@
 /* --- Body & Background --- */
 body.blog-page {
     font-family: 'Poppins', sans-serif;
-    background: #111827; /* Dark, space-like background */
+    background: #111827;
     color: #f9fafb;
     overflow-x: hidden;
 }
 
-/* --- Animated Gradient Background --- */
 body.blog-page::before {
     content: '';
     position: fixed;
@@ -33,7 +32,7 @@ body.blog-page::before {
 
 /* --- Main Header --- */
 #main-header {
-    background: rgba(17, 24, 39, 0.8); /* Semi-transparent header */
+    background: rgba(17, 24, 39, 0.8);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     padding: 15px 0;
@@ -46,8 +45,9 @@ body.blog-page::before {
 /* --- Blog Page Header --- */
 .blog-header {
     text-align: center;
-    padding: 80px 20px;
-    background: transparent; /* Header background is now part of the main body */
+    /* ✅ FIX: Upar ki extra space kam kar di hai */
+    padding: 40px 20px 60px 20px; 
+    background: transparent;
 }
 
 .blog-header h1 {
@@ -77,7 +77,7 @@ body.blog-page::before {
 
 /* --- Glassmorphism Blog Card --- */
 .blog-card {
-    background: rgba(31, 41, 55, 0.5); /* Semi-transparent card background */
+    background: rgba(31, 41, 55, 0.5);
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(12px);
@@ -85,8 +85,7 @@ body.blog-page::before {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-                border-color 0.4s ease;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s ease;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
@@ -100,53 +99,53 @@ body.blog-page::before {
     height: 220px;
     object-fit: cover;
     opacity: 0.9;
-    transition: opacity 0.3s ease;
 }
 
-.blog-card:hover .blog-card-poster {
-    opacity: 1;
+.blog-card-content { padding: 30px; display: flex; flex-direction: column; flex-grow: 1; }
+.blog-card-title { font-size: 1.7rem; font-weight: 600; color: #f9fafb; margin-bottom: 15px; }
+.blog-card-excerpt { font-size: 1rem; color: #9ca3af; line-height: 1.8; margin-bottom: 30px; flex-grow: 1; }
+.blog-card-link { font-weight: 600; color: #111827; background: #FFC107; padding: 14px 28px; border-radius: 10px; text-decoration: none; align-self: flex-start; transition: all 0.3s ease; }
+.blog-card-link:hover { background: #ffffff; color: #0056b3; transform: translateY(-3px); }
+
+/* =================================
+   POST PAGE FIXES
+   ================================= */
+
+.post-container {
+    max-width: 850px;
+    margin: 50px auto;
+    padding: 50px;
+    background: rgba(255, 255, 255, 1); /* Solid white background */
+    border-radius: 15px;
+    color: #1f2937; /* Dark text for readability */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
 }
 
-.blog-card-content {
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-}
-
-.blog-card-title {
-    font-size: 1.7rem;
-    font-weight: 600;
-    color: #f9fafb;
-    margin-bottom: 15px;
-    line-height: 1.4;
-}
-
-.blog-card-excerpt {
-    font-size: 1rem;
-    color: #9ca3af;
-    line-height: 1.8;
+.post-title {
+    font-size: 2.8rem;
+    font-weight: 700;
     margin-bottom: 30px;
-    flex-grow: 1;
+    line-height: 1.3;
+    /* ✅ FIX: Title ka color dark kar diya hai */
+    color: #111827; 
 }
 
-.blog-card-link {
-    font-weight: 600;
-    color: #111827;
-    background: #FFC107; /* Using your site's primary yellow */
-    padding: 14px 28px;
-    border-radius: 10px;
+.post-content {
+    font-size: 1.1rem;
+    line-height: 1.9;
+    color: #374151;
+}
+
+.post-content h2 { font-size: 1.8rem; margin-top: 40px; color: #0056b3; }
+.post-content h3 { font-size: 1.4rem; margin-top: 30px; color: #007BFF; }
+.post-content p { margin-bottom: 20px; }
+
+.back-link {
+    display: inline-block;
+    margin-top: 40px;
+    color: #007BFF;
     text-decoration: none;
-    align-self: flex-start;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(255, 193, 7, 0.2);
-}
-
-.blog-card-link:hover {
-    background: #ffffff;
-    color: #0056b3;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+    font-weight: 600;
 }
 
 /* --- Footer --- */
@@ -158,8 +157,4 @@ footer {
     padding: 40px 20px;
     margin-top: 40px;
 }
-footer a {
-    color: #00aaff;
-    text-decoration: none;
-    font-weight: 600;
-}
+footer a { color: #00aaff; text-decoration: none; font-weight: 600; }
