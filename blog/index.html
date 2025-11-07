@@ -6,8 +6,8 @@
     <title>DoreBox Blog</title>
     <base href="/">
     <link rel="icon" href="https://iili.io/KXmopGj.png" type="image/png">
-    <link rel="stylesheet" href="style.css?v=3.2">
-    <link rel="stylesheet" href="blog/blog-style.css?v=3.2">
+    <link rel="stylesheet" href="style.css?v=3.3">
+    <link rel="stylesheet" href="blog/blog-style.css?v=3.3">
 </head>
 <body class="blog-page">
 
@@ -23,9 +23,7 @@
     </div>
 
     <main>
-        <div class="blog-grid" id="blog-grid-container">
-            <!-- Dynamic posts will be loaded here -->
-        </div>
+        <div class="blog-grid" id="blog-grid-container"></div>
     </main>
 
     <footer>
@@ -34,36 +32,13 @@
         </div>
     </footer>
 
-    <!-- DYNAMIC ARTICLE LOADER SCRIPT -->
+    <!-- Simple Script Section -->
+    <script src="blog/posts.js"></script>
     <script>
-        const blogPosts = [];
-
-        async function loadArticles( ) {
-            try {
-                const manifestResponse = await fetch('/blog/articles/articles-manifest.js');
-                const manifestText = await manifestResponse.text();
-                const articleFiles = new Function(`${manifestText}; return articleFiles;`)();
-
-                const fetchPromises = articleFiles.map(fileName => {
-                    return fetch(`/blog/articles/${fileName}`)
-                        .then(response => response.text())
-                        .then(postText => {
-                            const postObject = new Function(`return ${postText}`)();
-                            blogPosts.push(postObject);
-                        });
-                });
-
-                await Promise.all(fetchPromises);
-            } catch (error) {
-                console.error("Error loading articles:", error);
-            }
-        }
-
-        function initializeIndexPage() {
+        document.addEventListener('DOMContentLoaded', ( ) => {
             const container = document.getElementById('blog-grid-container');
-            if (blogPosts.length > 0) {
+            if (typeof blogPosts !== 'undefined' && blogPosts.length > 0) {
                 blogPosts.reverse();
-                container.innerHTML = '';
                 blogPosts.forEach(post => {
                     const card = document.createElement('div');
                     card.className = 'blog-card';
@@ -73,11 +48,6 @@
             } else {
                 container.innerHTML = '<p>No blog posts found.</p>';
             }
-        }
-
-        document.addEventListener('DOMContentLoaded', async () => {
-            await loadArticles();
-            initializeIndexPage();
         });
     </script>
 
