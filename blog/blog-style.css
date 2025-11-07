@@ -1,6 +1,6 @@
 /* =================================
    DOREBOX BLOG - FINAL CREATIVE UI
-   Version: 3.1 (Includes all fixes)
+   Version: 3.4 (Includes Post Page Poster Image)
    ================================= */
 
 /* --- Google Font Import --- */
@@ -12,7 +12,6 @@ body.blog-page {
     background: #111827; /* Dark, space-like background */
     color: #f9fafb;
     overflow-x: hidden;
-    /* ✅ FIX: Forcefully removes default browser margin causing the top space */
     margin: 0;
     padding: 0;
 }
@@ -51,7 +50,7 @@ body.blog-page::before {
 /* --- Blog Page Header --- */
 .blog-header {
     text-align: center;
-    padding: 40px 20px 60px 20px; /* Reduced top padding to fix space issue */
+    padding: 40px 20px 60px 20px;
     background: transparent;
 }
 
@@ -157,6 +156,19 @@ body.blog-page::before {
    POST PAGE STYLES & FIXES
    ================================= */
 
+/* ✅ NEW: Poster Image Styling */
+.post-hero-image {
+    width: 100%;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 15px;
+    margin: 40px auto -100px auto; /* Negative margin to pull content up over the image */
+    max-width: 1000px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
 .post-container {
     max-width: 850px;
     margin: 50px auto;
@@ -165,6 +177,8 @@ body.blog-page::before {
     border-radius: 15px;
     color: #1f2937;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    position: relative; /* Needed for the negative margin trick to work */
+    z-index: 10;
 }
 
 .post-title {
@@ -172,7 +186,6 @@ body.blog-page::before {
     font-weight: 700;
     margin-bottom: 30px;
     line-height: 1.3;
-    /* ✅ FIX: Title color is dark for readability on white background */
     color: #111827; 
 }
 
