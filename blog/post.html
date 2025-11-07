@@ -9,11 +9,8 @@
     <link rel="stylesheet" href="blog-style.css?v=1.0">
     <style>
         .post-container { max-width: 800px; margin: 40px auto; padding: 40px; background: #fff; border-radius: 8px; }
-        .post-title { font-size: 2.8em; font-weight: 700; margin-bottom: 20px; color: #333; line-height: 1.3; }
+        .post-title { font-size: 2.8em; font-weight: 700; margin-bottom: 20px; }
         .post-content { font-size: 1.1em; line-height: 1.9; color: #444; }
-        .post-content h2 { font-size: 1.8em; margin-top: 40px; color: #0056b3; }
-        .post-content h3 { font-size: 1.4em; margin-top: 30px; color: #007BFF; }
-        .post-content p { margin-bottom: 20px; }
         .back-link { display: inline-block; margin-top: 40px; color: #007BFF; text-decoration: none; font-weight: 600; }
     </style>
 </head>
@@ -24,17 +21,18 @@
         </div>
     </header>
 
-    <main id="post-main-content" class="post-container">
-        <!-- Post content yahan load hoga -->
-    </main>
+    <main id="post-main-content" class="post-container"></main>
 
-    <!-- SAARE POSTS KI FILES YAHAN BHI IMPORT KARNI HAIN -->
+    <!-- ✅ FIX: SCRIPT ORDER CHANGE KIYA GAYA HAI -->
+
+    <!-- 1. MASTER FILE SABSE PEHLE -->
+    <script src="articles/all-posts.js"></script>
+
+    <!-- 2. BAAKI SAARE POSTS USKE BAAD -->
     <script src="articles/nobita-lifestyle.js"></script>
     <!-- <script src="articles/another-post.js"></script> -->
 
-    <!-- MASTER FILE SABSE AAKHIR MEIN -->
-    <script src="articles/all-posts.js"></script>
-
+    <!-- 3. PAGE LOGIC SABSE AAKHIR MEIN -->
     <script>
         document.addEventListener('DOMContentLoaded', ( ) => {
             const params = new URLSearchParams(window.location.search);
