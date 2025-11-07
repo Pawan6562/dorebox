@@ -1,18 +1,20 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Post - DoreBox</title> <!-- Title JavaScript से अपडेट होगा -->
+    <title>Blog Post - DoreBox</title>
     <link rel="icon" href="https://iili.io/KXmopGj.png" type="image/png">
-    <link rel="stylesheet" href="../style.css?v=2.6">
+    <link rel="stylesheet" href="../style.css?v=2.8">
+    <link rel="stylesheet" href="blog-style.css?v=1.0">
     <style>
-        .post-container { max-width: 800px; margin: 40px auto; padding: 20px; background: #fff; border-radius: 8px; }
-        .post-title { font-size: 2.5em; font-weight: 700; margin-bottom: 20px; color: #333; }
-        .post-content { font-size: 1.1em; line-height: 1.8; color: #444; }
-        .post-content h2 { font-size: 1.8em; margin-top: 30px; color: #0056b3; }
-        .post-content p { margin-bottom: 15px; }
-        .back-link { display: inline-block; margin-top: 30px; color: #007BFF; text-decoration: none; font-weight: 600; }
+        .post-container { max-width: 800px; margin: 40px auto; padding: 40px; background: #fff; border-radius: 8px; }
+        .post-title { font-size: 2.8em; font-weight: 700; margin-bottom: 20px; color: #333; line-height: 1.3; }
+        .post-content { font-size: 1.1em; line-height: 1.9; color: #444; }
+        .post-content h2 { font-size: 1.8em; margin-top: 40px; color: #0056b3; }
+        .post-content h3 { font-size: 1.4em; margin-top: 30px; color: #007BFF; }
+        .post-content p { margin-bottom: 20px; }
+        .back-link { display: inline-block; margin-top: 40px; color: #007BFF; text-decoration: none; font-weight: 600; }
     </style>
 </head>
 <body>
@@ -23,33 +25,36 @@
     </header>
 
     <main id="post-main-content" class="post-container">
-        <!-- पोस्ट का कंटेंट यहाँ लोड होगा -->
+        <!-- Post content yahan load hoga -->
     </main>
 
-    <script src="posts.js"></script>
+    <!-- SAARE POSTS KI FILES YAHAN BHI IMPORT KARNI HAIN -->
+    <script src="articles/nobita-lifestyle.js"></script>
+    <!-- <script src="articles/another-post.js"></script> -->
+
+    <!-- MASTER FILE SABSE AAKHIR MEIN -->
+    <script src="articles/all-posts.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', ( ) => {
             const params = new URLSearchParams(window.location.search);
-            const postId = parseInt(params.get('id'));
+            const postId = params.get('id');
             const container = document.getElementById('post-main-content');
 
             if (postId && typeof blogPosts !== 'undefined') {
                 const post = blogPosts.find(p => p.id === postId);
-
                 if (post) {
                     document.title = post.title + " - DoreBox Blog";
                     container.innerHTML = `
                         <h1 class="post-title">${post.title}</h1>
-                        <div class="post-content">
-                            ${post.content}
-                        </div>
-                        <a href="index.html" class="back-link">&larr; सभी ब्लॉग पोस्ट पर वापस जाएं</a>
+                        <div class="post-content">${post.content}</div>
+                        <a href="index.html" class="back-link">&larr; Back to All Posts</a>
                     `;
                 } else {
-                    container.innerHTML = "<h1>Error: पोस्ट नहीं मिला।</h1>";
+                    container.innerHTML = "<h1>Error: Post not found.</h1>";
                 }
             } else {
-                container.innerHTML = "<h1>Error: અમાન્ય पोस्ट ID।</h1>";
+                container.innerHTML = "<h1>Error: Invalid Post ID.</h1>";
             }
         });
     </script>
