@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DoreBox Blog</title>
     <link rel="icon" href="https://iili.io/KXmopGj.png" type="image/png">
-    <!-- Main CSS -->
     <link rel="stylesheet" href="../style.css?v=2.8">
-    <!-- Blog-specific CSS -->
     <link rel="stylesheet" href="blog-style.css?v=1.0">
 </head>
 <body class="blog-page">
@@ -23,18 +21,19 @@
     </div>
 
     <main>
-        <div class="blog-grid" id="blog-grid-container">
-            <!-- Blog posts yahan load honge -->
-        </div>
+        <div class="blog-grid" id="blog-grid-container"></div>
     </main>
 
-    <!-- SAARE POSTS KI FILES YAHAN IMPORT KARO -->
+    <!-- ✅ FIX: SCRIPT ORDER CHANGE KIYA GAYA HAI -->
+
+    <!-- 1. MASTER FILE SABSE PEHLE -->
+    <script src="articles/all-posts.js"></script>
+
+    <!-- 2. BAAKI SAARE POSTS USKE BAAD -->
     <script src="articles/nobita-lifestyle.js"></script>
     <!-- <script src="articles/another-post.js"></script> -->
 
-    <!-- MASTER FILE SABSE AAKHIR MEIN -->
-    <script src="articles/all-posts.js"></script>
-
+    <!-- 3. PAGE LOGIC SABSE AAKHIR MEIN -->
     <script>
         document.addEventListener('DOMContentLoaded', ( ) => {
             const container = document.getElementById('blog-grid-container');
