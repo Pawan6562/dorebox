@@ -3,71 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DoreBox Blog - Creative & Modern</title>
-    
-    <!-- Base path for correct file linking -->
+    <title>DoreBox Blog</title>
     <base href="/">
-
     <link rel="icon" href="https://iili.io/KXmopGj.png" type="image/png">
-    
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="style.css?v=3.1">
-    <link rel="stylesheet" href="blog/blog-style.css?v=3.1">
+    <link rel="stylesheet" href="style.css?v=3.2">
+    <link rel="stylesheet" href="blog/blog-style.css?v=3.2">
 </head>
 <body class="blog-page">
 
-    <!-- Main Header -->
     <header id="main-header">
         <div class="container">
             <a href="/"><h1 class="logo">DoreBox</h1></a>
         </div>
     </header>
 
-    <!-- Blog Page Specific Header -->
     <div class="blog-header">
         <h1>DoreBox Blog</h1>
         <p>Doraemon ki duniya se judi interesting stories, facts aur gadgets.</p>
     </div>
 
-    <!-- Main Content Area for Blog Posts -->
     <main>
         <div class="blog-grid" id="blog-grid-container">
-            <!-- Blog posts JavaScript se yahan load honge -->
+            <!-- Dynamic posts will be loaded here -->
         </div>
     </main>
 
-    <!-- Footer Section -->
     <footer>
         <div class="container">
             <p>&copy; 2025 DoreBox | Maintained by AJH | <a href="/">Back to Home</a></p>
         </div>
     </footer>
 
-    <!-- JavaScript Files -->
-    <!-- Data file for blog posts -->
-    <script src="blog/posts.js"></script>
-
-    <!-- Logic to display posts on the page -->
+    <!-- DYNAMIC ARTICLE LOADER SCRIPT -->
     <script>
-        document.addEventListener('DOMContentLoaded', ( ) => {
+        const blogPosts = [];
+
+        async function loadArticles( ) {
+            try {
+                const manifestResponse = await fetch('/blog/articles/articles-manifest.js');
+                const manifestText = await manifestResponse.text();
+                const articleFiles = new Function(`${manifestText}; return articleFiles;`)();
+
+                const fetchPromises = articleFiles.map(fileName => {
+                    return fetch(`/blog/articles/${fileName}`)
+                        .then(response => response.text())
+                        .then(postText => {
+                            const postObject = new Function(`return ${postText}`)();
+                            blogPosts.push(postObject);
+                        });
+                });
+
+                await Promise.all(fetchPromises);
+            } catch (error) {
+                console.error("Error loading articles:", error);
+            }
+        }
+
+        function initializeIndexPage() {
             const container = document.getElementById('blog-grid-container');
-            if (typeof blogPosts !== 'undefined' && blogPosts.length > 0) {
+            if (blogPosts.length > 0) {
+                blogPosts.reverse();
+                container.innerHTML = '';
                 blogPosts.forEach(post => {
                     const card = document.createElement('div');
                     card.className = 'blog-card';
-                    card.innerHTML = `
-                        <img src="${post.poster}" alt="${post.title}" class="blog-card-poster">
-                        <div class="blog-card-content">
-                            <h2 class="blog-card-title">${post.title}</h2>
-                            <p class="blog-card-excerpt">${post.description}</p>
-                            <a href="blog/post.html?id=${post.id}" class="blog-card-link">Read More &rarr;</a>
-                        </div>
-                    `;
+                    card.innerHTML = `<img src="${post.poster}" alt="${post.title}" class="blog-card-poster"><div class="blog-card-content"><h2 class="blog-card-title">${post.title}</h2><p class="blog-card-excerpt">${post.description}</p><a href="blog/post.html?id=${post.id}" class="blog-card-link">Read More &rarr;</a></div>`;
                     container.appendChild(card);
                 });
             } else {
-                container.innerHTML = '<p style="color: red; font-weight: bold; text-align: center; font-size: 1.2em;">Error: Blog posts load nahi ho paye. Check karo ki /blog/posts.js file sahi hai.</p>';
+                container.innerHTML = '<p>No blog posts found.</p>';
             }
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadArticles();
+            initializeIndexPage();
         });
     </script>
 
