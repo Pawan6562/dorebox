@@ -4,57 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Post - DoreBox</title>
+    <base href="/">
     <link rel="icon" href="https://iili.io/KXmopGj.png" type="image/png">
-    <link rel="stylesheet" href="../style.css?v=2.8">
-    <link rel="stylesheet" href="blog-style.css?v=1.0">
-    <style>
-        .post-container { max-width: 800px; margin: 40px auto; padding: 40px; background: #fff; border-radius: 8px; }
-        .post-title { font-size: 2.8em; font-weight: 700; margin-bottom: 20px; }
-        .post-content { font-size: 1.1em; line-height: 1.9; color: #444; }
-        .back-link { display: inline-block; margin-top: 40px; color: #007BFF; text-decoration: none; font-weight: 600; }
-    </style>
+    <link rel="stylesheet" href="style.css?v=3.2">
+    <link rel="stylesheet" href="blog/blog-style.css?v=3.2">
 </head>
-<body>
+<body class="blog-page">
+
     <header id="main-header">
         <div class="container">
-            <a href="../index.html" class="logo-link"><h1 class="logo">DoreBox</h1></a>
+            <a href="/"><h1 class="logo">DoreBox</h1></a>
         </div>
     </header>
 
-    <main id="post-main-content" class="post-container"></main>
+    <main id="post-main-content" class="post-container">
+        <!-- Post content will be loaded here -->
+    </main>
 
-    <!-- ✅ FIX: SCRIPT ORDER CHANGE KIYA GAYA HAI -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 DoreBox | Maintained by AJH | <a href="/">Back to Home</a></p>
+        </div>
+    </footer>
 
-    <!-- 1. MASTER FILE SABSE PEHLE -->
-    <script src="articles/all-posts.js"></script>
-
-    <!-- 2. BAAKI SAARE POSTS USKE BAAD -->
-    <script src="articles/nobita-lifestyle.js"></script>
-    <!-- <script src="articles/another-post.js"></script> -->
-
-    <!-- 3. PAGE LOGIC SABSE AAKHIR MEIN -->
+    <!-- DYNAMIC ARTICLE LOADER SCRIPT -->
     <script>
-        document.addEventListener('DOMContentLoaded', ( ) => {
+        const blogPosts = [];
+
+        async function loadArticles( ) {
+            try {
+                const manifestResponse = await fetch('/blog/articles/articles-manifest.js');
+                const manifestText = await manifestResponse.text();
+                const articleFiles = new Function(`${manifestText}; return articleFiles;`)();
+
+                const fetchPromises = articleFiles.map(fileName => {
+                    return fetch(`/blog/articles/${fileName}`)
+                        .then(response => response.text())
+                        .then(postText => {
+                            const postObject = new Function(`return ${postText}`)();
+                            blogPosts.push(postObject);
+                        });
+                });
+
+                await Promise.all(fetchPromises);
+            } catch (error) {
+                console.error("Error loading articles:", error);
+            }
+        }
+
+        function initializePostPage() {
             const params = new URLSearchParams(window.location.search);
             const postId = params.get('id');
             const container = document.getElementById('post-main-content');
-
-            if (postId && typeof blogPosts !== 'undefined') {
-                const post = blogPosts.find(p => p.id === postId);
-                if (post) {
-                    document.title = post.title + " - DoreBox Blog";
-                    container.innerHTML = `
-                        <h1 class="post-title">${post.title}</h1>
-                        <div class="post-content">${post.content}</div>
-                        <a href="index.html" class="back-link">&larr; Back to All Posts</a>
-                    `;
-                } else {
-                    container.innerHTML = "<h1>Error: Post not found.</h1>";
-                }
+            const post = blogPosts.find(p => p.id === postId);
+            if (post) {
+                document.title = post.title + " - DoreBox Blog";
+                container.innerHTML = `<h1 class="post-title">${post.title}</h1><div class="post-content">${post.content}</div><a href="/blog" class="back-link">&larr; Back to All Posts</a>`;
             } else {
-                container.innerHTML = "<h1>Error: Invalid Post ID.</h1>";
+                container.innerHTML = "<h1>Error: Post not found.</h1>";
             }
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadArticles();
+            initializePostPage();
         });
     </script>
+
 </body>
 </html>
