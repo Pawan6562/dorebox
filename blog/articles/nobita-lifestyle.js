@@ -1,7 +1,5 @@
-// Post 1: Nobita's Lifestyle
-// Is file ko ab 'addPost' function ki zaroorat hai, jo 'all-posts.js' se aayega.
-
-addPost({
+// Ye file ab seedha post object return karegi.
+({
     id: "nobita-lifestyle",
     title: "Nobita ki Lifestyle: Aalas ya Sadgi?",
     poster: "https://i.postimg.cc/3w83qTtr/Doraemon-The-Movie-Dinosaur-Yoddhha-Hindi-Tamil-Telugu-Download-FHD-990x557.jpg",
@@ -16,4 +14,4 @@ addPost({
         <h2>Conclusion</h2>
         <p>Nobita ki lifestyle sadgi aur masoomiyat se bhari hai. Woh humein yaad dilata hai ki galtiyan karna theek hai, jab tak hamare paas acche dost hain jo hamara saath dete hain.</p>
     `
-} );
+} )
