@@ -6,8 +6,8 @@
     <title>Blog Post - DoreBox</title>
     <base href="/">
     <link rel="icon" href="https://iili.io/KXmopGj.png" type="image/png">
-    <link rel="stylesheet" href="style.css?v=3.4">
-    <link rel="stylesheet" href="blog/blog-style.css?v=3.4">
+    <link rel="stylesheet" href="style.css?v=3.5">
+    <link rel="stylesheet" href="blog/blog-style.css?v=3.5">
 </head>
 <body class="blog-page">
 
@@ -17,7 +17,7 @@
         </div>
     </header>
 
-    <!-- ✅ FIX: Main container ab post-main-content ki jagah post-layout hai -->
+    <!-- ✅ NEW: Main container ab post-layout hai -->
     <main id="post-layout">
         <!-- Post content will be loaded here by JavaScript -->
     </main>
@@ -34,18 +34,21 @@
         document.addEventListener('DOMContentLoaded', ( ) => {
             const params = new URLSearchParams(window.location.search);
             const postId = params.get('id');
-            // ✅ FIX: Ab hum naye 'post-layout' container ko target kar rahe hain
             const layoutContainer = document.getElementById('post-layout');
             const post = blogPosts.find(p => p.id === postId);
 
             if (post) {
                 document.title = post.title + " - DoreBox Blog";
                 
-                // ✅ NEW: Poster image aur content ko alag-alag HTML mein banaya gaya hai
+                // ✅ NEW: HTML structure ab "Hero" design ke liye hai
                 layoutContainer.innerHTML = `
-                    <div class="post-hero-image" style="background-image: url('${post.poster}')"></div>
+                    <div class="post-hero-section" style="background-image: url('${post.poster}')">
+                        <div class="hero-overlay"></div>
+                        <div class="hero-content">
+                            <h1 class="post-title">${post.title}</h1>
+                        </div>
+                    </div>
                     <div class="post-container">
-                        <h1 class="post-title">${post.title}</h1>
                         <div class="post-content">${post.content}</div>
                         <a href="/blog" class="back-link">&larr; Back to All Posts</a>
                     </div>
