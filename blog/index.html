@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DoreBox Blog</title>
+    <!-- ✅ FIX: Absolute Path. Path hamesha '/' se shuru hoga -->
+    <base href="/">
     <link rel="icon" href="https://iili.io/KXmopGj.png" type="image/png">
-    <link rel="stylesheet" href="../style.css?v=2.8">
-    <link rel="stylesheet" href="blog-style.css?v=1.0">
+    <link rel="stylesheet" href="style.css?v=3.0">
+    <link rel="stylesheet" href="blog/blog-style.css?v=1.2">
 </head>
 <body class="blog-page">
     <header id="main-header">
         <div class="container">
-            <a href="../index.html" class="logo-link"><h1 class="logo">DoreBox</h1></a>
+            <a href="/"><h1 class="logo">DoreBox</h1></a>
         </div>
     </header>
 
@@ -24,16 +26,9 @@
         <div class="blog-grid" id="blog-grid-container"></div>
     </main>
 
-    <!-- ✅ FIX: SCRIPT ORDER CHANGE KIYA GAYA HAI -->
+    <!-- ✅ FIX: Absolute Path for JS files -->
+    <script src="blog/posts.js"></script>
 
-    <!-- 1. MASTER FILE SABSE PEHLE -->
-    <script src="articles/all-posts.js"></script>
-
-    <!-- 2. BAAKI SAARE POSTS USKE BAAD -->
-    <script src="articles/nobita-lifestyle.js"></script>
-    <!-- <script src="articles/another-post.js"></script> -->
-
-    <!-- 3. PAGE LOGIC SABSE AAKHIR MEIN -->
     <script>
         document.addEventListener('DOMContentLoaded', ( ) => {
             const container = document.getElementById('blog-grid-container');
@@ -46,13 +41,13 @@
                         <div class="blog-card-content">
                             <h2 class="blog-card-title">${post.title}</h2>
                             <p class="blog-card-excerpt">${post.description}</p>
-                            <a href="post.html?id=${post.id}" class="blog-card-link">Read More &rarr;</a>
+                            <a href="blog/post.html?id=${post.id}" class="blog-card-link">Read More &rarr;</a>
                         </div>
                     `;
                     container.appendChild(card);
                 });
             } else {
-                container.innerHTML = '<p>No blog posts found.</p>';
+                container.innerHTML = '<p style="color: red; font-weight: bold;">Error: blogPosts variable not found. Check if /blog/posts.js is loading correctly.</p>';
             }
         });
     </script>
