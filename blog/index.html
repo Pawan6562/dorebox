@@ -3,28 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DoreBox Blog - Doraemon Movies, Facts & Gadgets</title>
+    <title>DoreBox Blog</title>
     <link rel="icon" href="https://iili.io/KXmopGj.png" type="image/png">
-
-    <!-- Path 1: CSS file (blog folder se bahar ) -->
-    <link rel="stylesheet" href="../style.css?v=2.7">
-
-    <style>
-        /* Ye style yahan isliye hai taaki agar style.css load na ho to page ajeeb na dikhe */
-        body { background-color: #f4f7f9; font-family: sans-serif; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        #main-header { background: #0056b3; padding: 15px 0; }
-        .logo { color: white; text-decoration: none; font-size: 1.8em; font-weight: 700; }
-        .blog-header { background: linear-gradient(135deg, #007BFF 0%, #0056b3 100%); color: white; padding: 50px 20px; text-align: center; }
-        .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; margin: 40px auto; }
-        .blog-card { background: #fff; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; }
-        .blog-card-content { padding: 25px; }
-        .blog-card-title { font-size: 1.4em; font-weight: 700; margin-bottom: 15px; color: #333; }
-        .blog-card-excerpt { font-size: 1em; color: #666; line-height: 1.6; margin-bottom: 20px; }
-        .blog-card-link { display: inline-block; background: #007BFF; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; }
-    </style>
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="../style.css?v=2.8">
+    <!-- Blog-specific CSS -->
+    <link rel="stylesheet" href="blog-style.css?v=1.0">
 </head>
-<body>
+<body class="blog-page">
     <header id="main-header">
         <div class="container">
             <a href="../index.html" class="logo-link"><h1 class="logo">DoreBox</h1></a>
@@ -36,39 +22,38 @@
         <p>Doraemon ki duniya se judi interesting stories, facts aur gadgets.</p>
     </div>
 
-    <main class="container">
+    <main>
         <div class="blog-grid" id="blog-grid-container">
-            <!-- JS agar fail hua to ye message dikhega -->
-            <p>Loading blog posts...</p>
+            <!-- Blog posts yahan load honge -->
         </div>
     </main>
 
-    <!-- Path 2: JS file (blog folder ke andar) -->
-    <script src="posts.js"></script>
-    
+    <!-- SAARE POSTS KI FILES YAHAN IMPORT KARO -->
+    <script src="articles/nobita-lifestyle.js"></script>
+    <!-- <script src="articles/another-post.js"></script> -->
+
+    <!-- MASTER FILE SABSE AAKHIR MEIN -->
+    <script src="articles/all-posts.js"></script>
+
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', ( ) => {
             const container = document.getElementById('blog-grid-container');
-            
-            // Check karo ki 'blogPosts' variable exist karta hai ya nahi
             if (typeof blogPosts !== 'undefined' && blogPosts.length > 0) {
-                container.innerHTML = ''; // "Loading..." message ko hatao
                 blogPosts.forEach(post => {
                     const card = document.createElement('div');
                     card.className = 'blog-card';
                     card.innerHTML = `
+                        <img src="${post.poster}" alt="${post.title}" class="blog-card-poster">
                         <div class="blog-card-content">
                             <h2 class="blog-card-title">${post.title}</h2>
-                            <p class="blog-card-excerpt">${post.excerpt}</p>
+                            <p class="blog-card-excerpt">${post.description}</p>
                             <a href="post.html?id=${post.id}" class="blog-card-link">Read More &rarr;</a>
                         </div>
                     `;
                     container.appendChild(card);
                 });
             } else {
-                // Agar 'blogPosts' nahi mila to error dikhao
-                container.innerHTML = '<p style="color: red; font-weight: bold;">Error: Blog posts load nahi ho paye. Check karo ki `posts.js` file sahi hai aur khali nahi hai.</p>';
-                console.error("Variable 'blogPosts' not found or is empty. Check posts.js file.");
+                container.innerHTML = '<p>No blog posts found.</p>';
             }
         });
     </script>
