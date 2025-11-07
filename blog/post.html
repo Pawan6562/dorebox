@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Post - DoreBox</title>
     <link rel="icon" href="https://iili.io/KXmopGj.png" type="image/png">
-    <link rel="stylesheet" href="../style.css?v=2.9">
-    <link rel="stylesheet" href="blog-style.css?v=1.1">
+    <link rel="stylesheet" href="../style.css?v=2.8">
+    <link rel="stylesheet" href="blog-style.css?v=1.0">
     <style>
         .post-container { max-width: 800px; margin: 40px auto; padding: 40px; background: #fff; border-radius: 8px; }
         .post-title { font-size: 2.8em; font-weight: 700; margin-bottom: 20px; }
@@ -23,9 +23,16 @@
 
     <main id="post-main-content" class="post-container"></main>
 
-    <!-- SIRF EK SCRIPT FILE LOAD KARNI HAI -->
-    <script src="posts.js"></script>
+    <!-- ✅ FIX: SCRIPT ORDER CHANGE KIYA GAYA HAI -->
 
+    <!-- 1. MASTER FILE SABSE PEHLE -->
+    <script src="articles/all-posts.js"></script>
+
+    <!-- 2. BAAKI SAARE POSTS USKE BAAD -->
+    <script src="articles/nobita-lifestyle.js"></script>
+    <!-- <script src="articles/another-post.js"></script> -->
+
+    <!-- 3. PAGE LOGIC SABSE AAKHIR MEIN -->
     <script>
         document.addEventListener('DOMContentLoaded', ( ) => {
             const params = new URLSearchParams(window.location.search);
