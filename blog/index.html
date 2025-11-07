@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DoreBox Blog - Doraemon Movies, Facts & Gadgets</title>
+    <meta name="description" content="Explore fascinating Doraemon blog posts covering movie facts, character analysis, gadget reviews, and more. Your ultimate source for Doraemon entertainment and trivia.">
+    <link rel="icon" href="https://iili.io/KXmopGj.png" type="image/png">
+    <link rel="stylesheet" href="../style.css?v=2.6">
+    <style>
+        .blog-header {
+            background: linear-gradient(135deg, #007BFF 0%, #0056b3 100% );
+            color: white; padding: 50px 20px; text-align: center;
+        }
+        .blog-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px; max-width: 1200px; margin: 40px auto; padding: 0 20px;
+        }
+        .blog-card {
+            background: #fff; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden; transition: transform 0.3s ease;
+        }
+        .blog-card:hover { transform: translateY(-5px); }
+        .blog-card-content { padding: 25px; }
+        .blog-card-title { font-size: 1.4em; font-weight: 700; margin-bottom: 15px; color: #333; }
+        .blog-card-excerpt { font-size: 1em; color: #666; line-height: 1.6; margin-bottom: 20px; }
+        .blog-card-link {
+            display: inline-block; background: #007BFF; color: white; padding: 10px 20px;
+            border-radius: 8px; text-decoration: none; font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <header id="main-header">
+        <div class="container">
+            <a href="../index.html" class="logo-link"><h1 class="logo">DoreBox</h1></a>
+        </div>
+    </header>
+
+    <div class="blog-header">
+        <h1>DoreBox Blog</h1>
+        <p>डोरेमोन की दुनिया से जुड़ी रोचक कहानियाँ, तथ्य और गैजेट्स।</p>
+    </div>
+
+    <main>
+        <div class="blog-grid" id="blog-grid-container">
+            <!-- ब्लॉग पोस्ट यहाँ JavaScript से लोड होंगे -->
+        </div>
+    </main>
+
+    <script src="posts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('blog-grid-container');
+            if (container && typeof blogPosts !== 'undefined') {
+                blogPosts.forEach(post => {
+                    const card = document.createElement('div');
+                    card.className = 'blog-card';
+                    card.innerHTML = `
+                        <div class="blog-card-content">
+                            <h2 class="blog-card-title">${post.title}</h2>
+                            <p class="blog-card-excerpt">${post.excerpt}</p>
+                            <a href="post.html?id=${post.id}" class="blog-card-link">पूरा पढ़ें &rarr;</a>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
