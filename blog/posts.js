@@ -19,27 +19,23 @@ const blogPosts = [
         `
     },
     {
-    id: "doraemon-movies-magic",
-    title: "Doraemon ki Movies ka Jaadu: Kyun Hain Ye Itni Khaas?",
-    poster: "https://i.postimg.cc/vmkLDN1X/Doraemon-The-Movie-Stand-by-Me-by-cjh.png",
-    description: "Doraemon ki movies sirf cartoons nahi, balki emotions aur adventure ka ek anokha safar hain. Aaiye jaante hain inki popularity ke peeche ka raaz.",
-    content: `
-        <h2>Introduction: Sirf Ek Cartoon Nahi</h2>
-        <p>Jab hum Doraemon ka naam sunte hain, to humein Nobita ki masti aur gadgets ki duniya yaad aati hai. Lekin Doraemon ki movies isse kahin badhkar hain. Ye movies humein dosti, himmat, aur sahi kaam karne ki seekh deti hain. Har movie ek naye adventure par le jaati hai, kabhi dinosaurs ke beech, to kabhi outer space mein.</p>
-
-        <h3>1. Badi Kahani, Bade Emotions</h3>
-        <p>TV series ke chote-chote episodes ke mukable, movies ek poori, badi kahani batati hain. Inmein characters ka development, unke dar, aur unki jeet ko gehraai se dikhaya jaata hai. "Stand by Me" jaisi movies ne to logon ko rula tak diya. Ye movies humein Nobita aur uske doston se emotionally jodti hain.</p>
-
-        <h3>2. Naye Worlds, Naye Characters</h3>
-        <p>Har movie humein ek nayi duniya mein le jaati hai. "Nobita's Dinosaur" humein pre-historic times mein le jaati hai, to "The Record of Nobita's Spaceblazer" humein ek alag hi galaxy ki sair karati hai. In movies mein humein naye aur yaadgaar characters milte hain jo kahani ko aur bhi interesting bana dete hain.</p>
-
-        <h3>3. Animation aur Music ka Kamaal</h3>
-        <p>Movies ka animation quality TV series se kahin behtar hota hai. Landscapes, action scenes, aur character expressions bahut detail mein banaye jaate hain. Saath hi, movies ka background music aur theme songs kahani ke emotions ko aur badha dete hain. "Himawari no Yakusoku" gaana aaj bhi logon ka favorite hai.</p>
-
-        <h2>Conclusion</h2>
-        <p>Doraemon ki movies sirf time-pass nahi hain. Wo ek experience hain jo har age group ke logon ko pasand aata hai. Ye humein sikhata hai ki agar dost saath hon, to koi bhi mushkil badi nahi hoti. Aapki favorite Doraemon movie kaun si hai? Humein zaroor bataiye!</p>
-    `
-}
+        id: "doraemon-movies-magic",
+        title: "Doraemon ki Movies ka Jaadu: Kyun Hain Ye Itni Khaas?",
+        poster: "https://i.postimg.cc/vmkLDN1X/Doraemon-The-Movie-Stand-by-Me-by-cjh.png",
+        description: "Doraemon ki movies sirf cartoons nahi, balki emotions aur adventure ka ek anokha safar hain. Aaiye jaante hain inki popularity ke peeche ka raaz.",
+        content: `
+            <h2>Introduction: Sirf Ek Cartoon Nahi</h2>
+            <p>Jab hum Doraemon ka naam sunte hain, to humein Nobita ki masti aur gadgets ki duniya yaad aati hai. Lekin Doraemon ki movies isse kahin badhkar hain. Ye movies humein dosti, himmat, aur sahi kaam karne ki seekh deti hain. Har movie ek naye adventure par le jaati hai, kabhi dinosaurs ke beech, to kabhi outer space mein.</p>
+            <h3>1. Badi Kahani, Bade Emotions</h3>
+            <p>TV series ke chote-chote episodes ke mukable, movies ek poori, badi kahani batati hain. Inmein characters ka development, unke dar, aur unki jeet ko gehraai se dikhaya jaata hai. "Stand by Me" jaisi movies ne to logon ko rula tak diya. Ye movies humein Nobita aur uske doston se emotionally jodti hain.</p>
+            <h3>2. Naye Worlds, Naye Characters</h3>
+            <p>Har movie humein ek nayi duniya mein le jaati hai. "Nobita's Dinosaur" humein pre-historic times mein le jaati hai, to "The Record of Nobita's Spaceblazer" humein ek alag hi galaxy ki sair karati hai. In movies mein humein naye aur yaadgaar characters milte hain jo kahani ko aur bhi interesting bana dete hain.</p>
+            <h3>3. Animation aur Music ka Kamaal</h3>
+            <p>Movies ka animation quality TV series se kahin behtar hota hai. Landscapes, action scenes, aur character expressions bahut detail mein banaye jaate hain. Saath hi, movies ka background music aur theme songs kahani ke emotions ko aur badha dete hain. "Himawari no Yakusoku" gaana aaj bhi logon ka favorite hai.</p>
+            <h2>Conclusion</h2>
+            <p>Doraemon ki movies sirf time-pass nahi hain. Wo ek experience hain jo har age group ke logon ko pasand aata hai. Ye humein sikhata hai ki agar dost saath hon, to koi bhi mushkil badi nahi hoti. Aapki favorite Doraemon movie kaun si hai? Humein zaroor bataiye!</p>
+        `
+    }, // ✅✅✅ FIX: YAHAN PAR COMMA ADD KAR DIYA GAYA HAI ✅✅✅
     {
         id: "top-5-gadgets",
         title: "Top 5 Doraemon Gadgets Jo Hum Sab Chahte Hain",
@@ -47,7 +43,7 @@ const blogPosts = [
         description: "Anywhere Door se lekar Time Machine tak, dekhein kaunse gadgets hamari life badal sakte hain. Ye hain hamari top 5 list!",
         content: `
             <h2>Introduction</h2>
-            <p>Doraemon ka 4D pocket ek khazana hai jismein bhavishya ke anokhe gadgets hain. Har episode mein hum ek naya gadget dekhte hain jo Nobita ki mushkilon ko (aksar thode time ke liye ) solve karta hai. Agar humein inmein se kuch gadgets mil jaayein, to hamari zindagi kitni badal jaayegi! Chaliye dekhte hain top 5 aise gadgets jo har koi chahta hai.</p>
+            <p>Doraemon ka 4D pocket ek khazana hai jismein bhavishya ke anokhe gadgets hain. Har episode mein hum ek naya gadget dekhte hain jo Nobita ki mushkilon ko (aksar thode time ke liye  ) solve karta hai. Agar humein inmein se kuch gadgets mil jaayein, to hamari zindagi kitni badal jaayegi! Chaliye dekhte hain top 5 aise gadgets jo har koi chahta hai.</p>
             <h3>1. Anywhere Door (Dokodemo Door)</h3>
             <p>Ye list iske bina adhoori hai. Anywhere Door ek jaadui darwaza hai jise kholkar aap duniya mein kahin bhi, kisi bhi jagah, turant pahunch sakte hain. Socho, school ya office ke liye kabhi late nahi honge! Traffic ka jhanjhat khatam. Weekend par Paris mein breakfast aur Tokyo mein dinner kar sakte hain. Ye gadget travel industry ko hamesha ke liye badal dega.</p>
             <h3>2. Time Machine</h3>
