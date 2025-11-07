@@ -1,71 +1,103 @@
-/* Blog Specific Styles */
+/* =================================
+   DOREBOX BLOG - NEW & IMPROVED UI
+   ================================= */
+
+/* --- General Body & Font --- */
 body.blog-page {
-    background-color: #f4f7f9;
+    background-color: #f0f2f5; /* Light grey background for a softer look */
     font-family: 'Hind', sans-serif;
 }
 
-.blog-header {
-    background: linear-gradient(135deg, #007BFF 0%, #0056b3 100% );
-    color: white;
-    padding: 60px 20px;
-    text-align: center;
-    margin-bottom: 40px;
+/* --- Main Header (from your original site) --- */
+#main-header {
+    background: #1a202c; /* Darker, more modern header color */
+    padding: 15px 0;
+    border-bottom: 4px solid #FFC107; /* Primary color accent */
 }
 
-.blog-header h1 {
-    font-size: 2.8em;
+.logo {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.8em;
     font-weight: 700;
 }
 
-.blog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+/* --- Blog Page Header --- */
+.blog-header {
+    background: linear-gradient(135deg, #007BFF 0%, #0056b3 100%);
+    color: white;
+    padding: 50px 20px;
+    text-align: center;
+    margin-bottom: 50px; /* Increased space between header and content */
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
+.blog-header h1 {
+    font-size: 3em;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.blog-header p {
+    font-size: 1.2em;
+    opacity: 0.9;
+}
+
+/* --- Blog Grid Layout --- */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); /* Slightly wider cards */
+    gap: 35px; /* More space between cards */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 25px 50px 25px; /* Added padding */
+}
+
+/* --- The New Blog Card Design --- */
 .blog-card {
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    background: #ffffff;
+    border-radius: 15px; /* Softer, more rounded corners */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08); /* Softer, more modern shadow */
     overflow: hidden;
     display: flex;
     flex-direction: column;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e2e8f0; /* Subtle border */
 }
 
 .blog-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    transform: translateY(-10px); /* More prominent hover effect */
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
 }
 
 .blog-card-poster {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
+    height: 220px; /* Taller image area */
+    object-fit: cover; /* Ensures image covers the area without distortion */
+    border-bottom: 1px solid #e2e8f0;
 }
 
 .blog-card-content {
     padding: 25px;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    flex-grow: 1; /* Ensures content fills the space */
 }
 
 .blog-card-title {
-    font-size: 1.5em;
+    font-size: 1.6em; /* Larger title */
     font-weight: 700;
-    margin-bottom: 10px;
-    color: #333;
+    margin-bottom: 12px;
+    color: #1a202c; /* Darker text for better contrast */
+    line-height: 1.4;
 }
 
 .blog-card-excerpt {
-    font-size: 1em;
-    color: #666;
-    line-height: 1.6;
-    margin-bottom: 20px;
+    font-size: 1.05em; /* Slightly larger excerpt text */
+    color: #4a5568; /* Softer text color */
+    line-height: 1.7;
+    margin-bottom: 25px;
     flex-grow: 1;
 }
 
@@ -73,14 +105,28 @@ body.blog-page {
     display: inline-block;
     background: #007BFF;
     color: white;
-    padding: 12px 24px;
+    padding: 12px 25px;
     border-radius: 8px;
     text-decoration: none;
     font-weight: 600;
-    align-self: flex-start;
-    transition: background-color 0.3s ease;
+    align-self: flex-start; /* Aligns button to the left */
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .blog-card-link:hover {
     background-color: #0056b3;
+    transform: scale(1.05); /* Button grows slightly on hover */
+}
+
+/* --- Footer --- */
+footer {
+    background: #1a202c;
+    color: #a0aec0;
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 40px;
+}
+footer a {
+    color: #FFC107;
+    text-decoration: none;
 }
