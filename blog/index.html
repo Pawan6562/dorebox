@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DoreBox Blog</title>
+    <title>DoreBox Blog - Creative & Modern</title>
     
-    <!-- Base path set karna ek acchi practice hai -->
+    <!-- Base path for correct file linking -->
     <base href="/">
 
     <link rel="icon" href="https://iili.io/KXmopGj.png" type="image/png">
     
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="style.css?v=3.0">
-    <link rel="stylesheet" href="blog/blog-style.css?v=1.2">
+    <link rel="stylesheet" href="style.css?v=3.1">
+    <link rel="stylesheet" href="blog/blog-style.css?v=3.1">
 </head>
 <body class="blog-page">
 
@@ -66,7 +66,7 @@
                     container.appendChild(card);
                 });
             } else {
-                container.innerHTML = '<p style="color: red; font-weight: bold;">Error: blogPosts variable not found. Check if /blog/posts.js is loading correctly.</p>';
+                container.innerHTML = '<p style="color: red; font-weight: bold; text-align: center; font-size: 1.2em;">Error: Blog posts load nahi ho paye. Check karo ki /blog/posts.js file sahi hai.</p>';
             }
         });
     </script>
