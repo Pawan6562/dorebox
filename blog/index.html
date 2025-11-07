@@ -4,31 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DoreBox Blog</title>
-    <!-- ✅ FIX: Absolute Path. Path hamesha '/' se shuru hoga -->
+    
+    <!-- Base path set karna ek acchi practice hai -->
     <base href="/">
+
     <link rel="icon" href="https://iili.io/KXmopGj.png" type="image/png">
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="style.css?v=3.0">
     <link rel="stylesheet" href="blog/blog-style.css?v=1.2">
 </head>
 <body class="blog-page">
+
+    <!-- Main Header -->
     <header id="main-header">
         <div class="container">
             <a href="/"><h1 class="logo">DoreBox</h1></a>
         </div>
     </header>
 
+    <!-- Blog Page Specific Header -->
     <div class="blog-header">
         <h1>DoreBox Blog</h1>
         <p>Doraemon ki duniya se judi interesting stories, facts aur gadgets.</p>
     </div>
 
+    <!-- Main Content Area for Blog Posts -->
     <main>
-        <div class="blog-grid" id="blog-grid-container"></div>
+        <div class="blog-grid" id="blog-grid-container">
+            <!-- Blog posts JavaScript se yahan load honge -->
+        </div>
     </main>
 
-    <!-- ✅ FIX: Absolute Path for JS files -->
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 DoreBox | Maintained by AJH | <a href="/">Back to Home</a></p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <!-- Data file for blog posts -->
     <script src="blog/posts.js"></script>
 
+    <!-- Logic to display posts on the page -->
     <script>
         document.addEventListener('DOMContentLoaded', ( ) => {
             const container = document.getElementById('blog-grid-container');
@@ -51,5 +70,6 @@
             }
         });
     </script>
+
 </body>
 </html>
