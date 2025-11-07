@@ -1,132 +1,165 @@
 /* =================================
-   DOREBOX BLOG - NEW & IMPROVED UI
+   DOREBOX BLOG - CREATIVE UI OVERHAUL
    ================================= */
 
-/* --- General Body & Font --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap' );
+
+/* --- Body & Background --- */
 body.blog-page {
-    background-color: #f0f2f5; /* Light grey background for a softer look */
-    font-family: 'Hind', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    background: #111827; /* Dark, space-like background */
+    color: #f9fafb;
+    overflow-x: hidden;
 }
 
-/* --- Main Header (from your original site) --- */
+/* --- Animated Gradient Background --- */
+body.blog-page::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at 20% 20%, rgba(0, 123, 255, 0.3), transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(255, 193, 7, 0.25), transparent 35%);
+    animation: animate-glow 15s ease-in-out infinite;
+}
+
+@keyframes animate-glow {
+    0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+    50% { transform: scale(1.2) rotate(10deg); opacity: 1; }
+}
+
+/* --- Main Header --- */
 #main-header {
-    background: #1a202c; /* Darker, more modern header color */
+    background: rgba(17, 24, 39, 0.8); /* Semi-transparent header */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 15px 0;
-    border-bottom: 4px solid #FFC107; /* Primary color accent */
-}
-
-.logo {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 1.8em;
-    font-weight: 700;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 /* --- Blog Page Header --- */
 .blog-header {
-    background: linear-gradient(135deg, #007BFF 0%, #0056b3 100%);
-    color: white;
-    padding: 50px 20px;
     text-align: center;
-    margin-bottom: 50px; /* Increased space between header and content */
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+    padding: 80px 20px;
+    background: transparent; /* Header background is now part of the main body */
 }
 
 .blog-header h1 {
-    font-size: 3em;
+    font-size: 3.5rem;
     font-weight: 700;
-    margin-bottom: 10px;
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+    margin-bottom: 15px;
 }
 
 .blog-header p {
-    font-size: 1.2em;
-    opacity: 0.9;
+    font-size: 1.25rem;
+    color: #d1d5db;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-/* --- Blog Grid Layout --- */
+/* --- Blog Grid --- */
 .blog-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); /* Slightly wider cards */
-    gap: 35px; /* More space between cards */
-    max-width: 1200px;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 40px;
+    max-width: 1300px;
     margin: 0 auto;
-    padding: 0 25px 50px 25px; /* Added padding */
+    padding: 0 25px 50px 25px;
 }
 
-/* --- The New Blog Card Design --- */
+/* --- Glassmorphism Blog Card --- */
 .blog-card {
-    background: #ffffff;
-    border-radius: 15px; /* Softer, more rounded corners */
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08); /* Softer, more modern shadow */
+    background: rgba(31, 41, 55, 0.5); /* Semi-transparent card background */
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid #e2e8f0; /* Subtle border */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                border-color 0.4s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .blog-card:hover {
-    transform: translateY(-10px); /* More prominent hover effect */
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+    transform: translateY(-15px) scale(1.02);
+    border-color: rgba(0, 150, 255, 0.5);
 }
 
 .blog-card-poster {
     width: 100%;
-    height: 220px; /* Taller image area */
-    object-fit: cover; /* Ensures image covers the area without distortion */
-    border-bottom: 1px solid #e2e8f0;
+    height: 220px;
+    object-fit: cover;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.blog-card:hover .blog-card-poster {
+    opacity: 1;
 }
 
 .blog-card-content {
-    padding: 25px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* Ensures content fills the space */
+    flex-grow: 1;
 }
 
 .blog-card-title {
-    font-size: 1.6em; /* Larger title */
-    font-weight: 700;
-    margin-bottom: 12px;
-    color: #1a202c; /* Darker text for better contrast */
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: #f9fafb;
+    margin-bottom: 15px;
     line-height: 1.4;
 }
 
 .blog-card-excerpt {
-    font-size: 1.05em; /* Slightly larger excerpt text */
-    color: #4a5568; /* Softer text color */
-    line-height: 1.7;
-    margin-bottom: 25px;
+    font-size: 1rem;
+    color: #9ca3af;
+    line-height: 1.8;
+    margin-bottom: 30px;
     flex-grow: 1;
 }
 
 .blog-card-link {
-    display: inline-block;
-    background: #007BFF;
-    color: white;
-    padding: 12px 25px;
-    border-radius: 8px;
-    text-decoration: none;
     font-weight: 600;
-    align-self: flex-start; /* Aligns button to the left */
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    color: #111827;
+    background: #FFC107; /* Using your site's primary yellow */
+    padding: 14px 28px;
+    border-radius: 10px;
+    text-decoration: none;
+    align-self: flex-start;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 193, 7, 0.2);
 }
 
 .blog-card-link:hover {
-    background-color: #0056b3;
-    transform: scale(1.05); /* Button grows slightly on hover */
+    background: #ffffff;
+    color: #0056b3;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
 }
 
 /* --- Footer --- */
 footer {
-    background: #1a202c;
-    color: #a0aec0;
+    background: transparent;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #9ca3af;
     text-align: center;
-    padding: 30px 20px;
+    padding: 40px 20px;
     margin-top: 40px;
 }
 footer a {
-    color: #FFC107;
+    color: #00aaff;
     text-decoration: none;
+    font-weight: 600;
 }
