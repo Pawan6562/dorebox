@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DoreBox Blog</title>
     <link rel="icon" href="https://iili.io/KXmopGj.png" type="image/png">
-    <link rel="stylesheet" href="../style.css?v=2.9">
-    <link rel="stylesheet" href="blog-style.css?v=1.1"> <!-- Optional: Agar alag style chahiye -->
+    <link rel="stylesheet" href="../style.css?v=2.8">
+    <link rel="stylesheet" href="blog-style.css?v=1.0">
 </head>
 <body class="blog-page">
     <header id="main-header">
@@ -24,9 +24,16 @@
         <div class="blog-grid" id="blog-grid-container"></div>
     </main>
 
-    <!-- SIRF EK SCRIPT FILE LOAD KARNI HAI -->
-    <script src="posts.js"></script>
+    <!-- ✅ FIX: SCRIPT ORDER CHANGE KIYA GAYA HAI -->
 
+    <!-- 1. MASTER FILE SABSE PEHLE -->
+    <script src="articles/all-posts.js"></script>
+
+    <!-- 2. BAAKI SAARE POSTS USKE BAAD -->
+    <script src="articles/nobita-lifestyle.js"></script>
+    <!-- <script src="articles/another-post.js"></script> -->
+
+    <!-- 3. PAGE LOGIC SABSE AAKHIR MEIN -->
     <script>
         document.addEventListener('DOMContentLoaded', ( ) => {
             const container = document.getElementById('blog-grid-container');
