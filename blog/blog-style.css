@@ -146,3 +146,28 @@ hr { border: none; height: 1px; background: linear-gradient(to right, transparen
 .final-promo p { color: #e0e7ff; margin: 0 0 25px 0; font-size: 1.1rem; }
 .final-promo-button { display: inline-block; background: #ffffff; color: #4f46e5; padding: 15px 40px; border-radius: 10px; text-decoration: none; font-weight: 800; font-size: 1.1rem; transition: all 0.3s ease; }
 .final-promo-button:hover { transform: scale(1.05); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+
+/* =================================
+   ✅ LIST STYLING FOR BLOG POSTS ✅
+   ================================= */
+
+.post-content ul {
+    list-style: none;
+    padding-left: 20px;
+}
+
+.post-content ul li {
+    padding-left: 25px;
+    position: relative;
+    margin-bottom: 15px;
+    font-size: 1.05rem;
+}
+
+.post-content ul li::before {
+    content: '🎵'; /* Musical note icon */
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #1d4ed8;
+    font-size: 1.2rem;
+}
