@@ -6,8 +6,8 @@
     <title>Blog Post - DoreBox</title>
     <base href="/">
     <link rel="icon" href="https://iili.io/KXmopGj.png" type="image/png">
-    <link rel="stylesheet" href="style.css?v=3.5">
-    <link rel="stylesheet" href="blog/blog-style.css?v=3.5">
+    <link rel="stylesheet" href="style.css?v=3.6">
+    <link rel="stylesheet" href="blog/blog-style.css?v=3.6">
 </head>
 <body class="blog-page">
 
@@ -17,10 +17,7 @@
         </div>
     </header>
 
-    <!-- ✅ NEW: Main container ab post-layout hai -->
-    <main id="post-layout">
-        <!-- Post content will be loaded here by JavaScript -->
-    </main>
+    <main id="post-layout"></main>
 
     <footer>
         <div class="container">
@@ -28,7 +25,6 @@
         </div>
     </footer>
 
-    <!-- Simple Script Section -->
     <script src="blog/posts.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', ( ) => {
@@ -40,11 +36,12 @@
             if (post) {
                 document.title = post.title + " - DoreBox Blog";
                 
-                // ✅ NEW: HTML structure ab "Hero" design ke liye hai
+                // ✅ NEW: Date ko title ke upar add kiya gaya hai
                 layoutContainer.innerHTML = `
                     <div class="post-hero-section" style="background-image: url('${post.poster}')">
                         <div class="hero-overlay"></div>
                         <div class="hero-content">
+                            <p class="post-hero-date">Published on ${post.date}</p>
                             <h1 class="post-title">${post.title}</h1>
                         </div>
                     </div>
