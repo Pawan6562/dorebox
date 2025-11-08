@@ -1,10 +1,10 @@
 /* =================================
-   DOREBOX BLOG - TRUE PROFESSIONAL UI
-   Version: 5.0 (Final Hero Design with Graphics)
+   DOREBOX BLOG - FINAL PROFESSIONAL UI
+   Version: 6.0 (Includes Publish Date)
    ================================= */
 
 /* --- Google Font Import --- */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap' );
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap' );
 
 /* --- Body & Background --- */
 body.blog-page {
@@ -38,36 +38,43 @@ body.blog-page {
 .blog-card:hover { transform: translateY(-15px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); }
 .blog-card-poster { width: 100%; height: 220px; object-fit: cover; }
 .blog-card-content { padding: 30px; display: flex; flex-direction: column; flex-grow: 1; }
-.blog-card-title { font-size: 1.6rem; font-weight: 700; color: #f8fafc; margin-bottom: 15px; line-height: 1.4; }
+.blog-card-title { font-size: 1.6rem; font-weight: 700; color: #f8fafc; margin-bottom: 10px; line-height: 1.4; }
+
+/* ✅ NEW: Date styling for blog cards */
+.blog-card-date {
+    font-size: 0.85rem;
+    color: #9ca3af;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
 .blog-card-excerpt { font-size: 0.95rem; color: #94a3b8; line-height: 1.8; margin-bottom: 30px; flex-grow: 1; }
 .blog-card-link { font-weight: 700; color: #0f172a; background: #FFC107; padding: 12px 24px; border-radius: 8px; text-decoration: none; align-self: flex-start; transition: all 0.3s ease; }
 .blog-card-link:hover { background: #ffffff; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3); }
 
 /* =================================
-   ✅✅✅ POST PAGE - FINAL HERO DESIGN ✅✅✅
+   POST PAGE - HERO DESIGN
    ================================= */
 
 .post-hero-section {
     width: 100%;
-    height: 65vh; /* Thodi aur height */
+    height: 65vh;
     position: relative;
     display: flex;
-    align-items: flex-end; /* Title ko neeche align karega */
+    align-items: flex-end;
     justify-content: center;
     text-align: center;
     background-size: cover;
-    background-position: center 30%; /* Image ko thoda upar se focus karega */
+    background-position: center 30%;
     padding: 0 20px;
 }
 
-/* ✅ NEW: Gradient Overlay for Readability */
 .hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* Dark gradient from bottom to top */
     background: linear-gradient(to top, rgba(15, 23, 42, 1) 10%, rgba(15, 23, 42, 0.7) 40%, rgba(15, 23, 42, 0.1) 70%, transparent 100%);
     z-index: 1;
 }
@@ -75,16 +82,27 @@ body.blog-page {
 .hero-content {
     position: relative;
     z-index: 2;
-    padding-bottom: 80px; /* Title ko neeche se thoda upar rakhega */
+    padding-bottom: 80px;
     max-width: 900px;
 }
 
-/* ✅ NEW: Better Title Styling with Shadow */
+/* ✅ NEW: Date styling for hero section */
+.post-hero-date {
+    color: #ffffff;
+    font-weight: 600;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 5px 15px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    backdrop-filter: blur(5px);
+}
+
 .post-hero-section .post-title {
     font-size: 3.8rem;
-    font-weight: 800; /* Extra bold */
+    font-weight: 800;
     color: #ffffff;
-    /* Professional Text Shadow for depth */
     text-shadow: 0px 5px 25px rgba(0, 0, 0, 0.8);
     line-height: 1.2;
     margin: 0;
@@ -93,7 +111,7 @@ body.blog-page {
 /* Main Content Area */
 .post-container {
     max-width: 850px;
-    margin: -50px auto 50px auto; /* Negative margin to pull it up slightly */
+    margin: -50px auto 50px auto;
     padding: 50px;
     background: #ffffff;
     border-radius: 15px;
@@ -103,24 +121,28 @@ body.blog-page {
     z-index: 3;
 }
 
-.post-content {
-    font-size: 1.1rem;
-    line-height: 1.9;
-    color: #334155;
-}
-
+.post-content { font-size: 1.1rem; line-height: 1.9; color: #334155; }
 .post-content h2 { font-size: 1.8rem; margin-top: 40px; color: #1e40af; font-weight: 700; }
 .post-content h3 { font-size: 1.4rem; margin-top: 30px; color: #1d4ed8; font-weight: 700; }
 .post-content p { margin-bottom: 20px; }
 
-.back-link {
-    display: inline-block;
-    margin-top: 40px;
-    color: #1d4ed8;
-    text-decoration: none;
-    font-weight: 600;
-}
+.back-link { display: inline-block; margin-top: 40px; color: #1d4ed8; text-decoration: none; font-weight: 600; }
 
 /* --- Footer --- */
 footer { background: transparent; border-top: 1px solid rgba(255, 255, 255, 0.1); color: #94a3b8; text-align: center; padding: 40px 20px; margin-top: 40px; }
 footer a { color: #3b82f6; text-decoration: none; font-weight: 600; }
+
+/* =================================
+   PROMOTIONAL BOX & BUTTON STYLES
+   ================================= */
+
+.promo-box { background: rgba(226, 232, 240, 0.5); border: 1px solid #e2e8f0; border-radius: 12px; padding: 25px; margin: 30px 0; text-align: center; }
+.promo-box p { margin: 0 0 15px 0; color: #334155; font-size: 1rem; }
+.promo-button { display: inline-block; background: #3b82f6; color: #ffffff; padding: 10px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; }
+.promo-button:hover { background: #2563eb; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4); }
+hr { border: none; height: 1px; background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent); margin: 50px 0; }
+.final-promo { background: linear-gradient(45deg, #3b82f6, #8b5cf6); padding: 40px; border-radius: 15px; text-align: center; margin-top: 50px; }
+.final-promo h3 { font-size: 2rem; color: #ffffff; margin: 0 0 15px 0; }
+.final-promo p { color: #e0e7ff; margin: 0 0 25px 0; font-size: 1.1rem; }
+.final-promo-button { display: inline-block; background: #ffffff; color: #4f46e5; padding: 15px 40px; border-radius: 10px; text-decoration: none; font-weight: 800; font-size: 1.1rem; transition: all 0.3s ease; }
+.final-promo-button:hover { transform: scale(1.05); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
