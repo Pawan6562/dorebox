@@ -7,6 +7,7 @@ const blogPosts = [
         title: "Nobita ki Lifestyle: Aalas ya Sadgi?",
         poster: "https://i.postimg.cc/3w83qTtr/Doraemon-The-Movie-Dinosaur-Yoddhha-Hindi-Tamil-Telugu-Download-FHD-990x557.jpg",
         description: "Nobita ke daily routine, uski aadaton aur uske piche ki psychology ko samjhein. Kya woh sirf aalsi hai ya uski life mein kuch gehraai hai?",
+        date: "November 07, 2025",
         content: `
             <h2>Nobita: Ek Aam Bacche ki Kahani</h2>
             <p>Nobita Nobi, Doraemon series ka hero, hum sabke liye ek jaana-pehchana chehra hai. Usko aksar ek aalsi, padhai mein kamzor aur bhulakkad bacche ke roop mein dikhaya jaata hai. Lekin kya uski kahani sirf itni hi hai?</p>
