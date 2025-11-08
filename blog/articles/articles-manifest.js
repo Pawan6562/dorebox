@@ -1,5 +1,6 @@
 const articleFiles = [
     "nobita-lifestyle.js",
     "top-5-gadgets.js",
-    "doraemon-movies.js" // <-- Bas ye nayi line add karni hai
+    "top-10-doraemon-movies.js",
+    "nobita-earth-symphony-details.js" // <-- ✅ Bas ye nayi line add karni hai
 ];
