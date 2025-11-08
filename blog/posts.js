@@ -24,6 +24,7 @@ const blogPosts = [
         title: "Doraemon ki Movies ka Jaadu: Kyun Hain Ye Itni Khaas?",
         poster: "https://i.postimg.cc/vmkLDN1X/Doraemon-The-Movie-Stand-by-Me-by-cjh.png",
         description: "Doraemon ki movies sirf cartoons nahi, balki emotions aur adventure ka ek anokha safar hain. Aaiye jaante hain inki popularity ke peeche ka raaz.",
+        date: "November 08, 2025",
         content: `
             <h2>Introduction: Sirf Ek Cartoon Nahi</h2>
             <p>Jab hum Doraemon ka naam sunte hain, to humein Nobita ki masti aur gadgets ki duniya yaad aati hai. Lekin Doraemon ki movies isse kahin badhkar hain. Ye movies humein dosti, himmat, aur sahi kaam karne ki seekh deti hain. Har movie ek naye adventure par le jaati hai, kabhi dinosaurs ke beech, to kabhi outer space mein.</p>
@@ -45,6 +46,7 @@ const blogPosts = [
     // ✅✅✅ POSTER IMAGE UPDATE HO GAYA HAI ✅✅✅
     poster: "https://i.postimg.cc/Y0yP7Hz8/bdb7a0e7-5956-4af3-ba28-cac5fa08decd.png",
     description: "Doraemon ki duniya mein movies ka ek alag hi jaadu hai. Humne aapke liye top 10 best Doraemon movies ki list taiyaar ki hai jo har fan ko zaroor dekhni chahiye. Yahan se aap in movies ko free mein dekh aur download bhi kar sakte hain.",
+    date: "November 09, 2025",
     content: `
         <h2>Introduction: Doraemon Movies ka Anokha Safar</h2>
         <p>Doraemon sirf ek TV show nahi, balki hamare bachpan ka ek important hissa hai. Jab baat movies ki aati hai, to Doraemon humein hamesha ek naye, rochak aur emotional safar par le jaata hai. Ye movies sirf adventure nahi, balki dosti, himmat aur acche insaan banne ki seekh bhi deti hain. Agar aap Doraemon ke asli fan hain, to ye 10 movies aapki 'must-watch' list mein honi chahiye. Aaiye, shuru karte hain!</p>
