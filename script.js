@@ -164,6 +164,20 @@ const episodes = [
             "Episodes 31-40": "https://gplinks.co/Doraemons1e30-40byajh",
             "Episodes 41-52": "https://gplinks.co/Doraemons1e40-52byajh"
         }
+    },
+    // ✅ NAYA SEASON 2 ADD HO GAYA HAI
+    {
+        title: "Doraemon Season 2",
+        poster: "https://iili.io/KDZEJEB.png",
+        description: "Adventure jaari hai! Doraemon ke Season 2 mein dekhein Nobita ki nayi shararatein aur Doraemon ke naye, kamaal ke gadgets.",
+        embed: "", 
+        downloadLinks: {
+            "Episodes 01-10": "https://gplinks.co/Doraemons2e1-10byajh",
+            "Episodes 11-20": "https://gplinks.co/Doraemons2e10-20byajh",
+            "Episodes 21-30": "https://gplinks.co/Doraemons2e20-30byajh",
+            "Episodes 31-40": "https://gplinks.co/Doraemons2e30-40byajh",
+            "Episodes 41-51": "https://gplinks.co/Doraemons2e40-51byajh"
+        }
     }];
 const shortMovies = [];
 window.dorebox_content = { movies, episodes, shortMovies };
