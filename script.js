@@ -151,7 +151,20 @@ console.log("DoreBox User ID:", currentUserID);
     { title: "Doraemon Nobita And The Kingdom Of Robot Singham", poster: "https://i.postimg.cc/j5fNHPj6/The-Movie-Nobita-and-the-Kingdom-of-Robot-by-cjh.jpg", description: "This movie is available for download.", embed: "", downloadLinks: { '1080p': 'https://gplinks.co/Robotsinghamonbotat1080p', '720p': '#', '360p': '#' } },
 ];
 
-const episodes = [];
+const episodes = [
+    {
+        title: "Doraemon Season 1",
+        poster: "https://iili.io/KDQrkLN.png",
+        description: "Doraemon ka pehla season! Nobita aur Doraemon ke classic adventures ki shuruaat. Dekhein pehle 52 episodes.",
+        embed: "", 
+        downloadLinks: {
+            "Episodes 01-10": "https://gplinks.co/Doraemons1e1-10byajh",
+            "Episodes 11-20": "https://gplinks.co/Doraemons1e10-20byajh",
+            "Episodes 21-30": "https://gplinks.co/Doraemons1e20-30byajh",
+            "Episodes 31-40": "https://gplinks.co/Doraemons1e30-40byajh",
+            "Episodes 41-52": "https://gplinks.co/Doraemons1e40-52byajh"
+        }
+    }];
 const shortMovies = [];
 window.dorebox_content = { movies, episodes, shortMovies };
 
