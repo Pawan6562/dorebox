@@ -6,8 +6,8 @@
     <title>DoreBox Blog</title>
     <base href="/">
     <link rel="icon" href="https://iili.io/KXmopGj.png" type="image/png">
-    <link rel="stylesheet" href="style.css?v=3.3">
-    <link rel="stylesheet" href="blog/blog-style.css?v=3.3">
+    <link rel="stylesheet" href="style.css?v=3.6">
+    <link rel="stylesheet" href="blog/blog-style.css?v=3.6">
 </head>
 <body class="blog-page">
 
@@ -42,7 +42,16 @@
                 blogPosts.forEach(post => {
                     const card = document.createElement('div');
                     card.className = 'blog-card';
-                    card.innerHTML = `<img src="${post.poster}" alt="${post.title}" class="blog-card-poster"><div class="blog-card-content"><h2 class="blog-card-title">${post.title}</h2><p class="blog-card-excerpt">${post.description}</p><a href="blog/post.html?id=${post.id}" class="blog-card-link">Read More &rarr;</a></div>`;
+                    // ✅ NEW: Date ko title ke neeche add kiya gaya hai
+                    card.innerHTML = `
+                        <img src="${post.poster}" alt="${post.title}" class="blog-card-poster">
+                        <div class="blog-card-content">
+                            <h2 class="blog-card-title">${post.title}</h2>
+                            <p class="blog-card-date">${post.date}</p> 
+                            <p class="blog-card-excerpt">${post.description}</p>
+                            <a href="blog/post.html?id=${post.id}" class="blog-card-link">Read More &rarr;</a>
+                        </div>
+                    `;
                     container.appendChild(card);
                 });
             } else {
