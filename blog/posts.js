@@ -6,7 +6,7 @@ const blogPosts = [
     {
         id: "doraemon-vs-shinchan-best-cartoon",
         title: "Doraemon vs. Shinchan: Kaun Hai Asli King of Cartoons in India?",
-        poster: "https://i.postimg.cc/k5LwzZzC/doraemon-vs-shinchan.png",
+        poster: "https://iili.io/Kb5On8x.png",
         description: "India ke do sabse bade cartoon icons ki jung! Ek taraf hai future se aaya ek helpful robot, to doosri taraf hai duniya ka sabse shararati 5 saal ka baccha. Aaiye dekhte hain is ultimate comparison mein kaun jeetta hai.",
         date: "November 11, 2025",
         content: `
@@ -39,7 +39,7 @@ const blogPosts = [
     {
         id: "nobita-earth-symphony-details",
         title: "Doraemon: Nobita's Earth Symphony - India Launch, Story & All You Need to Know!",
-        poster: "https://i.postimg.cc/P5gB1f5j/doraemon-movie-nobita-s-earth-symphony-hindi-release-date.jpg",
+        poster: "https://iili.io/KDe9F4f.jpg",
         description: "Doraemon ki nayi movie 'Nobita's Earth Symphony' ne Japan mein dhoom macha di hai. Iski story kya hai, ye India mein kab release hogi, aur ismein kya khaas hai?",
         date: "November 10, 2025",
         content: `
