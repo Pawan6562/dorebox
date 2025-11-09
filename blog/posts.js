@@ -65,7 +65,7 @@ const blogPosts = [
     {
     id: "doraemon-ultimate-scholarly-deconstruction",
     title: "The Doraemon Enigma: A Multi-Disciplinary Deconstruction of a Post-War Cultural Artefact",
-    poster: "https://iili.io/KbXO5CX.png", // The mood is perfect for this deep dive.
+    poster: "https://iili.io/Kbh2XxR.png", // The mood is perfect for this deep dive.
     description: "This definitive scholarly work deconstructs Doraemon not as a story, but as a complex cultural artefact. Through the lenses of Freudian psychoanalysis, Japanese 'Amae', Buddhist philosophy (the concept of 'Dukkha' ), and post-war sociological anxieties, we argue that Doraemon is a sophisticated, multi-layered text on the cyclical nature of human suffering and the elusive quest for enlightenment.",
     date: "November 15, 2025",
     content: `
