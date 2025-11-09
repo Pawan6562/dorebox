@@ -178,6 +178,17 @@ const episodes = [
             "Episodes 31-40": "https://gplinks.co/Doraemons2e30-40byajh",
             "Episodes 41-51": "https://gplinks.co/Doraemons2e40-51byajh"
         }
+    },
+    {
+        title: "Doraemon Season 3",
+        poster: "https://iili.io/KbuSDW7.png",
+        description: "Masti aur hungama ka teesra dose! Season 3 mein dekhein aur bhi mazedaar kahaniyan aur gadgets jo aapko hasa-hasa kar pagal kar denge.",
+        embed: "", 
+        downloadLinks: {
+            "Episodes 01-20": "https://gplinks.co/Doraemons3e1-20byajh",
+            "Episodes 21-40": "https://gplinks.co/Doraemons3e21-40byajh",
+            "Episodes 41-52": "https://gplinks.co/Doraemons3e41-52byajh"
+        }
     }];
 const shortMovies = [];
 window.dorebox_content = { movies, episodes, shortMovies };
