@@ -165,7 +165,6 @@ const episodes = [
             "Episodes 41-52": "https://gplinks.co/Doraemons1e40-52byajh"
         }
     },
-    // ✅ NAYA SEASON 2 ADD HO GAYA HAI
     {
         title: "Doraemon Season 2",
         poster: "https://iili.io/KDZEJEB.png",
@@ -188,8 +187,9 @@ const episodes = [
             "Episodes 01-20": "https://gplinks.co/Doraemons3e1-20byajh",
             "Episodes 21-40": "https://gplinks.co/Doraemons3e21-40byajh",
             "Episodes 41-52": "https://gplinks.co/Doraemons3e41-52byajh"
-        },
-        {
+        }
+    }, // ✅✅✅ DEKHO: YAHAN PAR BRACKET BAND HUA AUR COMMA LAGA ✅✅✅
+    {
         title: "Doraemon Season 4",
         poster: "https://iili.io/KbA34Hb.png",
         description: "Chaos aur comedy ka chautha chapter! Season 4 mein Nobita ki nayi-nayi problems aur Doraemon ke aur bhi creative solutions dekhein.",
@@ -199,7 +199,8 @@ const episodes = [
             "Episodes 21-40": "https://gplinks.co/doraemons4e21-40byajh",
             "Episodes 41-52": "https://gplinks.co/doraemons4e41-52byajh"
         }
-    }];
+    }
+]
 const shortMovies = [];
 window.dorebox_content = { movies, episodes, shortMovies };
 
