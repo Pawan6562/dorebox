@@ -95,7 +95,7 @@ Description:
 Nobita, tired of struggling in his music class, gets pulled into a mysterious world where music is the source of life. A dark force called Noise begins destroying all sound, putting both Earth and the music planet Farre in danger. Nobita, Doraemon, and their friends must perform a powerful musical piece to restore harmony and save both worlds. The film celebrates the idea that music connects every living being.`,
         embed: "",
         downloadLinks: {
-            '1080p': 'https://temp-link.com/1080p', // Temporary link
+            '1080p': 'https://gplinks.co/earthsymphonyonbotat1080pbyajh', // Temporary link
             '720p': '#',
             '360p': '#'
         }
