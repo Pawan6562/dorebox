@@ -80,6 +80,27 @@ console.log("DoreBox User ID:", currentUserID);
 // MASTER DATABASES
 // ==================================================
     const movies = [
+
+     {
+        title: "Doraemon: Nobita's Earth Symphony",
+        poster: "https://iili.io/f94Nezg.jpg",
+        description: `Title: Doraemon: Nobita’s Earth Symphony
+Release Date: March 1, 2024
+Duration: 115 minutes
+Genre: Adventure • Fantasy • Musical • Sci-Fi
+Director: Kazuaki Imai
+Studio: Shin-Ei Animation
+
+Description:
+Nobita, tired of struggling in his music class, gets pulled into a mysterious world where music is the source of life. A dark force called Noise begins destroying all sound, putting both Earth and the music planet Farre in danger. Nobita, Doraemon, and their friends must perform a powerful musical piece to restore harmony and save both worlds. The film celebrates the idea that music connects every living being.`,
+        embed: "",
+        downloadLinks: {
+            '1080p': 'https://temp-link.com/1080p', // Temporary link
+            '720p': '#',
+            '360p': '#'
+        }
+    },
+
     { title: "Doraemon Nobita and the Spiral City", poster: "https://iili.io/KTEEtjI.jpg", description: "Using a gadget, Doraemon and Nobita create a new city in a different dimension. But when criminals from their world find a way in, they must protect their new home.", embed: "" , downloadLinks: { '1080p': 'https://gplinks.co/Spiralcityonbotat1080p', '720p': 'https://gplinks.co/thespiralcityin720pbycjh', '360p': 'https://gplinks.co/thespiralcityin360pbycjh' } },
     { title: "Doraemon The Movie Nobita In Jannat No 1", poster: "https://iili.io/KzKuPMQ.jpg", description: "Join Nobita and his friends on an exciting adventure to a magical kingdom in the clouds. A paradise awaits, but is everything as perfect as it seems?", embed: "", downloadLinks: { '1080p': 'https://gplinks.co/kingdomofcloudin1080pbycjh', '720p': 'https://gplinks.co/kingdomofcloudin720pbycjh', '360p': 'https://gplinks.co/kingdomofcloudin360pbycjh' } },
     { title: "Doraemon jadoo Mantar aur jhanoom", poster: "https://i.postimg.cc/Z5t0TfkP/Doraemon-The-Movie-Jadoo-Mantar-Aur-Jahnoom-by-cjh.jpg", description: "🎬 𝗗𝗼𝗿𝗮𝗲𝗺𝗼𝗻 𝗧𝗵𝗲 𝗠𝗼𝘃𝗶𝗲: 𝗝𝗮𝗱𝗼𝗼 𝗠𝗮𝗻𝘁𝗮𝗿 𝗔𝘂𝗿 𝗝𝗵𝗮𝗻𝗼𝗼𝗺\n[ 𝟮𝟬𝟮𝟯 • 𝟭𝗵 𝟱𝟮𝗺 • 𝗔𝗱𝘃𝗲𝗻𝘁𝘂𝗿𝗲 • 𝗛𝗗 ]", embed: '', downloadLinks: { '1080p':'https://gplinks.co/Jadumantaronbotat1080pbyajh', '720p': 'https://gplinks.co/Jadumantaraurjhanoom720pbycjh', '360p': 'https://gplinks.co/Jadumantaraurjhanoom360pbycjh' } },
