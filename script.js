@@ -570,3 +570,112 @@ if (body.classList.contains('watch-page')) {
         verifyTask();
     }
 });
+
+// ==================================================
+// CHATBOT INTEGRATION LOGIC
+// ==================================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleBtn = document.getElementById('chatbot-toggle-btn');
+    const chatWindow = document.getElementById('chat-window');
+    const closeBtn = document.getElementById('chat-close-btn');
+    const messagesContainer = document.getElementById('chat-messages');
+    const chatInput = document.getElementById('chat-input');
+    const sendBtn = document.getElementById('chat-send-btn');
+
+    let chatHistory = [
+        {
+            role: "system",
+            content: "You are the friendly and helpful DoreBox AI assistant. Your primary role is to answer questions about Doraemon movies, the DoreBox website's features (like the rewards system), and general inquiries. Keep your tone light and encouraging, like a friend of Doraemon and Nobita."
+        },
+        {
+            role: "assistant",
+            content: "Hello! I'm the DoreBox AI. How can I help you with movies, rewards, or any other questions?"
+        }
+    ];
+
+    // 1. Toggle Chat Window
+    toggleBtn.addEventListener('click', () => {
+        chatWindow.classList.toggle('hidden');
+        if (!chatWindow.classList.contains('hidden')) {
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            chatInput.focus();
+        }
+    });
+
+    closeBtn.addEventListener('click', () => {
+        chatWindow.classList.add('hidden');
+    });
+
+    // 2. Message Display Function
+    function displayMessage(role, content) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message');
+        messageDiv.classList.add(role === 'user' ? 'user-message' : 'bot-message');
+        messageDiv.innerHTML = content; // Use innerHTML to allow for basic formatting if needed
+        messagesContainer.appendChild(messageDiv);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    // 3. API Call Function
+    async function sendMessageToAPI(userMessage) {
+        // Add user message to history and display it
+        chatHistory.push({ role: "user", content: userMessage });
+        displayMessage('user', userMessage);
+
+        // Show a loading indicator
+        const loadingMessage = document.createElement('div');
+        loadingMessage.classList.add('message', 'bot-message', 'loading');
+        loadingMessage.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Typing...';
+        messagesContainer.appendChild(loadingMessage);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+        try {
+            const response = await fetch('/api/chatbot', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ messages: chatHistory }),
+            });
+
+            // Remove loading indicator
+            messagesContainer.removeChild(loadingMessage);
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'API call failed');
+            }
+
+            const data = await response.json();
+            const botResponse = data.choices[0].message.content;
+
+            // Add bot response to history and display it
+            chatHistory.push({ role: "assistant", content: botResponse });
+            displayMessage('bot', botResponse);
+
+        } catch (error) {
+            console.error("Chatbot API Error:", error);
+            // Display error message to user
+            displayMessage('bot', 'Sorry, I am having trouble connecting to the AI. Please try again later. Error: ' + error.message);
+            // Remove the last user message from history to allow retry
+            chatHistory.pop();
+        }
+    }
+
+    // 4. Send Message Handler
+    function handleSendMessage() {
+        const userMessage = chatInput.value.trim();
+        if (userMessage) {
+            chatInput.value = ''; // Clear input
+            sendMessageToAPI(userMessage);
+        }
+    }
+
+    sendBtn.addEventListener('click', handleSendMessage);
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            handleSendMessage();
+        }
+    });
+});
