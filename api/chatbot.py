@@ -4,7 +4,7 @@ import os
 import requests
 
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY") 
-MODEL_NAME = "nvidia/nemotron-nano-12b-v2-vl:free"
+MODEL_NAME = "google/gemma-3n-e4b-it:free"
 
 # ✨ CUSTOM SYSTEM PROMPT - DoreBox ke liye specially designed
 SYSTEM_PROMPT = """You are DoreBox AI Support Assistant - a helpful chatbot for the DoreBox website.
