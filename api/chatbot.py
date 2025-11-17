@@ -4,7 +4,7 @@ import os
 import requests
 
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY") 
-MODEL_NAME = "google/gemma-3n-e4b-it:free"
+MODEL_NAME = "deepseek/deepseek-chat-v3.1:free"
 
 # ✨ CUSTOM SYSTEM PROMPT - DoreBox ke liye specially designed
 SYSTEM_PROMPT = """You are DoreBox AI Support Assistant - a helpful chatbot for the DoreBox website.
