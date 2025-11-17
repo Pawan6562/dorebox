@@ -4,50 +4,38 @@ import os
 import requests
 
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY") 
-MODEL_NAME = "deepseek/deepseek-chat-v3.1:free"
 
-# ✨ CUSTOM SYSTEM PROMPT - DoreBox ke liye specially designed
-SYSTEM_PROMPT = """You are DoreBox AI Support Assistant - a helpful chatbot for the DoreBox website.
+# ✅ BETTER MODEL - No publication required
+MODEL_NAME = "meta-llama/llama-3.2-3b-instruct:free"
 
-**About DoreBox:**
-- DoreBox (dorebox.vercel.app) is a FREE streaming platform for Doraemon and Nobita movies in Hindi
-- We offer all Doraemon movies online for free watching and downloading
-- Target audience: Doraemon fans, especially kids and families in India
-- Website features: Movie streaming, downloads, search functionality, and user rewards
+SYSTEM_PROMPT = """You are DoreBox AI Support - a friendly chatbot for DoreBox website.
 
-**Your Role:**
-- Help users find Doraemon movies
-- Answer questions about the website and its features
-- Guide users on how to watch or download movies
-- Be friendly, helpful, and enthusiastic about Doraemon
-- Always respond in SIMPLE HINGLISH (Hindi + English mix that's easy to read)
+ABOUT DOREBOX:
+- Website: dorebox.vercel.app
+- Free Doraemon movies in Hindi
+- 40+ movies available
+- Features: Watch online, download movies
 
-**Response Format Rules:**
-1. Keep responses SHORT and CLEAR (2-3 sentences max)
-2. Use simple Hinglish that anyone can understand
-3. Use emojis sparingly (1-2 per message)
-4. NO special symbols or formatting characters
-5. Be conversational and friendly
+YOUR ROLE:
+- Help users find movies
+- Answer website questions
+- Be friendly and helpful
+- Reply in simple English or Hinglish
 
-**Available Movies (examples you can mention):**
-- Doraemon: Nobita's Little Star Wars
-- Doraemon: Nobita and the Steel Troops
-- Doraemon: Nobita's Dinosaur
-- Doraemon: Stand by Me
-- And many more classic Doraemon films
+RULES:
+- Keep responses SHORT (2-3 sentences)
+- Use simple language
+- Add 1-2 emojis
+- Be helpful and clear
 
-**Common User Questions:**
-- "Which movies are available?" → Mention we have 40+ Doraemon movies
-- "How to download?" → Explain the download button on movie pages
-- "Is it free?" → Yes, completely free!
-- "In Hindi?" → Yes, all movies in Hindi
-
-Remember: Keep it simple, helpful, and Doraemon-focused! 🎬"""
+EXAMPLE:
+User: "movie suggest karo"
+You: "Popular movies: Nobita's Dinosaur, Steel Troops, Stand by Me. Which type chahiye? 🎬"
+"""
 
 class handler(BaseHTTPRequestHandler):
     
     def do_OPTIONS(self):
-        """Handle CORS preflight"""
         self.send_response(200)
         self.send_header('Access-Control-Allow-Origin', '*')
         self.send_header('Access-Control-Allow-Methods', 'POST, OPTIONS')
@@ -55,13 +43,11 @@ class handler(BaseHTTPRequestHandler):
         self.end_headers()
     
     def do_POST(self):
-        """Handle POST requests"""
         try:
             if not OPENROUTER_API_KEY:
                 self._send_error(500, "API key missing")
                 return
             
-            # Read request
             content_length = int(self.headers.get('Content-Length', 0))
             if content_length == 0:
                 self._send_error(400, "Empty request")
@@ -72,30 +58,25 @@ class handler(BaseHTTPRequestHandler):
             
             user_messages = body.get('messages', [])
             
-            # ✨ ADD SYSTEM PROMPT at the beginning
-            messages = [
-                {"role": "system", "content": SYSTEM_PROMPT}
-            ]
+            messages = [{"role": "system", "content": SYSTEM_PROMPT}]
             
-            # Add user messages
             if user_messages:
                 messages.extend(user_messages)
             else:
-                messages.append({"role": "user", "content": "Hello!"})
+                messages.append({"role": "user", "content": "Hello"})
             
-            # Call OpenRouter API
             response = requests.post(
                 "https://openrouter.ai/api/v1/chat/completions",
                 headers={
                     "Authorization": f"Bearer {OPENROUTER_API_KEY}",
                     "Content-Type": "application/json",
-                    "X-Title": "DoreBox Chatbot"
+                    "X-Title": "DoreBox Support"
                 },
                 json={
                     "model": MODEL_NAME,
                     "messages": messages,
-                    "temperature": 0.7,  # More consistent responses
-                    "max_tokens": 200    # Short responses
+                    "temperature": 0.5,
+                    "max_tokens": 150
                 },
                 timeout=30
             )
@@ -103,19 +84,14 @@ class handler(BaseHTTPRequestHandler):
             if response.ok:
                 self._send_success(response.json())
             else:
-                self._send_error(response.status_code, f"AI error: {response.text}")
+                self._send_error(response.status_code, f"Error: {response.text}")
                 
         except json.JSONDecodeError:
             self._send_error(400, "Invalid JSON")
-        except requests.exceptions.Timeout:
-            self._send_error(504, "Timeout")
-        except requests.exceptions.RequestException as e:
-            self._send_error(503, f"Network error: {str(e)}")
         except Exception as e:
-            self._send_error(500, f"Server error: {str(e)}")
+            self._send_error(500, f"Error: {str(e)}")
     
     def _send_success(self, data):
-        """Send successful JSON response"""
         self.send_response(200)
         self.send_header('Content-Type', 'application/json')
         self.send_header('Access-Control-Allow-Origin', '*')
@@ -123,7 +99,6 @@ class handler(BaseHTTPRequestHandler):
         self.wfile.write(json.dumps(data).encode('utf-8'))
     
     def _send_error(self, status_code, message):
-        """Send error JSON response"""
         self.send_response(status_code)
         self.send_header('Content-Type', 'application/json')
         self.send_header('Access-Control-Allow-Origin', '*')
