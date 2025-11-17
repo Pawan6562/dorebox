@@ -1,4 +1,9 @@
 {
+  "functions": {
+    "api/chatbot.py": {
+      "runtime": "python3.9"
+    }
+  },
   "rewrites": [
     {
       "source": "/blog",
@@ -7,6 +12,10 @@
     {
       "source": "/blog/",
       "destination": "/blog/index.html"
+    },
+    {
+      "source": "/api/chatbot",
+      "destination": "/api/chatbot.py"
     }
   ]
 }
