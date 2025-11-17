@@ -3,7 +3,7 @@ import json
 import requests
 
 # The API key must be set as an environment variable in Vercel
-OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY")
+OPENROUTER_API_KEY = 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
 MODEL_NAME = "nvidia/nemotron-nano-12b-v2-vl:free"
 
 def handler(request):
