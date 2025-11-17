@@ -21,6 +21,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css?v=2.3">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body class="home-page">
 
@@ -109,6 +110,28 @@
             <p>&copy; 2025 DoreBox | Maintained by AJH</p>
         </div>
     </footer>
+
+    <!-- Chatbot HTML Structure -->
+    <div id="chatbot-container">
+        <button id="chatbot-toggle-btn">
+            <i class="fas fa-comment-dots"></i> Chat Support
+        </button>
+        <div id="chat-window" class="hidden">
+            <div id="chat-header">
+                DoreBox AI Support
+                <button id="chat-close-btn">&times;</button>
+            </div>
+            <div id="chat-messages">
+                <div class="message bot-message">
+                    Hello! I'm the DoreBox AI. How can I help you with movies, rewards, or any other questions?
+                </div>
+            </div>
+            <div id="chat-input-container">
+                <input type="text" id="chat-input" placeholder="Type your message...">
+                <button id="chat-send-btn">Send</button>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
