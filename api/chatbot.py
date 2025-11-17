@@ -4,7 +4,7 @@ import requests
 from http.client import responses
 
 # The API key must be set as an environment variable in Vercel
-OPENROUTER_API_KEY = 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
+OPENROUTER_API_KEY = "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"
 MODEL_NAME = "nvidia/nemotron-nano-12b-v2-vl:free"
 
 def handler(request):
