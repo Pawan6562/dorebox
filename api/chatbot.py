@@ -6,7 +6,7 @@ import requests
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY") 
 
 # ✅ BETTER MODEL - No publication required
-MODEL_NAME = "meta-llama/llama-3.2-3b-instruct:free"
+MODEL_NAME = "openai/gpt-oss-20b:free"
 
 SYSTEM_PROMPT = """You are DoreBox AI Support - a friendly chatbot for DoreBox website.
 
