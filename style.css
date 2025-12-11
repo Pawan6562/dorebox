@@ -155,7 +155,7 @@ body {
     background-color: var(--surface-color);
     color: var(--text-primary);
     font-size: 0.9em;
-    transition: all 0.3s ease, opacity 0.3s ease-in-out; /* Opacity transition add kiya gaya hai */
+    transition: all 0.3s ease, opacity 0.3s ease-in-out;
 }
 
 #search-bar:focus {
@@ -164,7 +164,6 @@ body {
     box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.3);
 }
 
-/* Search bar ke animation ke liye naya class */
 #search-bar.placeholder-fade {
     opacity: 0;
 }
@@ -537,7 +536,6 @@ footer .disclaimer {
     color: var(--text-primary);
 }
 
-/* Music toggle button ko hatane ke liye (agar CSS mein pehle se hai to) */
 #music-toggle {
     display: none;
 }
@@ -550,7 +548,7 @@ SPECIFIC PAGE STYLES
 
 /* --- Watch Page Styling --- */
 body.watch-page, body.download-page, body.profile-page {
-    padding-top: 80px; /* Inner pages ke liye kam padding */
+    padding-top: 80px;
 }
 
 .watch-container { max-width: 1100px; margin: 20px auto; padding: 0 15px; position: relative; z-index: 1; }
@@ -619,11 +617,11 @@ body.watch-page, body.download-page, body.profile-page {
 
 .option-title svg {
     color: var(--primary-color);
-    flex-shrink: 0; /* Taki icon chota na ho */
+    flex-shrink: 0;
 }
 
 .option-title h3 {
-    margin: 0; /* H3 se extra margin hata diya */
+    margin: 0;
 }
 
 /* ===== REWARDS & VERIFICATION PAGE STYLING ===== */
@@ -759,19 +757,18 @@ body.watch-page, body.download-page, body.profile-page {
 
 /* ===== PROFILE PAGE LINK COLOR FIX ===== */
 .option-card-link {
-    text-decoration: none; /* Link se underline hatane ke liye */
-    color: inherit;       /* Parent element (card) ka color lene ke liye */
+    text-decoration: none;
+    color: inherit;
 }
 
 .option-card-link .option-title h3 {
-    color: var(--text-primary); /* "Rewards" text ka color white karne ke liye */
+    color: var(--text-primary);
 }
 
 .option-card-link .option-title svg {
-    color: var(--primary-color); /* Icon ka color yellow karne ke liye */
+    color: var(--primary-color);
 }
 
-/* === NAYA CODE (ISKO PASTE KARNA HAI) === */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -784,15 +781,14 @@ body.watch-page, body.download-page, body.profile-page {
     align-items: center;
     z-index: 2000;
     backdrop-filter: blur(5px);
-    opacity: 0; /* Shuru mein poori tarah se gayab */
-    pointer-events: none; /* Shuru mein ispar click nahi hoga (YAHI HAI FIX) */
-    transition: opacity 0.3s ease; /* Dheere se aane ka effect */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
 }
 
-/* Jab .hidden class HATEGI, tab ye style lagega */
 .modal-overlay:not(.hidden) {
-    opacity: 1; /* Poori tarah se dikhega */
-    pointer-events: auto; /* Ab ispar click ho sakta hai */
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .modal-content {
@@ -845,7 +841,7 @@ body.watch-page, body.download-page, body.profile-page {
 }
 
 /* ==================================================
-// CHATBOT STYLES
+// CHATBOT STYLES - 🔥 LINE BREAK FIX APPLIED HERE 🔥
 // ================================================== */
 
 #chatbot-container {
@@ -954,12 +950,15 @@ body.watch-page, body.download-page, body.profile-page {
     border-bottom-right-radius: 2px;
 }
 
+/* 🔥🔥🔥 YE HAI MAIN FIX - WHITE-SPACE PROPERTY 🔥🔥🔥 */
 .bot-message {
     align-self: flex-start;
     background-color: var(--surface-color);
     color: var(--text-primary);
     border-bottom-left-radius: 2px;
     border: 1px solid var(--border-color);
+    white-space: pre-wrap;  /* ✅ YE LINE ADD KI HAI - Newlines ko preserve karega */
+    word-wrap: break-word;   /* ✅ Long words ko break karega */
 }
 
 .bot-message.loading {
