@@ -6,7 +6,7 @@ from datetime import datetime
 
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY") 
 
-MODEL_NAME = "mistralai/devstral-2512:free"
+MODEL_NAME = "google/gemma-3-27b-it:free"
 
 SYSTEM_PROMPT = """You are DoreBox AI Support - an expert, intelligent chatbot for DoreBox website. You know EVERYTHING about the website, every movie, every feature, and every detail.
 
