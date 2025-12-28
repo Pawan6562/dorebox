@@ -1,43 +1,81 @@
 // ==================================================
-// SHARED FUNCTIONS & CONFIG
+// ADVANCED SEO FUNCTION (Targeting Download Keywords)
 // ==================================================
-function updateSEO(movieTitle, movieDescription, pageType) {
-    const titleElement = document.querySelector('title');
-    let descriptionElement = document.querySelector('meta[name="description"]');
-    const canonicalElement = document.querySelector('link[rel="canonical"]');
-    const currentUrl = window.location.href.split('?')[0];
-
-    if (!canonicalElement) {
-        const link = document.createElement('link');
-        link.setAttribute('rel', 'canonical');
-        link.setAttribute('href', currentUrl);
-        document.head.appendChild(link);
-    } else {
-        canonicalElement.setAttribute('href', currentUrl);
+function updateSEO(title, description, pageType, contentType = 'movie', poster = '') {
+    // 1. Title Generate karo (Jo Google Search me dikhega)
+    let pageTitle = '';
+    
+    // Agar Season/Episode hai
+    if (contentType === 'episodes' || title.toLowerCase().includes('season')) {
+        if (pageType === 'watch') {
+            pageTitle = `Watch ${title} All Episodes in Hindi - DoreBox`;
+        } else {
+            pageTitle = `Download ${title} All Episodes Hindi (HD) - DoreBox`;
+        }
+    } 
+    // Agar Movie hai
+    else {
+        if (pageType === 'watch') {
+            pageTitle = `Watch ${title} Movie in Hindi (Free) - DoreBox`;
+        } else {
+            pageTitle = `Download ${title} Full Movie in Hindi (1080p/720p) - DoreBox`;
+        }
     }
 
-    let newTitle = '';
-    let newDescription = '';
+    // 2. Title aur Meta Description set karo
+    document.title = pageTitle;
+    
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (!metaDesc) {
+        metaDesc = document.createElement('meta');
+        metaDesc.setAttribute('name', 'description');
+        document.head.appendChild(metaDesc);
+    }
+    
+    // Description me bhi "Download" word use karo
+    let newDesc = `Free Download & Watch ${title} in Hindi. ${pageType === 'download' ? 'Get direct download links for 1080p, 720p quality.' : 'Stream online without ads.'} DoreBox is the best site for Doraemon movies and episodes.`;
+    metaDesc.setAttribute('content', newDesc);
 
-    if (pageType === 'watch') {
-        newTitle = `Watch ${movieTitle} Online in Hindi - DoreBox`;
-        newDescription = `Watch the full movie ${movieTitle} in Hindi for free on DoreBox. High-quality streaming available. Click here to start watching!`;
-    } else if (pageType === 'download') {
-        newTitle = `Download ${movieTitle} Full Movie in Hindi Free - DoreBox`;
-        newDescription = `Download the full movie ${movieTitle} in Hindi for free from DoreBox. Get direct links for 1080p, 720p, and 360p quality.`;
-    }
+    // 3. Social Media Tags update karo
+    const updateMeta = (prop, val) => {
+        let tag = document.querySelector(`meta[property="${prop}"]`);
+        if (!tag) {
+            tag = document.createElement('meta');
+            tag.setAttribute('property', prop);
+            document.head.appendChild(tag);
+        }
+        tag.setAttribute('content', val);
+    };
+    
+    updateMeta('og:title', pageTitle);
+    updateMeta('og:description', newDesc);
+    if(poster) updateMeta('og:image', poster);
 
-    if (titleElement) {
-        titleElement.textContent = newTitle;
-    }
-    if (!descriptionElement) {
-        descriptionElement = document.createElement('meta');
-        descriptionElement.setAttribute('name', 'description');
-        document.head.appendChild(descriptionElement);
-    }
-    descriptionElement.setAttribute('content', newDescription);
+    // 4. Google Schema (Rich Results ke liye)
+    const oldSchema = document.getElementById('dynamic-schema');
+    if (oldSchema) oldSchema.remove();
+
+    const schemaScript = document.createElement('script');
+    schemaScript.id = 'dynamic-schema';
+    schemaScript.type = 'application/ld+json';
+
+    const schemaData = {
+        "@context": "https://schema.org",
+        "@type": contentType === 'episodes' ? "TVSeries" : "Movie",
+        "name": title,
+        "description": description,
+        "image": poster,
+        "url": window.location.href,
+        "inLanguage": "hi",
+        "isFamilyFriendly": true
+    };
+    
+    schemaScript.textContent = JSON.stringify(schemaData);
+    document.body.appendChild(schemaScript);
 }
+
 // ==================================================
+// USER & REWARDS SYSTEM CONFIG
 // ==================================================
 const REWARD_AMOUNT = 0.0030;
 const MIN_WITHDRAWAL = 1.00;
@@ -95,7 +133,7 @@ Description:
 Nobita, tired of struggling in his music class, gets pulled into a mysterious world where music is the source of life. A dark force called Noise begins destroying all sound, putting both Earth and the music planet Farre in danger. Nobita, Doraemon, and their friends must perform a powerful musical piece to restore harmony and save both worlds. The film celebrates the idea that music connects every living being.`,
         embed: "",
         downloadLinks: {
-            '1080p': 'https://gplinks.co/earthsymphonyonbotat1080pbyajh', // Temporary link
+            '1080p': 'https://gplinks.co/earthsymphonyonbotat1080pbyajh', 
             '720p': '#',
             '360p': '#'
         }
@@ -120,7 +158,6 @@ Nobita, tired of struggling in his music class, gets pulled into a mysterious wo
     </iframe>
 </div>
 `,
-    // m3u8 waali line hata di hai
     downloadLinks: {
         '1080p': 'https://gplinks.co/dorabiannightonbotat1080pbyahj',
         '720p': '#',
@@ -337,7 +374,8 @@ if (body.classList.contains('watch-page')) {
 
         if (currentItem) {
             // === SEO OPTIMIZATION: Dynamic Meta Tags and Title ===
-            updateSEO(currentItem.title, currentItem.description, 'watch');
+            // ✅ YAHAN UPDATE KIYA HAI
+            updateSEO(currentItem.title, currentItem.description, 'watch', currentType, currentItem.poster);
             // ==================================================
             document.getElementById('movie-poster').src = currentItem.poster;
         document.getElementById('movie-title').textContent = currentItem.title;
@@ -403,7 +441,8 @@ if (body.classList.contains('watch-page')) {
 
         if (currentItem) {
             // === SEO OPTIMIZATION: Dynamic Meta Tags and Title ===
-            updateSEO(currentItem.title, currentItem.description, 'download');
+            // ✅ YAHAN BHI UPDATE KIYA HAI
+            updateSEO(currentItem.title, currentItem.description, 'download', currentType, currentItem.poster);
             // ==================================================
             document.getElementById('movie-poster').src = currentItem.poster;
             document.getElementById('movie-title').textContent = currentItem.title;
