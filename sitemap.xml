@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://dorebox.vercel.app/</loc>
+    <lastmod>2025-12-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dorebox.vercel.app/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/rewards.html</loc>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%27s%20Earth%20Symphony</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Stand%20by%20Me%20%E2%80%93%20Part%201</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Steel%20Troops%20%E2%80%93%20New%20Age</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%20Season%201&amp;type=episodes</loc>
+    <priority>0.8</priority>
+  </url>
+</urlset>
