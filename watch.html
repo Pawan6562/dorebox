@@ -3,18 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Watch Movie - DoreBox</title>
+    
+    <title>Watch Doraemon Movies Online - DoreBox</title>
+    <meta name="description" content="Watch Doraemon movies and episodes online for free in Hindi. HD quality, no ads, and smooth streaming on DoreBox.">
+    <meta name="keywords" content="watch doraemon movie, doraemon movies online, doraemon hindi watch, nobita movie stream, free cartoon movies">
     <meta name="robots" content="index, follow">
+    
+    <meta property="og:title" content="Watch Doraemon Movies - DoreBox">
+    <meta property="og:description" content="Stream your favorite Doraemon movies in Hindi HD.">
+    <meta property="og:image" content="https://iili.io/KXmopGj.png">
+    <meta property="og:type" content="video.movie">
+
     <link rel="icon" href="https://iili.io/KXmopGj.png" type="image/png">
 
-    <!-- AdSense Code Snippet -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4494331077135172"
          crossorigin="anonymous"></script>
 
-    <!-- === ADCASH LIBRARY SCRIPT === -->
     <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
 
-    <!-- Main Stylesheet -->
     <link rel="stylesheet" href="style.css?v=2.5">
 </head>
 <body class="watch-page">
@@ -35,14 +41,13 @@
             This movie is not available to watch right now, but you can download it using the button given below.
         </div>
         <div class="video-player-wrapper" id="video-player-container">
-            <!-- Movie player yahan load hoga -->
-        </div>
+            </div>
 
         <div class="movie-details-grid">
             <img id="movie-poster" src="" alt="Movie Poster">
             <div class="movie-info">
-                <h1 id="movie-title"></h1>
-                <p id="movie-description"></p>
+                <h1 id="movie-title">Loading...</h1>
+                <p id="movie-description">Please wait while we fetch the movie details...</p>
                 <div class="button-group">
                     <a id="download-link" href="#" class="btn download-button">Download Movie</a>
                     <button id="share-button" class="btn share-button">
@@ -61,10 +66,8 @@
         </section>
     </main>
 
-    <!-- Hamara Main JavaScript File -->
     <script src="script.js"></script>
 
-    <!-- === ADCASH INTERSTITIAL TAG SCRIPT === -->
     <script type="text/javascript">
         aclib.runInterstitial({
             zoneId: '10587338',
