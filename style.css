@@ -32,9 +32,11 @@ body {
     padding: 0 15px;
 }
 
-/* --- Header & Search Bar --- */
+/* =========================================
+   HEADER & SEARCH BAR (UPDATED RESPONSIVE)
+   ========================================= */
 #main-header {
-    background-color: rgba(2, 10, 36, 0.7);
+    background-color: rgba(2, 10, 36, 0.85);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-color);
     padding: 10px 0;
@@ -49,6 +51,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 15px; /* Safe padding */
 }
 
 .header-controls {
@@ -57,6 +60,169 @@ body {
     gap: 15px;
 }
 
+.logo-link {
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.logo {
+    font-size: 1.6em;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 0;
+    text-shadow: 0 0 8px rgba(255, 193, 7, 0.5);
+}
+
+/* Search Bar Styling */
+.search-container {
+    position: relative;
+}
+
+#search-bar {
+    width: 200px;
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    background-color: var(--surface-color);
+    color: var(--text-primary);
+    font-size: 0.9em;
+    transition: all 0.3s ease, opacity 0.3s ease-in-out;
+}
+
+#search-bar:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.3);
+}
+
+#search-bar.placeholder-fade {
+    opacity: 0;
+}
+
+/* Blog Link Styling (New) */
+.nav-link.blog-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1em;
+    transition: color 0.3s ease;
+}
+
+.nav-link.blog-link:hover {
+    color: var(--primary-color);
+}
+
+/* Profile Icon Styling (Updated for Mobile) */
+#profile-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--surface-color);
+    padding: 6px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    flex-shrink: 0; /* Important: Icon shrink nahi hoga */
+}
+
+#profile-section:hover {
+    background-color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+#profile-section:hover .profile-icon {
+    background-color: transparent;
+    color: var(--bg-color);
+}
+
+.profile-icon {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+/* =========================================
+   MOBILE RESPONSIVE ADJUSTMENTS (Important)
+   ========================================= */
+@media (max-width: 600px) {
+    /* Header Container adjustment */
+    #main-header .container {
+        padding: 0 10px; 
+    }
+
+    /* Logo thoda chhota */
+    .logo {
+        font-size: 1.3em; 
+    }
+
+    /* Controls ke beech ka gap kam kiya */
+    .header-controls {
+        gap: 8px; 
+    }
+
+    /* Search Bar ko adjust kiya */
+    #search-bar {
+        width: 100px; /* Mobile pe width fix ki */
+        padding: 6px 10px;
+        font-size: 0.85em;
+    }
+    
+    #search-bar::placeholder {
+        font-size: 0.8em;
+    }
+
+    /* Blog Link Adjustment */
+    .nav-link.blog-link {
+        font-size: 0.9em;
+        margin-right: 0; 
+    }
+
+    /* Profile Icon Size Adjustment */
+    #profile-section {
+        padding: 4px;
+        width: 30px;
+        height: 30px;
+        justify-content: center;
+    }
+    
+    .profile-icon {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .profile-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    body { 
+        padding-top: 135px; 
+    }
+    
+    .banner-content { 
+        flex-direction: column; 
+        gap: 8px; 
+        padding: 10px; 
+    }
+    
+    .time-block span { 
+        font-size: 1.4em; 
+    }
+}
+
+/* Extra Small Screens */
+@media (max-width: 360px) {
+    .logo { display: none; } 
+    #main-header .container { justify-content: center; }
+    #search-bar { width: 140px; }
+}
 
 /* --- UTSAV PATRIKA COUNTDOWN BANNER --- */
 #countdown-banner {
@@ -132,42 +298,6 @@ body {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.5; }
 }
-
-@media (max-width: 600px) {
-    body { padding-top: 135px; }
-    .banner-content { flex-direction: column; gap: 8px; padding: 10px; }
-    .time-block span { font-size: 1.4em; }
-}
-
-.logo {
-    font-size: 1.6em;
-    font-weight: 700;
-    color: var(--primary-color);
-    margin: 0;
-    text-shadow: 0 0 8px rgba(255, 193, 7, 0.5);
-}
-
-#search-bar {
-    width: 200px;
-    padding: 8px 15px;
-    border-radius: 20px;
-    border: 1px solid var(--border-color);
-    background-color: var(--surface-color);
-    color: var(--text-primary);
-    font-size: 0.9em;
-    transition: all 0.3s ease, opacity 0.3s ease-in-out;
-}
-
-#search-bar:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.3);
-}
-
-#search-bar.placeholder-fade {
-    opacity: 0;
-}
-
 
 #hero {
     position: relative;
@@ -469,7 +599,7 @@ footer .disclaimer {
     padding: 50px;
 }
 
-/* --- Responsive Styles --- */
+/* --- Responsive Styles (Additional) --- */
 @media (max-width: 768px) {
     #hero { 
         height: 70vh; 
@@ -496,48 +626,12 @@ footer .disclaimer {
         font-size: 0.9em; 
         min-height: 50px; 
     }
-    #search-bar {
-        width: 150px;
-    }
 }
 
 @media (max-width: 600px) {
     .splash-text { 
         font-size: 1.5em; 
     }
-}
-
-/* ===== NEW PROFILE SECTION STYLING ===== */
-#profile-section {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background-color: var(--surface-color);
-    padding: 6px 12px 6px 8px;
-    border-radius: 20px;
-    border: 1px solid var(--border-color);
-    transition: all 0.3s ease;
-}
-
-.profile-icon {
-    background-color: var(--primary-color);
-    color: var(--bg-color);
-    border-radius: 50%;
-    width: 28px;
-    height: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#header-user-id {
-    font-size: 0.9em;
-    font-weight: 600;
-    color: var(--text-primary);
-}
-
-#music-toggle {
-    display: none;
 }
 
 /*
@@ -589,11 +683,6 @@ body.watch-page, body.download-page, body.profile-page {
 }
 
 /* ===== NEW PROFILE SECTION & PAGE STYLING ===== */
-#profile-section { display: flex; align-items: center; background-color: var(--surface-color); padding: 6px; border-radius: 50%; border: 1px solid var(--border-color); transition: all 0.3s ease; text-decoration: none; }
-#profile-section:hover { background-color: var(--primary-color); transform: scale(1.1); }
-#profile-section:hover .profile-icon { background-color: transparent; color: var(--bg-color); }
-.profile-icon { background-color: var(--primary-color); color: var(--bg-color); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
-
 .profile-page-container { max-width: 700px; margin: 0 auto; padding: 20px; }
 .profile-header { display: flex; align-items: center; gap: 20px; background-color: var(--surface-color); padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 30px; }
 .profile-header .profile-icon { width: 60px; height: 60px; flex-shrink: 0; }
@@ -841,7 +930,7 @@ body.watch-page, body.download-page, body.profile-page {
 }
 
 /* ==================================================
-// CHATBOT STYLES - 🔥 LINE BREAK FIX APPLIED HERE 🔥
+// CHATBOT STYLES
 // ================================================== */
 
 #chatbot-container {
@@ -950,15 +1039,14 @@ body.watch-page, body.download-page, body.profile-page {
     border-bottom-right-radius: 2px;
 }
 
-/* 🔥🔥🔥 YE HAI MAIN FIX - WHITE-SPACE PROPERTY 🔥🔥🔥 */
 .bot-message {
     align-self: flex-start;
     background-color: var(--surface-color);
     color: var(--text-primary);
     border-bottom-left-radius: 2px;
     border: 1px solid var(--border-color);
-    white-space: pre-wrap;  /* ✅ YE LINE ADD KI HAI - Newlines ko preserve karega */
-    word-wrap: break-word;   /* ✅ Long words ko break karega */
+    white-space: pre-wrap; 
+    word-wrap: break-word; 
 }
 
 .bot-message.loading {
