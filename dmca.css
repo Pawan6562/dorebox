@@ -1,0 +1,109 @@
+/* dmca.css - DoreBox Legal Page Styling */
+
+:root {
+    --bg-color: #020A24;
+    --surface-color: #0A193A;
+    --primary-color: #FFC107;
+    --primary-hover: #FFA000;
+    --text-primary: #E0E0E0;
+    --text-secondary: #9E9E9E;
+    --font-family: 'Hind', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+}
+
+.dmca-container {
+    background-color: rgba(10, 25, 58, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 193, 7, 0.2);
+    max-width: 800px;
+    width: 100%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    color: var(--primary-color);
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 15px;
+}
+
+h3 {
+    color: #fff;
+    font-size: 1.4em;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+h3::before {
+    content: '⚠️';
+    font-size: 0.8em;
+}
+
+p {
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+    font-size: 1.05em;
+}
+
+strong {
+    color: var(--primary-color);
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    text-decoration: none;
+    background-color: var(--primary-color);
+    color: #000;
+    font-weight: 700;
+    padding: 12px 30px;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);
+}
+
+.back-btn:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 193, 7, 0.6);
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    .dmca-container {
+        padding: 25px;
+    }
+    h1 {
+        font-size: 1.8em;
+    }
+}
