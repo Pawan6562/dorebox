@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
   <url>
     <loc>https://dorebox.vercel.app/</loc>
-    <lastmod>2025-12-28</lastmod>
+    <lastmod>2025-12-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
-  
   <url>
     <loc>https://dorebox.vercel.app/blog</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
     <loc>https://dorebox.vercel.app/rewards.html</loc>
     <priority>0.6</priority>
@@ -21,17 +21,361 @@
   <url>
     <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%27s%20Earth%20Symphony</loc>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://iili.io/f94Nezg.jpg</image:loc>
+      <image:title>Doraemon: Nobita's Earth Symphony</image:title>
+      <image:caption>Nobita fights to save music from disappearing in this new adventure.</image:caption>
+    </image:image>
   </url>
+
   <url>
-    <loc>https://dorebox.vercel.app/watch.html?title=Stand%20by%20Me%20%E2%80%93%20Part%201</loc>
-    <priority>0.9</priority>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%20Nobita%20and%20the%20Spiral%20City</loc>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://iili.io/KTEEtjI.jpg</image:loc>
+      <image:title>Doraemon Nobita and the Spiral City</image:title>
+      <image:caption>Doraemon and Nobita protect their spiral city from criminals.</image:caption>
+    </image:image>
   </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%20The%20Movie%20Nobita%20In%20Jannat%20No%201</loc>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://iili.io/KzKuPMQ.jpg</image:loc>
+      <image:title>Doraemon Nobita In Jannat No 1</image:title>
+      <image:caption>Adventure to the Kingdom of Clouds.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%20jadoo%20Mantar%20aur%20jhanoom</loc>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/Z5t0TfkP/Doraemon-The-Movie-Jadoo-Mantar-Aur-Jahnoom-by-cjh.jpg</image:loc>
+      <image:title>Doraemon Jadoo Mantar Aur Jhanoom</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Dinosaur%20Yodha</loc>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/3w83qTtr/Doraemon-The-Movie-Dinosaur-Yoddhha-Hindi-Tamil-Telugu-Download-FHD-990x557.jpg</image:loc>
+      <image:title>Doraemon Dinosaur Yodha</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%20The%20Movie%20Nobita%20and%20the%20Underwater%20Adventure</loc>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/yYLjw5Pn/Doraemon-The-Movie-Nobita.jpg</image:loc>
+      <image:title>Nobita and the Underwater Adventure</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=ICHI%20MERA%20DOST</loc>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/xjpCppDL/Doraemon-The-Movie-Nobita-in-Ichi-Mera-Dost-Hindi.png</image:loc>
+      <image:title>Doraemon Ichi Mera Dost</image:title>
+      <image:caption>Nobita's friendship with a mysterious sapling named Ichi.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%20Nobita%27s%20Dorabian%20Nights</loc>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://iili.io/KqRfWdv.png</image:loc>
+      <image:title>Doraemon Nobita's Dorabian Nights</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Chronicle%20of%20the%20Moon</loc>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/BbmtZs0X/m3.jpg</image:loc>
+      <image:title>Doraemon Chronicle of the Moon</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Sky%20Utopia</loc>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/Nf3QTNXq/doraemon-movie-nobitas-sky-utopia-in-hindi.jpg</image:loc>
+      <image:title>Doraemon Sky Utopia</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Antarctic%20Adventure</loc>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://iili.io/Kx9Qifn.jpg</image:loc>
+      <image:title>Doraemon Antarctic Adventure</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Little%20Space%20War</loc>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/wTt8Th7t/Doraemon-in-Nobitas-Little-Space-War-Movie-Hindi-Tamil-Telugu-Download-HD-jpg-990x557.png</image:loc>
+      <image:title>Doraemon Little Space War</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Gadget%20Museum%20Ka%20Rahasya</loc>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/9QsfxJbw/Doraemon-Gadget-Museum-Ka-Rahasya-by-cjh.jpg</image:loc>
+      <image:title>Gadget Museum Ka Rahasya</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%27s%20New%20Dinosaur%20%28fan%20Dubbed%29</loc>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/hG0HJGX4/Doraemon-Nobitas-new-dinosaur-by-cjh.jpg</image:loc>
+      <image:title>Nobita's New Dinosaur (Fan Dubbed)</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Space%20Hero</loc>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/50CKBN0F/Doraemon-The-Movie-Nobita-aur-Antarishk-Daku-bycjh.jpg</image:loc>
+      <image:title>Doraemon Space Hero</image:title>
+    </image:image>
+  </url>
+
   <url>
     <loc>https://dorebox.vercel.app/watch.html?title=Steel%20Troops%20%E2%80%93%20New%20Age</loc>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/43C9KJr0/Doraemon-The-Movie-Nobita-and-the-Steel-Troops.jpg</image:loc>
+      <image:title>Doraemon Steel Troops New Age</image:title>
+    </image:image>
   </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Three%20Visionary%20Swordsmen</loc>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/RZ82qxJ3/Doraemon-The-Movie-Nobita-s-Three-Magical-Swordsmen.png</image:loc>
+      <image:title>Three Visionary Swordsmen</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Nobita%20In%20Hara%20Hara%20Planet</loc>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/RV6bNkLK/Doraemon-The-Movie-Nobitain-Hara-Hara-Planet-bycjh.jpg</image:loc>
+      <image:title>Nobita In Hara Hara Planet</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Adventure%20of%20Koya%20Koya</loc>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/DwCg656n/Adventures-of-Koya-Koya-Planet-Movie-by-cjh.png</image:loc>
+      <image:title>Adventure of Koya Koya</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%20nobita%20and%20the%20Birthday%20of%20japan</loc>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/MKqNrP7Q/Doraemon-The-Movie-Nobita-and-the-birth-of-Japan.jpg</image:loc>
+      <image:title>Nobita and the Birthday of Japan</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Nobita%27s%20Dinosaur</loc>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://iili.io/KiQ8eOQ.jpg</image:loc>
+      <image:title>Nobita's Dinosaur</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Parallel%20Visit%20to%20West</loc>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/prbYFGHC/Doraemon-Nobita-Bana-Superhero-Hindi-by-cjh.jpg</image:loc>
+      <image:title>Parallel Visit to West</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Legend%20of%20Sun%20King</loc>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/mrQ7v7Qd/Doraemon-nobita-and-the-legend-of-sun-king-by-cjh.jpg</image:loc>
+      <image:title>Legend of Sun King</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Stand%20by%20Me%20%E2%80%93%20Part%201</loc>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/vmkLDN1X/Doraemon-The-Movie-Stand-by-Me-by-cjh.png</image:loc>
+      <image:title>Stand by Me 1</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Stand%20by%20Me%20%E2%80%93%20Part%202</loc>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/y8wkR4PJ/Doraemon-The-Movie-Stand-by-Me-2-by-cjh.png</image:loc>
+      <image:title>Stand by Me 2</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%20Nobita%27s%20Great%20Adventure%20in%20the%20South%20Seas</loc>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/8zC06x5V/Nobita-Great-Adventure-to-the-South-Seas-by-cjh.jpg</image:loc>
+      <image:title>Great Adventure in the South Seas</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Khilone%20Ki%20Bhul%20Bhulaiya</loc>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/w38qYR5V/Doraemon-Khel-Khilona-Bhool-Bhulaiya-by-cjh.jpg</image:loc>
+      <image:title>Khilone Ki Bhul Bhulaiya</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Birdopia%20Ka%20Sultan</loc>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/hjVgbtRQ/Doraemon-The-Movie-Nobita-Aur-Birdopia-Ka-Sultan.jpg</image:loc>
+      <image:title>Birdopia Ka Sultan</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%20Nobita%27s%20Treasure%20Island</loc>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/t46rgZ36/Doraemon-the-Nobita-s-Treasure-Island-by-cjh.jpg</image:loc>
+      <image:title>Nobita's Treasure Island</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%20The%20Movie%20Nobita%20The%20Explorer%20Bow%20Bow</loc>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/HxY336f0/The-Movie-Nobita-The-Explorer-Bow-Bow-by-cjh.png</image:loc>
+      <image:title>Nobita The Explorer Bow Bow</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%20Nobita%20and%20the%20Windmasters</loc>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/bYFLHHLb/Doraemon-Toofani-Adventure-by-cjh.jpg</image:loc>
+      <image:title>Nobita and the Windmasters</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%20Nobita%20and%20the%20Island%20of%20Miracle</loc>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/yd8X0kZv/Doraemon-The-Movie-Nobita-Aur-Jadooi-Tapu-by-cjh.jpg</image:loc>
+      <image:title>Nobita and the Island of Miracle</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%20Galaxy%20Super%20Express%20Hindi</loc>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/XY6fQ25Z/Doraemon-The-Movie-Galaxy-Super-Express-by-cjh.png</image:loc>
+      <image:title>Galaxy Super Express</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%20Nobita%20And%20The%20Kingdom%20Of%20Robot%20Singham</loc>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/j5fNHPj6/The-Movie-Nobita-and-the-Kingdom-of-Robot-by-cjh.jpg</image:loc>
+      <image:title>Kingdom of Robot Singham</image:title>
+    </image:image>
+  </url>
+
   <url>
     <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%20Season%201&amp;type=episodes</loc>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://iili.io/KDQrkLN.png</image:loc>
+      <image:title>Doraemon Season 1 All Episodes</image:title>
+      <image:caption>Doraemon Season 1 Hindi Episodes Download</image:caption>
+    </image:image>
   </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%20Season%202&amp;type=episodes</loc>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://iili.io/KDZEJEB.png</image:loc>
+      <image:title>Doraemon Season 2 All Episodes</image:title>
+      <image:caption>Doraemon Season 2 Hindi Episodes Download</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%20Season%203&amp;type=episodes</loc>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://iili.io/KbuSDW7.png</image:loc>
+      <image:title>Doraemon Season 3 All Episodes</image:title>
+      <image:caption>Doraemon Season 3 Hindi Episodes Download</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%20Season%204&amp;type=episodes</loc>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://iili.io/KbA34Hb.png</image:loc>
+      <image:title>Doraemon Season 4 All Episodes</image:title>
+      <image:caption>Doraemon Season 4 Hindi Episodes Download</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%20Season%205&amp;type=episodes</loc>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://iili.io/KbMduTB.png</image:loc>
+      <image:title>Doraemon Season 5 All Episodes</image:title>
+      <image:caption>Doraemon Season 5 Hindi Episodes Download</image:caption>
+    </image:image>
+  </url>
+
 </urlset>
