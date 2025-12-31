@@ -1,0 +1,170 @@
+/* search.css */
+
+body.search-page {
+    background-color: #020A24;
+    color: #E0E0E0;
+    font-family: 'Hind', sans-serif;
+    margin: 0;
+    padding: 0;
+    padding-top: 70px; /* Space for fixed header */
+}
+
+/* Header Styling */
+.search-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(2, 10, 36, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 193, 7, 0.2);
+    box-sizing: border-box;
+}
+
+#back-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.search-input-wrapper {
+    flex-grow: 1;
+    position: relative;
+}
+
+#main-search-input {
+    width: 100%;
+    background-color: #0A193A;
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    color: #fff;
+    padding: 12px 40px 12px 20px;
+    border-radius: 30px;
+    font-size: 1.1em;
+    outline: none;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+#main-search-input:focus {
+    border-color: #FFC107;
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.2);
+}
+
+#clear-search {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9E9E9E;
+    font-size: 1.5em;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* History Section */
+.search-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.section-header h3 {
+    margin: 0;
+    color: #FFC107;
+    font-size: 1.1em;
+}
+
+#clear-history-btn {
+    background: none;
+    border: none;
+    color: #9E9E9E;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+#clear-history-btn:hover {
+    color: #FFC107;
+    text-decoration: underline;
+}
+
+.history-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 15px;
+    background-color: #0A193A;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.history-item:hover {
+    background-color: #11224d;
+}
+
+.history-text {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1em;
+}
+
+.history-icon {
+    color: #9E9E9E;
+}
+
+.delete-history-item {
+    color: #9E9E9E;
+    padding: 5px;
+    font-size: 1.2em;
+}
+
+.delete-history-item:hover {
+    color: #ff4444;
+}
+
+/* Results Section */
+.hidden {
+    display: none !important;
+}
+
+#no-results-msg {
+    text-align: center;
+    color: #9E9E9E;
+    margin-top: 50px;
+}
+
+/* Movie Grid Reuse from main CSS but specific adjustments */
+#results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 600px) {
+    #main-search-input {
+        font-size: 1em;
+        padding: 10px 35px 10px 15px;
+    }
+    
+    #results-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
