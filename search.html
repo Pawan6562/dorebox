@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search - DoreBox</title>
+    <link rel="stylesheet" href="style.css?v=3.0">
+    <link rel="stylesheet" href="search.css?v=1.0">
+    <link rel="icon" href="https://iili.io/KXmopGj.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="search-page">
+
+    <div class="search-header">
+        <button id="back-btn" onclick="history.back()">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" fill="white"/></svg>
+        </button>
+        <div class="search-input-wrapper">
+            <input type="text" id="main-search-input" placeholder="Search movies, episodes..." autocomplete="off" autofocus>
+            <div id="clear-search" class="hidden">&times;</div>
+        </div>
+    </div>
+
+    <main class="search-container">
+        <div id="search-history-section">
+            <div class="section-header">
+                <h3>Recent Searches</h3>
+                <button id="clear-history-btn">Clear All</button>
+            </div>
+            <div id="history-list">
+                </div>
+        </div>
+
+        <div id="search-results-section" class="hidden">
+            <h3>Search Results</h3>
+            <div id="results-grid" class="movie-grid">
+                </div>
+            <p id="no-results-msg" class="hidden">No results found matching your query.</p>
+        </div>
+    </main>
+
+    <script src="search.js"></script>
+</body>
+</html>
