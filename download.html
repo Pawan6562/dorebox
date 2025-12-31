@@ -7,12 +7,14 @@
     <title>Download Doraemon Movie - DoreBox</title>
     <meta name="description" content="Download Doraemon movies and episodes in Hindi (1080p, 720p). Direct high-speed download links, no ads.">
     <meta name="keywords" content="download doraemon movie, doraemon movie download link, 1080p doraemon hindi, nobita movie download, direct download movies">
-    <meta name="robots" content="noindex, follow"> <link rel="icon" href="https://iili.io/KXmopGj.png" type="image/png">
+    <meta name="robots" content="noindex, follow"> 
+    <link rel="icon" href="https://iili.io/KXmopGj.png" type="image/png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css?v=3.0"> 
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4494331077135172"
          crossorigin="anonymous"></script>
-
-    <link rel="stylesheet" href="style.css?v=2.5"> 
 
     <style>
         /* --- DOWNLOAD PAGE STYLING --- */
@@ -26,6 +28,7 @@
             min-height: 100vh;
             padding: 20px;
             margin: 0;
+            padding-top: 80px; /* Header ke liye space */
         }
         .download-page-container {
             width: 100%;
@@ -106,12 +109,60 @@
 </head>
 <body class="download-page">
 
+    <header id="main-header" style="position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;">
+        <div class="container">
+            <a href="index.html" class="logo-link"><h1 class="logo">DoreBox</h1></a>
+            
+            <div class="header-controls">
+                <a href="search.html" class="icon-btn search-btn-header">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="white"/></svg>
+                </a>
+                <button id="menu-toggle-btn" class="icon-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="white"/></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div id="side-drawer-overlay" class="hidden"></div>
+    <div id="side-drawer">
+        <div class="drawer-header">
+            <h2>Menu</h2>
+            <button id="close-drawer-btn">&times;</button>
+        </div>
+        
+        <nav class="drawer-nav">
+            <a href="profile.html" class="drawer-link">
+                <i class="fas fa-user-circle"></i> My Profile
+            </a>
+            <a href="/blog" class="drawer-link">
+                <i class="fas fa-newspaper"></i> Blog
+            </a>
+            <a href="rewards.html" class="drawer-link">
+                <i class="fas fa-gift"></i> Rewards
+            </a>
+            <a href="dmca.html" class="drawer-link">
+                <i class="fas fa-shield-alt"></i> DMCA
+            </a>
+        </nav>
+
+        <div class="drawer-socials">
+            <h3>Follow Us</h3>
+            <div class="social-icons-grid">
+                <a href="#" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon youtube"><i class="fab fa-youtube"></i></a>
+                <a href="https://t.me/doraemon_all_movies_byajh" class="social-icon telegram"><i class="fab fa-telegram"></i></a>
+            </div>
+        </div>
+    </div>
+
     <div class="download-page-container">
         <img id="movie-poster" src="" alt="Movie Poster">
         <h1 id="movie-title">Loading...</h1>
 
         <div id="quality-options" class="quality-options-grid">
-            </div>
+        </div>
 
         <a href="https://t.me/doraemon_all_movies_bycjh/2237" target="_blank" class="how-to-download-link">
             How to Download Movies?
