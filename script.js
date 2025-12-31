@@ -138,7 +138,7 @@ Nobita, tired of struggling in his music class, gets pulled into a mysterious wo
             '360p': '#'
         }
     },
-        
+
     { title: "Doraemon: Nobita's New Dinosaur", poster: "https://www.tokyoweekender.com/wp-content/uploads/2020/08/Doraemon-Nobitas-new-dinosaur-Tokyo-Weekender-1024x709.jpg", description: "This movie is available for download.", embed: "", downloadLinks: { '1080p': 'https://gplinks.co/newdinasourbyajhin1080p', '720p': '#', '360p': '#' } },
     { title: "Doraemon Nobita and the Spiral City", poster: "https://iili.io/KTEEtjI.jpg", description: "Using a gadget, Doraemon and Nobita create a new city in a different dimension. But when criminals from their world find a way in, they must protect their new home.", embed: "" , downloadLinks: { '1080p': 'https://gplinks.co/Spiralcityonbotat1080p', '720p': 'https://gplinks.co/thespiralcityin720pbycjh', '360p': 'https://gplinks.co/thespiralcityin360pbycjh' } },
     { title: "Doraemon The Movie Nobita In Jannat No 1", poster: "https://iili.io/KzKuPMQ.jpg", description: "Join Nobita and his friends on an exciting adventure to a magical kingdom in the clouds. A paradise awaits, but is everything as perfect as it seems?", embed: "", downloadLinks: { '1080p': 'https://gplinks.co/kingdomofcloudin1080pbycjh', '720p': 'https://gplinks.co/kingdomofcloudin720pbycjh', '360p': 'https://gplinks.co/kingdomofcloudin360pbycjh' } },
@@ -311,6 +311,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         startCountdown();
 
+        // Old Search Bar (keeping it for safety if you revert layout, otherwise it won't run if element missing)
         const searchBar = document.getElementById("search-bar");
         const tabLinks = document.querySelectorAll(".tab-link");
         const tabContents = document.querySelectorAll(".tab-content");
@@ -334,15 +335,20 @@ document.addEventListener("DOMContentLoaded", () => {
         tabLinks.forEach(link => {
             link.addEventListener('click', () => {
                 const tab = link.getAttribute('data-tab');
-                let newPlaceholder = (tab === 'movies') ? 'Search All Movies...' : (tab === 'episodes') ? 'Search All Episodes...' : 'Search Short Movies...';
-                if (searchBar.placeholder !== newPlaceholder) {
-                    searchBar.classList.add('placeholder-fade');
-                    setTimeout(() => { searchBar.placeholder = newPlaceholder; searchBar.classList.remove('placeholder-fade'); }, 300);
+                // Only update placeholder if searchBar exists
+                if (searchBar) {
+                    let newPlaceholder = (tab === 'movies') ? 'Search All Movies...' : (tab === 'episodes') ? 'Search All Episodes...' : 'Search Short Movies...';
+                    if (searchBar.placeholder !== newPlaceholder) {
+                        searchBar.classList.add('placeholder-fade');
+                        setTimeout(() => { searchBar.placeholder = newPlaceholder; searchBar.classList.remove('placeholder-fade'); }, 300);
+                    }
+                    searchBar.value = '';
                 }
+                
                 tabLinks.forEach(l => l.classList.remove('active'));
                 link.classList.add('active');
                 tabContents.forEach(content => content.classList.toggle('active', content.id === `${tab}-content`));
-                searchBar.value = '';
+                
                 displayContent('movies', movies);
                 displayContent('episodes', episodes);
                 displayContent('shorts', shortMovies);
@@ -364,71 +370,65 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==================================================
-// PAGE: WATCH.HTML (Interstitial Ad - The Working Solution)
-// ==================================================
-if (body.classList.contains('watch-page')) {
-    const urlParams = new URLSearchParams(window.location.search);
-    const currentTitle = decodeURIComponent(urlParams.get('title'));
-    const currentType = urlParams.get('type') || 'movies';
-    const allContent = (window.dorebox_content && window.dorebox_content[currentType]) ? window.dorebox_content[currentType] : [];
+    // PAGE: WATCH.HTML
+    // ==================================================
+    if (body.classList.contains('watch-page')) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const currentTitle = decodeURIComponent(urlParams.get('title'));
+        const currentType = urlParams.get('type') || 'movies';
+        const allContent = (window.dorebox_content && window.dorebox_content[currentType]) ? window.dorebox_content[currentType] : [];
         const currentItem = allContent.find(m => m.title === currentTitle);
 
         if (currentItem) {
-            // === SEO OPTIMIZATION: Dynamic Meta Tags and Title ===
-            // ✅ YAHAN UPDATE KIYA HAI
             updateSEO(currentItem.title, currentItem.description, 'watch', currentType, currentItem.poster);
-            // ==================================================
             document.getElementById('movie-poster').src = currentItem.poster;
-        document.getElementById('movie-title').textContent = currentItem.title;
-        document.getElementById('movie-description').textContent = currentItem.description;
-        
-        const playerContainer = document.getElementById('video-player-container');
-        
-        // Movie ko turant load kar do
-        console.log("Loading movie player directly. Interstitial ad will show on top.");
-        if (currentItem.embed && currentItem.embed.trim() !== "") {
-            playerContainer.innerHTML = currentItem.embed;
-        } else {
-            playerContainer.style.display = 'none';
-            document.getElementById('player-message').style.display = 'block';
-        }
+            document.getElementById('movie-title').textContent = currentItem.title;
+            document.getElementById('movie-description').textContent = currentItem.description;
+            
+            const playerContainer = document.getElementById('video-player-container');
+            
+            console.log("Loading movie player directly.");
+            if (currentItem.embed && currentItem.embed.trim() !== "") {
+                playerContainer.innerHTML = currentItem.embed;
+            } else {
+                playerContainer.style.display = 'none';
+                document.getElementById('player-message').style.display = 'block';
+            }
 
-        // Baaki ka code (Download, Share, Related Movies) waise hi rahega
-        const downloadButton = document.getElementById('download-link');
-        if (currentItem.downloadLinks) {
-            downloadButton.href = `download.html?title=${encodeURIComponent(currentItem.title)}&type=${currentType}`;
-            downloadButton.style.display = 'inline-flex';
+            const downloadButton = document.getElementById('download-link');
+            if (currentItem.downloadLinks) {
+                downloadButton.href = `download.html?title=${encodeURIComponent(currentItem.title)}&type=${currentType}`;
+                downloadButton.style.display = 'inline-flex';
+            } else {
+                downloadButton.style.display = 'none';
+            }
+            
+            const shareButton = document.getElementById('share-button');
+            if (shareButton) {
+                shareButton.addEventListener('click', () => {
+                    if (navigator.share) {
+                        navigator.share({ title: `Watch ${currentItem.title} on DoreBox`, text: `I'm watching ${currentItem.title} on DoreBox. You can watch or download it from here:`, url: window.location.href }).catch(console.error);
+                    } else {
+                        alert("Sharing is not supported on this browser. Please copy the link manually.");
+                    }
+                });
+            }
+            
+            const relatedGrid = document.getElementById("related-movie-grid");
+            if (relatedGrid && window.dorebox_content && window.dorebox_content.movies) {
+                const otherMovies = window.dorebox_content.movies.filter(m => m.title !== currentTitle).sort(() => 0.5 - Math.random()).slice(0, 4);
+                relatedGrid.innerHTML = '';
+                otherMovies.forEach(movie => {
+                    const movieCard = document.createElement("div");
+                    movieCard.className = "movie-card";
+                    movieCard.innerHTML = `<a href="watch.html?title=${encodeURIComponent(movie.title)}&type=movies"><img src="${movie.poster}" alt="${movie.title}" loading="lazy"><h3>${movie.title}</h3></a>`;
+                    relatedGrid.appendChild(movieCard);
+                });
+            }
         } else {
-            downloadButton.style.display = 'none';
+            document.querySelector('.watch-container').innerHTML = "<h1>Error: Content details not found. Please go back to the homepage.</h1>";
         }
-        
-        const shareButton = document.getElementById('share-button');
-        if (shareButton) {
-            shareButton.addEventListener('click', () => {
-                if (navigator.share) {
-                    navigator.share({ title: `Watch ${currentItem.title} on DoreBox`, text: `I'm watching ${currentItem.title} on DoreBox. You can watch or download it from here:`, url: window.location.href }).catch(console.error);
-                } else {
-                    alert("Sharing is not supported on this browser. Please copy the link manually.");
-                }
-            });
-        }
-        
-        const relatedGrid = document.getElementById("related-movie-grid");
-        if (relatedGrid && window.dorebox_content && window.dorebox_content.movies) {
-            const otherMovies = window.dorebox_content.movies.filter(m => m.title !== currentTitle).sort(() => 0.5 - Math.random()).slice(0, 4);
-            relatedGrid.innerHTML = '';
-            otherMovies.forEach(movie => {
-                const movieCard = document.createElement("div");
-                movieCard.className = "movie-card";
-                movieCard.innerHTML = `<a href="watch.html?title=${encodeURIComponent(movie.title)}&type=movies"><img src="${movie.poster}" alt="${movie.title}" loading="lazy"><h3>${movie.title}</h3></a>`;
-                relatedGrid.appendChild(movieCard);
-            });
-        }
-    } else {
-        document.querySelector('.watch-container').innerHTML = "<h1>Error: Content details not found. Please go back to the homepage.</h1>";
     }
-}
-
 
     // ==================================================
     // PAGE: DOWNLOAD.HTML
@@ -441,10 +441,7 @@ if (body.classList.contains('watch-page')) {
         const currentItem = allContent.find(m => m.title === currentTitle);
 
         if (currentItem) {
-            // === SEO OPTIMIZATION: Dynamic Meta Tags and Title ===
-            // ✅ YAHAN BHI UPDATE KIYA HAI
             updateSEO(currentItem.title, currentItem.description, 'download', currentType, currentItem.poster);
-            // ==================================================
             document.getElementById('movie-poster').src = currentItem.poster;
             document.getElementById('movie-title').textContent = currentItem.title;
             const qualityOptionsContainer = document.getElementById('quality-options');
@@ -614,7 +611,6 @@ if (body.classList.contains('watch-page')) {
 // ==================================================
 // CHATBOT INTEGRATION LOGIC
 // ==================================================
-
 document.addEventListener('DOMContentLoaded', () => {
     const toggleBtn = document.getElementById('chatbot-toggle-btn');
     const chatWindow = document.getElementById('chat-window');
@@ -634,36 +630,35 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
-    // 1. Toggle Chat Window
-    toggleBtn.addEventListener('click', () => {
-        chatWindow.classList.toggle('hidden');
-        if (!chatWindow.classList.contains('hidden')) {
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            chatInput.focus();
-        }
-    });
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+            chatWindow.classList.toggle('hidden');
+            if (!chatWindow.classList.contains('hidden')) {
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                chatInput.focus();
+            }
+        });
+    }
 
-    closeBtn.addEventListener('click', () => {
-        chatWindow.classList.add('hidden');
-    });
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            chatWindow.classList.add('hidden');
+        });
+    }
 
-    // 2. Message Display Function
     function displayMessage(role, content) {
         const messageDiv = document.createElement('div');
         messageDiv.classList.add('message');
         messageDiv.classList.add(role === 'user' ? 'user-message' : 'bot-message');
-        messageDiv.innerHTML = content; // Use innerHTML to allow for basic formatting if needed
+        messageDiv.innerHTML = content;
         messagesContainer.appendChild(messageDiv);
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
-    // 3. API Call Function
     async function sendMessageToAPI(userMessage) {
-        // Add user message to history and display it
         chatHistory.push({ role: "user", content: userMessage });
         displayMessage('user', userMessage);
 
-        // Show a loading indicator
         const loadingMessage = document.createElement('div');
         loadingMessage.classList.add('message', 'bot-message', 'loading');
         loadingMessage.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Typing...';
@@ -673,13 +668,10 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch('/api/chatbot', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ messages: chatHistory }),
             });
 
-            // Remove loading indicator
             messagesContainer.removeChild(loadingMessage);
 
             if (!response.ok) {
@@ -690,32 +682,60 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             const botResponse = data.choices[0].message.content;
 
-            // Add bot response to history and display it
             chatHistory.push({ role: "assistant", content: botResponse });
             displayMessage('bot', botResponse);
 
         } catch (error) {
             console.error("Chatbot API Error:", error);
-            // Display error message to user
             displayMessage('bot', 'Sorry, I am having trouble connecting to the AI. Please try again later. Error: ' + error.message);
-            // Remove the last user message from history to allow retry
             chatHistory.pop();
         }
     }
 
-    // 4. Send Message Handler
     function handleSendMessage() {
         const userMessage = chatInput.value.trim();
         if (userMessage) {
-            chatInput.value = ''; // Clear input
+            chatInput.value = '';
             sendMessageToAPI(userMessage);
         }
     }
 
-    sendBtn.addEventListener('click', handleSendMessage);
-    chatInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            handleSendMessage();
+    if (sendBtn) sendBtn.addEventListener('click', handleSendMessage);
+    if (chatInput) {
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                handleSendMessage();
+            }
+        });
+    }
+});
+
+// ==================================================
+// DRAWER & MENU LOGIC (NEW ADDITION)
+// ==================================================
+document.addEventListener('DOMContentLoaded', () => {
+    const menuBtn = document.getElementById('menu-toggle-btn');
+    const sideDrawer = document.getElementById('side-drawer');
+    const overlay = document.getElementById('side-drawer-overlay');
+    const closeDrawerBtn = document.getElementById('close-drawer-btn');
+
+    function openDrawer() {
+        if(sideDrawer && overlay) {
+            sideDrawer.classList.add('open');
+            overlay.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; 
         }
-    });
+    }
+
+    function closeDrawer() {
+        if(sideDrawer && overlay) {
+            sideDrawer.classList.remove('open');
+            overlay.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+    }
+
+    if(menuBtn) menuBtn.addEventListener('click', openDrawer);
+    if(closeDrawerBtn) closeDrawerBtn.addEventListener('click', closeDrawer);
+    if(overlay) overlay.addEventListener('click', closeDrawer);
 });
