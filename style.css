@@ -1105,3 +1105,153 @@ body.watch-page, body.download-page, body.profile-page {
         font-size: 0.9em;
     }
 }
+
+
+/* === NEW HEADER CONTROLS === */
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+.icon-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.icon-btn svg {
+    fill: #fff;
+    width: 28px;
+    height: 28px;
+}
+
+/* === SIDE DRAWER STYLING (Right Side 30%) === */
+#side-drawer {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Initially hidden */
+    width: 80%; /* Mobile default */
+    max-width: 350px; /* Desktop limit */
+    height: 100%;
+    background-color: #0A193A; /* Matches surface color */
+    z-index: 2000;
+    box-shadow: -5px 0 20px rgba(0,0,0,0.5);
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid rgba(255, 193, 7, 0.2);
+}
+
+#side-drawer.open {
+    right: 0;
+}
+
+#side-drawer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 1999;
+    backdrop-filter: blur(3px);
+    transition: opacity 0.3s;
+}
+
+#side-drawer-overlay.hidden {
+    display: none;
+}
+
+.drawer-header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    background-color: #020A24;
+}
+
+.drawer-header h2 {
+    margin: 0;
+    color: #FFC107;
+    font-size: 1.5em;
+}
+
+#close-drawer-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2em;
+    cursor: pointer;
+    line-height: 0.5;
+}
+
+.drawer-nav {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.drawer-link {
+    color: #E0E0E0;
+    text-decoration: none;
+    font-size: 1.2em;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background 0.3s, color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.drawer-link:hover {
+    background-color: rgba(255, 193, 7, 0.1);
+    color: #FFC107;
+}
+
+.drawer-socials {
+    margin-top: auto; /* Pushes to bottom */
+    padding: 20px;
+    background-color: #020A24;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.drawer-socials h3 {
+    margin: 0 0 15px 0;
+    font-size: 1em;
+    color: #9E9E9E;
+    text-align: center;
+}
+
+.social-icons-grid {
+    display: flex;
+    justify-content: space-around;
+}
+
+.social-icon {
+    font-size: 1.5em;
+    color: #fff;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.social-icon:hover {
+    transform: translateY(-3px);
+}
+
+.social-icon.instagram:hover { color: #E1306C; }
+.social-icon.facebook:hover { color: #4267B2; }
+.social-icon.youtube:hover { color: #FF0000; }
+.social-icon.telegram:hover { color: #0088cc; }
+
+/* Desktop Adjustment for Drawer Width */
+@media (min-width: 768px) {
+    #side-drawer {
+        width: 30%;
+    }
+}
