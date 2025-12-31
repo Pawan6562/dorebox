@@ -3,50 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <meta name="google-site-verification" content="SKJoAkaawsNV-pzCpMmgHd9TB68j2k5FRYYJmI_IhoU" />
 
     <title>Doraemon All Movies & Seasons Download in Hindi (HD) - DoreBox</title>
     <meta name="description" content="Download all Doraemon movies, episodes, and seasons in Hindi (1080p, 720p). Watch Nobita's Earth Symphony, Steel Troops, and new movies for free on DoreBox.">
-    <meta name="keywords" content="doraemon movies download, doraemon episode download, doraemon short movie download, doraemon season 1 download, doraemon movie in hindi, nobita movie download, doarmon movie download, doremon movie download, doraemon new movie 2025, doraemon movies list hindi, dorebox, doraemon hindi dubbed download">
-    <meta name="robots" content="index, follow">
-    <meta name="author" content="AJH (ANIME JUNCTION HINDI)">
-
-    <meta property="og:title" content="Doraemon Movies & Seasons Download (Hindi) - DoreBox">
-    <meta property="og:description" content="Free Download Doraemon Movies, Seasons & Episodes in Hindi HD. No Ads, Direct Links.">
-    <meta property="og:image" content="https://iili.io/KXmopGj.png">
-    <meta property="og:url" content="https://dorebox.vercel.app/">
-    <meta property="og:type" content="website">
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "DoreBox",
-      "url": "https://dorebox.vercel.app/",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://dorebox.vercel.app/?search={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    }
-    </script>
-
-    <link rel="icon" href="https://iili.io/KXmopGj.png" type="image/png">
     
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4494331077135172" crossorigin="anonymous"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1T5SLRNG3F"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag( ){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-1T5SLRNG3F');
-    </script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="style.css?v=3.0"> 
     <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=2.4"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body class="home-page">
@@ -61,33 +24,59 @@
     <header id="main-header">
         <div class="container">
             <a href="index.html" class="logo-link"><h1 class="logo">DoreBox</h1></a>
+            
             <div class="header-controls">
-                <div class="search-container">
-                    <input type="text" id="search-bar" placeholder="Search...">
-                </div>
-                <a href="/blog" class="nav-link blog-link">Blog</a>
-                <a href="profile.html" id="profile-section" title="View Profile">
-                    <div class="profile-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
-                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
-                        </svg>
-                    </div>
+                
+                <a href="search.html" class="icon-btn search-btn-header">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="white"/></svg>
                 </a>
+
+                <button id="menu-toggle-btn" class="icon-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="white"/></svg>
+                </button>
             </div>
         </div>
     </header>
+
+    <div id="side-drawer-overlay" class="hidden"></div>
+    <div id="side-drawer">
+        <div class="drawer-header">
+            <h2>Menu</h2>
+            <button id="close-drawer-btn">&times;</button>
+        </div>
+        
+        <nav class="drawer-nav">
+            <a href="profile.html" class="drawer-link">
+                <i class="fas fa-user-circle"></i> My Profile
+            </a>
+            <a href="/blog" class="drawer-link">
+                <i class="fas fa-newspaper"></i> Blog
+            </a>
+            <a href="rewards.html" class="drawer-link">
+                <i class="fas fa-gift"></i> Rewards
+            </a>
+            <a href="dmca.html" class="drawer-link">
+                <i class="fas fa-shield-alt"></i> DMCA
+            </a>
+        </nav>
+
+        <div class="drawer-socials">
+            <h3>Follow Us</h3>
+            <div class="social-icons-grid">
+                <a href="#" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon youtube"><i class="fab fa-youtube"></i></a>
+                <a href="https://t.me/doraemon_all_movies_byajh" class="social-icon telegram"><i class="fab fa-telegram"></i></a>
+            </div>
+        </div>
+    </div>
+
     <div id="countdown-banner">
-        <div class="banner-content">
+         <div class="banner-content">
             <span class="banner-title">⏳ संध्या अर्घ्य तक शेष:</span>
             <div id="countdown-timer">
                 <div class="time-block"><span id="days">00</span><small>दिन</small></div>
-                <div class="time-separator">:</div>
-                <div class="time-block"><span id="hours">00</span><small>घंटे</small></div>
-                <div class="time-separator">:</div>
-                <div class="time-block"><span id="minutes">00</span><small>मिनट</small></div>
-                <div class="time-separator">:</div>
-                <div class="time-block"><span id="seconds">00</span><small>सेकंड</small></div>
-            </div>
+                </div>
         </div>
     </div>
 
@@ -95,69 +84,22 @@
         <section id="hero">
             <div class="hero-content">
                 <h2 id="hero-title">All Doraemon Movies in Hindi</h2>
-                <p>Watch or Download your favorite Doraemon and Nobita movies online for free. The ultimate collection for all fans.</p>
+                <p>Watch or Download your favorite Doraemon and Nobita movies online for free.</p>
             </div>
         </section>
 
         <section id="content-tabs" class="container">
-            <div class="tab-navigation">
+             <div class="tab-navigation">
                 <button class="tab-link active" data-tab="movies">All Movies</button>
                 <button class="tab-link" data-tab="episodes">All Episodes</button>
                 <button class="tab-link" data-tab="shorts">All Short Movies</button>
             </div>
             <div class="tab-content active" id="movies-content">
-                <div id="movie-grid" class="movie-grid">
-                    </div>
+                <div id="movie-grid" class="movie-grid"></div>
                 <p id="no-results-movies" class="no-results hidden">No movies found matching your search.</p>
             </div>
-            <div class="tab-content" id="episodes-content">
-                <div id="episode-grid" class="movie-grid">
-                    </div>
-                <p id="no-results-episodes" class="no-results hidden">No episodes found matching your search.</p>
-            </div>
-            <div class="tab-content" id="shorts-content">
-                <div id="short-movie-grid" class="movie-grid">
-                    </div>
-                <p id="no-results-shorts" class="no-results hidden">No short movies found matching your search.</p>
-            </div>
-        </section>
+            </section>
     </main>
-
-    <footer>
-        <div class="container">
-            <p><strong>This website is by AJH (ANIME JUNCTION HINDI)</strong></p>
-            <p>DoreBox is a fan-made website to help you find and download all Doraemon movies in Hindi. We do not host any files.</p>
-            
-            <p class="disclaimer">
-                ᴅɪsᴄʟᴀɪᴍᴇʀ -: ᴡᴇ ᴀʀᴇ ɴᴏᴛ ᴛʜᴇ ᴏᴡɴᴇʀ ᴏғ ᴡʜᴀᴛᴇᴠᴇʀ ᴡᴇ ᴜᴘʟᴏᴀᴅ, ɪᴛ ɪs ᴀʟʀᴇᴀᴅʏ ᴀᴠᴀɪʟᴀʙʟᴇ ᴏɴ ᴛʜᴇ ɪɴᴛᴇʀɴᴇᴛ, ᴡᴇ ᴊᴜsᴛ ᴜᴘʟᴏᴀᴅ ɪᴛ ʜᴇʀᴇ.
-                <br><br>
-                <a href="dmca.html" style="color: #FFC107; text-decoration: none; font-weight: bold;">DMCA & Disclaimer</a>
-            </p>
-            
-            <p>&copy; 2025 DoreBox | Maintained by AJH</p>
-        </div>
-    </footer>
-
-    <div id="chatbot-container">
-        <button id="chatbot-toggle-btn">
-            <i class="fas fa-comment-dots"></i> Chat Support
-        </button>
-        <div id="chat-window" class="hidden">
-            <div id="chat-header">
-                DoreBox AI Support
-                <button id="chat-close-btn">&times;</button>
-            </div>
-            <div id="chat-messages">
-                <div class="message bot-message">
-                    Hello! I'm the DoreBox AI. How can I help you with movies, rewards, or any other questions?
-                </div>
-            </div>
-            <div id="chat-input-container">
-                <input type="text" id="chat-input" placeholder="Type your message...">
-                <button id="chat-send-btn">Send</button>
-            </div>
-        </div>
-    </div>
 
     <script src="script.js"></script>
 </body>
