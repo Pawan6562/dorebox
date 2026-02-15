@@ -139,7 +139,7 @@ Nobita, tired of struggling in his music class, gets pulled into a mysterious wo
         }
     },
 
-    { title: "Doraemon The Movie Nobita Ki Nayi Duniya", poster: "https://iili.io/qJkX3MB.webp", description: "This movie is available for download.", embed: ``, downloadLinks: { '1080p': '#', '720p': '#', '360p': '#' } },
+    { title: "Doraemon The Movie Nobita Ki Nayi Duniya", poster: "https://iili.io/qJkX3MB.webp", description: "This movie is available for download.", embed: ``, downloadLinks: { '1080p': 'https://gplinks.co/nobitaKinayiduniyaajhat1080p', '720p': '#', '360p': '#' } },
 
     { title: "Doraemon: Nobita's New Dinosaur", poster: "https://www.tokyoweekender.com/wp-content/uploads/2020/08/Doraemon-Nobitas-new-dinosaur-Tokyo-Weekender-1024x709.jpg", description: "This movie is available for download.", embed: "", downloadLinks: { '1080p': 'https://gplinks.co/newdinasourbyajhin1080p', '720p': '#', '360p': '#' } },
     { title: "Doraemon Nobita and the Spiral City", poster: "https://iili.io/KTEEtjI.jpg", description: "Using a gadget, Doraemon and Nobita create a new city in a different dimension. But when criminals from their world find a way in, they must protect their new home.", embed: "" , downloadLinks: { '1080p': 'https://gplinks.co/Spiralcityonbotat1080p', '720p': 'https://gplinks.co/thespiralcityin720pbycjh', '360p': 'https://gplinks.co/thespiralcityin360pbycjh' } },
