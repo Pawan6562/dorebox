@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications – DoreBox</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#020A24">
+    <link rel="icon" href="https://iili.io/KXmopGj.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=5.0">
+    <link rel="stylesheet" href="subpage.css?v=1.1">
+</head>
+<body class="subpage">
+
+<header id="main-header">
+    <div class="container">
+        <a href="profile.html" class="back-header-btn"><i class="fas fa-arrow-left"></i></a>
+        <h2 class="page-header-title"><i class="fas fa-bell"></i> Notifications</h2>
+        <button id="mark-all-read" class="icon-btn" title="Mark all read"><i class="fas fa-check-double"></i></button>
+    </div>
+</header>
+
+<main class="subpage-main container">
+
+    <div class="sp-stats-bar">
+        <span id="notif-unread-count"></span>
+        <button class="danger-text-btn" id="clear-notifs"><i class="fas fa-trash"></i> Clear All</button>
+    </div>
+
+    <!-- Notification Filter -->
+    <div class="notif-filter-row">
+        <button class="nf-btn active" data-filter="all">All</button>
+        <button class="nf-btn" data-filter="new_movie">🎬 New Movies</button>
+        <button class="nf-btn" data-filter="update">🔔 Updates</button>
+        <button class="nf-btn" data-filter="info">ℹ️ Info</button>
+    </div>
+
+    <div id="notif-list"></div>
+
+    <div id="notif-empty" class="empty-state hidden">
+        <div class="empty-icon"><i class="fas fa-bell-slash"></i></div>
+        <h3>No Notifications</h3>
+        <p>You're all caught up! New movie additions and site updates will appear here.</p>
+        <a href="https://t.me/doraemon_all_movies_byajh" target="_blank" rel="nofollow" class="sp-primary-btn"><i class="fab fa-telegram"></i> Follow Telegram</a>
+    </div>
+
+</main>
+
+<script src="script.js"></script>
+<script>
+// Built-in notifications from DoreBox team
+const BUILTIN_NOTIFS = [
+    {
+        id: 'n001',
+        type: 'new_movie',
+        icon: '🎬',
+        title: "New Movie Added: Nobita's Earth Symphony (2024)",
+        body: "The latest Doraemon theatrical film is now available in 1080p Hindi! Stream or download directly from DoreBox.",
+        link: "watch.html?title=Doraemon%3A%20Nobita's%20Earth%20Symphony&type=movies",
+        time: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
+        read: false
+    },
+    {
+        id: 'n002',
+        type: 'new_movie',
+        icon: '🎬',
+        title: "New Movie Added: Stand by Me Doraemon 2",
+        body: "The emotional sequel in 3D CGI is now available! Download in 1080p, 720p, and 360p quality.",
+        link: "watch.html?title=Stand%20by%20Me%20Doraemon%202&type=movies",
+        time: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
+        read: false
+    },
+    {
+        id: 'n003',
+        type: 'update',
+        icon: '🔔',
+        title: "DoreBox v4.1 — Major Update!",
+        body: "We've completely redesigned the website! New search engine with fuzzy search, dual titles (English + Indian), movie descriptions, and much more.",
+        link: "index.html",
+        time: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
+        read: false
+    },
+    {
+        id: 'n004',
+        type: 'new_movie',
+        icon: '🎬',
+        title: "35+ Movies Now Available!",
+        body: "DoreBox now has 35+ Doraemon movies in Hindi (1080p). From 1983 classics to the 2024 release — all in one place!",
+        link: "index.html",
+        time: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(),
+        read: false
+    },
+    {
+        id: 'n005',
+        type: 'update',
+        icon: '🔔',
+        title: "Doraemon Season 5 Episodes Added",
+        body: "All 52 episodes of Doraemon Season 5 in Hindi are now available for download!",
+        link: "watch.html?title=Doraemon%20Season%205&type=episodes",
+        time: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString(),
+        read: false
+    },
+    {
+        id: 'n006',
+        type: 'info',
+        icon: 'ℹ️',
+        title: "Join our Telegram for Early Updates",
+        body: "Get notified first when new Doraemon movies are added. Join our Telegram channel for early access and announcements.",
+        link: "https://t.me/doraemon_all_movies_byajh",
+        time: new Date(Date.now() - 20 * 24 * 60 * 60 * 1000).toISOString(),
+        read: false
+    },
+];
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Load read state from localStorage
+    const readSet = new Set(JSON.parse(localStorage.getItem('dorebox_read_notifs') || '[]'));
+    const dismissed = new Set(JSON.parse(localStorage.getItem('dorebox_dismissed_notifs') || '[]'));
+    let activeFilter = 'all';
+
+    // Mark last seen
+    localStorage.setItem('dorebox_notif_last_seen', new Date().toISOString());
+
+    function getNotifs() {
+        return BUILTIN_NOTIFS
+            .filter(n => !dismissed.has(n.id))
+            .map(n => ({ ...n, read: readSet.has(n.id) }));
+    }
+
+    function formatTime(iso) {
+        const d = new Date(iso);
+        const diff = Date.now() - d.getTime();
+        if (diff < 60000) return 'Just now';
+        if (diff < 3600000) return Math.floor(diff/60000) + 'm ago';
+        if (diff < 86400000) return Math.floor(diff/3600000) + 'h ago';
+        return Math.floor(diff/86400000) + 'd ago';
+    }
+
+    function render() {
+        let notifs = getNotifs();
+        if (activeFilter !== 'all') notifs = notifs.filter(n => n.type === activeFilter);
+
+        const listEl = document.getElementById('notif-list');
+        const emptyEl = document.getElementById('notif-empty');
+        const countEl = document.getElementById('notif-unread-count');
+        const unread = getNotifs().filter(n => !n.read).length;
+        countEl.textContent = unread > 0 ? `${unread} unread` : 'All caught up';
+
+        if (notifs.length === 0) {
+            emptyEl.classList.remove('hidden');
+            listEl.innerHTML = '';
+            return;
+        }
+        emptyEl.classList.add('hidden');
+
+        listEl.innerHTML = '';
+        notifs.forEach(n => {
+            const isExternal = n.link && n.link.startsWith('http');
+            const el = document.createElement('a');
+            el.href = n.link || '#';
+            if (isExternal) { el.target = '_blank'; el.rel = 'nofollow'; }
+            el.className = 'notif-item' + (n.read ? ' read' : ' unread');
+            el.innerHTML = `
+                <div class="notif-emoji">${n.icon}</div>
+                <div class="notif-body">
+                    <strong class="notif-title">${n.title}</strong>
+                    <p class="notif-desc">${n.body}</p>
+                    <span class="notif-time">${formatTime(n.time)}</span>
+                </div>
+                <button class="notif-dismiss" data-id="${n.id}" title="Dismiss"><i class="fas fa-times"></i></button>`;
+            el.addEventListener('click', () => { readSet.add(n.id); localStorage.setItem('dorebox_read_notifs', JSON.stringify([...readSet])); });
+            listEl.appendChild(el);
+        });
+
+        document.querySelectorAll('.notif-dismiss').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault(); e.stopPropagation();
+                dismissed.add(btn.dataset.id);
+                localStorage.setItem('dorebox_dismissed_notifs', JSON.stringify([...dismissed]));
+                render();
+            });
+        });
+    }
+
+    // Filters
+    document.querySelectorAll('.nf-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.nf-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            activeFilter = btn.dataset.filter;
+            render();
+        });
+    });
+
+    // Mark all read
+    document.getElementById('mark-all-read').addEventListener('click', () => {
+        BUILTIN_NOTIFS.forEach(n => readSet.add(n.id));
+        localStorage.setItem('dorebox_read_notifs', JSON.stringify([...readSet]));
+        render();
+        showToast('All marked as read');
+    });
+
+    // Clear all
+    document.getElementById('clear-notifs').addEventListener('click', () => {
+        BUILTIN_NOTIFS.forEach(n => dismissed.add(n.id));
+        localStorage.setItem('dorebox_dismissed_notifs', JSON.stringify([...dismissed]));
+        render();
+    });
+
+    render();
+});
+
+function showToast(msg) {
+    let t = document.getElementById('sp-toast');
+    if (!t) { t = document.createElement('div'); t.id='sp-toast'; t.className='sp-toast'; document.body.appendChild(t); }
+    t.textContent = msg; t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2200);
+}
+</script>
+</body>
+</html>
