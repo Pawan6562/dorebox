@@ -3,104 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="SKJoAkaawsNV-pzCpMmgHd9TB68j2k5FRYYJmI_IhoU" />
-
-    <title>Doraemon All Movies & Seasons Download in Hindi (HD) - DoreBox</title>
-    <meta name="description" content="Download all Doraemon movies, episodes, and seasons in Hindi (1080p, 720p). Watch Nobita's Earth Symphony, Steel Troops, and new movies for free on DoreBox.">
-    
-    <link rel="stylesheet" href="style.css?v=3.0"> 
-    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>DoreBox Blog</title>
+    <base href="/">
+    <link rel="icon" href="https://iili.io/KXmopGj.png" type="image/png">
+    <link rel="stylesheet" href="style.css?v=3.6">
+    <link rel="stylesheet" href="blog/blog-style.css?v=3.6">
 </head>
-<body class="home-page">
-
-    <div id="festival-splash">
-        <div class="splash-content">
-            <img src="https://iili.io/KY5UO6F.jpg" alt="Chhath Puja Kalash" class="splash-image">
-            <h1 class="splash-text">छठ पूजा २०२५ मुबारक हो!</h1>
-        </div>
-    </div>
+<body class="blog-page">
 
     <header id="main-header">
         <div class="container">
-            <a href="index.html" class="logo-link"><h1 class="logo">DoreBox</h1></a>
-            
-            <div class="header-controls">
-                
-                <a href="search.html" class="icon-btn search-btn-header">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="white"/></svg>
-                </a>
-
-                <button id="menu-toggle-btn" class="icon-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="white"/></svg>
-                </button>
-            </div>
+            <a href="/"><h1 class="logo">DoreBox</h1></a>
         </div>
     </header>
 
-    <div id="side-drawer-overlay" class="hidden"></div>
-    <div id="side-drawer">
-        <div class="drawer-header">
-            <h2>Menu</h2>
-            <button id="close-drawer-btn">&times;</button>
-        </div>
-        
-        <nav class="drawer-nav">
-            <a href="profile.html" class="drawer-link">
-                <i class="fas fa-user-circle"></i> My Profile
-            </a>
-            <a href="/blog" class="drawer-link">
-                <i class="fas fa-newspaper"></i> Blog
-            </a>
-            <a href="rewards.html" class="drawer-link">
-                <i class="fas fa-gift"></i> Rewards
-            </a>
-            <a href="dmca.html" class="drawer-link">
-                <i class="fas fa-shield-alt"></i> DMCA
-            </a>
-        </nav>
-
-        <div class="drawer-socials">
-            <h3>Follow Us</h3>
-            <div class="social-icons-grid">
-                <a href="#" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="social-icon facebook"><i class="fab fa-facebook"></i></a>
-                <a href="#" class="social-icon youtube"><i class="fab fa-youtube"></i></a>
-                <a href="https://t.me/doraemon_all_movies_byajh" class="social-icon telegram"><i class="fab fa-telegram"></i></a>
-            </div>
-        </div>
-    </div>
-
-    <div id="countdown-banner">
-         <div class="banner-content">
-            <span class="banner-title">⏳ संध्या अर्घ्य तक शेष:</span>
-            <div id="countdown-timer">
-                <div class="time-block"><span id="days">00</span><small>दिन</small></div>
-                </div>
-        </div>
+    <div class="blog-header">
+        <h1>DoreBox Blog</h1>
+        <p>Doraemon ki duniya se judi interesting stories, facts aur gadgets.</p>
     </div>
 
     <main>
-        <section id="hero">
-            <div class="hero-content">
-                <h2 id="hero-title">All Doraemon Movies in Hindi</h2>
-                <p>Watch or Download your favorite Doraemon and Nobita movies online for free.</p>
-            </div>
-        </section>
-
-        <section id="content-tabs" class="container">
-             <div class="tab-navigation">
-                <button class="tab-link active" data-tab="movies">All Movies</button>
-                <button class="tab-link" data-tab="episodes">All Episodes</button>
-                <button class="tab-link" data-tab="shorts">All Short Movies</button>
-            </div>
-            <div class="tab-content active" id="movies-content">
-                <div id="movie-grid" class="movie-grid"></div>
-                <p id="no-results-movies" class="no-results hidden">No movies found matching your search.</p>
-            </div>
-            </section>
+        <div class="blog-grid" id="blog-grid-container"></div>
     </main>
 
-    <script src="script.js"></script>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 DoreBox | Maintained by AJH | <a href="/">Back to Home</a></p>
+        </div>
+    </footer>
+
+    <!-- Simple Script Section -->
+    <script src="blog/posts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', ( ) => {
+            const container = document.getElementById('blog-grid-container');
+            if (typeof blogPosts !== 'undefined' && blogPosts.length > 0) {
+                blogPosts.reverse();
+                blogPosts.forEach(post => {
+                    const card = document.createElement('div');
+                    card.className = 'blog-card';
+                    // ✅ NEW: Date ko title ke neeche add kiya gaya hai
+                    card.innerHTML = `
+                        <img src="${post.poster}" alt="${post.title}" class="blog-card-poster">
+                        <div class="blog-card-content">
+                            <h2 class="blog-card-title">${post.title}</h2>
+                            <p class="blog-card-date">${post.date}</p> 
+                            <p class="blog-card-excerpt">${post.description}</p>
+                            <a href="blog/post.html?id=${post.id}" class="blog-card-link">Read More &rarr;</a>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            } else {
+                container.innerHTML = '<p>No blog posts found.</p>';
+            }
+        });
+    </script>
+
 </body>
 </html>
