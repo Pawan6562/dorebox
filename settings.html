@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings – DoreBox</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#020A24">
+    <link rel="icon" href="https://iili.io/KXmopGj.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=5.0">
+    <link rel="stylesheet" href="subpage.css?v=1.1">
+</head>
+<body class="subpage">
+
+<header id="main-header">
+    <div class="container">
+        <a href="profile.html" class="back-header-btn"><i class="fas fa-arrow-left"></i></a>
+        <h2 class="page-header-title"><i class="fas fa-cog"></i> Settings</h2>
+        <div></div>
+    </div>
+</header>
+
+<main class="subpage-main container">
+
+    <!-- Section: Display -->
+    <div class="settings-section">
+        <div class="settings-section-label"><i class="fas fa-palette"></i> Display</div>
+
+        <div class="settings-item">
+            <div class="si-left">
+                <i class="fas fa-moon si-icon" style="color:#9c27b0"></i>
+                <div class="si-text">
+                    <strong>Theme</strong>
+                    <span>Dark mode (default) / AMOLED Black</span>
+                </div>
+            </div>
+            <div class="toggle-group" id="theme-toggle-group">
+                <button class="tg-btn active" data-val="dark">Dark</button>
+                <button class="tg-btn" data-val="amoled">AMOLED</button>
+            </div>
+        </div>
+
+        <div class="settings-item">
+            <div class="si-left">
+                <i class="fas fa-text-height si-icon" style="color:#2196F3"></i>
+                <div class="si-text">
+                    <strong>Font Size</strong>
+                    <span>Adjust text size across the site</span>
+                </div>
+            </div>
+            <div class="toggle-group" id="font-toggle-group">
+                <button class="tg-btn" data-val="small">S</button>
+                <button class="tg-btn active" data-val="normal">M</button>
+                <button class="tg-btn" data-val="large">L</button>
+            </div>
+        </div>
+
+        <div class="settings-item">
+            <div class="si-left">
+                <i class="fas fa-film si-icon" style="color:#FFC107"></i>
+                <div class="si-text">
+                    <strong>Card Layout</strong>
+                    <span>How movies are displayed on home</span>
+                </div>
+            </div>
+            <div class="toggle-group" id="layout-toggle-group">
+                <button class="tg-btn active" data-val="grid"><i class="fas fa-th"></i></button>
+                <button class="tg-btn" data-val="list"><i class="fas fa-list"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section: Playback -->
+    <div class="settings-section">
+        <div class="settings-section-label"><i class="fas fa-play"></i> Playback</div>
+
+        <div class="settings-item">
+            <div class="si-left">
+                <i class="fas fa-tachometer-alt si-icon" style="color:#4caf50"></i>
+                <div class="si-text">
+                    <strong>Default Quality</strong>
+                    <span>Preferred download quality</span>
+                </div>
+            </div>
+            <select class="settings-select" id="quality-select">
+                <option value="1080p">1080p (Full HD)</option>
+                <option value="720p">720p (HD)</option>
+                <option value="360p">360p (SD)</option>
+            </select>
+        </div>
+
+        <div class="settings-item">
+            <div class="si-left">
+                <i class="fas fa-history si-icon" style="color:#ff9800"></i>
+                <div class="si-text">
+                    <strong>Save Watch History</strong>
+                    <span>Track movies you've watched</span>
+                </div>
+            </div>
+            <label class="toggle-switch">
+                <input type="checkbox" id="toggle-history" checked>
+                <span class="ts-slider"></span>
+            </label>
+        </div>
+
+        <div class="settings-item">
+            <div class="si-left">
+                <i class="fas fa-search si-icon" style="color:#e91e63"></i>
+                <div class="si-text">
+                    <strong>Save Search History</strong>
+                    <span>Remember your recent searches</span>
+                </div>
+            </div>
+            <label class="toggle-switch">
+                <input type="checkbox" id="toggle-search-history" checked>
+                <span class="ts-slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <!-- Section: Language -->
+    <div class="settings-section">
+        <div class="settings-section-label"><i class="fas fa-language"></i> Language</div>
+        <div class="settings-item">
+            <div class="si-left">
+                <i class="fas fa-globe si-icon" style="color:#00bcd4"></i>
+                <div class="si-text">
+                    <strong>Interface Language</strong>
+                    <span>Language for the DoreBox UI</span>
+                </div>
+            </div>
+            <select class="settings-select" id="lang-select">
+                <option value="hi">हिंदी</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Section: Notifications -->
+    <div class="settings-section">
+        <div class="settings-section-label"><i class="fas fa-bell"></i> Notifications</div>
+        <div class="settings-item">
+            <div class="si-left">
+                <i class="fas fa-film si-icon" style="color:#FFC107"></i>
+                <div class="si-text">
+                    <strong>New Movie Alerts</strong>
+                    <span>Notify when new Doraemon movies are added</span>
+                </div>
+            </div>
+            <label class="toggle-switch">
+                <input type="checkbox" id="toggle-movie-notif">
+                <span class="ts-slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <!-- Section: Privacy & Data -->
+    <div class="settings-section">
+        <div class="settings-section-label"><i class="fas fa-shield-alt"></i> Privacy & Data</div>
+
+        <div class="settings-item clickable" id="export-data-btn">
+            <div class="si-left">
+                <i class="fas fa-download si-icon" style="color:#4caf50"></i>
+                <div class="si-text">
+                    <strong>Export My Data</strong>
+                    <span>Download your watchlist & history as JSON</span>
+                </div>
+            </div>
+            <i class="fas fa-chevron-right" style="color:#7a8db5"></i>
+        </div>
+
+        <div class="settings-item clickable" id="clear-data-btn">
+            <div class="si-left">
+                <i class="fas fa-trash-alt si-icon" style="color:#f44336"></i>
+                <div class="si-text">
+                    <strong>Clear All My Data</strong>
+                    <span>Delete history, watchlist, settings & ID</span>
+                </div>
+            </div>
+            <i class="fas fa-chevron-right" style="color:#f44336"></i>
+        </div>
+    </div>
+
+    <!-- Section: About -->
+    <div class="settings-section">
+        <div class="settings-section-label"><i class="fas fa-info-circle"></i> About</div>
+        <div class="settings-item">
+            <div class="si-left">
+                <i class="fas fa-code si-icon" style="color:#9c27b0"></i>
+                <div class="si-text"><strong>Version</strong><span>DoreBox v4.1</span></div>
+            </div>
+        </div>
+        <div class="settings-item clickable" onclick="window.open('https://t.me/doraemon_all_movies_byajh','_blank')">
+            <div class="si-left">
+                <i class="fab fa-telegram si-icon" style="color:#29b6f6"></i>
+                <div class="si-text"><strong>Telegram Channel</strong><span>Updates & announcements</span></div>
+            </div>
+            <i class="fas fa-external-link-alt" style="color:#7a8db5;font-size:0.8em"></i>
+        </div>
+        <div class="settings-item clickable" onclick="location.href='dmca.html'">
+            <div class="si-left">
+                <i class="fas fa-gavel si-icon" style="color:#ff8a65"></i>
+                <div class="si-text"><strong>DMCA & Legal</strong><span>Copyright information</span></div>
+            </div>
+            <i class="fas fa-chevron-right" style="color:#7a8db5"></i>
+        </div>
+    </div>
+
+</main>
+
+<script src="script.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Load saved settings
+    const S = key => localStorage.getItem('dorebox_settings_' + key);
+    const SS = (key, val) => localStorage.setItem('dorebox_settings_' + key, val);
+
+    // Theme toggle
+    const themeVal = S('theme') || 'dark';
+    document.querySelectorAll('#theme-toggle-group .tg-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.val === themeVal);
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('#theme-toggle-group .tg-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            SS('theme', btn.dataset.val);
+            if (btn.dataset.val === 'amoled') document.documentElement.style.setProperty('--bg-color', '#000');
+            else document.documentElement.style.setProperty('--bg-color', '#020A24');
+            showToast('Theme updated');
+        });
+    });
+
+    // Font size
+    const fontVal = S('font') || 'normal';
+    document.querySelectorAll('#font-toggle-group .tg-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.val === fontVal);
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('#font-toggle-group .tg-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            SS('font', btn.dataset.val);
+            const sizes = { small: '14px', normal: '16px', large: '18px' };
+            document.documentElement.style.fontSize = sizes[btn.dataset.val];
+            showToast('Font size updated');
+        });
+    });
+
+    // Layout
+    const layoutVal = S('layout') || 'grid';
+    document.querySelectorAll('#layout-toggle-group .tg-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.val === layoutVal);
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('#layout-toggle-group .tg-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            SS('layout', btn.dataset.val);
+            showToast('Layout updated');
+        });
+    });
+
+    // Quality
+    const qualSel = document.getElementById('quality-select');
+    qualSel.value = S('quality') || '1080p';
+    qualSel.addEventListener('change', () => { SS('quality', qualSel.value); showToast('Default quality set to ' + qualSel.value); });
+
+    // Language
+    const langSel = document.getElementById('lang-select');
+    langSel.value = S('lang') || 'hi';
+    langSel.addEventListener('change', () => { SS('lang', langSel.value); showToast('Language preference saved'); });
+
+    // Toggle switches
+    function setupToggle(id, storageKey, onChange) {
+        const el = document.getElementById(id);
+        const saved = localStorage.getItem(storageKey);
+        if (saved !== null) el.checked = saved === 'true';
+        el.addEventListener('change', () => { localStorage.setItem(storageKey, el.checked); if(onChange) onChange(el.checked); showToast(el.checked ? 'Enabled' : 'Disabled'); });
+    }
+    setupToggle('toggle-history', 'dorebox_save_history');
+    setupToggle('toggle-search-history', 'dorebox_save_search_history');
+    setupToggle('toggle-movie-notif', 'dorebox_movie_notif', (val) => {
+        if (val && 'Notification' in window) Notification.requestPermission();
+    });
+
+    // Export data
+    document.getElementById('export-data-btn').addEventListener('click', () => {
+        const data = {
+            userId: localStorage.getItem('dorebox_user_id'),
+            watchlist: JSON.parse(localStorage.getItem('dorebox_watchlist') || '[]'),
+            watchHistory: JSON.parse(localStorage.getItem('dorebox_watch_history') || '[]'),
+            searchHistory: JSON.parse(localStorage.getItem('dorebox_search_history') || '[]'),
+            exportedAt: new Date().toISOString()
+        };
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = 'dorebox-data.json'; a.click();
+        URL.revokeObjectURL(url);
+        showToast('Data exported!');
+    });
+
+    // Clear all
+    document.getElementById('clear-data-btn').addEventListener('click', () => {
+        if (confirm('This will delete ALL your DoreBox data including User ID, watchlist, history and settings. This cannot be undone. Continue?')) {
+            const keysToRemove = Object.keys(localStorage).filter(k => k.startsWith('dorebox_'));
+            keysToRemove.forEach(k => localStorage.removeItem(k));
+            showToast('All data cleared. Redirecting...');
+            setTimeout(() => location.href = 'index.html', 1500);
+        }
+    });
+});
+
+function showToast(msg) {
+    let t = document.getElementById('sp-toast');
+    if (!t) { t = document.createElement('div'); t.id='sp-toast'; t.className='sp-toast'; document.body.appendChild(t); }
+    t.textContent = msg; t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2200);
+}
+</script>
+</body>
+</html>
