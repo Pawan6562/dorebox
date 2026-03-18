@@ -20,7 +20,7 @@ body {
     color: var(--text-primary);
     font-family: var(--font-family);
     margin: 0;
-    padding-top: 125px;
+    padding-top: 70px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
@@ -203,7 +203,7 @@ body {
     }
     
     body { 
-        padding-top: 135px; 
+        padding-top: 70px; 
     }
     
     .banner-content { 
@@ -224,80 +224,7 @@ body {
     #search-bar { width: 140px; }
 }
 
-/* --- UTSAV PATRIKA COUNTDOWN BANNER --- */
-#countdown-banner {
-    position: fixed;
-    top: 60px;
-    width: 100%;
-    z-index: 999;
-    display: flex;
-    justify-content: center;
-    animation: slideDownBanner 1s ease-out;
-}
-
-@keyframes slideDownBanner {
-    from { top: -100px; }
-    to { top: 60px; }
-}
-
-.banner-content {
-    background-color: rgba(10, 25, 58, 0.85);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--border-color);
-    border-top: none;
-    border-radius: 0 0 12px 12px;
-    padding: 5px 20px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
-}
-
-.banner-title {
-    font-size: 0.9em;
-    font-weight: 600;
-    color: var(--text-secondary);
-}
-
-#countdown-timer {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.time-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: rgba(0,0,0,0.3);
-    padding: 4px 8px;
-    border-radius: 4px;
-}
-
-.time-block span {
-    font-size: 1.5em;
-    font-weight: 700;
-    color: var(--primary-color);
-    line-height: 1;
-}
-
-.time-block small {
-    font-size: 0.6em;
-    color: var(--text-secondary);
-}
-
-.time-separator {
-    font-size: 1.2em;
-    font-weight: 700;
-    color: var(--primary-color);
-    animation: blinkSeparator 1.5s infinite;
-    padding-bottom: 5px;
-}
-
-@keyframes blinkSeparator {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-}
+/* Festival / countdown CSS removed - no longer used */
 
 #hero {
     position: relative;
@@ -473,64 +400,6 @@ footer .disclaimer {
     max-width: 90%; 
     margin: 15px auto; 
     opacity: 0.7; 
-}
-
-/* --- Splash Screen --- */
-#festival-splash {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    transition: opacity 1s ease-out, visibility 1s ease-out;
-    opacity: 1;
-    visibility: visible;
-}
-
-#festival-splash.hidden {
-    opacity: 0;
-    visibility: hidden;
-}
-
-.splash-content {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.splash-image {
-    width: 90vw;
-    max-width: 500px;
-    height: auto;
-    border-radius: 15px;
-    opacity: 0;
-    animation: fadeInScene 2s ease-in-out forwards;
-}
-
-.splash-text {
-    position: absolute;
-    bottom: 10%;
-    color: #fff;
-    font-size: 2.2em;
-    text-align: center;
-    text-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
-    opacity: 0;
-    animation: fadeInText 2s ease-in 2s forwards;
-}
-
-@keyframes fadeInScene {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-@keyframes fadeInText {
-    to { opacity: 1; }
 }
 
 /* ===== TAB SYSTEM STYLING ===== */
@@ -1254,4 +1123,432 @@ body.watch-page, body.download-page, body.profile-page {
     #side-drawer {
         width: 30%;
     }
+}
+
+/* =============================================
+   NEW ADDITIONS v4.0 - SEO & REDESIGN UPDATES
+   ============================================= */
+
+/* --- Hero Stats --- */
+.hero-stats {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+.hero-stats span {
+    background: rgba(255,193,7,0.12);
+    border: 1px solid rgba(255,193,7,0.3);
+    color: var(--primary-color);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* --- Tab Navigation Icons --- */
+.tab-link i {
+    margin-right: 6px;
+}
+
+/* --- SEO Content Section --- */
+.seo-content-section {
+    margin: 50px auto;
+    padding: 30px;
+    background-color: var(--surface-color);
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+}
+.seo-content-section h2 {
+    font-size: 1.3em;
+    color: var(--primary-color);
+    margin: 0 0 15px 0;
+}
+.seo-content-section p {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin: 10px 0 0 0;
+    font-size: 0.95em;
+}
+
+/* --- Year Badge on Movie Cards --- */
+.card-year-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(2,10,36,0.85);
+    color: var(--primary-color);
+    font-size: 0.72em;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,193,7,0.4);
+    z-index: 3;
+    backdrop-filter: blur(4px);
+}
+
+/* --- Poster Container fix for badge --- */
+.poster-container {
+    position: relative;
+}
+
+/* --- Movie Meta Badges (Watch Page) --- */
+.movie-meta-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 10px 0 14px 0;
+}
+.meta-badge {
+    background: rgba(255,193,7,0.12);
+    border: 1px solid rgba(255,193,7,0.3);
+    color: var(--primary-color);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+.meta-badge.rating-badge {
+    background: rgba(76,175,80,0.12);
+    border-color: rgba(76,175,80,0.3);
+    color: #81C784;
+}
+
+/* --- Genre Tags (Watch Page) --- */
+.movie-genre-section {
+    margin-bottom: 12px;
+}
+.movie-genre-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.genre-tag {
+    background: rgba(255,255,255,0.06);
+    color: var(--text-secondary);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.78em;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* --- Director Info --- */
+.movie-director-info {
+    color: var(--text-secondary);
+    font-size: 0.88em;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.movie-director-info i {
+    color: var(--primary-color);
+}
+
+/* --- Movie Description Box (Watch Page) --- */
+.movie-description-box {
+    background: rgba(0,0,0,0.2);
+    border-left: 3px solid var(--primary-color);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 16px;
+    margin-bottom: 20px;
+}
+.movie-description-box h3 {
+    margin: 0 0 10px 0;
+    font-size: 0.88em;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.movie-description-box p {
+    color: var(--text-secondary);
+    font-size: 0.9em;
+    line-height: 1.8;
+    margin: 0;
+    white-space: pre-line;
+}
+
+/* --- Watch Page Layout Fix --- */
+.watch-container {
+    padding-top: 10px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.movie-details-grid {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 30px;
+    align-items: start;
+    padding: 30px 0 20px 0;
+}
+.movie-poster-wrap img {
+    width: 100%;
+    border-radius: 14px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.6), 0 0 20px rgba(255,193,7,0.15);
+}
+.movie-info h1 {
+    font-size: 1.7em;
+    margin: 0 0 10px 0;
+    line-height: 1.3;
+    color: #fff;
+}
+
+/* --- Breadcrumb --- */
+.breadcrumb-nav {
+    padding: 12px 0 0 0;
+}
+.breadcrumb {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82em;
+    color: var(--text-secondary);
+}
+.breadcrumb li { display: flex; align-items: center; }
+.breadcrumb li:not(:last-child)::after {
+    content: '›';
+    margin-left: 8px;
+    opacity: 0.5;
+}
+.breadcrumb a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.2s;
+}
+.breadcrumb a:hover { color: var(--primary-color); }
+.breadcrumb li:last-child { color: var(--text-primary); max-width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* --- Share Button --- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 22px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.95em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    border: none;
+}
+.download-button {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+    color: #000;
+}
+.download-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255,193,7,0.4);
+}
+.share-button {
+    background: rgba(255,255,255,0.08);
+    color: var(--text-primary);
+    border: 1px solid rgba(255,255,255,0.15);
+}
+.share-button:hover {
+    background: rgba(255,255,255,0.15);
+    transform: translateY(-2px);
+}
+.button-group {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+
+/* --- Related Movies Section --- */
+.related-movies {
+    margin: 30px 0 40px 0;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+.related-movies h2 {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.related-movies h2 i { color: var(--primary-color); }
+
+/* --- Footer --- */
+footer {
+    background: linear-gradient(180deg, #01061A 0%, #000 100%);
+    color: var(--text-secondary);
+    padding: 50px 0 20px 0;
+    margin-top: 40px;
+    border-top: 1px solid var(--border-color);
+}
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    margin-bottom: 25px;
+}
+.footer-brand p {
+    font-size: 0.88em;
+    line-height: 1.7;
+    max-width: 300px;
+    margin: 0;
+}
+.footer-links h4, .footer-social h4 {
+    color: var(--primary-color);
+    margin: 0 0 15px 0;
+    font-size: 0.95em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.footer-links ul li { margin-bottom: 10px; }
+.footer-links ul li a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.88em;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.footer-links ul li a:hover { color: var(--primary-color); }
+.footer-bottom {
+    text-align: center;
+}
+.footer-bottom p { margin: 6px 0; font-size: 0.85em; }
+.footer-bottom .disclaimer {
+    font-size: 0.72em;
+    opacity: 0.55;
+    max-width: 600px;
+    margin: 10px auto 0 auto;
+    line-height: 1.6;
+}
+
+/* --- No Results message --- */
+.no-results {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 40px;
+    font-size: 1em;
+}
+
+/* --- Player Message --- */
+.player-message-box {
+    background: rgba(255,152,0,0.1);
+    border: 1px solid rgba(255,152,0,0.3);
+    color: #ffcc80;
+    padding: 14px 20px;
+    border-radius: 10px;
+    margin: 10px 0 15px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9em;
+}
+
+/* --- Search Input Icon --- */
+.search-input-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    pointer-events: none;
+    z-index: 1;
+}
+.search-input-wrapper {
+    position: relative;
+    flex: 1;
+}
+.search-input-wrapper input {
+    padding-left: 40px !important;
+}
+
+/* --- Responsive Fixes --- */
+@media (max-width: 768px) {
+    .movie-details-grid {
+        grid-template-columns: 1fr;
+    }
+    .movie-poster-wrap img {
+        max-width: 220px;
+        margin: 0 auto;
+        display: block;
+    }
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    .hero-stats {
+        gap: 10px;
+    }
+    .hero-stats span {
+        font-size: 0.78em;
+        padding: 5px 10px;
+    }
+}
+@media (max-width: 480px) {
+    .movie-meta-badges {
+        gap: 6px;
+    }
+    .meta-badge {
+        font-size: 0.74em;
+        padding: 4px 9px;
+    }
+    .watch-container {
+        padding: 0 12px;
+    }
+}
+
+/* --- Body padding fix for watch page (header fixed) --- */
+body.watch-page {
+    padding-top: 70px;
+}
+
+/* =============================================
+   v4.1 - DUAL TITLE + SEARCH RESULT STYLES
+   ============================================= */
+
+/* Indian Title on Movie Cards */
+.card-indian-title {
+    display: block;
+    font-size: 0.72em;
+    color: var(--text-secondary);
+    text-align: center;
+    padding: 2px 10px 10px 10px;
+    line-height: 1.3;
+    font-weight: 400;
+    opacity: 0.8;
+}
+
+/* Indian Title on Watch Page */
+.movie-indian-title {
+    font-size: 0.9em;
+    color: var(--text-secondary);
+    margin: -4px 0 10px 0;
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.movie-indian-title::before {
+    content: '🇮🇳';
+    font-style: normal;
+    font-size: 0.9em;
 }
