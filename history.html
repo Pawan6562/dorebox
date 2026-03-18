@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch History – DoreBox</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#020A24">
+    <link rel="icon" href="https://iili.io/KXmopGj.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=5.0">
+    <link rel="stylesheet" href="subpage.css?v=1.1">
+</head>
+<body class="subpage">
+
+<header id="main-header">
+    <div class="container">
+        <a href="profile.html" class="back-header-btn"><i class="fas fa-arrow-left"></i></a>
+        <h2 class="page-header-title"><i class="fas fa-history"></i> Watch History</h2>
+        <button id="clear-history-all" class="icon-btn danger-icon" title="Clear History"><i class="fas fa-trash"></i></button>
+    </div>
+</header>
+
+<main class="subpage-main container">
+
+    <div class="sp-stats-bar">
+        <span id="hist-count">0 movies watched</span>
+        <span class="sp-stats-note"><i class="fas fa-info-circle"></i> Stored locally on your device</span>
+    </div>
+
+    <!-- Timeline History -->
+    <div id="history-list-sp"></div>
+
+    <!-- Empty State -->
+    <div id="hist-empty" class="empty-state hidden">
+        <div class="empty-icon"><i class="fas fa-history"></i></div>
+        <h3>No Watch History Yet</h3>
+        <p>Movies you watch on DoreBox will appear here automatically.</p>
+        <a href="index.html" class="sp-primary-btn"><i class="fas fa-film"></i> Start Watching</a>
+    </div>
+
+</main>
+
+<script src="script.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    function render() {
+        const history = JSON.parse(localStorage.getItem('dorebox_watch_history') || '[]');
+        const listEl = document.getElementById('history-list-sp');
+        const emptyEl = document.getElementById('hist-empty');
+        const countEl = document.getElementById('hist-count');
+
+        countEl.textContent = `${history.length} movie${history.length !== 1 ? 's' : ''} watched`;
+
+        if (history.length === 0) {
+            emptyEl.classList.remove('hidden');
+            listEl.innerHTML = '';
+            return;
+        }
+        emptyEl.classList.add('hidden');
+
+        // Group by date
+        const groups = {};
+        history.forEach(item => {
+            const dateKey = item.watchedAt ? new Date(item.watchedAt).toLocaleDateString('en-IN', {day:'numeric',month:'long',year:'numeric'}) : 'Unknown Date';
+            if (!groups[dateKey]) groups[dateKey] = [];
+            groups[dateKey].push(item);
+        });
+
+        listEl.innerHTML = '';
+        Object.entries(groups).forEach(([date, items]) => {
+            const section = document.createElement('div');
+            section.className = 'hist-section';
+            section.innerHTML = `<div class="hist-date-label"><i class="fas fa-calendar-alt"></i> ${date}</div>`;
+            items.forEach(item => {
+                const row = document.createElement('div');
+                row.className = 'hist-row';
+                row.innerHTML = `
+                    <a href="watch.html?title=${encodeURIComponent(item.title)}&type=${item.type||'movies'}" class="hist-row-inner">
+                        <img src="${item.poster}" alt="${item.title}" class="hist-thumb" loading="lazy">
+                        <div class="hist-info">
+                            <p class="hist-title">${item.title}</p>
+                            <span class="hist-time">${item.watchedAt ? new Date(item.watchedAt).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'}) : ''}</span>
+                        </div>
+                        <div class="hist-play-icon"><i class="fas fa-play-circle"></i></div>
+                    </a>
+                    <button class="hist-remove-btn" data-title="${item.title.replace(/"/g,'&quot;')}" title="Remove"><i class="fas fa-times"></i></button>`;
+                section.appendChild(row);
+            });
+            listEl.appendChild(section);
+        });
+
+        // Remove individual
+        document.querySelectorAll('.hist-remove-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                let h = JSON.parse(localStorage.getItem('dorebox_watch_history') || '[]');
+                h = h.filter(x => x.title !== btn.dataset.title);
+                localStorage.setItem('dorebox_watch_history', JSON.stringify(h));
+                render();
+                showToast('Removed from history');
+            });
+        });
+    }
+
+    document.getElementById('clear-history-all').addEventListener('click', () => {
+        if (confirm('Clear your entire watch history?')) {
+            localStorage.removeItem('dorebox_watch_history');
+            render();
+            showToast('History cleared');
+        }
+    });
+
+    render();
+});
+function showToast(msg) {
+    let t = document.getElementById('sp-toast');
+    if (!t) { t = document.createElement('div'); t.id = 'sp-toast'; t.className = 'sp-toast'; document.body.appendChild(t); }
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2200);
+}
+</script>
+</body>
+</html>
