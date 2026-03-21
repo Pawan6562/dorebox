@@ -1,0 +1,549 @@
+// api/sitemap.js - Vercel Serverless Function
+// Serves sitemap.xml with correct Content-Type header
+// URL: https://dorebox.vercel.app/api/sitemap
+
+module.exports = (req, res) => {
+  res.setHeader('Content-Type', 'application/xml; charset=utf-8');
+  res.setHeader('Cache-Control', 'public, max-age=86400, s-maxage=86400');
+  res.status(200).send(`<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <url>
+    <loc>https://dorebox.vercel.app/</loc>
+    <lastmod>2025-03-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://iili.io/KXmopGj.png</image:loc>
+      <image:title>DoreBox - Doraemon Movies and Episodes in Hindi</image:title>
+      <image:caption>Watch and download all Doraemon movies and seasons in Hindi HD on DoreBox</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/search.html</loc>
+    <lastmod>2025-03-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/blog/</loc>
+    <lastmod>2025-03-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/dmca.html</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%27s%20Earth%20Symphony&amp;type=movies</loc>
+    <lastmod>2025-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.98</priority>
+    <image:image>
+      <image:loc>https://iili.io/f94Nezg.jpg</image:loc>
+      <image:title>Doraemon Nobita Earth Symphony 2024 Hindi Download - DoreBox</image:title>
+      <image:caption>Watch Doraemon Nobita Earth Symphony 2024 Hindi HD. Download 1080p free on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%27s%20New%20World&amp;type=movies</loc>
+    <lastmod>2025-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.97</priority>
+    <image:image>
+      <image:loc>https://iili.io/qJkX3MB.webp</image:loc>
+      <image:title>Doraemon Nobita Ki Nayi Duniya 2024 Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon The Movie Nobita Ki Nayi Duniya 2024 Hindi full movie download on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%20and%20the%20Spiral%20City&amp;type=movies</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://iili.io/KTEEtjI.jpg</image:loc>
+      <image:title>Doraemon Nobita Spiral City Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Nobita Aur Spiral City 2023 Hindi full movie free download on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%27s%20Magic%20Wonders&amp;type=movies</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/Z5t0TfkP/Doraemon-The-Movie-Jadoo-Mantar-Aur-Jahnoom-by-cjh.jpg</image:loc>
+      <image:title>Doraemon Jadoo Mantar Aur Jhanoom Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Jadoo Mantar Aur Jhanoom 2023 Hindi movie free download on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%27s%20Sky%20Utopia&amp;type=movies</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/Nf3QTNXq/doraemon-movie-nobitas-sky-utopia-in-hindi.jpg</image:loc>
+      <image:title>Doraemon Nobita Sky Utopia Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Nobita Ka Sky Utopia 2022 Hindi full movie download on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%27s%20Little%20Star%20Wars%202021&amp;type=movies</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://iili.io/KzKuPMQ.jpg</image:loc>
+      <image:title>Doraemon Nobita In Jannat No 1 Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Nobita Little Star Wars 2021 Hindi full movie free on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%27s%20New%20Dinosaur&amp;type=movies</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.93</priority>
+    <image:image>
+      <image:loc>https://www.tokyoweekender.com/wp-content/uploads/2020/08/Doraemon-Nobitas-new-dinosaur-Tokyo-Weekender-1024x709.jpg</image:loc>
+      <image:title>Doraemon Nobita New Dinosaur 2020 Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Nobita Ka Naya Dinosaur 2020 Hindi full movie 1080p free on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Stand%20by%20Me%20Doraemon%202&amp;type=movies</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.93</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/y8wkR4PJ/Doraemon-The-Movie-Stand-by-Me-2-by-cjh.png</image:loc>
+      <image:title>Stand by Me Doraemon 2 Hindi Download - DoreBox</image:title>
+      <image:caption>Stand by Me Doraemon 2 Hindi full movie watch and download free 1080p on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Stand%20by%20Me%20Doraemon&amp;type=movies</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/vmkLDN1X/Doraemon-The-Movie-Stand-by-Me-by-cjh.png</image:loc>
+      <image:title>Stand by Me Doraemon Hindi Download - DoreBox</image:title>
+      <image:caption>Stand by Me Doraemon Part 1 2014 Hindi 3D movie free download 1080p on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%27s%20Chronicle%20of%20the%20Moon%20Exploration&amp;type=movies</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.88</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/BbmtZs0X/m3.jpg</image:loc>
+      <image:title>Doraemon Chronicle of Moon Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Chand Ka Rahasya 2019 Hindi full movie free download on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%20and%20the%20Birdopia%27s%20Sultan&amp;type=movies</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.86</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/hjVgbtRQ/Doraemon-The-Movie-Nobita-Aur-Birdopia-Ka-Sultan.jpg</image:loc>
+      <image:title>Doraemon Birdopia Ka Sultan Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Nobita Aur Birdopia Ka Sultan 2019 Hindi free download on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%27s%20Treasure%20Island&amp;type=movies</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.88</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/t46rgZ36/Doraemon-the-Nobita-s-Treasure-Island-by-cjh.jpg</image:loc>
+      <image:title>Doraemon Nobita Treasure Island Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Nobita Ka Khajana Dwip 2018 Hindi full movie 1080p free on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Ichi%20Mera%20Dost&amp;type=movies</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/xjpCppDL/Doraemon-The-Movie-Nobita-in-Ichi-Mera-Dost-Hindi.png</image:loc>
+      <image:title>Doraemon Ichi Mera Dost Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon ICHI MERA DOST 2015 Hindi full movie free download 1080p on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%20and%20the%20New%20Steel%20Troops&amp;type=movies</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.86</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/43C9KJr0/Doraemon-The-Movie-Nobita-and-the-Steel-Troops.jpg</image:loc>
+      <image:title>Doraemon Steel Troops Robot Sainik Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Nobita New Steel Troops 2011 Hindi free download 1080p on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%20and%20the%20Kingdom%20of%20Robots&amp;type=movies</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.84</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/j5fNHPj6/The-Movie-Nobita-and-the-Kingdom-of-Robot-by-cjh.jpg</image:loc>
+      <image:title>Doraemon Nobita Aur Robot Singham Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Nobita Kingdom of Robots 2011 Hindi free on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%20and%20the%20Underwater%20Adventure&amp;type=movies</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.83</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/yYLjw5Pn/Doraemon-The-Movie-Nobita.jpg</image:loc>
+      <image:title>Doraemon Nobita Underwater Adventure Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Nobita Underwater Adventure Hindi full movie free on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%27s%20Secret%20Gadget%20Museum&amp;type=movies</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.84</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/9QsfxJbw/Doraemon-Gadget-Museum-Ka-Rahasya-by-cjh.jpg</image:loc>
+      <image:title>Doraemon Gadget Museum Ka Rahasya Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Gadget Museum Ka Rahasya 2013 Hindi free on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%27s%20Dinosaur%20Warriors&amp;type=movies</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/3w83qTtr/Doraemon-The-Movie-Dinosaur-Yoddhha-Hindi-Tamil-Telugu-Download-FHD-990x557.jpg</image:loc>
+      <image:title>Doraemon Dinosaur Yodha Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Dinosaur Yodha 2014 Hindi full movie free download on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%27s%20Adventure%20in%20Koya%20Koya%20Planet&amp;type=movies</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/DwCg656n/Adventures-of-Koya-Koya-Planet-Movie-by-cjh.png</image:loc>
+      <image:title>Doraemon Koya Koya Planet Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Koya Koya Planet 2009 Hindi movie free download on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%27s%20Parallel%20Journey%20to%20the%20West&amp;type=movies</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/prbYFGHC/Doraemon-Nobita-Bana-Superhero-Hindi-by-cjh.jpg</image:loc>
+      <image:title>Doraemon Parallel Visit to West Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Parallel Journey to the West 2007 Hindi movie free on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%27s%20Dinosaur&amp;type=movies</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://iili.io/KiQ8eOQ.jpg</image:loc>
+      <image:title>Doraemon Nobita Dinosaur 2006 Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Nobita Ka Dinosaur 2006 Hindi full movie free download on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%20in%20Toy%20Kingdom&amp;type=movies</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/w38qYR5V/Doraemon-Khel-Khilona-Bhool-Bhulaiya-by-cjh.jpg</image:loc>
+      <image:title>Doraemon Khilone Ki Bhul Bhulaiya Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Toy Kingdom Khilone Bhul Bhulaiya 2004 Hindi free on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%20and%20the%20Windmasters&amp;type=movies</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/bYFLHHLb/Doraemon-Toofani-Adventure-by-cjh.jpg</image:loc>
+      <image:title>Doraemon Toofani Adventure Windmasters Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Nobita and Windmasters Toofani Adventure Hindi free on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%20and%20the%20Legend%20of%20the%20Sun%20King&amp;type=movies</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.79</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/mrQ7v7Qd/Doraemon-nobita-and-the-legend-of-sun-king-by-cjh.jpg</image:loc>
+      <image:title>Doraemon Legend of Sun King Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Nobita Aur Suraj Ka Raja 2000 Hindi movie free on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%27s%20Great%20Adventure%20in%20the%20South%20Seas&amp;type=movies</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.79</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/8zC06x5V/Nobita-Great-Adventure-to-the-South-Seas-by-cjh.jpg</image:loc>
+      <image:title>Doraemon South Seas Adventure Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Nobita Great Adventure South Seas 1998 Hindi free on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%20and%20the%20Galaxy%20Super-Express&amp;type=movies</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/XY6fQ25Z/Doraemon-The-Movie-Galaxy-Super-Express-by-cjh.png</image:loc>
+      <image:title>Doraemon Galaxy Super Express Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Nobita Galaxy Super Express 1996 Hindi classic free on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%27s%20Dorabian%20Nights&amp;type=movies</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://iili.io/KqRfWdv.png</image:loc>
+      <image:title>Doraemon Dorabian Nights Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Nobita Dorabian Nights 1991 Hindi classic full movie free on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%27s%20Three%20Visionary%20Swordsmen&amp;type=movies</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.79</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/RZ82qxJ3/Doraemon-The-Movie-Nobita-s-Three-Magical-Swordsmen.png</image:loc>
+      <image:title>Doraemon Teen Jadooi Talwarbaaz Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Three Visionary Swordsmen 1994 Hindi free on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%20and%20the%20Birth%20of%20Japan&amp;type=movies</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.78</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/MKqNrP7Q/Doraemon-The-Movie-Nobita-and-the-birth-of-Japan.jpg</image:loc>
+      <image:title>Doraemon Nobita Aur Japan Ka Janm Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Nobita Birth of Japan 1989 Hindi classic free on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%27s%20Little%20Star%20Wars&amp;type=movies</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.82</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/wTt8Th7t/Doraemon-in-Nobitas-Little-Space-War-Movie-Hindi-Tamil-Telugu-Download-HD-jpg-990x557.png</image:loc>
+      <image:title>Doraemon Little Space War 1985 Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Nobita Little Star Wars 1985 Hindi classic full movie free on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%27s%20Antarctic%20Adventure&amp;type=movies</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.78</priority>
+    <image:image>
+      <image:loc>https://iili.io/Kx9Qifn.jpg</image:loc>
+      <image:title>Doraemon Antarctic Adventure Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Nobita Antarctic Adventure 1983 Hindi classic free on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%20and%20the%20Island%20of%20Miracles&amp;type=movies</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.83</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/yd8X0kZv/Doraemon-The-Movie-Nobita-Aur-Jadooi-Tapu-by-cjh.jpg</image:loc>
+      <image:title>Doraemon Nobita Aur Jadooi Tapu Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Island of Miracles Jadooi Tapu 2012 Hindi free on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%20%E2%80%93%20The%20Explorer%20Bow!%20Bow!&amp;type=movies</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.83</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/HxY336f0/The-Movie-Nobita-The-Explorer-Bow-Bow-by-cjh.png</image:loc>
+      <image:title>Doraemon Nobita Explorer Bow Bow Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Nobita The Explorer Bow Bow 2012 Hindi free download on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%20and%20the%20Space%20Raiders&amp;type=movies</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.84</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/50CKBN0F/Doraemon-The-Movie-Nobita-aur-Antarishk-Daku-bycjh.jpg</image:loc>
+      <image:title>Doraemon Space Hero Antariksh Daku Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Space Hero Nobita Aur Antariksh Daku 2015 Hindi free on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%3A%20Nobita%27s%20Little%20Star%20Wars%202021%20-%20Sky%20Kingdom&amp;type=movies</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.88</priority>
+    <image:image>
+      <image:loc>https://i.postimg.cc/RV6bNkLK/Doraemon-The-Movie-Nobitain-Hara-Hara-Planet-bycjh.jpg</image:loc>
+      <image:title>Nobita In Hara Hara Planet Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Nobita In Hara Hara Planet Hindi free download on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- EPISODES -->
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%20Season%201&amp;type=episodes</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://iili.io/KDQrkLN.png</image:loc>
+      <image:title>Doraemon Season 1 Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Season 1 all episodes Hindi free download on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%20Season%202&amp;type=episodes</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.88</priority>
+    <image:image>
+      <image:loc>https://iili.io/KDZEJEB.png</image:loc>
+      <image:title>Doraemon Season 2 Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Season 2 all episodes Hindi free download on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%20Season%203&amp;type=episodes</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.87</priority>
+    <image:image>
+      <image:loc>https://iili.io/KbuSDW7.png</image:loc>
+      <image:title>Doraemon Season 3 Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Season 3 all episodes Hindi free download on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%20Season%204&amp;type=episodes</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.87</priority>
+    <image:image>
+      <image:loc>https://iili.io/KbA34Hb.png</image:loc>
+      <image:title>Doraemon Season 4 Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Season 4 all episodes Hindi free download on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/watch.html?title=Doraemon%20Season%205&amp;type=episodes</loc>
+    <lastmod>2025-03-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.88</priority>
+    <image:image>
+      <image:loc>https://iili.io/KbMduTB.png</image:loc>
+      <image:title>Doraemon Season 5 Hindi Download - DoreBox</image:title>
+      <image:caption>Doraemon Season 5 all episodes Hindi free download on DoreBox.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- BLOG -->
+  <url>
+    <loc>https://dorebox.vercel.app/blog/post.html?id=nobita-earth-symphony</loc>
+    <lastmod>2025-03-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/blog/post.html?id=top-5-gadgets</loc>
+    <lastmod>2025-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.68</priority>
+  </url>
+
+  <url>
+    <loc>https://dorebox.vercel.app/blog/post.html?id=nobita-lifestyle</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+
+</urlset>`);
+};
