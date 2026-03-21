@@ -1,24 +1,64 @@
 {
-
-  "rewrites": [
-
+  "headers": [
     {
-
-      "source": "/blog",
-
-      "destination": "/blog/index.html"
-
+      "source": "/sitemap.xml",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/xml; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
     },
-
     {
-
-      "source": "/blog/",
-
-      "destination": "/blog/index.html"
-
+      "source": "/robots.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        }
+      ]
     }
-
+  ],
+  "rewrites": [
+    {
+      "source": "/blog",
+      "destination": "/blog/index.html"
+    },
+    {
+      "source": "/blog/",
+      "destination": "/blog/index.html"
+    },
+    {
+      "source": "/watchlist",
+      "destination": "/watchlist.html"
+    },
+    {
+      "source": "/history",
+      "destination": "/history.html"
+    },
+    {
+      "source": "/settings",
+      "destination": "/settings.html"
+    },
+    {
+      "source": "/notifications",
+      "destination": "/notifications.html"
+    },
+    {
+      "source": "/profile",
+      "destination": "/profile.html"
+    },
+    {
+      "source": "/search",
+      "destination": "/search.html"
+    },
+    {
+      "source": "/dmca",
+      "destination": "/dmca.html"
+    }
   ]
-
 }
-
