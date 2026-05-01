@@ -171,7 +171,26 @@ Sophia reveals that her underwater kingdom is under threat from a rival Merman t
 A visually breathtaking underwater epic featuring colossal shark battles, ancient oceanic civilizations, and the magic of an unlikely friendship between a human boy and a mermaid princess. One of the most spectacular entries in the Doraemon film series — a love letter to the ocean and the creatures that call it home.`,
     embed: "",
     downloadLinks: { '1080p': '#', '720p': '#', '360p': '#' }
-},      
+},    
+{
+       title: "Doraemon: Nobita and the Animal Planet",
+       indianTitle: "Doraemon: Jungle Mein Dangal",
+       searchTerms: ["animal planet", "jungle mein dangal", "jangal mein dangal", "1990", "chippo", "nimuge", "janwar duniya", "animal world", "classic", "pink gas"],
+       poster: "https://iili.io/BsrPil4.jpg",
+       description: `Doraemon: Nobita and the Animal Planet (Jungle Mein Dangal)
+   Release: March 10, 1990 | Duration: 1h 40m
+   Genre: Adventure • Fantasy • Family • Eco
+   Director: Tsutomu Shibayama | Studio: Shin-Ei Animation
+   Language: Hindi Dubbed | Rating: U
+
+   One mysterious night, a strange pink fog seeps into Nobita's room and pulls him into an extraordinary world — the Animal Planet (Animaru Wakusei), a lush, beautiful planet where intelligent animals live in complete harmony with nature. Every building runs on clean energy, every creature has a voice, and the jungles are alive with wonder.
+
+There, Nobita and Doraemon befriend Chippo — a brave, adventurous young dog boy who is determined to explore the planet's forbidden forest in search of ancient relics. But the Animal Planet is in grave danger. A sinister alien organization called the Nimuge has launched a secret invasion, planning to strip the planet of its natural resources and enslave its animal inhabitants.
+
+As Nobita and his friends join the animal resistance alongside Chippo, they must use Doraemon's gadgets, their own courage, and the power of friendship to drive out the invaders before the planet is destroyed forever. A deeply moving environmental adventure — one of the most beloved classic Doraemon films — with a message about protecting nature that feels more relevant today than ever.`,
+    embed: "",
+    downloadLinks: { '1080p': '#', '720p': '#', '360p': '#' }
+   },
     {
         title: "Doraemon: Nobita's New Dinosaur",
         indianTitle: "Doraemon: Nobita Ka Naya Dinosaur",
@@ -722,6 +741,7 @@ const movieMeta = {
     "Doraemon: Nobita's Earth Symphony": { year: 2024, duration: "1h 55m", genre: "Adventure, Fantasy, Musical, Sci-Fi", director: "Kazuaki Imai", language: "Hindi", rating: "U" },
     "Doraemon The Movie Nobita Ki Nayi Duniya": { year: 2024, duration: "1h 37m", genre: "Adventure, Family, Sci-Fi", director: "Kazuaki Imai", language: "Hindi", rating: "U" },
     "Doraemon: Nobita's Mermaid Legend": { year: 2010, duration: "1h 39m", genre: "Adventure, Fantasy, Action, Sci-Fi", director: "Kōzō Kusuba", language: "Hindi", rating: "U" },
+    "Doraemon: Nobita and the Animal Planet": { year: 1990, duration: "1h 40m", genre: "Adventure, Fantasy, Family, Eco", director: "Tsutomu Shibayama", language: "Hindi", rating: "U" },
     "Doraemon: Nobita's New Dinosaur": { year: 2020, duration: "1h 50m", genre: "Adventure, Family, Sci-Fi", director: "Kazuaki Imai", language: "Hindi", rating: "U" },
     "Doraemon Nobita and the Spiral City": { year: 2023, duration: "1h 40m", genre: "Adventure, Sci-Fi, Mystery", director: "Takahiro Imamura", language: "Hindi", rating: "U" },
     "Doraemon The Movie Nobita In Jannat No 1": { year: 2021, duration: "1h 36m", genre: "Adventure, Fantasy, Family", director: "Takahiro Imamura", language: "Hindi", rating: "U" },
