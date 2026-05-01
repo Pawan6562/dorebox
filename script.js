@@ -170,7 +170,7 @@ Sophia reveals that her underwater kingdom is under threat from a rival Merman t
 
 A visually breathtaking underwater epic featuring colossal shark battles, ancient oceanic civilizations, and the magic of an unlikely friendship between a human boy and a mermaid princess. One of the most spectacular entries in the Doraemon film series — a love letter to the ocean and the creatures that call it home.`,
     embed: "",
-    downloadLinks: { '1080p': '#', '720p': '#', '360p': '#' }
+    downloadLinks: { '1080p': 'https://gplinks.co/Ekjalparibyajh', '720p': '#', '360p': '#' }
 },    
 {
        title: "Doraemon: Nobita and the Animal Planet",
@@ -189,7 +189,7 @@ There, Nobita and Doraemon befriend Chippo — a brave, adventurous young dog bo
 
 As Nobita and his friends join the animal resistance alongside Chippo, they must use Doraemon's gadgets, their own courage, and the power of friendship to drive out the invaders before the planet is destroyed forever. A deeply moving environmental adventure — one of the most beloved classic Doraemon films — with a message about protecting nature that feels more relevant today than ever.`,
     embed: "",
-    downloadLinks: { '1080p': '#', '720p': '#', '360p': '#' }
+    downloadLinks: { '1080p': 'https://gplinks.co/Jungledangalbyajh', '720p': '#', '360p': '#' }
    },
     {
         title: "Doraemon: Nobita's New Dinosaur",
@@ -245,7 +245,7 @@ Director: Takahiro Imamura | Language: Hindi Dubbed | Rating: U
 
 Nobita discovers a magical world that runs entirely on sorcery rather than science — where flying carpets, enchanted potions, and spell-wielding wizards are everyday reality. Enchanted by this world, Nobita and his friends dive in, but soon a dark wizard threatens to use forbidden magic to conquer both this realm and Earth. Doraemon's gadgets meet ancient spells in an epic clash. A visually spectacular film packed with magical battles, heart-pounding action, and the message that true power comes not from magic or machines, but from the love between friends.`,
         embed: '',
-        downloadLinks: { '1080p':'https://gplinks.co/Jadumantaronbotat1080pbyajh', '720p': 'https://gplinks.co/Jadumantaraurjhanoom720pbycjh', '360p': 'https://gplinks.co/Jadumantaraurjhanoom360pbycjh' }
+        downloadLinks: { '1080p':'https://gplinks.co/Jadoojhanoombyajh', '720p': 'https://gplinks.co/Jadumantaraurjhanoom720pbycjh', '360p': 'https://gplinks.co/Jadumantaraurjhanoom360pbycjh' }
     },
     {
         title: "Doraemon: Nobita's Dinosaur Warriors",
