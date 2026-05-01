@@ -9,6 +9,7 @@ const allContent = [
     // MOVIES
     { title: "Doraemon: Nobita's Earth Symphony", indianTitle: "Doraemon: Nobita Aur Prithvi Ka Sangeet", poster: "https://iili.io/f94Nezg.jpg", type: "movies", year: 2024, genre: "Adventure, Musical" },
     { title: "Doraemon: Nobita's New World", indianTitle: "Doraemon The Movie Nobita Ki Nayi Duniya", poster: "https://iili.io/qJkX3MB.webp", type: "movies", year: 2024, genre: "Adventure, Sci-Fi" },
+    { title: "Doraemon: Nobita's Mermaid Legend", indianTitle: "Doraemon: Nobita Aur Jalpari Ki Duniya", poster: "https://iili.io/BsgrngS.jpg", type: "movies", year: 2010, genre: "Adventure, Fantasy"},
     { title: "Doraemon: Nobita's New Dinosaur", indianTitle: "Doraemon: Nobita Ka Naya Dinosaur", poster: "https://www.tokyoweekender.com/wp-content/uploads/2020/08/Doraemon-Nobitas-new-dinosaur-Tokyo-Weekender-1024x709.jpg", type: "movies", year: 2020, genre: "Adventure, Family" },
     { title: "Doraemon: Nobita and the Spiral City", indianTitle: "Doraemon: Nobita Aur Spiral City", poster: "https://iili.io/KTEEtjI.jpg", type: "movies", year: 2023, genre: "Adventure, Sci-Fi" },
     { title: "Doraemon: Nobita's Little Star Wars 2021", indianTitle: "Doraemon The Movie Nobita In Jannat No 1", poster: "https://iili.io/KzKuPMQ.jpg", type: "movies", year: 2021, genre: "Adventure, Fantasy" },
