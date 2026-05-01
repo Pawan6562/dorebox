@@ -154,6 +154,25 @@ Nobita stumbles upon a mysterious portal that leads to a breathtaking new world 
         downloadLinks: { '1080p': 'https://gplinks.co/nobitaKinayiduniyaajhat1080p', '720p': '#', '360p': '#' }
     },
     {
+       title: "Doraemon: Nobita's Mermaid Legend",
+       indianTitle: "Doraemon: Nobita Aur Jalpari Ki Duniya",
+       searchTerms: ["mermaid legend", "jalpari", "nobita jalpari", "mermaid king", "sophia mermaid", "samudri duniya", "underwater kingdom", "2010", "ningyo daikaisen"],
+       poster: "https://iili.io/BsgrngS.jpg",
+       description: `Doraemon: Nobita's Mermaid Legend (Nobita Aur Jalpari Ki Duniya)
+   Release: March 6, 2010 | Duration: 1h 39m
+   Genre: Adventure • Fantasy • Action • Sci-Fi
+   Director: Kōzō Kusuba | Studio: Shin-Ei Animation
+   Language: Hindi Dubbed | Rating: U
+
+   Nobita begs Doraemon to let him experience underwater life. Using his "Underwater Pump Simulator" gadget, Doraemon floods the entire city of Tokyo underwater — turning streets into ocean floors. That night while diving, Nobita spots a mysterious fish tail and discovers a girl named Sophia — a mermaid princess from the planet Aqua who has crash-landed on Earth.
+
+Sophia reveals that her underwater kingdom is under threat from a rival Merman tribe led by a ruthless villain who seeks to steal the legendary Mermaid Sword — an ancient weapon powerful enough to purify entire oceans. When Shizuka is kidnapped by the Merman King, Nobita and Doraemon must plunge deep into the underwater world to rescue her and help Sophia reclaim her kingdom.
+
+A visually breathtaking underwater epic featuring colossal shark battles, ancient oceanic civilizations, and the magic of an unlikely friendship between a human boy and a mermaid princess. One of the most spectacular entries in the Doraemon film series — a love letter to the ocean and the creatures that call it home.`,
+    embed: "",
+    downloadLinks: { '1080p': '#', '720p': '#', '360p': '#' }
+},      
+    {
         title: "Doraemon: Nobita's New Dinosaur",
         indianTitle: "Doraemon: Nobita Ka Naya Dinosaur",
         searchTerms: ["new dinosaur", "naya dinosaur", "kyu myu", "2020", "twin dinosaur", "cretaceous"],
@@ -702,6 +721,7 @@ const shortMovies = [];
 const movieMeta = {
     "Doraemon: Nobita's Earth Symphony": { year: 2024, duration: "1h 55m", genre: "Adventure, Fantasy, Musical, Sci-Fi", director: "Kazuaki Imai", language: "Hindi", rating: "U" },
     "Doraemon The Movie Nobita Ki Nayi Duniya": { year: 2024, duration: "1h 37m", genre: "Adventure, Family, Sci-Fi", director: "Kazuaki Imai", language: "Hindi", rating: "U" },
+    "Doraemon: Nobita's Mermaid Legend": { year: 2010, duration: "1h 39m", genre: "Adventure, Fantasy, Action, Sci-Fi", director: "Kōzō Kusuba", language: "Hindi", rating: "U" },
     "Doraemon: Nobita's New Dinosaur": { year: 2020, duration: "1h 50m", genre: "Adventure, Family, Sci-Fi", director: "Kazuaki Imai", language: "Hindi", rating: "U" },
     "Doraemon Nobita and the Spiral City": { year: 2023, duration: "1h 40m", genre: "Adventure, Sci-Fi, Mystery", director: "Takahiro Imamura", language: "Hindi", rating: "U" },
     "Doraemon The Movie Nobita In Jannat No 1": { year: 2021, duration: "1h 36m", genre: "Adventure, Fantasy, Family", director: "Takahiro Imamura", language: "Hindi", rating: "U" },
